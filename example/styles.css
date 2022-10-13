@@ -24,6 +24,7 @@ body{
     background: #fff;
     text-align: center;
     border-radius: 5px;
+    width: 330px;
     padding: 50px 35px 10px 35px;
 }
 .container header{
