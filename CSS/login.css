@@ -1,17 +1,98 @@
-*{
+html{
+    --color: #297373;
+}
+* {
+    margin: 0;
     padding: 0;
-    margin:0;
+    font-family: 'Poppins', sans-serif;
 }
-body{
-background-color: red;
+
+body {
     min-height: 100vh;
+    text-align: center;
 }
-.flex{
+
+.container {
+    margin: 15px 0 15px 0;
+    width: 500px;
+    background-color: gray;
+}
+
+.progress-bar {
+    width: 100%;
+}
+
+.step {
+    text-align: center;
+    justify-content: center;
+    width: 25%;
+}
+
+.name-step {
+    font-size: 1.0em;
+}
+
+.circle-container {
+    position: relative;
+    height: 200%;
+}
+
+.circle {
+    border-radius: 50%;
+    position: absolute;
+    border: solid black 3px;
+    display: inline-block;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 50%;
+    width: 15%;
+}
+
+.number {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.flex {
     display: flex;
 }
-.align-items{
-    align-items: center;
+
+.vertical-center {
+    vertical-align: center;
 }
-.justify-content{
+
+.justify-center {
     justify-content: center;
+}
+
+.none {
+    display: none;
+    visibility: hidden;
+}
+
+.progress-bar .step .check {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 15px;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.progress-bar .step .circle:before,
+.progress-bar .step .circle:after {
+    position: absolute;
+    top: 50%;
+    content: '';
+    left: 132%;
+    height: 3px;
+    width: 90px;
+    background: #262626;
+}
+.progress-bar .step:last-child .circle:before,
+.progress-bar .step:last-child .circle:after{
+    display: none;
 }
