@@ -7,69 +7,136 @@
     <title>Register</title>
 </head>
 <body class="flex vertical-center justify-center">
-    <div class="container">
-        <h1>Sign In</h1>
-        <div class="progress-bar flex">
-            <div class="step">
-                <p class="name-step">
-                    Informations
-                </p>
-                <div class="circle-container">
-                    <div class="circle">
+<div class="container">
+    <div class="title-setting">SignUp Form</div>
+    <div class="progress-bar flex">
+        <div class="step">
+            <p class="name-step">
+                Info
+            </p>
+            <div class="circle-container">
+                <div class="circle">
                         <span class="number">
                             1
                         </span>
-                    </div>
-                    <div class="check fas fa-check"></div>
-
                 </div>
+                <div class="check fas fa-check"></div>
+
             </div>
-            <div class="step">
-                <p class="name-step">
-                    Personal
-                </p>
-                <div class="circle-container">
-                    <div class="circle">
+        </div>
+        <div class="step">
+            <p class="name-step">
+                Perso
+            </p>
+            <div class="circle-container">
+                <div class="circle">
                         <span class="number">
                             2
                         </span>
-                    </div>
-                    <div class="check fas fa-check"></div>
                 </div>
+                <div class="check fas fa-check"></div>
             </div>
-            <div class="step">
-                <p class="name-step">
-                    Verif Mail
-                </p>
-                <div class="circle-container">
-                    <div class="circle">
+        </div>
+        <div class="step">
+            <p class="name-step">
+                Verif
+            </p>
+            <div class="circle-container">
+                <div class="circle">
                     <span class="number">
                         3
                     </span>
-                    </div>
-                    <div class="check fas fa-check"></div>
                 </div>
+                <div class="check fas fa-check"></div>
             </div>
-            <div class="step">
-                <p class="name-step">
-                    Form
-                </p>
-                <div class="circle-container">
-                    <div class="circle">
+        </div>
+        <div class="step">
+            <p class="name-step">
+                Form
+            </p>
+            <div class="circle-container">
+                <div class="circle">
                     <span class="number">
                         4
                     </span>
-                    </div>
-                    <div class="check fas fa-check"></div>
                 </div>
+                <div class="check fas fa-check"></div>
             </div>
         </div>
-        <div class="form-outer">
-            <form action="#">
-
-            </form>
-        </div>
     </div>
-<script src="/example/script.js"></script>
+    <div class="form-outer">
+        <form action="#">
+            <div class="page slide-page">
+               <div class="title">
+                   Basic Info:
+               </div>
+                <div class="field">
+                    <div class="label">
+                        First Name
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="field">
+                    <div class="label">
+                        Last Name
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="field">
+                    <div class="label">
+                        Birth Date
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="field">
+                    <button class="next-1">Next</button>
+                </div>
+            </div>
+            <div class="page slide-page">
+                <div class="title">
+                    Personal
+                </div>
+                <div class="field">
+                    <div class="label">
+                        Mail
+                    </div>
+                    <input type="email">
+                </div>
+                <div class="field">
+                    <div class="label">
+                        Pwd
+                    </div>
+                    <input type="password">
+                </div>
+                <div class="field">
+                    <div class="label">
+                        Confirm Pwd
+                    </div>
+                    <input type="password">
+                </div>
+                <div class="button-field flex">
+                    <button class="split-button prev-2">Previous</button>
+                    <button class="split-button next-2">Next</button>
+                </div>
+            </div>
+            <div class="page slide-page">
+                <div class="title">
+                    Verif
+                </div>
+                <div class="field">
+                    <div class="label">
+                        Enter code
+                    </div>
+                    <input type="text">
+                </div>
+                <div class="button-field flex">
+                    <button class="split-button prev-3 prev">Previous</button>
+                    <button class="split-button next-3 next">Next</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/JS/login.js"></script>
 </body>
 </html>
