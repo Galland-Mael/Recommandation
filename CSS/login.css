@@ -17,10 +17,13 @@ body {
 }
 .form-outer{
     width: 100%;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
-.question-container{
-    flex-direction: row;
+.img{
+    width: 100px;
+}
+img{
+    width: 100%;
 }
 .form-outer form{
     display: flex;
@@ -29,16 +32,15 @@ body {
 .container {
     margin: 15px 0 15px 0;
     width: 330px;
-
 }
 .title-setting{
     font-size: 35px;
     font-weight: 600;
     margin: 30px 0 0 0;
-    padding: 0 0 30px 0;
+    padding: 0 0 20px 0;
 }
 .progress-bar {
-    padding: 0 0 60px 0;
+    padding: 0 0 40px 0;
     width: 100%;
 }
 
@@ -51,7 +53,12 @@ body {
     font-weight: 500;
     font-size: 18px;
 }
-
+.question-container{
+    flex-direction: column;
+}
+.horizontal{
+    flex-direction: row;
+}
 .circle-container {
     position: relative;
     height: 40px;
@@ -77,6 +84,7 @@ body {
 }
 .title{
     text-align: left;
+    margin-bottom: 15px;
     font-size: 25px;
     font-weight: 500;
 }
@@ -136,6 +144,12 @@ input{
 }
 .next{
     margin-left: 3px;
+}
+.right{
+    margin-left: 15px;
+}
+.left{
+    margin-right: 15px;
 }
 .flex {
     display: flex;
@@ -199,4 +213,7 @@ input{
 .progress-bar .step .check.active{
     display: block;
     color: #fff;
+}
+.item:hover{
+
 }
