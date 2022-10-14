@@ -7,14 +7,20 @@ html {
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
-
+.form-outer form .page{
+    width: 25%;
+    transition: margin-left 0.3s ease-in-out;
+}
 body {
     min-height: 100vh;
     text-align: center;
 }
 .form-outer{
     width: 100%;
-
+    /*overflow: hidden;*/
+}
+.question-container{
+    flex-direction: row;
 }
 .form-outer form{
     display: flex;
