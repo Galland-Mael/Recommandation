@@ -9,8 +9,9 @@ const fourthNext=document.querySelector('.next-4');
 const circle = document.querySelectorAll(".step .circle");
 const progressText = document.querySelectorAll(".step .name-step");
 const progressCheck = document.querySelectorAll(".step .check");
+const test=document.getElementById('test');
 let current =1;
-
+let temp=0;
 firstNext.addEventListener('click',()=>{
     slidePage.style.marginLeft = "-25%";
     circle[current -1].classList.add("active");
@@ -35,7 +36,13 @@ thirdNext.addEventListener('click',()=>{
     current+=1;
 })
 fourthNext.addEventListener('click',()=>{
-    console.log("Done")
+    if (temp%2==0) {
+        test.classList.add('select');
+    }else{
+        test.classList.remove('select')
+    }
+    temp=temp+1;
+    console.log(temp)
 })
 secondPrevious.addEventListener('click',()=>{
     slidePage.style.marginLeft = "0%";

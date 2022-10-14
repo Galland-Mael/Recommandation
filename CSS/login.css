@@ -7,38 +7,55 @@ html {
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
-.form-outer form .page{
+
+.select {
+    text-decoration: underline var(--color);
+    color: var(--color);
+    font-weight: bold;
+}
+
+.form-outer form .page {
     width: 25%;
     transition: margin-left 0.3s ease-in-out;
 }
+
 body {
     min-height: 100vh;
     text-align: center;
 }
-.form-outer{
+
+.form-outer {
     width: 100%;
     overflow: hidden;
 }
-.img{
+
+.img {
     width: 100px;
+    overflow: hidden;
+    position: relative;
 }
-img{
+
+img {
     width: 100%;
 }
-.form-outer form{
+
+.form-outer form {
     display: flex;
     width: 400%;
 }
+
 .container {
     margin: 15px 0 15px 0;
     width: 330px;
 }
-.title-setting{
+
+.title-setting {
     font-size: 35px;
     font-weight: 600;
     margin: 30px 0 0 0;
     padding: 0 0 20px 0;
 }
+
 .progress-bar {
     padding: 0 0 40px 0;
     width: 100%;
@@ -49,16 +66,28 @@ img{
     justify-content: center;
     width: 25%;
 }
+
+.item {
+    position: relative;
+}
+
+.name-img {
+    padding: 0px 0 10px 0;
+}
+
 .name-step {
     font-weight: 500;
     font-size: 18px;
 }
-.question-container{
+
+.question-container {
     flex-direction: column;
 }
-.horizontal{
+
+.horizontal {
     flex-direction: row;
 }
+
 .circle-container {
     position: relative;
     height: 40px;
@@ -76,31 +105,36 @@ img{
     height: 25px;
     width: 25px;
 }
+
 .number {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
-.title{
+
+.title {
     text-align: left;
     margin-bottom: 15px;
     font-size: 25px;
     font-weight: 500;
 }
-.field{
+
+.field {
     width: 330px;
     height: 45px;
     margin: 45px 0;
     display: flex;
     position: relative;
 }
-.label{
+
+.label {
     position: absolute;
     top: -30px;
     font-weight: 500;
 }
-input{
+
+input {
     height: 100%;
     width: 100%;
     border: 1px solid lightgrey;
@@ -108,7 +142,8 @@ input{
     padding-left: 15px;
     font-size: 18px;
 }
-.next-1{
+
+.next-1 {
     width: 100%;
     height: calc(100% + 5px);
     border: none;
@@ -120,14 +155,16 @@ input{
     font-size: 18px;
     font-weight: 500;
 }
-.button-field{
+
+.button-field {
     width: 330px;
     height: 45px;
     margin: 45px 0;
     display: flex;
     position: relative;
- }
-.split-button{
+}
+
+.split-button {
     width: 100%;
     height: calc(100% + 5px);
     border: none;
@@ -139,18 +176,23 @@ input{
     font-size: 18px;
     font-weight: 500;
 }
-.prev{
+
+.prev {
     margin-right: 3px;
 }
-.next{
+
+.next {
     margin-left: 3px;
 }
-.right{
+
+.right {
     margin-left: 15px;
 }
-.left{
+
+.left {
     margin-right: 15px;
 }
+
 .flex {
     display: flex;
 }
@@ -166,20 +208,24 @@ input{
 .none {
     display: none;
 }
-.progress-bar .step .circle.active span{
+
+.progress-bar .step .circle.active span {
     display: none;
 }
+
 @keyframes animate {
-    100%{
+    100% {
         transform: scaleX(1);
     }
 }
-.progress-bar .step .circle.active:after{
-    background:var(--color);
+
+.progress-bar .step .circle.active:after {
+    background: var(--color);
     transform: scaleX(1);
     transform-origin: left;
     animation: animate 0.3s linear forwards;
 }
+
 .progress-bar .step .check {
     position: absolute;
     left: 50%;
@@ -188,10 +234,12 @@ input{
     transform: translate(-50%, -50%);
     display: none;
 }
-.progress-bar .step .name-step.active{
+
+.progress-bar .step .name-step.active {
     color: var(--color);
     transition: 0.2s linear;
 }
+
 .progress-bar .step .circle:before,
 .progress-bar .step .circle:after {
     position: absolute;
@@ -202,18 +250,25 @@ input{
     width: 47px;
     background: #262626;
 }
-.circle.active{
+
+.circle.active {
     border-color: var(--color);
     background: var(--color);
 }
+
 .progress-bar .step:last-child .circle:before,
 .progress-bar .step:last-child .circle:after {
     display: none;
 }
-.progress-bar .step .check.active{
+
+.progress-bar .step .check.active {
     display: block;
     color: #fff;
 }
-.item:hover{
 
+.food-img:hover {
+    transition: transform .1s;
+    transform: scale(1.5);
+    overflow: hidden;
 }
+
