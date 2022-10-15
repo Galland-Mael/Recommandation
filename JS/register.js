@@ -9,7 +9,7 @@ const fourthNext=document.querySelector('.next-4');
 const circle = document.querySelectorAll(".step .circle");
 const progressText = document.querySelectorAll(".step .name-step");
 const progressCheck = document.querySelectorAll(".step .check");
-const test=document.getElementById('test');
+const valid=document.querySelectorAll('.valid');
 let current =1;
 let temp=0;
 firstNext.addEventListener('click',()=>{
@@ -37,9 +37,9 @@ thirdNext.addEventListener('click',()=>{
 })
 fourthNext.addEventListener('click',()=>{
     if (temp%2==0) {
-        test.classList.add('select');
+        valid.forEach(customElements=>customElements.classList.add('none'));
     }else{
-        test.classList.remove('select')
+        valid.forEach(customElements=>customElements.classList.remove('none'));
     }
     temp=temp+1;
     console.log(temp)
