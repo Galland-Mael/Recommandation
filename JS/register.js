@@ -1,76 +1,118 @@
-const slidePage=document.querySelector('.slide-page');
+const slidePage = document.querySelector('.slide-page');
 const firstName = document.querySelector('.firstName');
 const lastName = document.querySelector('.lastName')
 const date = document.querySelector('.date');
-const firstNext=document.querySelector('.next-1');
-const secNext=document.querySelector('.next-2');
-const secondPrevious=document.querySelector('.prev-2');
-const thirdPrevious=document.querySelector('.prev-3');
-const thirdNext=document.querySelector('.next-3');
-const fourthPrevious=document.querySelector('.prev-4');
-const fourthNext=document.querySelector('.next-4');
+const mail = document.querySelector('.mail')
+const pwd1 = document.querySelector('.pwd1');
+const pwd2 = document.querySelector('.pwd2');
+const firstNext = document.querySelector('.next-1');
+const secNext = document.querySelector('.next-2');
+const secondPrevious = document.querySelector('.prev-2');
+const thirdPrevious = document.querySelector('.prev-3');
+const thirdNext = document.querySelector('.next-3');
+const failInfo = document.querySelectorAll('.failInfo');
+const fourthPrevious = document.querySelector('.prev-4');
+const fourthNext = document.querySelector('.next-4');
 const circle = document.querySelectorAll(".step .circle");
 const progressText = document.querySelectorAll(".step .name-step");
 const progressCheck = document.querySelectorAll(".step .check");
-const valid=document.querySelectorAll('.valid');
-let current =1;
-let temp=0;
-firstNext.addEventListener('click',()=>{
+const valid = document.querySelectorAll('.valid');
+let current = 1;
+let temp = 0;
 
+firstNext.addEventListener('click', () => {
+    /*if (firstName.value != "") {
+        failInfo[0].classList.add('none');
+    } else {
+        failInfo[0].classList.remove('none');
+    }
+    if (lastName.value != "") {
+        failInfo[1].classList.add('none');
+    } else {
+        failInfo[1].classList.remove('none');
+    }
+    if (date.value != "") {
+        failInfo[2].classList.add('none');
+    } else {
+        failInfo[2].classList.remove('none');
+    }
+    if (firstName.value != "" && lastName.value != "" && date.value != "") {*/
+    failInfo[2].classList.remove('none');
+    slidePage.style.marginLeft = "-25%";
+    circle[current - 1].classList.add("active");
+    progressCheck[current - 1].classList.add("active");
+    progressText[current - 1].classList.add("active");
+    current += 1;
+    /*}*/
+})
 
-    if (firstName.value != "" && lastName.value != "" && date.value != "") {
-        slidePage.style.marginLeft = "-25%";
-        circle[current - 1].classList.add("active");
-        progressCheck[current - 1].classList.add("active");
-        progressText[current - 1].classList.add("active");
-        current += 1;
+secNext.addEventListener('click', () => {
+    if (mail.value != "") {
+        failInfo[3].classList.add('none');
+    } else {
+        failInfo[3].classList.remove('none');
+    }
+    if (pwd1.value != "") {
+        failInfo[4].classList.add('none');
+    } else {
+        failInfo[4].classList.remove('none');
+    }
+    if (pwd2.value != "") {
+        failInfo[5].classList.add('none');
+    } else {
+        failInfo[5].classList.remove('none');
+    }
+    if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) {
+        console.log("eee");
+        if (pwd1.value == pwd2.value) {
+            failInfo[5].classList.add('none');
+            slidePage.style.marginLeft = "-50%";
+            circle[current - 1].classList.add("active");
+            progressCheck[current - 1].classList.add("active");
+            progressText[current - 1].classList.add("active");
+            current += 1;
+        } else {
+            failInfo[5].textContent = "*Veuillez entrer le meme mot de passe";
+            failInfo[5].classList.remove('none');
+        }
     }
 })
 
-secNext.addEventListener('click',()=>{
-    slidePage.style.marginLeft = "-50%";
-    circle[current -1].classList.add("active");
-    progressCheck[current - 1].classList.add("active");
-    progressText[current - 1].classList.add("active");
-    current+=1;
-})
-
-thirdNext.addEventListener('click',()=>{
+thirdNext.addEventListener('click', () => {
     slidePage.style.marginLeft = "-75%";
-    circle[current -1].classList.add("active");
+    circle[current - 1].classList.add("active");
     progressCheck[current - 1].classList.add("active");
     progressText[current - 1].classList.add("active");
-    current+=1;
+    current += 1;
 })
-fourthNext.addEventListener('click',()=>{
-    if (temp%2==0) {
-        valid.forEach(customElements=>customElements.classList.add('none'));
-    }else{
-        valid.forEach(customElements=>customElements.classList.remove('none'));
+fourthNext.addEventListener('click', () => {
+    if (temp % 2 == 0) {
+        valid.forEach(customElements => customElements.classList.add('none'));
+    } else {
+        valid.forEach(customElements => customElements.classList.remove('none'));
     }
-    temp=temp+1;
+    temp = temp + 1;
     console.log(temp)
 })
-secondPrevious.addEventListener('click',()=>{
+secondPrevious.addEventListener('click', () => {
     slidePage.style.marginLeft = "0%";
     circle[current - 2].classList.remove("active");
     progressCheck[current - 2].classList.remove("active");
     progressText[current - 2].classList.remove("active");
     current -= 1;
 })
-thirdPrevious.addEventListener('click',()=>{
+thirdPrevious.addEventListener('click', () => {
     slidePage.style.marginLeft = "-25%";
     circle[current - 2].classList.remove("active");
     progressCheck[current - 2].classList.remove("active");
     progressText[current - 2].classList.remove("active");
     current -= 1;
 })
-fourthPrevious.addEventListener('click',()=>{
+fourthPrevious.addEventListener('click', () => {
     slidePage.style.marginLeft = "-50%";
     circle[current - 2].classList.remove("active");
     progressCheck[current - 2].classList.remove("active");
     progressText[current - 2].classList.remove("active");
     current -= 1;
 })
-
 
