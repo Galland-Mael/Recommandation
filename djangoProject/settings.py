@@ -127,6 +127,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'eat_advisor@outlook.com'
+EMAIL_HOST_USER = 'eat_advisor2@outlook.fr'
 EMAIL_HOST_PASSWORD = 'mdpEat1526Advisor!'
 EMAIL_USE_TLS = True
