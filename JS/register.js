@@ -1,4 +1,7 @@
 const slidePage=document.querySelector('.slide-page');
+const firstName = document.querySelector('.firstName');
+const lastName = document.querySelector('.lastName')
+const date = document.querySelector('.date');
 const firstNext=document.querySelector('.next-1');
 const secNext=document.querySelector('.next-2');
 const secondPrevious=document.querySelector('.prev-2');
@@ -13,11 +16,15 @@ const valid=document.querySelectorAll('.valid');
 let current =1;
 let temp=0;
 firstNext.addEventListener('click',()=>{
-    slidePage.style.marginLeft = "-25%";
-    circle[current -1].classList.add("active");
-    progressCheck[current - 1].classList.add("active");
-    progressText[current - 1].classList.add("active");
-   current+=1;
+
+
+    if (firstName.value != "" && lastName.value != "" && date.value != "") {
+        slidePage.style.marginLeft = "-25%";
+        circle[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
+    }
 })
 
 secNext.addEventListener('click',()=>{
