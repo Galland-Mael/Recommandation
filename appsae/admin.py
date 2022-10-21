@@ -9,6 +9,6 @@ from .models import Adherant, Groupe, Restaurant, TypeRestaurant, Horaire, Image
 admin.site.register(Adherant)
 admin.site.register(Groupe)
 admin.site.register(Restaurant)
-admin.site.register(TypeRestaurant)
 admin.site.register(Horaire)
 admin.site.register(ImageRestaurant)
+admin.site.register(TypeRestaurant)
