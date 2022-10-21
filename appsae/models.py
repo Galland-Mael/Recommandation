@@ -36,7 +36,7 @@ class ImageRestaurant(models.Model):
     default = models.BooleanField(default=False)
 
 
-class Type_restaurant(models.Model):
+class TypeRestaurant(models.Model):
     nom = models.CharField(max_length=50)
 
     def __str__(self):
@@ -54,7 +54,7 @@ class Horaire(models.Model):
         Samedi = 6
         Dimanche = 7
 
-    Nom_jour  = models.IntegerField(choices=Nom_jour.choices)
+    Nom_jour = models.IntegerField(choices=Nom_jour.choices)
 
     Debut_Horaire1 = models.TimeField
     Fin_Horaire1 = models.TimeField

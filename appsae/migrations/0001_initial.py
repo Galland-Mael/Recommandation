@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Type_restaurant',
+            name='TypeRestaurant',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nom', models.CharField(max_length=50)),
