@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    <p>This is my page</p>
+  <main>
+    {% if nom %}
+    <ul>
+    {% for nom in nom %}
+        <li>{{ nom.nom }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+  <form action="#" method=”post”>
+      <label for=”name”>Restaurant type</label>
+      <input id="name" type="text" name="username">
+            <button type="submit">submit</button>
+  </form>
+  </main>
+  </body>
+</html>
+
