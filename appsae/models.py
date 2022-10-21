@@ -36,7 +36,7 @@ class ImageRestaurant(models.Model):
     default = models.BooleanField(default=False)
 
 
-class TypeRestaurant(models.Model):
+class RestaurantType(models.Model):
     nom = models.CharField(max_length=50)
 
     def __str__(self):
