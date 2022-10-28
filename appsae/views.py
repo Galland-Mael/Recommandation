@@ -4,15 +4,23 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import get_object_or_404, render, redirect
 
 from .models import RestaurantType
+from .formulaire import RestaurantTypeForm
 
 
 def index(request):
+    '''
     nom = RestaurantType.objects.order_by('id')[:5]
     template = loader.get_template('appsae/index.html')
     context = {
         'nom': nom,
     }
-
-    return HttpResponse(template.render(context, request))
+    '''
+    dataRestaurantType = RestaurantType.objects.all
+    if request.method == "POST":
+        form = RestaurantTypeForm(request.POST).save()
+        return redirect('/appsae')
+    form = RestaurantTypeForm()
+    return render(request, 'appsae/index.html', {'form': form, 'dataRestaurantType': RestaurantType.objects.all})
