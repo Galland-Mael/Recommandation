@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+  <main>
+    <ul>
+    {% for element in dataRestaurantType %}
+        <li>{{ element.nom }}</li>
+    {% endfor %}
+    </ul>
+  <form action="#" method="POST" class="post-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+            <button type="submit" class="save btn" value="type">submit</button>
+  </form>
+  </main>
+  </body>
+</html>
+
