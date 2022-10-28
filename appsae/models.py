@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 # Create your models here.
@@ -9,6 +11,7 @@ class Adherant(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     mail = models.EmailField(max_length=254)
+    birthdate = models.DateField(_("Date"), default=datetime.date.today)
     telephone = models.CharField(max_length=10)
     Pseudo = models.CharField(max_length=20)
     profile_picture = models.ImageField(upload_to='media/img/profile_pictures')
