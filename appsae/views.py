@@ -24,3 +24,7 @@ def index(request):
         return redirect('/appsae')
     form = RestaurantTypeForm()
     return render(request, 'appsae/index.html', {'form': form, 'dataRestaurantType': RestaurantType.objects.all})
+
+
+def html(request):
+    return render(request, 'appsae/register.html')

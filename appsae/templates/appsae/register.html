@@ -1,8 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="CSS/register.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/register.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <title>Register</title>
 </head>
@@ -155,7 +156,7 @@
                                 <div class="check fas fa-check validate"></div>
                             </div>
                             <div class="img">
-                                <img class="food-img" src="Image/fastFood.jpeg" alt="FastFood">
+                                <img class="food-img" src="../../../static/Image/fastFood.jpeg" alt="FastFood">
                             </div>
                             <div class="name-img">
                                 FastFood
@@ -166,7 +167,7 @@
                                 <div class="check fas fa-check validate"></div>
                             </div>
                             <div class="img">
-                                <img class="food-img " src="Image/indian.jpeg" alt="Indain">
+                                <img class="food-img " src="../../../static/Image/indian.jpeg" alt="Indain">
                             </div>
                             <div class="name-img">
                                 Indian
@@ -177,7 +178,7 @@
                                 <div class="check fas fa-check validate"></div>
                             </div>
                             <div class="img">
-                                <img class="food-img " src="Image/italian.jpeg" alt="Italian">
+                                <img class="food-img " src="../../../static/Image/italian.jpeg" alt="Italian">
                             </div>
                             <div class="name-img">
                                 Italian
@@ -190,7 +191,7 @@
                                 <div class="check fas fa-check validate"></div>
                             </div>
                             <div class="img">
-                                <img class="food-img " src="/Image/fastFood.jpeg" alt="indian">
+                                <img class="food-img " src="{% static '/Image/fastFood.jpeg' %}" alt="indian">
                             </div>
                             <div class="name-img">
                                 Indian
@@ -201,7 +202,7 @@
                                 <div class="check fas fa-check validate"></div>
                             </div>
                             <div class="img">
-                                <img class="food-img " src="/Image/fastFood.jpeg" alt="indian">
+                                <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
                             </div>
                             <div class="name-img">
                                 Indian
@@ -212,7 +213,7 @@
                                 <div class="check fas fa-check validate"></div>
                             </div>
                             <div class="img">
-                                <img class="food-img " src="/Image/fastFood.jpeg" alt="indian">
+                                <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
                             </div>
                             <div class="name-img">
                                 Indian
@@ -225,7 +226,7 @@
                                 <div class="check fas fa-check validate"></div>
                             </div>
                             <div class="img">
-                                <img class="food-img " src="/Image/fastFood.jpeg" alt="indian">
+                                <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
                             </div>
                             <div class="name-img">
                                 Indian
@@ -236,7 +237,7 @@
                                 <div class="check fas fa-check validate"></div>
                             </div>
                             <div class="img">
-                                <img class="food-img " src="/Image/fastFood.jpeg" alt="indian">
+                                <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
                             </div>
                             <div class="name-img">
                                 Indian
@@ -247,7 +248,7 @@
                                 <div class="check fas fa-check validate"></div>
                             </div>
                             <div class="img">
-                                <img class="food-img " src="/Image/fastFood.jpeg" alt="indian">
+                                <img class="food-img" src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
                             </div>
                             <div class="name-img">
                                 Indian
@@ -264,6 +265,6 @@
     </div>
 </div>
 </div>
-<script src="JS/register.js"></script>
+<script src="{% static 'JS/register.js' %}"></script>
 </body>
 </html>
