@@ -6,8 +6,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, render, redirect
 
-from .models import RestaurantType
-from .formulaire import RestaurantTypeForm
+from .models import RestaurantType, Adherant
+from .formulaire import RestaurantTypeForm, AdherantForm
 
 
 def index(request):
@@ -27,7 +27,12 @@ def index(request):
 
 
 def html(request):
-    return render(request, 'appsae/register.html')
+    dataAdherant = Adherant.objects.all
+    if request.method == "POST":
+        form = AdherantForm(request.POST).save()
+        return redirect('/appsae')
+    form = AdherantForm()
+    return render(request, 'appsae/register.html', {'form': form, 'dataAdherant': Adherant.objects.all})
 
 
 def html2(request):
