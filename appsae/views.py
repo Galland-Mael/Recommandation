@@ -26,7 +26,7 @@ def index(request):
     return render(request, 'appsae/index.html', {'form': form, 'dataRestaurantType': RestaurantType.objects.all})
 
 
-def html(request):
+def register(request):
     dataAdherant = Adherant.objects.all
     if request.method == "POST":
         form = AdherantForm(request.POST).save()
@@ -35,5 +35,5 @@ def html(request):
     return render(request, 'appsae/register.html', {'form': form, 'dataAdherant': Adherant.objects.all})
 
 
-def html2(request):
+def login(request):
     return render(request,'appsae/login.html')
