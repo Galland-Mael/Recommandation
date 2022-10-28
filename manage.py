@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from django.core.mail import send_mail
 
 def main():
     """Run administrative tasks."""
@@ -16,7 +16,8 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
-
+    #send_mail("test","test","eatadvisor@outlook.com", ["matteo.miguelez@gmail.com"])
+    print("test")
 
 if __name__ == '__main__':
     main()
