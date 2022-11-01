@@ -66,3 +66,8 @@ class Horaire(models.Model):
     Debut_Horaire3 = models.TimeField
     Fin_Horaire3 = models.TimeField
 
+
+class Avis(models.Model):
+    note = models.IntegerField
+    texte = models.TextField
+    user = models.ForeignKey(Adherant, on_delete=models.CASCADE)

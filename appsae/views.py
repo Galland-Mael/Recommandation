@@ -36,4 +36,4 @@ def register(request):
 
 
 def login(request):
-    return render(request,'appsae/login.html')
+    return render(request, 'appsae/login.html')

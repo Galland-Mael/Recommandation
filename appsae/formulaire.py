@@ -12,4 +12,4 @@ class RestaurantTypeForm(ModelForm):
 class AdherantForm(ModelForm):
     class Meta:
         model = Adherant
-        fields = ['nom', 'prenom', 'mail', 'birthdate', 'telephone', 'Pseudo']
+        fields = ['nom', 'prenom', 'birthdate', 'Pseudo']
