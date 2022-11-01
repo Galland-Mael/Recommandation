@@ -22,6 +22,5 @@ from djangoProject import views
 urlpatterns = [
     path('appsae/', include('appsae.urls')),
     path('admin/', admin.site.urls),
-    path('', include('mail.urls')),
     path('appsae/', include('appsae.urls')),
 ]
