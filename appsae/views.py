@@ -47,11 +47,12 @@ def verif_email(request):
         "Code de vérification :\n"
         + "         " + random_value()
         + "\n\nL'équipe EatAdvisor",
-        "mael.lacrevette@gmail.com",
-        ["maelgalland.71.com"],
+        "eat_advisor2@outlook.fr",
+        ["maelgalland.71@gmail.com"],
         fail_silently=False);
+        print("reussi")
     except:
-        print("test")
+        print("fail")
     return render(request, 'appsae/mailtest.html')
 
 def random_value():
