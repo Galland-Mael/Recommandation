@@ -8,10 +8,10 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 
-def index(request):
+def testAntoine(request):
     '''
     nom = RestaurantType.objects.order_by('id')[:5]
-    template = loader.get_template('appsae/index.html')
+    template = loader.get_template('appsae/testAntoine.html')
     context = {
         'nom': nom,
     }
@@ -19,9 +19,9 @@ def index(request):
     dataRestaurantType = RestaurantType.objects.all
     if request.method == "POST":
         form = RestaurantTypeForm(request.POST).save()
-        return redirect('')
+        return redirect('testAntoine')
     form = RestaurantTypeForm()
-    return render(request, 'index.html', {'form': form, 'dataRestaurantType': RestaurantType.objects.all})
+    return render(request, 'testAntoine.html', {'form': form, 'dataRestaurantType': RestaurantType.objects.all})
 
 
 def register(request):
