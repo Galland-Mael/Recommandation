@@ -1,8 +1,9 @@
-import os.path
-from django.contrib import messages
+from django.http import HttpResponse
+from django.template import loader
 from django.shortcuts import get_object_or_404, render, redirect
+
 from .models import RestaurantType, Adherant
-from .formulaire import RestaurantTypeForm, AdherantForm, verifLogin
+from .formulaire import RestaurantTypeForm, AdherantForm
 from django.core.mail import send_mail
 import random
 from django.shortcuts import render
@@ -10,15 +11,14 @@ from django.http import HttpResponse
 
 
 def register(request):
-    info = Adherant.objects.all
+    dataAdherant = Adherant.objects.all
     if request.method == "POST":
         '''Remplissage de la base de données'''
         form = AdherantForm(request.POST).save()
-        print(request.POST["mail"])
-        return redirect('login')
+        return redirect('')
     form = AdherantForm()
-    return render(request, 'register.html', {'form': form, 'info': Adherant.objects.all})
-    # return JsonResponse({"form": list(form.values) })
+    return render(request, 'register.html', {'form': form, 'dataAdherant': Adherant.objects.all})
+
 
 
 def login(request):
@@ -48,21 +48,20 @@ def modifUser(request):
 
 
 def verificationEmail(request):
-    print("apeler")
+
     ''' Fonction qui permet l'envoi d'un mail à un utilisateur depuis l'adresse mail du site web '''
     try:
         send_mail("Vérification de votre compte - Ne pas répondre",
-                  "Code de vérification :\n"
+        "Code de vérification :\n"
                   + "         " + randomValue()
                   + "\n\nL'équipe EatAdvisor",
                   "eat_advisor2@outlook.fr",
-                  ["maelgalland.71@gail.com"],
+                  ["maelgalland.71@gmail.com"],
                   fail_silently=False);
         print("reussi")
     except:
         print("fail")
-        return HttpResponse("<p>Next</p>")
-
+    return render(request, 'mail.html')
 
 def randomValue():
     ''' Fonction qui renvoie une chaîne composée de 6 caractères entre 0 et 9 '''
