@@ -1,12 +1,13 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
+from .views import index,register,login,verificationEmail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('register', views.register, name='register'),
-    path('login', views.login,name='login'),
-    path('email', views.verif_email,name='veriv_mail'),
+    path('', index, name='index'),
+    path('register/', register, name='register'),
+    path('login/', login, name='login'),
+    path('email/', verificationEmail, name='verificationEmail'),
 ]
 
