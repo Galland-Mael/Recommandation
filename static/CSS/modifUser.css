@@ -2,41 +2,49 @@
     padding: 0;
     margin: 0;
 }
-.profil-container{
-margin: auto;
+
+.profil-container {
+    margin: auto;
     position: relative;
     border-radius: 50%;
     overflow: hidden;
     border: solid 1px;
-        width: 150px;
+    width: 150px;
     height: 150px;
-    background-image:url(../../static/Image/avatar.jpeg);
+    background-image: url(../../static/Image/avatar.jpeg);
     background-position: center;
 }
+
 .img-container {
-    height: 300px;
+    height: 200px;
 }
 
+.title {
+    text-align: center;
+    padding: 20px 0 0 0;
+}
 
-
-.normal-opacity{
+.normal-opacity {
     opacity: 1;
     transition: 0.2s linear all;
 }
-.profil-span{
+
+.profil-span {
 
     position: absolute;
     top: 44%;
     left: 35%;
 }
-.opacity-null{
+
+.opacity-null {
     opacity: 0;
     transition: 0.2s linear all;
 }
 
-.change-photo{
+.change-photo {
     display: none;
 }
+
 .flex {
     display: flex;
 }
