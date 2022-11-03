@@ -1,79 +1,15 @@
-{% load static %}
-{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
-    <title>Register</title>
+    <title>Title</title>
 </head>
 <body>
-<div class="backward">
-    <div class="home-register fa fa-home"></div>
-</div>
-<div class="body flex vertical-center justify-center">
-    <div class="container">
-        <div class="title-setting">SignUp Form</div>
-        <div class="progress-bar flex">
-            <div class="step">
-                <p class="name-step">
-                    Info
-                </p>
-                <div class="circle-container">
-                    <div class="circle">
-                        <span class="number">
-                            1
-                        </span>
-                    </div>
-                    <div class="check fas fa-check"></div>
 
-                </div>
-            </div>
-            <div class="step">
-                <p class="name-step">
-                    Perso
-                </p>
-                <div class="circle-container">
-                    <div class="circle">
-                        <span class="number">
-                            2
-                        </span>
-                    </div>
-                    <div class="check fas fa-check"></div>
-                </div>
-            </div>
-            <div class="step">
-                <p class="name-step">
-                    Verif
-                </p>
-                <div class="circle-container">
-                    <div class="circle">
-                    <span class="number">
-                        3
-                    </span>
-                    </div>
-                    <div class="check fas fa-check"></div>
-                </div>
-            </div>
-            <div class="step">
-                <p class="name-step">
-                    Form
-                </p>
-                <div class="circle-container">
-                    <div class="circle">
-                    <span class="number">
-                        4
-                    </span>
-                    </div>
-                    <div class="check fas fa-check"></div>
-                </div>
-            </div>
-        </div>
-        <div class="form-outer">
-            <form action="" methode="POST" class="post-form">
+
+
+
+      {% csrf_token %}
                 <div class="page slide-page">
                     <div class="title">
                         Basic Info:
@@ -82,28 +18,29 @@
                         <div class="label">
                             First Name
                         </div>
-                        {% render_field form.nom class+="input firstName" %}
+                        <!-- <input class="firstName" type="text"> -->
+                        {% render_field form.nom  placeholder="prénom" class+="input" %}
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Last Name
                         </div>
-                               {% render_field form.nom class+=" input lastName" %}
+                        <input class="lastName" type="text">
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Pseudo
                         </div>
-                        {% render_field form.Pseudo class+=" input pseudo" %}
+                        <input class="pseudo" type="text">
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Birth Date
                         </div>
-                         {% render_field form.birthdate type="date" class+=" input birthDate" %}
+                        <input class="date" type="date">
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
@@ -273,10 +210,5 @@
                         <button class="split-button next-4 next">Submit</button>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-</div>
-<script src="{% static 'JS/register.js' %}"></script>
 </body>
 </html>

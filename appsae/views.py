@@ -31,7 +31,9 @@ def register(request):
         return redirect('')
     form = AdherantForm()
     return render(request, 'register.html', {'form': form, 'dataAdherant': Adherant.objects.all})'''
-   return render(request, 'register.html')
+   form=AdherantForm()
+   context ={'form':form}
+   return render(request, 'register.html',context)
 
 
 

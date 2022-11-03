@@ -1,7 +1,10 @@
+{% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
+          <link rel="stylesheet" type="text/css" href="{% static 'CSS/tes.css' %}"/>
     <title>My test page</title>
   </head>
   <body>
@@ -11,9 +14,9 @@
         <li>{{ element.nom }}</li>
     {% endfor %}
     </ul>
-  <form action="#" method="POST" class="post-form">
+  <form action="#" method="POST" class="post-form ">
       {% csrf_token %}
-      {{ form.as_p }}
+      {% render_field form.nom placeholder="nom" class+="tout"%}
             <button type="submit" class="save btn" value="type">submit</button>
   </form>
   </main>
