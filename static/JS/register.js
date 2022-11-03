@@ -21,36 +21,11 @@ let current = 1;
 
 
 firstNext.addEventListener('click', () => {
-    console.log(date.valueAsNumber);
-    console.log(Date.now());
-        if(firstName.value != "") {
-                    failInfo[0].classList.add('none');
-            if(lastName.value != "") {
-                    failInfo[1].classList.add('none');
-                if(date.value != "") {
-                    if(date.valueAsNumber<Date.now()) {
-                        failInfo[2].classList.add('none');
-                        failInfo[2].classList.remove('none');
-                        slidePage.style.marginLeft = "-25%";
+        slidePage.style.marginLeft = "-25%";
                         circle[current - 1].classList.add("active");
                         progressCheck[current - 1].classList.add("active");
                         progressText[current - 1].classList.add("active");
                         current += 1;
-                    }else{
-                        failInfo[2].textContent = "*Date impossible";
-                    showCLassTimer(failInfo[2], 2000, "none");
-                    }
-                }else{
-                    failInfo[2].textContent = "*Ce champs ne peut pas être vide";
-                    showCLassTimer(failInfo[2], 2000, "none")
-                }
-            }else{
-                  showCLassTimer(failInfo[1], 2000, "none")
-            }
-        }else{
-            showCLassTimer(failInfo[0], 2000, "none")
-    }
-    showCLassTimer(failInfo[4], 5000, "none");
 })
 
 secNext.addEventListener('click', () => {
