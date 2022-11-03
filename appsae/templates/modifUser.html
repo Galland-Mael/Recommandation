@@ -4,22 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/modifUser.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <title>modifUser</title>
 </head>
 <body>
+<div class="backward">
+    <div class="home-register fa fa-home"></div>
+</div>
 <div class="title">
-    <h2>Change Information</h2>
+    <h2>Information Page</h2>
 </div>
 <div class="img-container flex">
     <div class="profil-container">
 
-            <span class="profil-span opacity-null">Change</span>
+        <span class="profil-span opacity-null">Change</span>
     </div>
 </div>
 <form action="#" method="post" enctype="multipart/form-data">
     <div class="change-photo">
         <label for="photo">photo</label>
         <input class="profil" type="file" name="photo">
+    </div>
+    <div class="field">
+        <div>
+            <span class="name">
+                FirstName
+            </span>
+            <input class="firstName" type="text">
+        </div>
+        <div class="field">
+            <span class="name">
+                LastName
+            </span>
+            <input class="lastName" type="text">
+        </div>
+        <div class="field">
+            <span class="name">
+                FirstName
+            </span>
+            <input class="date" type="date">
+        </div>
     </div>
 </form>
 <script src="{% static 'JS/modifUser.js' %}"></script>

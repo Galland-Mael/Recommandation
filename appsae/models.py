@@ -69,5 +69,5 @@ class Horaire(models.Model):
 
 class Avis(models.Model):
     note = models.IntegerField
-    texte = models.TextField
+    texte = models.CharField(max_length=50)
     user = models.ForeignKey(Adherant, on_delete=models.CASCADE)

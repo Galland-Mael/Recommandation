@@ -6,268 +6,275 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
     <title>Register</title>
 </head>
-<body >
+<body>
 <div class="backward">
-<div class="home-register fa fa-home" ></div>
+    <div class="home-register fa fa-home"></div>
 </div>
 <div class="body flex vertical-center justify-center">
-<div class="container">
-    <div class="title-setting">SignUp Form</div>
-    <div class="progress-bar flex">
-        <div class="step">
-            <p class="name-step">
-                Info
-            </p>
-            <div class="circle-container">
-                <div class="circle">
+    <div class="container">
+        <div class="title-setting">SignUp Form</div>
+        <div class="progress-bar flex">
+            <div class="step">
+                <p class="name-step">
+                    Info
+                </p>
+                <div class="circle-container">
+                    <div class="circle">
                         <span class="number">
                             1
                         </span>
-                </div>
-                <div class="check fas fa-check"></div>
+                    </div>
+                    <div class="check fas fa-check"></div>
 
+                </div>
             </div>
-        </div>
-        <div class="step">
-            <p class="name-step">
-                Perso
-            </p>
-            <div class="circle-container">
-                <div class="circle">
+            <div class="step">
+                <p class="name-step">
+                    Perso
+                </p>
+                <div class="circle-container">
+                    <div class="circle">
                         <span class="number">
                             2
                         </span>
+                    </div>
+                    <div class="check fas fa-check"></div>
                 </div>
-                <div class="check fas fa-check"></div>
             </div>
-        </div>
-        <div class="step">
-            <p class="name-step">
-                Verif
-            </p>
-            <div class="circle-container">
-                <div class="circle">
+            <div class="step">
+                <p class="name-step">
+                    Verif
+                </p>
+                <div class="circle-container">
+                    <div class="circle">
                     <span class="number">
                         3
                     </span>
+                    </div>
+                    <div class="check fas fa-check"></div>
                 </div>
-                <div class="check fas fa-check"></div>
             </div>
-        </div>
-        <div class="step">
-            <p class="name-step">
-                Form
-            </p>
-            <div class="circle-container">
-                <div class="circle">
+            <div class="step">
+                <p class="name-step">
+                    Form
+                </p>
+                <div class="circle-container">
+                    <div class="circle">
                     <span class="number">
                         4
                     </span>
+                    </div>
+                    <div class="check fas fa-check"></div>
                 </div>
-                <div class="check fas fa-check"></div>
             </div>
         </div>
-    </div>
-    <div class="form-outer">
-        <form action="" methode="POST"  class="post-form">
-            <div class="page slide-page">
-                <div class="title">
-                    Basic Info:
-                </div>
-                <div class="field">
-                    <div class="label">
-                        First Name
+        <div class="form-outer">
+            <form action="" methode="POST" class="post-form">
+                <div class="page slide-page">
+                    <div class="title">
+                        Basic Info:
                     </div>
-                    <input class="firstName" type="text">
-                    <div class="failInfo none">*Ce champs ne peut être vide</div>
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Last Name
+                    <div class="field">
+                        <div class="label">
+                            First Name
+                        </div>
+                        <input class="firstName" type="text">
+                        <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
-                    <input class="lastName" type="text">
-                    <div class="failInfo none">*Ce champs ne peut être vide</div>
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Birth Date
+                    <div class="field">
+                        <div class="label">
+                            Last Name
+                        </div>
+                        <input class="lastName" type="text">
+                        <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
-                    <input class="date" type="date">
-                    <div class="failInfo none">*Ce champs ne peut être vide</div>
-                </div>
-                <div class="field">
-                    <div class="next-1"> <p>Next</p></div>
-                </div>
-            </div>
-            <div class="page slide-page">
-                <div class="title">
-                    Personal
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Mail
+                    <div class="field">
+                        <div class="label">
+                            Pseudo
+                        </div>
+                        <input class="pseudo" type="text">
+                        <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
-                    <input class="mail" type="email">
-                    <div class="failInfo none">*Ce champs ne peut être vide</div>
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Pwd
+                    <div class="field">
+                        <div class="label">
+                            Birth Date
+                        </div>
+                        <input class="date" type="date">
+                        <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
+                    <div class="field">
+                        <div class="next-1"><p>Next</p></div>
+                    </div>
+                </div>
+                <div class="page slide-page">
+                    <div class="title">
+                        Personal
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Mail
+                        </div>
+                        <input class="mail" type="email">
+                        <div class="failInfo none">*Ce champs ne peut être vide</div>
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Pwd
+                        </div>
 
 
-                    <input class="pwd1" type="password">
-                    <div class="failInfo">*Le mot de passe doit contenir entre 8 et 15 caractères</div>
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Confirm Pwd
+                        <input class="pwd1" type="password">
+                        <div class="failInfo">*Le mot de passe doit contenir entre 8 et 15 caractères</div>
                     </div>
-                    <input class="pwd2" type="password">
-                    <div class="failInfo none">*Veuillez entrer le meme mot de passe</div>
-                </div>
-                <div class="button-field flex">
-                    <div class="split-button prev prev-2"><p>Previous</p></div>
-                    <div class="split-button next next-2"><p>Next</p></div>
-                </div>
-            </div>
-            <div class="page slide-page">
-                <div class="title">
-                    Verif
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Enter code
+                    <div class="field">
+                        <div class="label">
+                            Confirm Pwd
+                        </div>
+                        <input class="pwd2" type="password">
+                        <div class="failInfo none">*Veuillez entrer le meme mot de passe</div>
                     </div>
-                    <input type="text">
-                </div>
-                <div class="button-field flex">
-                    <div class="split-button prev-3 prev"><p>Previous</p></div>
-                    <div class="split-button next-3 next"><p>Next</p></div>
-                </div>
-            </div>
-            <div class="page slide-page">
-                <div class="title">
-                    Choose
-                </div>
-                <div class="question-container flex">
-                    <div class="flex horizontal">
-                        <div class="item left">
-                            <div class="valid none">
-                                <div class="check fas fa-check validate"></div>
-                            </div>
-                            <div class="img">
-                                <img class="food-img" src="{% static '/Image/fastFood.jpeg'%}" alt="FastFood">
-                            </div>
-                            <div class="name-img">
-                                FastFood
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="valid none">
-                                <div class="check fas fa-check validate"></div>
-                            </div>
-                            <div class="img">
-                                <img class="food-img " src="{% static '/Image/indian.jpeg'%}" alt="Indain">
-                            </div>
-                            <div class="name-img">
-                                Indian
-                            </div>
-                        </div>
-                        <div class="item right">
-                            <div class="valid none">
-                                <div class="check fas fa-check validate"></div>
-                            </div>
-                            <div class="img">
-                                <img class="food-img " src="{% static '/Image/italian.jpeg'%}" alt="Italian">
-                            </div>
-                            <div class="name-img">
-                                Italian
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex horizontal">
-                        <div class="item left">
-                            <div class="valid none">
-                                <div class="check fas fa-check validate"></div>
-                            </div>
-                            <div class="img">
-                                <img class="food-img " src="{% static '/Image/fastFood.jpeg' %}" alt="indian">
-                            </div>
-                            <div class="name-img">
-                                Indian
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="valid none">
-                                <div class="check fas fa-check validate"></div>
-                            </div>
-                            <div class="img">
-                                <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
-                            </div>
-                            <div class="name-img">
-                                Indian
-                            </div>
-                        </div>
-                        <div class="item right">
-                            <div class="valid none">
-                                <div class="check fas fa-check validate"></div>
-                            </div>
-                            <div class="img">
-                                <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
-                            </div>
-                            <div class="name-img">
-                                Indian
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex horizontal">
-                        <div class="item left">
-                            <div class="valid none">
-                                <div class="check fas fa-check validate"></div>
-                            </div>
-                            <div class="img">
-                                <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
-                            </div>
-                            <div class="name-img">
-                                Indian
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="valid none">
-                                <div class="check fas fa-check validate"></div>
-                            </div>
-                            <div class="img">
-                                <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
-                            </div>
-                            <div class="name-img">
-                                Indian
-                            </div>
-                        </div>
-                        <div class="item right">
-                            <div class="valid none">
-                                <div class="check fas fa-check validate"></div>
-                            </div>
-                            <div class="img">
-                                <img class="food-img" src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
-                            </div>
-                            <div class="name-img">
-                                Indian
-                            </div>
-                        </div>
+                    <div class="button-field flex">
+                        <div class="split-button prev prev-2"><p>Previous</p></div>
+                        <div class="split-button next next-2"><p>Next</p></div>
                     </div>
                 </div>
-                <div class="button-field flex">
-                    <div class="split-button prev-4 prev"><p>Previous</p></div>
-                    <button class="split-button next-4 next">Submit</button>
+                <div class="page slide-page">
+                    <div class="title">
+                        Verif
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Enter code
+                        </div>
+                        <input type="text">
+                    </div>
+                    <div class="button-field flex">
+                        <div class="split-button prev-3 prev"><p>Previous</p></div>
+                        <div class="split-button next-3 next"><p>Next</p></div>
+                    </div>
                 </div>
-            </div>
-        </form>
+                <div class="page slide-page">
+                    <div class="title">
+                        Choose
+                    </div>
+                    <div class="question-container flex">
+                        <div class="flex horizontal">
+                            <div class="item left">
+                                <div class="valid none">
+                                    <div class="check fas fa-check validate"></div>
+                                </div>
+                                <div class="img">
+                                    <img class="food-img" src="{% static '/Image/fastFood.jpeg'%}" alt="FastFood">
+                                </div>
+                                <div class="name-img">
+                                    FastFood
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="valid none">
+                                    <div class="check fas fa-check validate"></div>
+                                </div>
+                                <div class="img">
+                                    <img class="food-img " src="{% static '/Image/indian.jpeg'%}" alt="Indain">
+                                </div>
+                                <div class="name-img">
+                                    Indian
+                                </div>
+                            </div>
+                            <div class="item right">
+                                <div class="valid none">
+                                    <div class="check fas fa-check validate"></div>
+                                </div>
+                                <div class="img">
+                                    <img class="food-img " src="{% static '/Image/italian.jpeg'%}" alt="Italian">
+                                </div>
+                                <div class="name-img">
+                                    Italian
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex horizontal">
+                            <div class="item left">
+                                <div class="valid none">
+                                    <div class="check fas fa-check validate"></div>
+                                </div>
+                                <div class="img">
+                                    <img class="food-img " src="{% static '/Image/fastFood.jpeg' %}" alt="indian">
+                                </div>
+                                <div class="name-img">
+                                    Indian
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="valid none">
+                                    <div class="check fas fa-check validate"></div>
+                                </div>
+                                <div class="img">
+                                    <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
+                                </div>
+                                <div class="name-img">
+                                    Indian
+                                </div>
+                            </div>
+                            <div class="item right">
+                                <div class="valid none">
+                                    <div class="check fas fa-check validate"></div>
+                                </div>
+                                <div class="img">
+                                    <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
+                                </div>
+                                <div class="name-img">
+                                    Indian
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex horizontal">
+                            <div class="item left">
+                                <div class="valid none">
+                                    <div class="check fas fa-check validate"></div>
+                                </div>
+                                <div class="img">
+                                    <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
+                                </div>
+                                <div class="name-img">
+                                    Indian
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="valid none">
+                                    <div class="check fas fa-check validate"></div>
+                                </div>
+                                <div class="img">
+                                    <img class="food-img " src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
+                                </div>
+                                <div class="name-img">
+                                    Indian
+                                </div>
+                            </div>
+                            <div class="item right">
+                                <div class="valid none">
+                                    <div class="check fas fa-check validate"></div>
+                                </div>
+                                <div class="img">
+                                    <img class="food-img" src="{% static '/Image/fastFood.jpeg'%}" alt="indian">
+                                </div>
+                                <div class="name-img">
+                                    Indian
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-field flex">
+                        <div class="split-button prev-4 prev"><p>Previous</p></div>
+                        <button class="split-button next-4 next">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 <script src="{% static 'JS/register.js' %}"></script>
 </body>

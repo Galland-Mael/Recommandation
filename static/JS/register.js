@@ -13,6 +13,7 @@ const date = document.querySelector('.date');
 const mail = document.querySelector('.mail');
 const pwd1 = document.querySelector('.pwd1');
 const pwd2 = document.querySelector('.pwd2');
+const pseudo = document.querySelector('.pseudo')
 const circle = document.querySelectorAll(".step .circle");
 const progressText = document.querySelectorAll(".step .name-step");
 const progressCheck = document.querySelectorAll(".step .check");
@@ -21,39 +22,40 @@ let current = 1;
 
 
 firstNext.addEventListener('click', () => {
-      /* if(firstName.value != "") {
-                    failInfo[0].classList.add('none');
-            if(lastName.value != "") {
-                    failInfo[1].classList.add('none');
-                if(date.value != "") {
-                    if(date.valueAsNumber<Date.now()) {
-                        failInfo[2].classList.add('none');
-                        failInfo[2].classList.remove('none');
+    if (firstName.value != "") {
+        failInfo[0].classList.add('none');
+        if (lastName.value != "") {
+            failInfo[1].classList.add('none');
+            if (pseudo.value != "") {
+                failInfo[2].classList.add('none');
+                if (date.value != "") {
+                    failInfo[3].classList.add('none');
+                    if (date.valueAsNumber < Date.now()) {
                         slidePage.style.marginLeft = "-25%";
                         circle[current - 1].classList.add("active");
                         progressCheck[current - 1].classList.add("active");
                         progressText[current - 1].classList.add("active");
                         current += 1;
-                    }else{
-                        failInfo[2].textContent = "*Date impossible";
-                    showCLassTimer(failInfo[2], 2000, "none");
+                    } else {
+                        failInfo[3].textContent = "*Date impossible";
+                        showCLassTimer(failInfo[3], 2000, "none");
                     }
-                }else{
-                    failInfo[2].textContent = "*Ce champs ne peut pas être vide";
-                    showCLassTimer(failInfo[2], 2000, "none")
+                } else {
+                    failInfo[3].textContent = "*Ce champs ne peut pas être vide";
+                    showCLassTimer(failInfo[3], 2000, "none")
                 }
-            }else{
-                  showCLassTimer(failInfo[1], 2000, "none")
+
+            } else {
+                failInfo[2].textContent = "*Ce champs ne peut pas être vide";
+                showCLassTimer(failInfo[2], 2000, "none")
             }
-        }else{
-            showCLassTimer(failInfo[0], 2000, "none")
+        } else {
+            showCLassTimer(failInfo[1], 2000, "none")
+        }
+    } else {
+        showCLassTimer(failInfo[0], 2000, "none")
     }
-    showCLassTimer(failInfo[4], 5000, "none");*/
-      slidePage.style.marginLeft = "-25%";
-                        circle[current - 1].classList.add("active");
-                        progressCheck[current - 1].classList.add("active");
-                        progressText[current - 1].classList.add("active");
-                        current += 1;
+    showCLassTimer(failInfo[4], 5000, "none");
 })
 
 secNext.addEventListener('click', () => {
@@ -93,11 +95,11 @@ secNext.addEventListener('click', () => {
             failInfo[3].textContent = "*Adresse mail introuvable";
             showCLassTimer(failInfo[3], 2000, "none");
         }*/
-     slidePage.style.marginLeft = "-50%";
-                circle[current - 1].classList.add("active");
-                progressCheck[current - 1].classList.add("active");
-                progressText[current - 1].classList.add("active");
-                current += 1;
+    slidePage.style.marginLeft = "-50%";
+    circle[current - 1].classList.add("active");
+    progressCheck[current - 1].classList.add("active");
+    progressText[current - 1].classList.add("active");
+    current += 1;
 
 })
 

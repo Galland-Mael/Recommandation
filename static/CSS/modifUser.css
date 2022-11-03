@@ -1,6 +1,39 @@
+html {
+    --color: #297373;
+}
 * {
-    padding: 0;
+    padding: 0px;
     margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+h2{
+        font-size: 35px;
+    font-weight: 600;
+}
+.backward {
+    position: absolute;
+    height: 50px;
+    top: 1.5%;
+    left: 2%;
+    width: 50px;
+    border-radius: 50%;
+    background-color: var(--color);
+}
+
+.backward .home-register {
+    color: white;
+    left: 10%;
+    position: relative;
+    font-size: 35px;
+    top: 12%;
+}
+
+.backward .home-login {
+    color: white;
+    left: 8%;
+    position: relative;
+    font-size: 44px;
+    top: 3%;
 }
 
 .profil-container {
@@ -8,7 +41,7 @@
     position: relative;
     border-radius: 50%;
     overflow: hidden;
-    border: solid 1px;
+    border: solid 2px;
     width: 150px;
     height: 150px;
     background-image: url(../../static/Image/avatar.jpeg);
@@ -30,10 +63,10 @@
 }
 
 .profil-span {
-
     position: absolute;
     top: 44%;
     left: 35%;
+    color: var(--color);
 }
 
 .opacity-null {
