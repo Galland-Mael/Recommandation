@@ -22,7 +22,7 @@ let current = 1;
 
 
 firstNext.addEventListener('click', () => {
-    if (firstName.value != "") {
+    /*if (firstName.value != "") {
         failInfo[0].classList.add('none');
         if (lastName.value != "") {
             failInfo[1].classList.add('none');
@@ -55,7 +55,12 @@ firstNext.addEventListener('click', () => {
     } else {
         showCLassTimer(failInfo[0], 2000, "none")
     }
-    showCLassTimer(failInfo[4], 5000, "none");
+    showCLassTimer(failInfo[4], 5000, "none");*/
+    slidePage.style.marginLeft = "-25%";
+                        circle[current - 1].classList.add("active");
+                        progressCheck[current - 1].classList.add("active");
+                        progressText[current - 1].classList.add("active");
+                        current += 1;
 })
 
 secNext.addEventListener('click', () => {
