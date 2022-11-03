@@ -11,9 +11,6 @@ html {
 body {
     background-color: #fffefe;
 }
-p{
-            line-height: 50px;
-}
 /*
 Debut de la home
  */
@@ -277,7 +274,7 @@ input {
     background: var(--color);
     margin-top: -20px;
     border-radius: 5px;
-    color: #c62121;
+    color: #fff;
     cursor: pointer;
     font-size: 18px;
     font-weight: 500;
@@ -348,4 +345,8 @@ input {
     100% {
         transform: scaleX(1);
     }
+}
+
+p{
+    line-height: 50px;
 }

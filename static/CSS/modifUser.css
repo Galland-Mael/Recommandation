@@ -3,21 +3,35 @@
     margin: 0;
 }
 .profil-container{
-    margin: auto;
+margin: auto;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: solid 1px;
+        width: 150px;
+    height: 150px;
+    background-image:url(../../static/Image/avatar.jpeg);
+    background-position: center;
 }
 .img-container {
     height: 300px;
 }
 
-.logo-img {
-    margin: auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
+
+
+.normal-opacity{
+    opacity: 1;
+    transition: 0.2s linear all;
 }
-.pen-logo-img{
-display: none;
+.profil-span{
+
+    position: absolute;
+    top: 44%;
+    left: 35%;
+}
+.opacity-null{
+    opacity: 0;
+    transition: 0.2s linear all;
 }
 
 .change-photo{
