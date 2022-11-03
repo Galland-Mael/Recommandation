@@ -71,9 +71,7 @@
         </div>
     </div>
     <div class="form-outer">
-        <form action="" method="POST" class="post-form">
-            {% csrf_token %}
-            {{ form.as_p }}
+        <form action="" methode="POST"  class="post-form">
             <div class="page slide-page">
                 <div class="title">
                     Basic Info:
@@ -100,7 +98,7 @@
                     <div class="failInfo none">*Ce champs ne peut être vide</div>
                 </div>
                 <div class="field">
-                    <button class="next-1">Next</button>
+                    <div class="next-1"> <p>Next</p></div>
                 </div>
             </div>
             <div class="page slide-page">
@@ -118,6 +116,8 @@
                     <div class="label">
                         Pwd
                     </div>
+
+
                     <input class="pwd1" type="password">
                     <div class="failInfo">*Le mot de passe doit contenir entre 8 et 15 caractères</div>
                 </div>
@@ -129,8 +129,8 @@
                     <div class="failInfo none">*Veuillez entrer le meme mot de passe</div>
                 </div>
                 <div class="button-field flex">
-                    <button class="split-button prev prev-2">Previous</button>
-                    <button class="split-button next next-2">Next</button>
+                    <div class="split-button prev prev-2"><p>Previous</p></div>
+                    <div class="split-button next next-2"><p>Next</p></div>
                 </div>
             </div>
             <div class="page slide-page">
@@ -144,8 +144,8 @@
                     <input type="text">
                 </div>
                 <div class="button-field flex">
-                    <button class="split-button prev-3 prev">Previous</button>
-                    <button class="split-button next-3 next">Next</button>
+                    <div class="split-button prev-3 prev"><p>Previous</p></div>
+                    <div class="split-button next-3 next"><p>Next</p></div>
                 </div>
             </div>
             <div class="page slide-page">
@@ -260,7 +260,7 @@
                     </div>
                 </div>
                 <div class="button-field flex">
-                    <button class="split-button prev-4 prev">Previous</button>
+                    <div class="split-button prev-4 prev"><p>Previous</p></div>
                     <button class="split-button next-4 next">Submit</button>
                 </div>
             </div>

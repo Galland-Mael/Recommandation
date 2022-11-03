@@ -8,8 +8,11 @@ html {
     font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
     background-color: #fffefe;
+}
+p{
+            line-height: 50px;
 }
 /*
 Debut de la home
@@ -24,20 +27,22 @@ Debut de la home
     background-color: var(--color);
 }
 
-.backward .home-register{
+.backward .home-register {
     color: white;
     left: 10%;
     position: relative;
     font-size: 35px;
     top: 12%;
 }
-.backward .home-login{
+
+.backward .home-login {
     color: white;
     left: 8%;
     position: relative;
     font-size: 44px;
     top: 3%;
 }
+
 /*
 fin de la home
  */
@@ -49,25 +54,30 @@ Début de la progress bar
     min-height: 100vh;
     text-align: center;
 }
+
 .container {
     padding: 15px 0 15px 0;
     width: 330px;
 }
+
 .title-setting {
     font-size: 35px;
     font-weight: 600;
     margin: 30px 0 0 0;
     padding: 0 0 20px 0;
 }
+
 .progress-bar {
     padding: 0 0 40px 0;
     width: 100%;
 }
-.step{
+
+.step {
     text-align: center;
     justify-content: center;
     width: 25%;
 }
+
 .progress-bar .step .check {
     position: absolute;
     left: 50%;
@@ -76,18 +86,22 @@ Début de la progress bar
     transform: translate(-50%, -50%);
     display: none;
 }
+
 .progress-bar .step .check.active {
     display: block;
     color: #fff;
 }
+
 .name-step {
     font-weight: 500;
     font-size: 18px;
 }
+
 .progress-bar .step .name-step.active {
     color: var(--color);
     transition: 0.2s linear;
 }
+
 .circle-container {
     position: relative;
     height: 40px;
@@ -105,15 +119,18 @@ Début de la progress bar
     height: 25px;
     width: 25px;
 }
+
 .progress-bar .step .circle.active span {
     display: none;
 }
+
 .progress-bar .step .circle.active:after {
     background: var(--color);
     transform: scaleX(1);
     transform-origin: left;
     animation: animate 0.3s linear forwards;
 }
+
 .progress-bar .step .circle:before,
 .progress-bar .step .circle:after {
     position: absolute;
@@ -124,20 +141,24 @@ Début de la progress bar
     width: 47px;
     background: #262626;
 }
+
 .circle.active {
     border-color: var(--color);
     background: var(--color);
 }
+
 .progress-bar .step:last-child .circle:before,
 .progress-bar .step:last-child .circle:after {
     display: none;
 }
+
 .number {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
 /*
 Fin de la progress bar
  */
@@ -150,6 +171,7 @@ Début du main container
     width: 100%;
     overflow: hidden;
 }
+
 .form-outer form .page {
     width: 25%;
     transition: margin-left 0.3s ease-in-out;
@@ -159,6 +181,7 @@ Début du main container
     display: flex;
     width: 400%;
 }
+
 .field {
     width: 330px;
     height: 45px;
@@ -167,12 +190,14 @@ Début du main container
     position: relative;
     flex-direction: column;
 }
+
 .label {
     position: absolute;
     top: -30px;
     font-weight: 500;
 }
-.failInfo{
+
+.failInfo {
     font-size: 0.8em;
     top: 100%;
     border-radius: 5px;
@@ -181,6 +206,7 @@ Début du main container
     width: 100%;
     text-align: start;
 }
+
 .question-container {
     flex-direction: column;
 }
@@ -188,6 +214,7 @@ Début du main container
 .item {
     position: relative;
 }
+
 .valid {
     z-index: 2;
     background-color: var(--color);
@@ -206,15 +233,18 @@ Début du main container
     top: 18.25%;
     left: 18.25%;
 }
+
 .img {
     width: 100px;
     z-index: 1;
     overflow: hidden;
     position: relative;
 }
+
 img {
     width: 100%;
 }
+
 .name-img {
     padding: 0px 0 20px 0;
 }
@@ -222,12 +252,14 @@ img {
 .horizontal {
     flex-direction: row;
 }
+
 .title {
     text-align: left;
     margin-bottom: 15px;
     font-size: 25px;
     font-weight: 500;
 }
+
 input {
     height: 100%;
     width: 94%;
@@ -236,23 +268,27 @@ input {
     padding-left: 15px;
     font-size: 18px;
 }
+
 .next-1 {
+    vertical-align: middle;
     width: 100%;
     height: calc(100% + 5px);
     border: none;
     background: var(--color);
     margin-top: -20px;
     border-radius: 5px;
-    color: #fff;
+    color: #c62121;
     cursor: pointer;
     font-size: 18px;
     font-weight: 500;
 }
+
 .food-img:hover {
     transition: transform .1s;
     transform: scale(1.1);
     overflow: hidden;
 }
+
 .button-field {
     width: 330px;
     height: 45px;
@@ -260,6 +296,7 @@ input {
     display: flex;
     position: relative;
 }
+
 .split-button {
     width: 100%;
     height: calc(100% + 5px);
@@ -272,6 +309,7 @@ input {
     font-size: 18px;
     font-weight: 500;
 }
+
 .prev {
     margin-right: 3px;
 }
@@ -291,6 +329,7 @@ input {
 .justify-center {
     justify-content: center;
 }
+
 .right {
     margin-left: 15px;
 }
@@ -303,7 +342,6 @@ input {
 .none {
     display: none;
 }
-
 
 
 @keyframes animate {
