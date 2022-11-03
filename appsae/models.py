@@ -12,7 +12,7 @@ class Adherant(models.Model):
     prenom = models.CharField(max_length=50)
     mail = models.EmailField(max_length=254)
     birthdate = models.DateField("Date", default=datetime.date.today)
-    telephone = models.CharField(max_length=10)
+    password = models.CharField(max_length=50)
     Pseudo = models.CharField(max_length=20)
     profile_picture = models.ImageField(upload_to='media/img/profile_pictures')
 
