@@ -25,18 +25,21 @@ def testAntoine(request):
 
 
 def register(request):
-    dataAdherant = Adherant.objects.all
+   '''dataAdherant = Adherant.objects.all
     if request.method == "POST":
         form = AdherantForm(request.POST).save()
         return redirect('')
     form = AdherantForm()
-    return render(request, 'register.html', {'form': form, 'dataAdherant': Adherant.objects.all})
+    return render(request, 'register.html', {'form': form, 'dataAdherant': Adherant.objects.all})'''
+   return render(request, 'register.html')
 
 
 
 def login(request):
     return render(request,'login.html')
 
+def modifUser(request):
+    return render(request,'modifUser.html')
 
 def verificationEmail(request):
     ''' Fonction qui permet l'envoi d'un mail à un utilisateur depuis l'adresse mail du site web '''
