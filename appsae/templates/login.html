@@ -1,3 +1,4 @@
+{% load static %}
 {% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
@@ -20,22 +21,20 @@
                 <div class="label">
                     Mail
                 </div>
-                {% render_field form.mail class+="input mail" %}
+                <input type="text" name="mail" class="input">
             </div>
             <div class="field">
                 <div class="label">
                     Password
                 </div>
-                {% render_field form.password class+="input password" %}
+                <input type="text" name="password" class="input">
             </div>
             <div class="field">
                 <button class="next-1">connection</button>
             </div>
         </form>
-
     </div>
 </div>
-
-
+    <link rel="stylesheet" href="../../static/JS/login.js">
 </body>
 </html>
