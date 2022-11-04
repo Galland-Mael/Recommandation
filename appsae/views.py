@@ -3,7 +3,7 @@ from django.template import loader
 from django.shortcuts import get_object_or_404, render, redirect
 
 from .models import RestaurantType, Adherant
-from .formulaire import RestaurantTypeForm, AdherantForm
+from .formulaire import RestaurantTypeForm, AdherantForm, verifLogin
 from django.core.mail import send_mail
 import random
 from django.shortcuts import render
@@ -16,12 +16,11 @@ def testAntoine(request):
         'nom': nom,
     }
     '''
-    dataRestaurantType = RestaurantType.objects.all
     if request.method == "POST":
         form = RestaurantTypeForm(request.POST).save()
         return redirect('testAntoine')
     form = RestaurantTypeForm()
-    return render(request, 'testAntoine.html', {'form': form, 'dataRestaurantType': RestaurantType.objects.all})
+    return render(request, 'testAntoine.html', {'form': form, 'info': Adherant.objects.filter(mail="pp.pp@pp.pp")})
 
 
 def register(request):
@@ -35,7 +34,12 @@ def register(request):
 
 
 def login(request):
-    return render(request,'login.html')
+    info = Adherant.objects.all
+    if request.method == "POST":
+        form = verifLogin(request.POST).save()
+        return redirect('login')
+    form = AdherantForm()
+    return render(request, 'login.html', {'form': form, 'info': Adherant.objects.all})
 
 def modifUser(request):
     return render(request,'modifUser.html')
