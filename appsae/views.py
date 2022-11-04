@@ -25,15 +25,12 @@ def testAntoine(request):
 
 
 def register(request):
-   '''dataAdherant = Adherant.objects.all
-    if request.method == "POST":
-        form = AdherantForm(request.POST).save()
-        return redirect('')
-    form = AdherantForm()
-    return render(request, 'register.html', {'form': form, 'dataAdherant': Adherant.objects.all})'''
-   form=AdherantForm()
-   context ={'form':form}
-   return render(request, 'register.html',context)
+   info = Adherant.objects.all
+   if request.method == "POST":
+       form = AdherantForm(request.POST).save()
+       return redirect('register')
+   form = AdherantForm()
+   return render(request, 'register.html',{'form': form, 'info': Adherant.objects.all})
 
 
 

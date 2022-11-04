@@ -73,7 +73,8 @@
             </div>
         </div>
         <div class="form-outer">
-            <form action="" methode="POST" class="post-form">
+            <form action="#" method="POST" class="post-form ">
+                {% csrf_token %}
                 <div class="page slide-page">
                     <div class="title">
                         Basic Info:
@@ -82,28 +83,28 @@
                         <div class="label">
                             First Name
                         </div>
-                        {% render_field form.nom class+="input firstName" %}
+                        {% render_field form.prenom class+="input firstName" %}
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Last Name
                         </div>
-                               {% render_field form.nom class+=" input lastName" %}
+                        {% render_field form.nom class+="input lastName" %}
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Pseudo
                         </div>
-                        {% render_field form.Pseudo class+=" input pseudo" %}
+                        {% render_field form.pseudo class+="input pseudo" %}
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Birth Date
                         </div>
-                         {% render_field form.birthdate type="date" class+=" input birthDate" %}
+                        {% render_field form.birthDate type="date" class+="input firstNbrithDateame" %}
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
@@ -118,16 +119,15 @@
                         <div class="label">
                             Mail
                         </div>
-                        <input class="mail" type="email">
+                        {% render_field form.mail class+="input mail" %}
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Pwd
                         </div>
+                        {% render_field form.password type="password" class+="input pwd1" %}
 
-
-                        <input class="pwd1" type="password">
                         <div class="failInfo">*Le mot de passe doit contenir entre 8 et 15 caractères</div>
                     </div>
                     <div class="field">
@@ -270,7 +270,7 @@
                     </div>
                     <div class="button-field flex">
                         <div class="split-button prev-4 prev"><p>Previous</p></div>
-                        <button class="split-button next-4 next">Submit</button>
+                        <button type="submit" class="split-button next-4 next save btn" value="type">Submit</button>
                     </div>
                 </div>
             </form>

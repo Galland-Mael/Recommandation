@@ -11,10 +11,9 @@ class Adherant(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     mail = models.EmailField(max_length=254)
-    birthdate = models.DateField("Date", default=datetime.date.today)
-    Pseudo = models.CharField(max_length=20)
-    profile_picture = models.ImageField(upload_to='media/img/profile_pictures')
-
+    birthDate = models.DateField("Date", default=datetime.date.today)
+    pseudo = models.CharField(max_length=20)
+    password =models.CharField(max_length=20)
 
 class Groupe(models.Model):
     nom_groupe = models.CharField(max_length=25)
@@ -41,8 +40,6 @@ class ImageRestaurant(models.Model):
 class RestaurantType(models.Model):
     nom = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.nom
 
 
 class Horaire(models.Model):
