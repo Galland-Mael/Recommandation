@@ -6,6 +6,7 @@ from .models import Adherant
 class RestaurantTypeForm(ModelForm):
     class Meta:
         model = RestaurantType
+
         fields = ['nom']
 
 

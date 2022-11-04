@@ -1,20 +1,15 @@
 import datetime
-
 from django.db import models
-
-# Create your models here.
-
-from django.db import models
-
 
 class Adherant(models.Model):
+    id=models.IntegerField(primary_key=True,blank=True)
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     mail = models.EmailField(max_length=254)
     birthDate = models.DateField("Date", default=datetime.date.today)
     pseudo = models.CharField(max_length=20)
     password =models.CharField(max_length=20)
-    profile_picture = models.ImageField(upload_to='media/img/profile_pictures')
+    profile_picture = models.ImageField(upload_to='media/img/profile_pictures',blank=True)
 
 class Groupe(models.Model):
     nom_groupe = models.CharField(max_length=25)
