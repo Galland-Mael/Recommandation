@@ -22,12 +22,18 @@
                     Mail
                 </div>
                 <input type="text" name="mail" class="input">
+                {% for msg in messages %}
+                <div class="failInfo">{{msg}}</div>
+                {% endfor %}
             </div>
             <div class="field">
                 <div class="label">
                     Password
                 </div>
                 <input type="text" name="password" class="input">
+                {% for msg in messages %}
+                <div class="failInfo">{{msg}}</div>
+                {% endfor %}
             </div>
             <div class="field">
                 <button class="next-1">connection</button>
@@ -35,6 +41,6 @@
         </form>
     </div>
 </div>
-    <link rel="stylesheet" href="../../static/JS/login.js">
+<link rel="stylesheet" href="../../static/JS/login.js">
 </body>
 </html>

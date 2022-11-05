@@ -1,3 +1,5 @@
+from django.contrib import messages
+
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth import authenticate
@@ -35,6 +37,8 @@ def register(request):
     return render(request, 'register.html', {'form': form, 'info': Adherant.objects.all})
 
 
+
+
 def login(request):
     if request.method == "POST":
         mail = request.POST['mail']
@@ -49,8 +53,8 @@ def login(request):
         if contain :
             return redirect('register')
         else:
-            form = AdherantForm()
-            return render(request, 'login.html', {'form': form,'contain': contain})
+            messages.success(request, '*Wrong mail or password')
+            return redirect('login')
     else:
         return render(request, 'login.html')
 
