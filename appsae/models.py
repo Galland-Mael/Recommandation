@@ -5,11 +5,11 @@ class Adherant(models.Model):
     id=models.IntegerField(primary_key=True,blank=True)
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
-    mail = models.EmailField(max_length=254)
+    mail = models.EmailField(unique=True)
     birthDate = models.DateField("Date", default=datetime.date.today)
     pseudo = models.CharField(max_length=20)
     password =models.CharField(max_length=20)
-    profile_picture = models.ImageField(upload_to='media/img/profile_pictures',blank=True)
+    profile_picture = models.ImageField(default='static/Image/avatar.jpeg', upload_to='media/img/profile_pictures',blank=True)
 
 class Groupe(models.Model):
     nom_groupe = models.CharField(max_length=25)
