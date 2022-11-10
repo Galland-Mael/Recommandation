@@ -14,7 +14,8 @@ class Adherant(models.Model):
     mail = models.EmailField(max_length=254)
     birthdate = models.DateField("Date", default=datetime.date.today)
     telephone = models.CharField(max_length=10)
-    Pseudo = models.CharField(max_length=20)
+    pseudo = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
     profile_picture = models.ImageField(upload_to='media/img/profile_pictures')
 
     def __str__(self):
