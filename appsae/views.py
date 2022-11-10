@@ -10,14 +10,13 @@ from django.http import HttpResponse
 
 
 def register(request):
-    info = Adherant.objects.all
     if request.method == "POST":
         '''Remplissage de la base de données'''
         form = AdherantForm(request.POST).save()
         print(request.POST["mail"])
         return redirect('login')
     form = AdherantForm()
-    return render(request, 'register.html', {'form': form, 'info': Adherant.objects.all})
+    return render(request, 'user/register.html', {'form': form, 'info': Adherant.objects.all})
     # return JsonResponse({"form": list(form.values) })
 
 
@@ -39,12 +38,12 @@ def login(request):
             messages.success(request, '*Wrong mail or password')
             return redirect('login')
     else:
-        return render(request, 'login.html')
+        return render(request, 'user/login.html')
 
 def index(request):
     return render(request,'index.html')
 def modifUser(request):
-    return render(request, 'modifUser.html')
+    return render(request, 'user/modifUser.html')
 
 
 def verificationEmail(request):
