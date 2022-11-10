@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import register,login,verificationEmail,modifUser,index
+from .views import *
 
 
 urlpatterns = [

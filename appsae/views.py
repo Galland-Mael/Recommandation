@@ -1,8 +1,8 @@
 import os.path
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import RestaurantType, Adherant
-from .formulaire import RestaurantTypeForm, AdherantForm, verifLogin
+from .models import *
+from .formulaire import *
 from django.core.mail import send_mail
 import random
 from django.shortcuts import render
