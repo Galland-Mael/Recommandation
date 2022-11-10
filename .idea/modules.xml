@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SAE-Recommandation.iml" filepath="$PROJECT_DIR$/.idea/SAE-Recommandation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SAE-RecommandationTest.iml" filepath="$PROJECT_DIR$/.idea/SAE-RecommandationTest.iml" />
     </modules>
   </component>
 </project>

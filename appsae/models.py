@@ -9,7 +9,7 @@ class Adherant(models.Model):
     birthDate = models.DateField("Date", default=datetime.date.today)
     pseudo = models.CharField(max_length=20)
     password =models.CharField(max_length=20)
-    profile_picture = models.ImageField(default='static/Image/avatar.jpeg', upload_to='media/img/profile_pictures',blank=True)
+    profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
 
     def __str__(self):
         return self.mail
@@ -26,7 +26,7 @@ class Restaurant(models.Model):
     pays = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
     telephone = models.CharField(max_length=10)
-    image_front = models.ImageField(upload_to='media/img/image_front')
+    image_front = models.ImageField(upload_to='img_restaurant/')
 
 
 class ImageRestaurant(models.Model):
