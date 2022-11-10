@@ -1,14 +1,12 @@
+{% extends 'base.html' %}
 {% load static %}
-{% load widget_tweaks %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../static/CSS/register-login.css">
+{% block main %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>login</title>
-</head>
-<body>
+
+
+
+
 <div class="backward">
     <div class="home-login fa fa-home"></div>
 </div>
@@ -38,5 +36,4 @@
         </form>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}

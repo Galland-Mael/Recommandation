@@ -1,13 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>EMAIL SENT !</title>
-</head>
- <div >
-   index
-  </div>
-<body>
+{% extends 'base.html' %}
+{% block head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+{% endblock %}
 
-</body>
-</html>
+{% block header %}
+{% include "header.html" %}
+{% endblock %}
+
+{% block main %}
+{% load static %}
+
+{% endblock %}
+
+
+ {% block footer %}
+ {% include "footer.html" %}
+{% endblock %}
+
+
+
+
