@@ -5,6 +5,9 @@
     <title>TestCarrousel</title>
 </head>
 <body>
-
+    {% for element in list %}
+    <img src="{{ element.image_front.url }}" alt="marche pas">
+        <li>{{ element.image_front.url }}</li>
+    {% endfor %}
 </body>
 </html>

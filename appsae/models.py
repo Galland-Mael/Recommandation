@@ -1,5 +1,6 @@
 import datetime
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Adherant(models.Model):
     id=models.IntegerField(primary_key=True,blank=True)
@@ -26,6 +27,7 @@ class Restaurant(models.Model):
     pays = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
     telephone = models.CharField(max_length=10)
+    note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     image_front = models.ImageField(upload_to='img_restaurant/')
 
     def __str__(self):

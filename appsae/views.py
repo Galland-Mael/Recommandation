@@ -72,8 +72,8 @@ def randomValue():
 
 def meilleurs_resto(request):
     ''' Renvoie les restaurants les mieux notés '''
-    re=carrousel();
-    return render(request, 'testMatteo.html');
+    liste=carrousel();
+    return render(request, 'testMatteo.html',{'list':liste});
 
 def carrousel():
     restaurant = Restaurant.objects.order_by('-note');

@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -11,6 +13,7 @@ urlpatterns = [
     path('modifuser/',modifUser,name='modifUser'),
     path('verificationEmail/',verificationEmail,name='verificationEmail'),
     path('index/',index,name='index'),
-    path('Carrousel/', meilleurs_resto, name='meilleurs_resto')
+    path('carrousel/', meilleurs_resto, name='meilleurs_resto')
 ]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
