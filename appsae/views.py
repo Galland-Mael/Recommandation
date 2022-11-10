@@ -1,31 +1,12 @@
 import os.path
-
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
-
 from .models import RestaurantType, Adherant
 from .formulaire import RestaurantTypeForm, AdherantForm, verifLogin
 from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
-
-
-def testAntoine(request):
-    '''
-    nom = RestaurantType.objects.order_by('id')[:5]
-    template = loader.get_template('appsae/testAntoine.html')
-    context = {
-        'nom': nom,
-    }
-    '''
-    if request.method == "POST":
-        form = RestaurantTypeForm(request.POST).save()
-        return redirect('testAntoine')
-    form = RestaurantTypeForm()
-    test = "Mael"
-    return render(request, 'testAntoine.html',
-                  {'form': form, 'info': Adherant.objects.filter(mail="pp.pp@pp.pp"), 'test': test})
 
 
 def register(request):
