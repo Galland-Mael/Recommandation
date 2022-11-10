@@ -29,27 +29,27 @@ class Groupe(models.Model):
         return self.nom_groupe
 
 
+class RestaurantType(models.Model):
+    nom = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nom
+
+
+class ImageRestaurant(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='media/img/liste_images')
+    default = models.BooleanField(default=False)
+
+
 class Restaurant(models.Model):
     nom = models.CharField(max_length=50)
     pays = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
     telephone = models.CharField(max_length=10)
     image_front = models.ImageField(upload_to='media/img/image_front')
-
-
-class ImageRestaurant(models.Model):
-    name = models.CharField(max_length=255)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='media/img/liste_images')
-    default = models.BooleanField(default=False)
-
-
-class RestaurantType(models.Model):
-    nom = models.CharField(max_length=50)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.nom
+    type = models.ManyToManyField(RestaurantType)
+    img = models.ManyToManyField(ImageRestaurant)
 
 
 class Horaire(models.Model):
