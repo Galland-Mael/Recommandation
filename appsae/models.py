@@ -28,6 +28,8 @@ class Restaurant(models.Model):
     telephone = models.CharField(max_length=10)
     image_front = models.ImageField(upload_to='img_restaurant/')
 
+    def __str__(self):
+        return self.nom
 
 class ImageRestaurant(models.Model):
     name = models.CharField(max_length=255)

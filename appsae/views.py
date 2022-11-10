@@ -70,3 +70,15 @@ def randomValue():
         value_random += str(random.randint(0, 9))
     return value_random
 
+def meilleurs_resto(request):
+    ''' Renvoie les restaurants les mieux notés '''
+    re=carrousel();
+    return render(request, 'testMatteo.html');
+
+def carrousel():
+    restaurant = Restaurant.objects.order_by('-note');
+    list = [];
+    for i in range(3):
+        list.append(restaurant[i]);
+    return list;
+
