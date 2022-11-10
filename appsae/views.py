@@ -18,7 +18,6 @@ def register(request):
     return render(request, 'register.html', {'form': form, 'dataAdherant': Adherant.objects.all})
 
 
-
 def login(request):
     if request.method == "POST":
         mail = request.POST['mail']
@@ -39,8 +38,11 @@ def login(request):
     else:
         return render(request, 'login.html')
 
+
 def index(request):
-    return render(request,'index.html')
+    return render(request, 'index.html')
+
+
 def modifUser(request):
     return render(request, 'modifUser.html')
 
@@ -60,6 +62,7 @@ def verificationEmail(request):
     except:
         print("fail")
     return render(request, 'mail.html')
+
 
 def randomValue():
     ''' Fonction qui renvoie une chaîne composée de 6 caractères entre 0 et 9 '''

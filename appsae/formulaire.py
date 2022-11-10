@@ -18,6 +18,7 @@ class AdherantForm(ModelForm):
         model = Adherant
         fields = ['prenom','nom','birthdate','pseudo','mail','password']
 
+
 class verifLogin(ModelForm):
     class Meta:
         model = Adherant
