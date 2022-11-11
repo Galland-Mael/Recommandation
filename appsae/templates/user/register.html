@@ -1,15 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
+{% block head %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+{% endblock %}
 
+{% block main %}
+<div class="backward">
+    <div class="home-register fa fa-home"></div>
+</div>
+<div class="body flex vertical-center justify-center">
+    <div class="container">
+        <div class="title-setting">SignUp Form</div>
+        <div class="progress-bar flex">
+            <div class="step">
+                <p class="name-step">
+                    Info
+                </p>
+                <div class="circle-container">
+                    <div class="circle">
+                        <span class="number">
+                            1
+                        </span>
+                    </div>
+                    <div class="check fas fa-check"></div>
 
-
-      {% csrf_token %}
+                </div>
+            </div>
+            <div class="step">
+                <p class="name-step">
+                    Perso
+                </p>
+                <div class="circle-container">
+                    <div class="circle">
+                        <span class="number">
+                            2
+                        </span>
+                    </div>
+                    <div class="check fas fa-check"></div>
+                </div>
+            </div>
+            <div class="step">
+                <p class="name-step">
+                    Form
+                </p>
+                <div class="circle-container">
+                    <div class="circle">
+                    <span class="number">
+                        3
+                    </span>
+                    </div>
+                    <div class="check fas fa-check"></div>
+                </div>
+            </div>
+            <div class="step">
+                <p class="name-step">
+                    Confirmation
+                </p>
+                <div class="circle-container">
+                    <div class="circle">
+                    <span class="number">
+                        4
+                    </span>
+                    </div>
+                    <div class="check fas fa-check"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-outer">
+            <form action="#" method="POST" class="post-form ">
+                {% csrf_token %}
                 <div class="page slide-page">
                     <div class="title">
                         Basic Info:
@@ -18,29 +81,28 @@
                         <div class="label">
                             First Name
                         </div>
-                        <!-- <input class="firstName" type="text"> -->
-                        {% render_field form.nom  placeholder="prénom" class+="input" %}
+                        <input type="text" name="prenom" class="input firstName">
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Last Name
                         </div>
-                        <input class="lastName" type="text">
+                        <input type="text" name="nom" class="input lastName">
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Pseudo
                         </div>
-                        <input class="pseudo" type="text">
+                        <input type="text" name="pseudo" class="input pseudo">
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Birth Date
                         </div>
-                        <input class="date" type="date">
+                        <input type="date" name="birthDate" class="input birthDate">
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
@@ -55,43 +117,26 @@
                         <div class="label">
                             Mail
                         </div>
-                        <input class="mail" type="email">
+                        <input type="mail" name="mail" class="input mail">
                         <div class="failInfo none">*Ce champs ne peut être vide</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Pwd
                         </div>
-
-
-                        <input class="pwd1" type="password">
+                        <input type="password" name="password" class="input pwd1">
                         <div class="failInfo">*Le mot de passe doit contenir entre 8 et 15 caractères</div>
                     </div>
                     <div class="field">
                         <div class="label">
                             Confirm Pwd
                         </div>
-                        <input class="pwd2" type="password">
+                        <input class="input pwd2" type="password">
                         <div class="failInfo none">*Veuillez entrer le meme mot de passe</div>
                     </div>
                     <div class="button-field flex">
                         <div class="split-button prev prev-2"><p>Previous</p></div>
-                        <div class="split-button next next-2"><p>Next</p></div>
-                    </div>
-                </div>
-                <div class="page slide-page">
-                    <div class="title">
-                        Verif
-                    </div>
-                    <div class="field">
-                        <div class="label">
-                            Enter code
-                        </div>
-                        <input type="text">
-                    </div>
-                    <div class="button-field flex">
-                        <div class="split-button prev-3 prev"><p>Previous</p></div>
-                        <div class="split-button next-3 next"><p>Next</p></div>
+                        <div   class="split-button prev next-2"><p>Next</p></div>
                     </div>
                 </div>
                 <div class="page slide-page">
@@ -206,9 +251,33 @@
                         </div>
                     </div>
                     <div class="button-field flex">
-                        <div class="split-button prev-4 prev"><p>Previous</p></div>
-                        <button class="split-button next-4 next">Submit</button>
+                        <div class="split-button prev-3 prev"><p>Previous</p></div>
+                        <div  class="split-button next-3 next"><p>Next</p></div>
                     </div>
                 </div>
-</body>
-</html>
+                 <div class="page slide-page">
+                        <div class="title">
+                            Confirmation
+                        </div>
+                        <div class="field">
+                            <div class="label">
+                              Are you sure?
+                            </div>
+                        </div>
+                        <div class="button-field flex">
+                            <div class="split-button prev-4 prev"><p>Previous</p></div>
+                            <button type="submit" class="split-button next-4 next save btn" value="type">Submit
+                            </button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% load static %}
+<script src="{% static 'JS/register.js' %}"></script>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'JS/register.js' %}"></script>
+{% endblock %}

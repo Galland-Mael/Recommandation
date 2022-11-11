@@ -1,22 +1,17 @@
 import datetime
-
 from django.db import models
-
-# Create your models here.
-
-from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Adherant(models.Model):
     id = models.IntegerField(primary_key=True, blank=True)
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
-    mail = models.EmailField(max_length=254)
-    birthdate = models.DateField("Date", default=datetime.date.today)
-    telephone = models.CharField(max_length=10, default="0000000000")
+    mail = models.EmailField(unique=True)
+    birthDate = models.DateField("Date", default=datetime.date.today)
     pseudo = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
-    profile_picture = models.ImageField(upload_to='media/img/profile_pictures')
+    profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
 
     def __str__(self):
         return self.mail
@@ -47,9 +42,13 @@ class Restaurant(models.Model):
     pays = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
     telephone = models.CharField(max_length=10)
-    image_front = models.ImageField(upload_to='media/img/image_front')
+    note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
+    image_front = models.ImageField(upload_to='img_restaurant/')
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)
+
+    def __str__(self):
+        return self.nom
 
 
 class Horaire(models.Model):

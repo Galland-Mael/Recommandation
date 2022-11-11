@@ -1,13 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>EMAIL SENT !</title>
-</head>
- <div >
-   index
-  </div>
-<body>
+{% extends 'base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/index.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+{% endblock %}
 
-</body>
-</html>
+{% block header %}
+    {% include "header.html" %}
+{% endblock %}
+
+{% block main %}
+    <div class="owl-carousel">
+        <div class="carousel-items">
+            <img src="{% static '/Image/fastFood.jpeg' %}" alt="Pannier"/>
+            <p>-30% pour cette ensemble avec ses chaussures pour seulement 99€ </p>
+        </div>
+        <div class="carousel-items">
+            <img src="{% static '/Image/fastFood.jpeg' %}"
+                 alt="image des nouveautés"/>
+            <p>Sweat a capuche noir a 39€ au liex de 59€</p>
+        </div>
+        <div class="carousel-items">
+            <img src="{% static '/Image/fastFood.jpeg' %}" alt="image des nouveautés"/>
+            <p>T-shirt blanc a 20€</p>
+        </div>
+        <div class="carousel-items">
+            <img src="{% static '/Image/fastFood.jpeg' %}" alt="image des nouveautés"/>
+            <p>Sweat a capuche orange a 39€ au lieux de 59€</p>
+        </div>
+        <div class="carousel-items">
+            <img src="{% static '/Image/fastFood.jpeg' %}" alt="image des nouveautés"/>
+            <p>-30% sur cette ensemble noir a seulement 69€</p>
+        </div>
+        <div class="carousel-items">
+            <img src="{% static '/Image/fastFood.jpeg' %}" alt="image des nouveautés"/>
+            <p>-30% sur cette ensemble noir a seulement 69€</p>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    {% include "footer.html" %}
+{% endblock %}
+
+{% block script %}
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                items: 5,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 1000,
+                autoplayHoverPause: true
+            });
+        });
+    </script>
+{% endblock %}
+
+

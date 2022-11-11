@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TestCarrousel</title>
+</head>
+<body>
+    {% for element in list %}
+    <img src="{{ element.image_front.url }}" alt="marche pas">
+        <li>{{ element.image_front.url }}</li>
+    {% endfor %}
+</body>
+</html>

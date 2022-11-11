@@ -1,7 +1,8 @@
+import os.path
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
-
-from .models import RestaurantType, Adherant
-from .formulaire import RestaurantTypeForm, AdherantForm
+from .models import *
+from .formulaire import *
 from django.core.mail import send_mail
 import random
 from django.shortcuts import render
@@ -9,13 +10,14 @@ from django.http import HttpResponse
 
 
 def register(request):
-    dataAdherant = Adherant.objects.all
     if request.method == "POST":
         '''Remplissage de la base de données'''
         form = AdherantForm(request.POST).save()
-        return redirect('')
+        print(request.POST["mail"])
+        return redirect('login')
     form = AdherantForm()
-    return render(request, 'register.html', {'form': form, 'dataAdherant': Adherant.objects.all})
+    return render(request, 'user/register.html', {'form': form, 'info': Adherant.objects.all})
+    # return JsonResponse({"form": list(form.values) })
 
 
 def login(request):
@@ -36,32 +38,29 @@ def login(request):
             messages.success(request, '*Wrong mail or password')
             return redirect('login')
     else:
-        return render(request, 'login.html')
-
+        return render(request, 'user/login.html')
 
 def index(request):
-    return render(request, 'index.html')
-
-
+    return render(request,'index.html')
 def modifUser(request):
-    return render(request, 'modifUser.html')
+    return render(request, 'user/modifUser.html')
 
 
 def verificationEmail(request):
-
+    print("apeler")
     ''' Fonction qui permet l'envoi d'un mail à un utilisateur depuis l'adresse mail du site web '''
     try:
         send_mail("Vérification de votre compte - Ne pas répondre",
-        "Code de vérification :\n"
+                  "Code de vérification :\n"
                   + "         " + randomValue()
                   + "\n\nL'équipe EatAdvisor",
                   "eat_advisor2@outlook.fr",
-                  ["maelgalland.71@gmail.com"],
+                  ["maelgalland.71@gail.com"],
                   fail_silently=False);
         print("reussi")
     except:
         print("fail")
-    return render(request, 'mail.html')
+        return HttpResponse("<p>Next</p>")
 
 
 def randomValue():
@@ -70,4 +69,16 @@ def randomValue():
     for i in range(6):
         value_random += str(random.randint(0, 9))
     return value_random
+
+def meilleurs_resto(request):
+    ''' Renvoie les restaurants les mieux notés '''
+    liste=carrousel();
+    return render(request, 'testMatteo.html',{'list':liste});
+
+def carrousel():
+    restaurant = Restaurant.objects.order_by('-note');
+    list = [];
+    for i in range(3):
+        list.append(restaurant[i]);
+    return list;
 
