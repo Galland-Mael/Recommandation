@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block main %}
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <div class="backward">
-    <div class="home-login fa fa-home"></div>
+    <a href="{% url 'index' %}">
+        <div class="home-login fa fa-home"></div>
+    </a>
 </div>
 <div class="body flex vertical-center justify-center">
     <div class="container">
-        <form action="#" method="POST" class="post-form ">
+        <form action="#" method="POST" class="post-form form">
             {% csrf_token %}
             <div class="title-setting">SignIn</div>
             <div class="field">
@@ -34,6 +34,7 @@
                 <button class="next-1">connection</button>
             </div>
         </form>
+            <a href="{% url 'register' %}"><span class="new-count">je n'ai pas de compte</span></a>
     </div>
 </div>
 {% endblock %}

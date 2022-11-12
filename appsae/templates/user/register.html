@@ -10,10 +10,12 @@
 
 {% block main %}
 <div class="backward">
-    <div class="home-register fa fa-home"></div>
+    <a href="{% url 'index' %}">
+        <div class="home-register fa fa-home"></div>
+    </a>
 </div>
 <div class="body flex vertical-center justify-center">
-    <div class="container">
+    <div class="container form">
         <div class="title-setting">SignUp Form</div>
         <div class="progress-bar flex">
             <div class="step">

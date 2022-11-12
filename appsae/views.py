@@ -34,7 +34,7 @@ def login(request):
                     contain = True
         if contain:
             user = Adherant.objects.get(mail=currentMail)
-            request.session['idUser'] = user.id
+            idUser=request.session['idUser'] = user.id
             print(request.session['idUser'])
             prenom = user.prenom
             nom = user.nom
@@ -44,12 +44,12 @@ def login(request):
             password = user.password
             photo = user.profile_picture.url
             context = {
+                'idUser':user.id,
                 'name': nom,
                 'prenom': prenom,
                 'mail': mail,
                 'birthDate': birthDate,
                 'pseudo': pseudo,
-                'password': password,
                 'photo': photo
             }
             return render(request, 'index.html', context)
