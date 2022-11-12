@@ -22,26 +22,48 @@ def register(request):
 
 def login(request):
     if request.method == "POST":
-        mail = request.POST['mail']
-        password = request.POST['password']
+        currentMail = request.POST['mail']
+        currentPassword = request.POST['password']
         '''Récuperation des données'''
         info = Adherant.objects.all()
         contain = False
         for adherant in info:
             '''Verification'''
-            if (mail == adherant.mail):
-                if (password == adherant.password):
+            if (currentMail == adherant.mail):
+                if (currentPassword == adherant.password):
                     contain = True
         if contain:
-            return redirect('index')
+            user = Adherant.objects.get(mail=currentMail)
+            request.session['idUser'] = user.id
+            print(request.session['idUser'])
+            prenom = user.prenom
+            nom = user.nom
+            mail = user.mail
+            birthDate = user.birthDate
+            pseudo = user.pseudo
+            password = user.password
+            photo = user.profile_picture.url
+            context = {
+                'name': nom,
+                'prenom': prenom,
+                'mail': mail,
+                'birthDate': birthDate,
+                'pseudo': pseudo,
+                'password': password,
+                'photo': photo
+            }
+            return render(request, 'index.html', context)
         else:
             messages.success(request, '*Wrong mail or password')
             return redirect('login')
     else:
         return render(request, 'user/login.html')
 
+
 def index(request):
-    return render(request,'index.html')
+    return render(request, 'index.html')
+
+
 def modifUser(request):
     return render(request, 'user/modifUser.html')
 
@@ -70,10 +92,12 @@ def randomValue():
         value_random += str(random.randint(0, 9))
     return value_random
 
+
 def meilleurs_resto(request):
     ''' Renvoie les restaurants les mieux notés '''
-    liste=carrousel();
-    return render(request, 'testMatteo.html',{'list':liste});
+    liste = carrousel();
+    return render(request, 'testMatteo.html', {'list': liste});
+
 
 def carrousel():
     restaurant = Restaurant.objects.order_by('-note');
@@ -81,4 +105,3 @@ def carrousel():
     for i in range(3):
         list.append(restaurant[i]);
     return list;
-
