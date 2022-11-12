@@ -31,6 +31,7 @@ def login(request):
                     contain = True
         if contain:
             user = Adherant.objects.get(mail=request.POST['mail'])
+            '''Création de la session ou je récupère que l'id de l'utilisateur'''
             request.session['idUser'] = user.id
             context = {
                 'idUser': user.id,
@@ -97,6 +98,7 @@ def carrousel():
     return list;
 
 
+'''Fonction qui detruit la session et redirige sur la page index'''
 def logoutUser(request):
     try:
         del request.session['idUser']
