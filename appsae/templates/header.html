@@ -1,7 +1,7 @@
 {% load static %}
 <header>
     <nav>
-        <a href=""><img src="{% static '/Image/logo.png'%}" alt=""></a>
+        <a href="{% url 'index' %}"><img src="{% static '/Image/logo.png'%}" alt=""></a>
         <!-- Penser a assigner href pour la page d'acceuil -->
         <ul>
             <!-- Penser a assigner href pour le bouton connexion -->
@@ -9,7 +9,7 @@
             <li><a href="#" class="btn">Groupe</a></li> <!-- Penser a assigner href pour le bouton connexion -->
             {% endif %}
             {% if idUser %}
-            <li><a href="{% url 'index' %}" class="btn">Deconnexion</a></li>
+            <li><a href="{% url 'logout' %}" class="btn">Deconnexion</a></li>
             {% else %}
             <li><a href="{% url 'login' %}" class="btn">Connexion</a></li>
             {% endif %}

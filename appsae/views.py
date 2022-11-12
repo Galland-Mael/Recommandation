@@ -22,35 +22,24 @@ def register(request):
 
 def login(request):
     if request.method == "POST":
-        currentMail = request.POST['mail']
-        currentPassword = request.POST['password']
-        '''Récuperation des données'''
         info = Adherant.objects.all()
         contain = False
         for adherant in info:
             '''Verification'''
-            if (currentMail == adherant.mail):
-                if (currentPassword == adherant.password):
+            if (request.POST['mail'] == adherant.mail):
+                if (request.POST['password'] == adherant.password):
                     contain = True
         if contain:
-            user = Adherant.objects.get(mail=currentMail)
-            idUser=request.session['idUser'] = user.id
-            print(request.session['idUser'])
-            prenom = user.prenom
-            nom = user.nom
-            mail = user.mail
-            birthDate = user.birthDate
-            pseudo = user.pseudo
-            password = user.password
-            photo = user.profile_picture.url
+            user = Adherant.objects.get(mail=request.POST['mail'])
+            request.session['idUser'] = user.id
             context = {
-                'idUser':user.id,
-                'name': nom,
-                'prenom': prenom,
-                'mail': mail,
-                'birthDate': birthDate,
-                'pseudo': pseudo,
-                'photo': photo
+                'idUser': user.id,
+                'name': user.nom,
+                'prenom': user.prenom,
+                'mail': user.mail,
+                'birthDate': user.birthDate,
+                'pseudo': user.pseudo,
+                'photo': user.profile_picture.url
             }
             return render(request, 'index.html', context)
         else:
@@ -90,6 +79,7 @@ def randomValue():
     value_random = ""
     for i in range(6):
         value_random += str(random.randint(0, 9))
+        print(value_random);
     return value_random
 
 
@@ -105,3 +95,11 @@ def carrousel():
     for i in range(3):
         list.append(restaurant[i]);
     return list;
+
+
+def logoutUser(request):
+    try:
+        del request.session['idUser']
+    except KeyError:
+        pass
+    return redirect('index')
