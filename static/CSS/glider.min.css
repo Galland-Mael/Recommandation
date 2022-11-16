@@ -84,9 +84,8 @@
 }
 
 .glider-next.disabled, .glider-prev.disabled {
-    opacity: .25;
+    visibility: hidden;
     color: #666;
-    cursor: default
 }
 
 .img-container {
