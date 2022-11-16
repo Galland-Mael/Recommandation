@@ -33,7 +33,7 @@ class RestaurantType(models.Model):
 
 class ImageRestaurant(models.Model):
     name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='media/img/liste_images')
+    image = models.ImageField(upload_to='liste_images')
     default = models.BooleanField(default=False)
 
 
@@ -41,8 +41,9 @@ class Restaurant(models.Model):
     nom = models.CharField(max_length=50)
     pays = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
+    ville = models.CharField(max_length=50, default="")
     telephone = models.CharField(max_length=10)
-    note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
+    note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     image_front = models.ImageField(upload_to='img_restaurant/')
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)

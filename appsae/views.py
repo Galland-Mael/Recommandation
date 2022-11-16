@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from .gestion import liste_carrousel, recherche
 
 def register(request):
     if request.method == "POST":
@@ -83,19 +83,11 @@ def randomValue():
         print(value_random);
     return value_random
 
-
 def meilleurs_resto(request):
-    ''' Renvoie les restaurants les mieux notés '''
-    liste = carrousel();
-    return render(request, 'testMatteo.html', {'list': liste});
-
-
-def carrousel():
-    restaurant = Restaurant.objects.order_by('-note');
-    list = [];
-    for i in range(3):
-        list.append(restaurant[i]);
-    return list;
+    """Renvoie les restaurants les mieux notés"""
+    liste = liste_carrousel("chinois")
+    #liste = recherche(liste, "non");
+    return render(request, 'testMatteo.html', {'list': liste})
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''
