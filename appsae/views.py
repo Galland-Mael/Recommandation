@@ -13,7 +13,6 @@ def register(request):
     if request.method == "POST":
         '''Remplissage de la base de données'''
         form = AdherantForm(request.POST).save()
-        print(request.POST["mail"])
         return redirect('login')
     form = AdherantForm()
     return render(request, 'user/register.html', {'form': form, 'info': Adherant.objects.all})
@@ -101,9 +100,20 @@ def carrousel():
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''
+
+
 def logoutUser(request):
     try:
         del request.session['idUser']
     except KeyError:
         pass
     return redirect('index')
+
+
+def search(request):
+    print(request.GET["search"])
+    return HttpResponse(request.GET["search"])
+
+def goo(request):
+    print('good')
+    return HttpResponse('Réussie')

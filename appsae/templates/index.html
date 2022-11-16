@@ -1,53 +1,64 @@
 {% extends 'base.html' %}
 {% block head %}
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
-<link rel="stylesheet" type="text/css" href="{% static 'CSS/index.css' %}"/>
-<link rel="stylesheet" type="text/css" href="{% static 'CSS/glider.min.css' %}"/>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/index.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/glider.min.css' %}"/>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
 {% endblock %}
 
 {% block header %}
-{% include "header.html" %}
+    {% include "header.html" %}
 {% endblock %}
 
 {% block main %}
-<div class="glider-contain">
-    <div class="glider">
-        {% for element in list %}
-     <div class="card"><div class="img-container" ><img src="{{ element.image_front.url }}" alt="marche pas"></div>
-        <p>test</p></div>
-        {% endfor %}
+    <div class="search-container">
+
+        <!---<div hx-get="{% url 'goo' %}" hx-swap="outerHTML">
+    Click Me
+  </div>-->
+        <input type="text"
+               name="search"
+               hx-get="{% url 'search' %}"
+               hx-trigger="keyup changed delay:250ms"
+               hx-target="#search-results">
+
+    </div>
+    <div id="search-results">
     </div>
 
-    <button aria-label="Previous" class="glider-prev">«</button>
-    <button aria-label="Next" class="glider-next">»</button>
-    <div role="tablist" class="dots"></div>
-</div>
-<!--    {% for element in list %}
-   <div class="carousel-items">
-       <img src="{{ element.image_front.url }}" alt="marche pas">
-       <li>{{ element.image_front.url }}</li>
-   </div>
-   {% endfor %}  -->
-</div>
+    <div class="glider-contain">
+        <div class="glider">
+            {% for element in list %}
+                <div class="card">
+                    <div class="img-container"><img src="{{ element.image_front.url }}" alt="marche pas"></div>
+                    <p>test</p></div>
+            {% endfor %}
+        </div>
+
+        <button aria-label="Previous" class="glider-prev">«</button>
+        <button aria-label="Next" class="glider-next">»</button>
+        <div role="tablist" class="dots"></div>
+    </div>
+
 {% endblock %}
 
 
 {% block footer %}
-{% include "footer.html" %}
+    {% include "footer.html" %}
 {% endblock %}
 
 {% block script %}
-<script src="{% static 'JS/glider.min.js' %}"></script>
-<script>new Glider(document.querySelector('.glider'), {
-    slidesToShow: 4,
-    draggable: true,
-    dots: '#dots',
-    arrows: {
-        prev: '.glider-prev',
-        next: '.glider-next'
-    }
-});</script>
+    <script src="{% static 'JS/glider.min.js' %}"></script>
+    <script>new Glider(document.querySelector('.glider'), {
+        slidesToShow: 5,
+        draggable: true,
+        dots: '#dots',
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        }
+    });</script>
 {% endblock %}
 
 

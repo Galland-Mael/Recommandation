@@ -12,8 +12,11 @@ urlpatterns = [
     path('modifuser/', modifUser, name='modifUser'),
     path('verificationEmail/', verificationEmail, name='verificationEmail'),
     path('', index, name='index'),
-    path('carrousel/', meilleurs_resto, name='meilleurs_resto'),
     path('logout/', logoutUser, name='logout'),
+    path('search/', search, name='search'),
+    path('carrousel/', meilleurs_resto, name='meilleurs_resto'),
+    path('goo/', goo, name='goo')
+
 ]
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
