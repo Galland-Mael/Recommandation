@@ -44,7 +44,7 @@ def login(request):
             }
             return render(request, 'index.html', context)
         else:
-            messages.success(request, '*Wrong mail or password')
+            messagesd.success(request, '*Wrong mail or password')
             return redirect('login')
     else:
         return render(request, 'user/login.html')
