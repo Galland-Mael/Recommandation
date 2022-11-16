@@ -57,6 +57,7 @@ Début de la progress bar
 }
 
 .title-setting {
+    text-align: center;
     font-size: 35px;
     font-weight: 600;
     margin: 30px 0 0 0;
@@ -163,9 +164,6 @@ Fin de la progress bar
 /*
 Début du main container
  */
-.form{
-        text-align: center;
-}
 .form-outer {
     width: 100%;
     overflow: hidden;
@@ -358,4 +356,10 @@ p{
 a{
     text-decoration: none;
     color : var(--color);
+}
+.new-account{
+    text-align: left;
+}
+.btn{
+    text-align: center;
 }
