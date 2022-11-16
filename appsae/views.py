@@ -22,26 +22,38 @@ def register(request):
 
 def login(request):
     if request.method == "POST":
-        mail = request.POST['mail']
-        password = request.POST['password']
-        '''Récuperation des données'''
         info = Adherant.objects.all()
         contain = False
         for adherant in info:
             '''Verification'''
-            if (mail == adherant.mail):
-                if (password == adherant.password):
+            if (request.POST['mail'] == adherant.mail):
+                if (request.POST['password'] == adherant.password):
                     contain = True
         if contain:
-            return redirect('index')
+            user = Adherant.objects.get(mail=request.POST['mail'])
+            '''Création de la session ou je récupère que l'id de l'utilisateur'''
+            request.session['idUser'] = user.id
+            context = {
+                'idUser': user.id,
+                'name': user.nom,
+                'prenom': user.prenom,
+                'mail': user.mail,
+                'birthDate': user.birthDate,
+                'pseudo': user.pseudo,
+                'photo': user.profile_picture.url
+            }
+            return render(request, 'index.html', context)
         else:
             messages.success(request, '*Wrong mail or password')
             return redirect('login')
     else:
         return render(request, 'user/login.html')
 
+
 def index(request):
-    return render(request,'index.html')
+    return render(request, 'index.html')
+
+
 def modifUser(request):
     return render(request, 'user/modifUser.html')
 
@@ -68,12 +80,15 @@ def randomValue():
     value_random = ""
     for i in range(6):
         value_random += str(random.randint(0, 9))
+        print(value_random);
     return value_random
+
 
 def meilleurs_resto(request):
     ''' Renvoie les restaurants les mieux notés '''
-    liste=carrousel();
-    return render(request, 'testMatteo.html',{'list':liste});
+    liste = carrousel();
+    return render(request, 'testMatteo.html', {'list': liste});
+
 
 def carrousel():
     restaurant = Restaurant.objects.order_by('-note');
@@ -82,3 +97,11 @@ def carrousel():
         list.append(restaurant[i]);
     return list;
 
+
+'''Fonction qui detruit la session et redirige sur la page index'''
+def logoutUser(request):
+    try:
+        del request.session['idUser']
+    except KeyError:
+        pass
+    return redirect('index')

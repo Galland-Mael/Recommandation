@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block head %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
@@ -10,10 +9,12 @@
 
 {% block main %}
 <div class="backward">
-    <div class="home-register fa fa-home"></div>
+    <a href="{% url 'index' %}">
+        <div class="home-register fa fa-home"></div>
+    </a>
 </div>
 <div class="body flex vertical-center justify-center">
-    <div class="container">
+    <div class="container form">
         <div class="title-setting">SignUp Form</div>
         <div class="progress-bar flex">
             <div class="step">
@@ -136,7 +137,7 @@
                     </div>
                     <div class="button-field flex">
                         <div class="split-button prev prev-2"><p>Previous</p></div>
-                        <div   class="split-button prev next-2"><p>Next</p></div>
+                        <div  class="split-button prev next-2"><p>Next</p></div>
                     </div>
                 </div>
                 <div class="page slide-page">
@@ -274,8 +275,6 @@
         </div>
     </div>
 </div>
-{% load static %}
-<script src="{% static 'JS/register.js' %}"></script>
 {% endblock %}
 
 {% block script %}

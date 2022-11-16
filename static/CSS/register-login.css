@@ -34,10 +34,10 @@ Debut de la home
 
 .backward .home-login {
     color: white;
-    left: 8%;
+    left: 11%;
     position: relative;
-    font-size: 44px;
-    top: 3%;
+    font-size: 43px;
+    top: 4%;
 }
 
 /*
@@ -49,7 +49,6 @@ Début de la progress bar
  */
 .body {
     min-height: 100vh;
-    text-align: center;
 }
 
 .container {
@@ -164,6 +163,9 @@ Fin de la progress bar
 /*
 Début du main container
  */
+.form{
+        text-align: center;
+}
 .form-outer {
     width: 100%;
     overflow: hidden;
@@ -182,7 +184,7 @@ Début du main container
 .field {
     width: 330px;
     height: 45px;
-    margin: 45px 0;
+    margin: 45px 0 0 0;
     display: flex;
     position: relative;
     flex-direction: column;
@@ -352,4 +354,8 @@ img {
 
 p{
     line-height: 50px;
+}
+a{
+    text-decoration: none;
+    color : var(--color);
 }
