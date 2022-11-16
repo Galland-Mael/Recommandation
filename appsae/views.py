@@ -40,7 +40,8 @@ def login(request):
                 'mail': user.mail,
                 'birthDate': user.birthDate,
                 'pseudo': user.pseudo,
-                'photo': user.profile_picture.url
+                'photo': user.profile_picture.url,
+                'list': carrousel()
             }
             return render(request, 'index.html', context)
         else:
@@ -51,7 +52,8 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    liste = carrousel();
+    return render(request, 'index.html', {'list': liste})
 
 
 def modifUser(request):
@@ -93,7 +95,7 @@ def meilleurs_resto(request):
 def carrousel():
     restaurant = Restaurant.objects.order_by('-note');
     list = [];
-    for i in range(3):
+    for i in range(10):
         list.append(restaurant[i]);
     return list;
 

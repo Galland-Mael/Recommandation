@@ -33,9 +33,10 @@ class RestaurantType(models.Model):
 
 class ImageRestaurant(models.Model):
     name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='media/img/liste_images')
+    image = models.ImageField(upload_to='liste_images')
     default = models.BooleanField(default=False)
-
+    def __str__(self):
+        return self.name
 
 class Restaurant(models.Model):
     nom = models.CharField(max_length=50)
@@ -45,7 +46,7 @@ class Restaurant(models.Model):
     note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     image_front = models.ImageField(upload_to='img_restaurant/')
     type = models.ManyToManyField(RestaurantType)
-    img = models.ManyToManyField(ImageRestaurant)
+    img = models.ManyToManyField(ImageRestaurant,blank=True)
 
     def __str__(self):
         return self.nom
@@ -69,6 +70,8 @@ class Horaire(models.Model):
     Fin_Horaire2 = models.TimeField(default='00:00')
     Debut_Horaire3 = models.TimeField(default='00:00')
     Fin_Horaire3 = models.TimeField(default='00:00')
+    def __str__(self):
+        return self.Nom_jour
 
 
 class Avis(models.Model):
@@ -76,3 +79,5 @@ class Avis(models.Model):
     texte = models.CharField(max_length=1000, default=" ")
     user = models.ForeignKey(Adherant, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default=0)
+    def __str__(self):
+        return self.user
