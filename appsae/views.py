@@ -89,8 +89,6 @@ def meilleurs_resto(request):
     @return:
     """
     liste = liste_carrousel("français")  # le paramètre est le type recherché
-    for i in range(len(liste)):
-        print(str(liste[i].nom) + " : " + str(liste[i].note))
     return render(request, 'testMatteo.html', {'list': liste})
 
 
