@@ -13,18 +13,17 @@
 
 {% block main %}
     <div class="search-container">
-
-        <!---<div hx-get="{% url 'goo' %}" hx-swap="outerHTML">
-    Click Me
-  </div>-->
-        <input type="text" placeholder="Search Restaurant"
-               name="search"
+        <input class="search-bar" type="text" name="search"
                hx-get="{% url 'search' %}"
                hx-trigger="keyup changed delay:250ms"
-               hx-target="#search-results">
+               hx-target="#search-results"
+               placeholder="Search..."
+        >
+        <div class="result-container">
+            <div id="search-results">
 
-    </div>
-    <div id="search-results">
+            </div>
+        </div>
     </div>
 
     <div class="glider-contain">

@@ -1,3 +1,4 @@
+import json
 import os.path
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
@@ -85,6 +86,10 @@ def randomValue():
     return value_random
 
 
+def matteo(request):
+    return render(request, 'testMatteo.html')
+
+
 def meilleurs_resto(request):
     ''' Renvoie les restaurants les mieux notés '''
     liste = carrousel();
@@ -95,6 +100,14 @@ def carrousel():
     restaurant = Restaurant.objects.order_by('-note');
     list = [];
     for i in range(10):
+        list.append(restaurant[i]);
+    return list;
+
+
+def recommandation():
+    restaurant = Restaurant.objects.order_by('-note');
+    list = [];
+    for i in range(3):
         list.append(restaurant[i]);
     return list;
 
@@ -111,9 +124,7 @@ def logoutUser(request):
 
 
 def search(request):
-    print(request.GET["search"])
-    return HttpResponse(request.GET["search"])
-
-def goo(request):
-    print('good')
-    return HttpResponse('Réussie')
+    if request.GET["search"] != "":
+        restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
+        return render(request, 'searchRestaurants.html', context={'restaurants': restaurants})
+    return HttpResponse('')

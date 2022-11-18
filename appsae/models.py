@@ -39,14 +39,18 @@ class ImageRestaurant(models.Model):
         return self.name
 
 class Restaurant(models.Model):
+    id_yelp = models.CharField(max_length=150, default='')
     nom = models.CharField(max_length=50)
-    pays = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
-    telephone = models.CharField(max_length=10)
+    ville = models.CharField(max_length=50, default='')
+    zip_code = models.CharField(max_length=50, default='')
+    pays = models.CharField(max_length=50)
+    etat = models.CharField(max_length=50, default='')
+    telephone = models.CharField(max_length=15)
     note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
-    image_front = models.ImageField(upload_to='img_restaurant/')
+    image_front = models.ImageField(upload_to='img_restaurant/',blank=True)
     type = models.ManyToManyField(RestaurantType)
-    img = models.ManyToManyField(ImageRestaurant,blank=True)
+    img = models.ManyToManyField(ImageRestaurant)
 
     def __str__(self):
         return self.nom
