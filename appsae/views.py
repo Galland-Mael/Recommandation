@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
-from .gestion import liste_carrousel, recherche
+from .gestion import liste_carrousel
 
 def register(request):
     if request.method == "POST":
@@ -74,7 +74,6 @@ def verificationEmail(request):
         print("fail")
         return HttpResponse("<p>Next</p>")
 
-
 def randomValue():
     ''' Fonction qui renvoie une chaîne composée de 6 caractères entre 0 et 9 '''
     value_random = ""
@@ -84,9 +83,14 @@ def randomValue():
     return value_random
 
 def meilleurs_resto(request):
-    """Renvoie les restaurants les mieux notés"""
-    liste = liste_carrousel("chinois")
-    #liste = recherche(liste, "non");
+    """ Renvoie les restaurants les mieux notés pour les carrousels
+
+    @param request:
+    @return:
+    """
+    liste = liste_carrousel("français")  # le paramètre est le type recherché
+    for i in range(len(liste)):
+        print(str(liste[i].nom) + " : " + str(liste[i].note))
     return render(request, 'testMatteo.html', {'list': liste})
 
 
