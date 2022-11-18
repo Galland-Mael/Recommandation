@@ -12,6 +12,7 @@ urlpatterns = [
     path('modifuser/', modifUser, name='modifUser'),
     path('verificationEmail/', verificationEmail, name='verificationEmail'),
     path('test/', meilleurs_resto, name='meilleurs_resto'),
+    path('adherant/', update, name='update'),
     path('', index, name='index'),
     path('logout/', logoutUser, name='logout')
 ]

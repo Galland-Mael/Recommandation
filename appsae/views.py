@@ -8,6 +8,7 @@ import random
 from django.shortcuts import render
 from django.http import HttpResponse
 from .gestion import liste_carrousel
+from .gestion_utilisateur import *
 
 def register(request):
     if request.method == "POST":
@@ -31,10 +32,9 @@ def login(request):
                     contain = True
         if contain:
             user = Adherant.objects.get(mail=request.POST['mail'])
-            '''Création de la session ou je récupère que l'id de l'utilisateur'''
-            request.session['idUser'] = user.id
+            '''Création de la session ou je récupère que le mail de l'utilisateur'''
+            request.session['mailUser'] = user.mail
             context = {
-                'idUser': user.id,
                 'name': user.nom,
                 'prenom': user.prenom,
                 'mail': user.mail,
@@ -89,13 +89,18 @@ def meilleurs_resto(request):
     @return:
     """
     liste = liste_carrousel("français")  # le paramètre est le type recherché
+    for i in range(len(liste)):
+        print(liste[i].nom)
     return render(request, 'testMatteo.html', {'list': liste})
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''
 def logoutUser(request):
     try:
-        del request.session['idUser']
+        del request.session['mailUser']
     except KeyError:
         pass
+    return redirect('index')
+
+def update(request):
     return redirect('index')

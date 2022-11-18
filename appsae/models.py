@@ -4,10 +4,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Adherant(models.Model):
-    id = models.IntegerField(primary_key=True, blank=True)
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
-    mail = models.EmailField(unique=True)
+    mail = models.EmailField(primary_key=True)
     birthDate = models.DateField("Date", default=datetime.date.today)
     pseudo = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
