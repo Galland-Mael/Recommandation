@@ -1,7 +1,7 @@
-id,nom,pays,adresse,telephone,image_front,note
-7,"test reccomendation 1",France,"1 Rue Peter Fink",0650404040,img_restaurant/ScreenShot_22-11-06_13-19-48-000.jpg,5
-8,"test reccomendation 2",France,"2 Rue Peter Fink",0650404040,img_restaurant/ScreenShot_22-11-06_13-19-48-000_ZM14Yzd.jpg,4
-9,"test reccomendation 3",France,"3 Rue Peter Fink",0650404040,img_restaurant/ScreenShot_22-11-06_13-19-48-000_9WG4RPH.jpg,4
-10,"test reccomendation 4",France,"2 Rue Peter Fink",0650404040,img_restaurant/ScreenShot_22-11-06_13-19-48-000_Cds7NXY.jpg,3
-11,"test reccomendation 5",France,"5 Rue Peter Fink",0650404040,img_restaurant/ScreenShot_22-11-06_13-19-48-000_i2Qiopo.jpg,4
-12,"test 6",France,"2 Rue Peter Fink",0650404040,img_restaurant/ScreenShot_22-11-06_13-19-48-000_e5PdDvt.jpg,4
+id ,nom ,pays, telephone ,image_front ,note
+(7, 'test reccomendation 1', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000.jpg', 5)
+(8, 'test reccomendation 2', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_ZM14Yzd.jpg', 4)
+(9, 'test reccomendation 3', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_9WG4RPH.jpg', 4)
+(10, 'test reccomendation 4', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_Cds7NXY.jpg', 3)
+(11, 'test reccomendation 5', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_i2Qiopo.jpg', 4)
+(12, 'test 6', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_e5PdDvt.jpg', 4)

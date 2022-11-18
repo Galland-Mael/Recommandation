@@ -1,6 +1,15 @@
 import os.path
+import sqlite3
+import csv
+from sqlite3 import OperationalError
+import os, tempfile, zipfile, mimetypes
+from wsgiref.util import FileWrapper
+from django.conf import settings
+
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
+from django.utils.encoding import smart_str
+
 from .models import *
 from .formulaire import *
 from django.core.mail import send_mail
@@ -99,9 +108,40 @@ def carrousel():
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''
+
+
 def logoutUser(request):
     try:
         del request.session['idUser']
     except KeyError:
         pass
     return redirect('index')
+
+
+def export_restaurant(request):
+    file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
+    f = open(file, "w")
+    f.writelines("id ,nom ,pays, telephone ,image_front ,note")
+    f.write('\n')
+
+    for restaurant in Restaurant.objects.all().values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note'):
+        f.write(str(restaurant))
+        f.write('\n')
+    print(file)
+    return redirect('index')
+
+
+def export_ratings(request):
+    file = str(settings.BASE_DIR) + '/' + "ratings.csv"
+    f = open(file, "w")
+    f.writelines("restaurant_id,user_id,note")
+    f.write('\n')
+
+    for rating in Avis.objects.all().values_list('restaurant_id', 'user_id', 'note'):
+        f.write(str(rating))
+        f.write('\n')
+    print(file)
+    return redirect('index')
+
+
+

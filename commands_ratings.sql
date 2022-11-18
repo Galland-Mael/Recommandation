@@ -1,4 +1,3 @@
-.open 
 .headers on 
 .mode csv
 .output ratings.csv
