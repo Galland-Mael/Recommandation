@@ -1,7 +1,8 @@
+
 {% for element in restaurants %}
-    <div class="cards">
+    <div class="cards ">
         <div class="image-container-search-results">
-            <img class="image-search-results" src="{{ element.image_front.url }}" alt="marche pas">
+            <img class="image-search-results" src="{{ element.image_front.url }}" alt="image Restaurant">
         </div>
         <div class="info-container">
             <span class="field">{{ element.nom }}</span>
@@ -9,4 +10,7 @@
             <span class="field">{{ element.ville }}</span>
         </div>
     </div>
+{% if forloop.counter != restaurants|length %}
+    <div class="border-right"></div>
+    {% endif %}
 {% endfor %}

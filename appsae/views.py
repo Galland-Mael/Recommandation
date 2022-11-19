@@ -124,7 +124,10 @@ def logoutUser(request):
 
 
 def search(request):
+    print("ele")
     if request.GET["search"] != "":
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
-        return render(request, 'searchRestaurants.html', context={'restaurants': restaurants})
+        taille=len(restaurants)
+        print(taille)
+        return render(request, 'searchRestaurants.html', context={'restaurants': restaurants,'taille':taille})
     return HttpResponse('')

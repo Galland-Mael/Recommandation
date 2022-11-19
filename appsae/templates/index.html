@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/index.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/glider.min.css' %}"/>
     <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 {% endblock %}
 
 {% block header %}
@@ -13,12 +14,17 @@
 
 {% block main %}
     <div class="search-container">
-        <input class="search-bar" type="text" name="search"
-               hx-get="{% url 'search' %}"
-               hx-trigger="keyup changed delay:250ms"
-               hx-target="#search-results"
-               placeholder="Search..."
-        >
+        <div class="search">
+            <input class="searchTerm" type="text" name="search"
+                   hx-get="{% url 'search' %}"
+                   hx-trigger="keyup changed delay:250ms"
+                   hx-target="#search-results"
+                   placeholder="Search..."
+            >
+            <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
         <div class="result-container">
             <div id="search-results">
 
@@ -34,7 +40,6 @@
                     <p>test</p></div>
             {% endfor %}
         </div>
-
         <button aria-label="Previous" class="glider-prev">«</button>
         <button aria-label="Next" class="glider-next">»</button>
         <div role="tablist" class="dots"></div>
