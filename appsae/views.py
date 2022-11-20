@@ -129,7 +129,8 @@ def search(request):
         return render(request, 'searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
 
-def vueRestaurant(request,pk):
-    restaurant=Restaurant.objects.filter(pk=pk)
+
+def vueRestaurant(request, pk):
+    restaurant = Restaurant.objects.filter(pk=pk)
     print(restaurant[0].nom)
-    return render(request, 'vueRestaurant.html',context={'restaurant':restaurant})
+    return render(request, 'vueRestaurant.html', context={'restaurant': restaurant})
