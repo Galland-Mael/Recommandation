@@ -24,11 +24,13 @@ body {
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: 99%;
+    width: 100%;
     background-color: #eaeaeaf5;
     overflow: hidden;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    border-top-left-radius:5px;
+    border-top-right-radius: 5px;
 }
 
 
@@ -49,7 +51,7 @@ body {
     display: flex;
 }
 
-.border-right {
+.border-bottom {
     height: 0px;
     width: 90%;
     margin: auto;
@@ -90,10 +92,6 @@ body {
     outline: none;
 }
 
-.searchTerm:focus {
-    color: #380136;
-}
-
 .searchButton {
     width: 40px;
     height: 36px;
@@ -112,4 +110,12 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.decoration-none{
+    text-decoration: none;
+    color:black;
+}
+
+.flou{
+        opacity: 0.3;
 }

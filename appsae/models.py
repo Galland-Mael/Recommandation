@@ -4,7 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Adherant(models.Model):
-    id = models.IntegerField(primary_key=True, blank=True)
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     mail = models.EmailField(unique=True)

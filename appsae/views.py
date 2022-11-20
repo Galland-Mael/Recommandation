@@ -124,10 +124,12 @@ def logoutUser(request):
 
 
 def search(request):
-    print("ele")
     if request.GET["search"] != "":
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
-        taille=len(restaurants)
-        print(taille)
-        return render(request, 'searchRestaurants.html', context={'restaurants': restaurants,'taille':taille})
+        return render(request, 'searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
+
+def vueRestaurant(request,pk):
+    restaurant=Restaurant.objects.filter(pk=pk)
+    print(restaurant[0].nom)
+    return render(request, 'vueRestaurant.html',context={'restaurant':restaurant})
