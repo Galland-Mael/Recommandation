@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
-from .gestion import liste_carrousel
+from .gestion import *
 from .gestion_utilisateur import *
 
 def register(request):
@@ -90,6 +90,10 @@ def meilleurs_resto(request):
     """
     liste = liste_carrousel("français")  # le paramètre est le type recherché
     return render(request, 'testMatteo.html', {'list': liste})
+
+def note_moyenne(request):
+    calcul_moyenne_restaurant("testMatteo");
+    return redirect('index')
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''

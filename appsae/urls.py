@@ -13,6 +13,7 @@ urlpatterns = [
     path('verificationEmail/', verificationEmail, name='verificationEmail'),
     path('test/', meilleurs_resto, name='meilleurs_resto'),
     path('adherant/', update, name='update'),
+    path('noteMoyenne/', note_moyenne,name='note_moyenne'),
     path('', index, name='index'),
     path('logout/', logoutUser, name='logout')
 ]
