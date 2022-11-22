@@ -19,17 +19,7 @@ def liste_carrousel(type):
     else:
         restaurant = Restaurant.objects.order_by('-note')[:NB_CARROUSEL]
     return restaurant
-
-def calcul_moyenne_restaurant(nomRestaurant):
-    """ Fonction qui calcul la note moyenne d'un restaurant
-
-    @param nomRestaurant: l'id du restaurant
-    @return: /
-    """
-    note = Avis.objects.filter(idRestaurant=nomRestaurant).aggregate(Avg("note"))
-    print(note)
-    return note
-
+g
 def update_note_moyenne_restaurant(nomRestaurant):
     """ Fonction de mise à jour de la note moyenne d'un restaurant passé en paramètres
 
