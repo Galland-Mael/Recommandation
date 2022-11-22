@@ -47,7 +47,7 @@ class Restaurant(models.Model):
     etat = models.CharField(max_length=50, default='')
     telephone = models.CharField(max_length=15)
     note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
-    image_front = models.ImageField(upload_to='img_restaurant/',blank=True)
+    image_front = models.ImageField(upload_to='img_restaurant/')
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)
 
