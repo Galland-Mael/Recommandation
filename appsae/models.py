@@ -52,7 +52,7 @@ class Restaurant(models.Model):
     img = models.ManyToManyField(ImageRestaurant)
 
     def __str__(self):
-        return self.nom
+        return str(self.nom)
 
 
 class Horaire(models.Model):
@@ -78,9 +78,10 @@ class Horaire(models.Model):
 
 
 class Avis(models.Model):
-    note = models.IntegerField(default=0)
+    note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)],default=0)
     texte = models.CharField(max_length=1000, default=" ")
-    user = models.ForeignKey(Adherant, on_delete=models.CASCADE)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default=0)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    adherant = models.ForeignKey(Adherant, on_delete=models.CASCADE)
+
     def __str__(self):
-        return self.user
+        return str(self.restaurant)

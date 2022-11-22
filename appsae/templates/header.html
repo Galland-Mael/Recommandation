@@ -2,9 +2,7 @@
 <header>
     <nav>
         <a href="{% url 'index' %}"><img src="{% static '/Image/logo.png'%}" alt=""></a>
-        <!-- Penser a assigner href pour la page d'acceuil -->
         <ul>
-            <!-- Penser a assigner href pour le bouton connexion -->
             {% if idUser %}
             <li><a href="#" class="btn">Groupe</a></li> <!-- Penser a assigner href pour le bouton connexion -->
             {% endif %}
