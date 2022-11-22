@@ -29,3 +29,14 @@ def calcul_moyenne_restaurant(nomRestaurant):
     note = Avis.objects.filter(idRestaurant=nomRestaurant).aggregate(Avg("note"))
     print(note)
     return note
+
+def update_note_moyenne_restaurant(nomRestaurant):
+    """ Fonction de mise à jour de la note moyenne d'un restaurant passé en paramètres
+
+    @param nomRestaurant: le nom du restaurant
+    @return: /
+    """
+    restaurant = Restaurant.objects.filter(nom=nomRestaurant)
+    if restaurant.count() != 0:
+        note = Avis.objects.filter(restaurant=restaurant[0]).aggregate(Avg("note"))
+        Restaurant.objects.filter(nom=nomRestaurant).update(note=note['note__avg'])

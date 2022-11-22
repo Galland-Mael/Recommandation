@@ -92,7 +92,7 @@ def meilleurs_resto(request):
     return render(request, 'testMatteo.html', {'list': liste})
 
 def note_moyenne(request):
-    calcul_moyenne_restaurant("testMatteo");
+    update_note_moyenne_restaurant("testMatteo")
     return redirect('index')
 
 
