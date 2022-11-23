@@ -31,6 +31,7 @@ body {
     border-bottom-right-radius: 10px;
     border-top-left-radius:5px;
     border-top-right-radius: 5px;
+    box-shadow: -1px 10px 15px 1px #5f5e5e;
 }
 
 
@@ -63,10 +64,12 @@ body {
 .image-container-search-results {
     width: 100px;
     height: 60px;
+    padding: 0px 10px 0px 0px;
 }
 
 .image-search-results {
     width: 100%;
+    border-radius: 3px;
     height: 100%;
 }
 
@@ -118,4 +121,8 @@ body {
 
 .flou{
         opacity: 0.3;
+}
+
+.hover:hover{
+        background-color: #dadada;
 }

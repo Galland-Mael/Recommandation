@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'source/base.html' %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -9,22 +9,26 @@
 {% endblock %}
 
 {% block header %}
-    {% include "header.html" %}
+    {% include "source/header.html" %}
 {% endblock %}
 
 {% block main %}
     <div class="search-container">
-        <div class="search">
-            <input class="searchTerm" type="text" name="search"
-                   hx-get="{% url 'search' %}"
-                   hx-trigger="keyup changed delay:250ms"
-                   hx-target="#search-results"
-                   placeholder="Search..."
-            >
-            <button type="submit" class="searchButton">
-                <i class="fa fa-search"></i>
-            </button>
-        </div>
+        <form action="{% url 'matteo' %}" method="POST" class="post-form form">
+            {% csrf_token %}
+            <div class="search">
+                <input class="searchTerm" type="text" name="search"
+                       hx-get="{% url 'search' %}"
+                       hx-trigger="keyup changed delay:250ms"
+                       hx-target="#search-results"
+                       placeholder="Search..."
+                >
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+
+            </div>
+        </form>
         <div class="result-container">
             <div id="search-results">
 
@@ -49,7 +53,7 @@
 
 
 {% block footer %}
-    {% include "footer.html" %}
+    {% include "source/footer.html" %}
 {% endblock %}
 
 {% block script %}

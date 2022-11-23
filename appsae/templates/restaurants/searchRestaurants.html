@@ -1,5 +1,5 @@
 {% for element in restaurants %}
-    <a class="decoration-none" href="{% url 'vueRestaurant' element.pk %}">
+    <a class="decoration-none hover" href="{% url 'vueRestaurant' element.pk %}">
         <div class="cards ">
             <div class="image-container-search-results">
                 <img class="image-search-results" src="{{ element.image_front.url }}" alt="image Restaurant">

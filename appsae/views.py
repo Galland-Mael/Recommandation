@@ -43,7 +43,7 @@ def login(request):
                 'photo': user.profile_picture.url,
                 'list': carrousel()
             }
-            return render(request, 'index.html', context)
+            return render(request, 'index/index.html', context)
         else:
             messages.success(request, '*Wrong mail or password')
             return redirect('login')
@@ -53,7 +53,7 @@ def login(request):
 
 def index(request):
     liste = carrousel();
-    return render(request, 'index.html', {'list': liste})
+    return render(request, 'index/index.html', {'list': liste})
 
 
 def modifUser(request):
@@ -124,12 +124,14 @@ def logoutUser(request):
 
 
 def search(request):
+    print("kerkekeke")
     if request.GET["search"] != "":
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
-        return render(request, 'searchRestaurants.html', context={'restaurants': restaurants})
+        return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
 
 
 def vueRestaurant(request, pk):
+    print("vuerestaurant")
     restaurant = Restaurant.objects.filter(pk=pk)
-    return render(request, 'vueRestaurant.html', context={'restaurant': restaurant})
+    return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
