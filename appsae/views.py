@@ -1,7 +1,16 @@
 import json
 import os.path
+import sqlite3
+import csv
+from sqlite3 import OperationalError
+import os, tempfile, zipfile, mimetypes
+from wsgiref.util import FileWrapper
+from django.conf import settings
+
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
+from django.utils.encoding import smart_str
+
 from .models import *
 from .formulaire import *
 from django.core.mail import send_mail
@@ -16,6 +25,7 @@ def register(request):
     if request.method == "POST":
         '''Remplissage de la base de données'''
         form = AdherantForm(request.POST).save()
+        print(request.POST["mail"])
         return redirect('login')
     form = AdherantForm()
     return render(request, 'user/register.html', {'form': form, 'info': Adherant.objects.all})
@@ -89,7 +99,9 @@ def randomValue():
 
 
 def meilleurs_resto(request):
-    """ Renvoie les restaurants les mieux notés pour les carrousels """
+    ''' Renvoie les restaurants les mieux notés '''
+    liste = carrousel();
+    return render(request, 'testMatteo.html', {'list': liste});
 
 
 def carrousel():
@@ -144,3 +156,30 @@ def update(request):
 
 def matteo(request):
     return redirect('index')
+
+
+def export_restaurant(request):
+    file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
+    f = open(file, "w")
+    f.writelines("id ,nom ,pays, telephone ,image_front ,note")
+    f.write('\n')
+
+    for restaurant in Restaurant.objects.all().values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note'):
+        f.write(str(restaurant))
+        f.write('\n')
+    print(file)
+    return redirect('index')
+
+
+def export_ratings(request):
+    file = str(settings.BASE_DIR) + '/' + "ratings.csv"
+    f = open(file, "w")
+    f.writelines("restaurant_id,user_id,note")
+    f.write('\n')
+
+    for rating in Avis.objects.all().values_list('restaurant_id', 'user_id', 'note'):
+        f.write(str(rating))
+        f.write('\n')
+    print(file)
+    return redirect('index')
+
