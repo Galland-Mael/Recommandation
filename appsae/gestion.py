@@ -19,7 +19,7 @@ def liste_carrousel(type):
     else:
         restaurant = Restaurant.objects.order_by('-note')[:NB_CARROUSEL]
     return restaurant
-g
+
 def update_note_moyenne_restaurant(nomRestaurant):
     """ Fonction de mise à jour de la note moyenne d'un restaurant passé en paramètres
 
