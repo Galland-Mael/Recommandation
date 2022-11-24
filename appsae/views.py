@@ -128,10 +128,11 @@ def search(request):
 
 
 def vueRestaurant(request, pk):
-    print("vuerestaurant")
     restaurant = Restaurant.objects.filter(pk=pk)
-    imgRestaurants=ImageRestaurant.objects.filter
-    return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
+    imgRestaurants = ImageRestaurant.objects.filter(idRestaurant=pk)
+
+    return render(request, 'restaurants/vueRestaurant.html',
+                  context={'restaurant': restaurant,'imgRestaurants' : imgRestaurants})
 
 
 def update(request):

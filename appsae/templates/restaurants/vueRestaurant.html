@@ -11,10 +11,54 @@
 
 {% block main %}
     {% for element in restaurant %}
-        <div>{{ element.nom }}</div>
-        <div>{{ element.adresse }}</div>
-        <div>{{ element.pays }}</div>
+        <div class="main-container column">
+        <div>{{ element.pk }}</div>
+        <div class="flex">
+            <div class="split-image-container">
+
+                <div class="main-img-container"><img class="img main-img" src="{{ element.image_front.url }}"
+                                                     alt="marche pas"></div>
+            </div>
+            <div class="split-image-container flex column multiple-img">
+                <div class="split-img-container margin-bottom flex ">
+                    <div class="split-img">
+                        {% for image in imgRestaurants %}
+                            {% if forloop.counter == 1 %}
+                                <img class="img" src="{{ image.image.url }}" alt="marche pas">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="split-img">
+                        {% for element in imgRestaurants %}
+                            {% if forloop.counter == 2 %}
+                                <img class="img top-right-radius" src="{{ element.image.url }}" alt="marche pas">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="split-img-container flex">
+                    <div class="split-img">
+                        {% for element in imgRestaurants %}
+                            {% if forloop.counter == 3 %}
+                                <img class="img" src="{{ element.image.url }}" alt="marche pas">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="split-img">
+                        {% for element in imgRestaurants %}
+                            {% if forloop.counter == 4 %}
+                                <img class="img bottom-right-radius" src="{{ element.image.url }}" alt="marche pas">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
+
+
 {% endblock %}
 
 {% block footer %}
