@@ -17,8 +17,9 @@ class Adherant(models.Model):
 
 
 class Groupe(models.Model):
+    idGroupe = models.IntegerField(default=0, blank=False)
     nom_groupe = models.CharField(max_length=25)
-
+    liste_adherants = models.ManyToManyField(Adherant)
     def __str__(self):
         return self.nom_groupe
 
@@ -85,7 +86,14 @@ class Avis(models.Model):
     texte = models.CharField(max_length=1000, default=" ")
     restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     adherant_fk = models.ForeignKey(Adherant, on_delete=models.CASCADE)
-    unique_together = [['restaurant_fk', 'adherant_fk']]
+
+    class Meta:
+        db_table = 'Avis'
+        constraints = [
+            models.UniqueConstraint(fields=['restaurant_fk', 'adherant_fk'], name='unique avis')
+        ]
 
     def __str__(self):
         return str(self.restaurant_fk)
+
+
