@@ -31,9 +31,9 @@ class RestaurantType(models.Model):
 
 
 class ImageRestaurant(models.Model):
-    name = models.CharField(max_length=255)
+    idRestaurant = models.IntegerField(default=0,blank=False)
     image = models.ImageField(upload_to='liste_images')
-    default = models.BooleanField(default=False)
+    default = models.BooleanField(blank=True)
     def __str__(self):
         return self.name
 
