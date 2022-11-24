@@ -1,4 +1,5 @@
 from .models import *
+from django.db.models import Avg
 
 NB_CARROUSEL = 10
 
@@ -18,3 +19,14 @@ def liste_carrousel(type):
     else:
         restaurant = Restaurant.objects.order_by('-note')[:NB_CARROUSEL]
     return restaurant
+
+def update_note_moyenne_restaurant(nomRestaurant):
+    """ Fonction de mise à jour de la note moyenne d'un restaurant passé en paramètres
+
+    @param nomRestaurant: le nom du restaurant
+    @return: /
+    """
+    restaurant = Restaurant.objects.filter(nom=nomRestaurant)
+    if restaurant.count() != 0:
+        note = Avis.objects.filter(restaurant=restaurant[0]).aggregate(Avg("note"))
+        Restaurant.objects.filter(nom=nomRestaurant).update(note=note['note__avg'])

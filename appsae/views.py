@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
-from .gestion import liste_carrousel
+from .gestion import *
 from .gestion_utilisateur import *
 
 
@@ -106,6 +106,10 @@ def recommandation():
     for i in range(3):
         list.append(restaurant[i]);
     return list;
+
+def note_moyenne(request):
+    update_note_moyenne_restaurant("testMatteo")
+    return redirect('index')
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''
