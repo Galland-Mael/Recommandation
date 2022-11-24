@@ -3,6 +3,7 @@ from django.db.models import Avg
 
 NB_CARROUSEL = 10
 
+
 def liste_carrousel(type):
     """ Renvoie les meilleurs restaurants selon le type de restaurant donné en paramètres,
     si il n'y pas de filtre, le paramètre d'entrée est la chaine "tous"
@@ -19,6 +20,7 @@ def liste_carrousel(type):
     else:
         restaurant = Restaurant.objects.order_by('-note')[:NB_CARROUSEL]
     return restaurant
+
 
 def update_note_moyenne_restaurant(nomRestaurant):
     """ Fonction de mise à jour de la note moyenne d'un restaurant passé en paramètres

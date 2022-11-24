@@ -1,5 +1,6 @@
 from .models import Adherant
 
+
 def updateMdp(mail_user, password):
     """ Fonction de mise à jour du mot de passe d'un utilisateur à partir de son mail
 
@@ -8,6 +9,7 @@ def updateMdp(mail_user, password):
     @return: /
     """
     Adherant.objects.filter(mail=mail_user).update(password=password)
+
 
 def updateNom(mail_user, nom):
     """ Fonction de mise à jour du nom d'un utilsateur à partir de son mail
@@ -18,6 +20,7 @@ def updateNom(mail_user, nom):
     """
     Adherant.objects.filter(mail=mail_user).update(nom=nom)
 
+
 def updatePrenom(mail_user, prenom):
     """ Fonction de mise à jour du nom d'un utilsateur à partir de son mail
 
@@ -26,6 +29,7 @@ def updatePrenom(mail_user, prenom):
     @return: /
     """
     Adherant.objects.filter(mail=mail_user).update(prenom=prenom)
+
 
 def updateDate(mail_user, birthdate):
     """ Fonction de mise à jour du nom d'un utilsateur à partir de son mail
@@ -37,6 +41,7 @@ def updateDate(mail_user, birthdate):
     """
     Adherant.objects.filter(mail=mail_user).update(birthDate=birthdate)
 
+
 def updatePseudo(mail_user, pseudo):
     """ Fonction de mise à jour du nom d'un utilsateur à partir de son mail
 
@@ -45,6 +50,7 @@ def updatePseudo(mail_user, pseudo):
     @return: /
     """
     Adherant.objects.filter(mail=mail_user).update(pseudo=pseudo)
+
 
 def updateProfilPick(mail_user, profile_picture):
     """ Fonction de mise à jour du nom d'un utilsateur à partir de son mail
