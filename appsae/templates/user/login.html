@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'source/base.html' %}
 {% load static %}
 {% block main %}
 <link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
@@ -12,7 +12,7 @@
 </div>
 <div class="body flex vertical-center justify-center">
     <div class="container">
-        <form action="#" method="POST" class="post-form form">
+        <form action="" method="POST" class="post-form form">
             {% csrf_token %}
             <div class="title-setting">SignIn</div>
             <div class="field">
@@ -28,7 +28,7 @@
                 <div class="label">
                     Password
                 </div>
-                <input type="text" name="password" class="input">
+                <input type="password" name="password" class="input">
             </div>
             <div class="field">
                 <button class="next-1">connection</button>

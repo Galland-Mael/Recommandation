@@ -18,6 +18,8 @@ const circle = document.querySelectorAll(".step .circle");
 const progressText = document.querySelectorAll(".step .name-step");
 const progressCheck = document.querySelectorAll(".step .check");
 const item = document.querySelectorAll('.item');
+const response = document.querySelector('.response');
+const code = document.querySelector('.lastName');
 let current = 1;
 
 

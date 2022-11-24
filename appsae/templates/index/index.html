@@ -1,0 +1,73 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/index.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/glider.min.css' %}"/>
+    <script src="https://unpkg.com/htmx.org@1.8.4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
+{% block main %}
+    <div class="search-container">
+        <form action="{% url 'matteo' %}" method="POST" class="post-form form">
+            {% csrf_token %}
+            <div class="search">
+                <input class="searchTerm" type="text" name="search"
+                       hx-get="{% url 'search' %}"
+                       hx-trigger="keyup changed delay:250ms"
+                       hx-target="#search-results"
+                       placeholder="Search..."
+                >
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+
+            </div>
+        </form>
+        <div class="result-container">
+            <div id="search-results">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="glider-contain">
+        <div class="glider">
+            {% for element in list %}
+                <div class="card">
+                    <div class="img-container"><img src="{{ element.image_front.url }}" alt="marche pas"></div>
+                    <p>test</p></div>
+            {% endfor %}
+        </div>
+        <button aria-label="Previous" class="glider-prev">«</button>
+        <button aria-label="Next" class="glider-next">»</button>
+        <div role="tablist" class="dots"></div>
+    </div>
+
+{% endblock %}
+
+
+{% block footer %}
+    {% include "source/footer.html" %}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'JS/index.js' %}"></script>
+    <script src="{% static 'JS/glider.min.js' %}"></script>
+    <script>new Glider(document.querySelector('.glider'), {
+        slidesToShow: 5,
+        draggable: true,
+        dots: '#dots',
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        }
+    });</script>
+{% endblock %}
+
+

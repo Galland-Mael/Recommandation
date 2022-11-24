@@ -1,3 +1,4 @@
+import json
 import os.path
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
@@ -10,11 +11,11 @@ from django.http import HttpResponse
 from .gestion import liste_carrousel
 from .gestion_utilisateur import *
 
+
 def register(request):
     if request.method == "POST":
         '''Remplissage de la base de données'''
         form = AdherantForm(request.POST).save()
-        print(request.POST["mail"])
         return redirect('login')
     form = AdherantForm()
     return render(request, 'user/register.html', {'form': form, 'info': Adherant.objects.all})
@@ -35,14 +36,16 @@ def login(request):
             '''Création de la session ou je récupère que le mail de l'utilisateur'''
             request.session['mailUser'] = user.mail
             context = {
+                'idUser': user.id,
                 'name': user.nom,
                 'prenom': user.prenom,
                 'mail': user.mail,
                 'birthDate': user.birthDate,
                 'pseudo': user.pseudo,
-                'photo': user.profile_picture.url
+                'photo': user.profile_picture.url,
+                'list': carrousel()
             }
-            return render(request, 'index.html', context)
+            return render(request, 'index/index.html', context)
         else:
             messages.success(request, '*Wrong mail or password')
             return redirect('login')
@@ -51,7 +54,8 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    liste = carrousel();
+    return render(request, 'index/index.html', {'list': liste})
 
 
 def modifUser(request):
@@ -74,6 +78,7 @@ def verificationEmail(request):
         print("fail")
         return HttpResponse("<p>Next</p>")
 
+
 def randomValue():
     ''' Fonction qui renvoie une chaîne composée de 6 caractères entre 0 et 9 '''
     value_random = ""
@@ -82,23 +87,52 @@ def randomValue():
         print(value_random);
     return value_random
 
-def meilleurs_resto(request):
-    """ Renvoie les restaurants les mieux notés pour les carrousels
 
-    @param request:
-    @return:
-    """
-    liste = liste_carrousel("français")  # le paramètre est le type recherché
-    return render(request, 'testMatteo.html', {'list': liste})
+def meilleurs_resto(request):
+    """ Renvoie les restaurants les mieux notés pour les carrousels """
+
+
+def carrousel():
+    restaurant = Restaurant.objects.order_by('-note');
+    list = [];
+    for i in range(10):
+        list.append(restaurant[i]);
+    return list;
+
+
+def recommandation():
+    restaurant = Restaurant.objects.order_by('-note');
+    list = [];
+    for i in range(3):
+        list.append(restaurant[i]);
+    return list;
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''
+
+
 def logoutUser(request):
     try:
         del request.session['mailUser']
     except KeyError:
         pass
     return redirect('index')
+
+
+def search(request):
+    print("kerkekeke")
+    if request.GET["search"] != "":
+        restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
+        return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
+    return HttpResponse('')
+
+
+def vueRestaurant(request, pk):
+    print("vuerestaurant")
+    restaurant = Restaurant.objects.filter(pk=pk)
+    imgRestaurants=ImageRestaurant.objects.filter
+    return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
+
 
 def update(request):
     return redirect('index')

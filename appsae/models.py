@@ -31,16 +31,22 @@ class RestaurantType(models.Model):
 
 
 class ImageRestaurant(models.Model):
-    name = models.CharField(max_length=255)
+    idRestaurant = models.IntegerField(default=0,blank=False)
     image = models.ImageField(upload_to='liste_images')
-    default = models.BooleanField(default=False)
+    default = models.BooleanField(blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Restaurant(models.Model):
+    id_yelp = models.CharField(max_length=150, default='')
     nom = models.CharField(max_length=50)
-    pays = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
-    ville = models.CharField(max_length=50, default="")
+    ville = models.CharField(max_length=50, default='')
+    zip_code = models.CharField(max_length=50, default='')
+    pays = models.CharField(max_length=50)
+    etat = models.CharField(max_length=50, default='')
     telephone = models.CharField(max_length=10)
     note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     image_front = models.ImageField(upload_to='img_restaurant/')
@@ -48,7 +54,7 @@ class Restaurant(models.Model):
     img = models.ManyToManyField(ImageRestaurant)
 
     def __str__(self):
-        return self.nom
+        return str(self.nom)
 
 
 class Horaire(models.Model):
@@ -70,9 +76,15 @@ class Horaire(models.Model):
     Debut_Horaire3 = models.TimeField(default='00:00')
     Fin_Horaire3 = models.TimeField(default='00:00')
 
+    def __str__(self):
+        return self.Nom_jour
+
 
 class Avis(models.Model):
-    note = models.IntegerField(default=0)
+    note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)],default=0)
     texte = models.CharField(max_length=1000, default=" ")
-    user = models.ForeignKey(Adherant, on_delete=models.CASCADE)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default=0)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    adherant = models.ForeignKey(Adherant, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.restaurant)

@@ -1,0 +1,18 @@
+{% load static %}
+<header>
+    <nav>
+        <a class="img-logo-container" href="{% url 'index' %}"><img class="img-logo" src="{% static '/Image/logo.png' %}" alt=""></a>
+        <ul>
+            {% if idUser %}
+                <li><a href="#" class="btn">Groupe</a></li> <!-- Penser a assigner href pour le bouton connexion -->
+                <li><a href="{% url 'logout' %}" class="btn">Deconnexion</a></li>
+                <a class="img-container-user" href="{% url 'index' %}">
+                    <img src="{{ photo }}" alt="marche pas" class="img-user">
+                </a>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="btn">Connexion</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+</header>
