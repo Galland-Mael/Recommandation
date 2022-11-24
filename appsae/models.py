@@ -33,10 +33,10 @@ class RestaurantType(models.Model):
 class ImageRestaurant(models.Model):
     idRestaurant = models.IntegerField(default=0,blank=False)
     image = models.ImageField(upload_to='liste_images')
-    default = models.BooleanField(blank=True)
+    default = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return str(self.idRestaurant)
 
 
 class Restaurant(models.Model):
@@ -83,8 +83,9 @@ class Horaire(models.Model):
 class Avis(models.Model):
     note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)],default=0)
     texte = models.CharField(max_length=1000, default=" ")
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    adherant = models.ForeignKey(Adherant, on_delete=models.CASCADE)
+    restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    adherant_fk = models.ForeignKey(Adherant, on_delete=models.CASCADE)
+    unique_together = [['restaurant_fk', 'adherant_fk']]
 
     def __str__(self):
-        return str(self.restaurant)
+        return str(self.restaurant_fk)

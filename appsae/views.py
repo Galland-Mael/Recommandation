@@ -136,3 +136,7 @@ def vueRestaurant(request, pk):
 
 def update(request):
     return redirect('index')
+
+
+def matteo(request):
+    return redirect('index')
