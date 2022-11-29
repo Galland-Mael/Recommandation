@@ -177,7 +177,7 @@ def export_ratings(request):
     f.writelines("restaurant_id,user_id,note")
     f.write('\n')
 
-    for rating in Avis.objects.all().values_list('restaurant_id', 'user_id', 'note'):
+    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note'):
         f.write(str(rating))
         f.write('\n')
     print(file)

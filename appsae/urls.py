@@ -20,7 +20,7 @@ urlpatterns = [
     path('matteo/', matteo, name='matteo'),
     path('vueRestaurant/(<pk>)', vueRestaurant, name='vueRestaurant'),
     path('search/', search, name='search'),
-path('export_restaurant/', export_restaurant, name='export'),
+    path('export_restaurant/', export_restaurant, name='export'),
     path('export_ratings/', export_ratings, name='export'),
 ]
 '''Utile pour afficher les images de la base de données'''
