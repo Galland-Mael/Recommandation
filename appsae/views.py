@@ -35,8 +35,8 @@ def login(request):
             user = Adherant.objects.get(mail=request.POST['mail'])
             '''Création de la session ou je récupère que le mail de l'utilisateur'''
             request.session['mailUser'] = user.mail
+            sessionMailUser = request.session['mailUser'];
             context = {
-                'idUser': user.id,
                 'name': user.nom,
                 'prenom': user.prenom,
                 'mail': user.mail,
@@ -130,9 +130,9 @@ def search(request):
 def vueRestaurant(request, pk):
     restaurant = Restaurant.objects.filter(pk=pk)
     imgRestaurants = ImageRestaurant.objects.filter(idRestaurant=pk)
-
+    avis = Avis.objects.filter(restaurant_fk=restaurant[0]);
     return render(request, 'restaurants/vueRestaurant.html',
-                  context={'restaurant': restaurant,'imgRestaurants' : imgRestaurants})
+                  context={'restaurant': restaurant, 'imgRestaurants': imgRestaurants, 'avis': avis})
 
 
 def update(request):

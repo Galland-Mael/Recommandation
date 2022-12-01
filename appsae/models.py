@@ -83,6 +83,7 @@ class Horaire(models.Model):
 class Avis(models.Model):
     note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)],default=0)
     texte = models.CharField(max_length=1000, default=" ")
+    temp = models.DateField("Date", date=datetime.date.now())
     restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     adherant_fk = models.ForeignKey(Adherant, on_delete=models.CASCADE)
     unique_together = [['restaurant_fk', 'adherant_fk']]
