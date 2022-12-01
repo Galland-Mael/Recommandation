@@ -6,6 +6,7 @@ from sqlite3 import OperationalError
 import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
 from django.conf import settings
+from django.utils.dateformat import format
 
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
@@ -166,7 +167,7 @@ def export_restaurant(request):
     f.write('\n')
 
     for restaurant in Restaurant.objects.all().values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note'):
-        f.write(str(restaurant))
+        f.write(str(restaurant)[1:-1])
         f.write('\n')
     print(file)
     return redirect('index')
@@ -175,11 +176,11 @@ def export_restaurant(request):
 def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
-    f.writelines("restaurant_id,user_id,note")
+    f.writelines("restaurant_id,user_id,note,timestamp")
     f.write('\n')
 
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note'):
-        f.write(str(rating))
+    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note','created_date'):
+        f.write(str(rating)[1:-1])
         f.write('\n')
     print(file)
     return redirect('index')
@@ -190,3 +191,4 @@ def test_groupes(request):
     groupe = Groupe.objects.filter(idGroupe=10)[0]
     updateNom(groupe, "CA MARCHE")
     return redirect('index')
+

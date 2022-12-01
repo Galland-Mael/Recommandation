@@ -1,6 +1,9 @@
 import datetime
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.timezone import now
+import time
+
 
 
 class Adherant(models.Model):
@@ -87,6 +90,7 @@ class Horaire(models.Model):
 class Avis(models.Model):
     note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)],default=0)
     texte = models.CharField(max_length=1000, default=" ")
+    created_date = models.DateTimeField(default=datetime.datetime.now(), blank=True)
     restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     adherant_fk = models.ForeignKey(Adherant, on_delete=models.CASCADE)
 
