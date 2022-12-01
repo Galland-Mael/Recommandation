@@ -19,6 +19,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .gestion import *
 from .gestion_utilisateur import *
+from .gestion_groupes import *
 
 
 def register(request):
@@ -183,3 +184,9 @@ def export_ratings(request):
     print(file)
     return redirect('index')
 
+
+def test_groupes(request):
+    creation_groupe("test Mattéo", Adherant.objects.filter(id=100)[0])
+    groupe = Groupe.objects.filter(idGroupe=10)[0]
+    updateNom(groupe, "CA MARCHE")
+    return redirect('index')
