@@ -1,9 +1,10 @@
-import datetime
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.timezone import now
+from datetime import datetime
 import time
-
+import datetime
+from unixtimestampfield.fields import UnixTimeStampField
 
 
 class Adherant(models.Model):
@@ -11,7 +12,7 @@ class Adherant(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     mail = models.EmailField(primary_key=True)
-    birthDate = models.DateField("Date", default=datetime.date.today)
+    birthDate = models.DateField("Date", default=datetime.date.today())
     pseudo = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
@@ -91,6 +92,7 @@ class Avis(models.Model):
     note = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)],default=0)
     texte = models.CharField(max_length=1000, default=" ")
     created_date = models.DateTimeField(default=datetime.datetime.now(), blank=True)
+    unix_date = models.CharField(max_length=1000, default="")
     restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     adherant_fk = models.ForeignKey(Adherant, on_delete=models.CASCADE)
 
@@ -102,5 +104,3 @@ class Avis(models.Model):
 
     def __str__(self):
         return str(self.restaurant_fk)
-
-
