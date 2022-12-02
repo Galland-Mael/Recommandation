@@ -74,3 +74,12 @@ def creation_groupe(nom, user):
     gp = Groupe(nom_groupe=nom, id_gerant=user.id, idGroupe=10)
     gp.save()
     gp.liste_adherants.add(user)
+
+
+def listeGroupe(groupe):
+    """ Renvoie la liste des utilisateurs présents dans le groupe
+
+    @param groupe: le groupe
+    @return: la liste des utilisateurs présents dans le groupe (QuerySet)
+    """
+    return groupe.liste_adherants.all()
