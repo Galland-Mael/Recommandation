@@ -20,6 +20,7 @@ from django.http import HttpResponse
 from .gestion import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
+import datetime
 
 
 def register(request):
@@ -186,7 +187,5 @@ def export_ratings(request):
 
 
 def test_groupes(request):
-    creation_groupe("test Mattéo", Adherant.objects.filter(id=100)[0])
-    groupe = Groupe.objects.filter(idGroupe=10)[0]
-    updateNom(groupe, "CA MARCHE")
+    #listeGroupe(Groupe.objects.all()[0])
     return redirect('index')
