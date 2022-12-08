@@ -94,7 +94,10 @@
         </div>
         </div>
 
+        <!-- Mettre un avis -->
+
         <div class="avis-container">
+        {% if mail %}
         <div class="add-avis-container title2">Ajouter un avis</div>
         <form action="{% url 'addCommentaires' element.pk %}" method="post">
             {% csrf_token %}
@@ -126,10 +129,11 @@
             {% for msg in messages %}
                 <div class="failInfo">{{ msg }}</div>
             {% endfor %}
-            <label for="comments">commentaire :</label>
+            <label for="comments">commentaire</label>
             <input type="text" name="comm">
             <button type="submit">Ajouter</button>
         </form>
+        {% endif %}
     {% endfor %}
 <div class="separator avis-separator"></div>
 <div class="avis-title-container">
@@ -139,16 +143,19 @@
 <div class="separator avis-separator"></div>
 </div>
 
+
+
+     <!-- afficher les avis -->
+
+
     <div class="comment margin-auto">
         {% for element in avis %}
 
             {% if forloop.counter|modulo:'2' != 0 %}
-                <div class="flex row margin-bottom">
+                <div class="flex margin-bottom">
             {% endif %}
-        {% if forloop.counter != avis|length %}
-            <div class="avis-border flex column ">
-        {% endif %}
 
+            <div class="avis-border flex column ">
         <div class="card-avis flex">
             <div class="card-user-container flex">
                 <div class="card-img-container flex ">
@@ -167,12 +174,13 @@
                 </div>
             </div>
         </div>
-        <span class="avis-text flex">{{ element.texte }}</span>
+            <span class="avis-text flex">{{ element.texte }}</span>
         </div>
         {% if forloop.counter|modulo:'2' == 0 %}
             </div>
         {% endif %}
         {% endfor %}
+        <div>voir plus</div>
     </div>
 {% endblock %}
 {% block footer %}

@@ -139,14 +139,21 @@ def vueRestaurant(request, pk):
     restaurant = Restaurant.objects.filter(pk=pk)
     imgRestaurants = ImageRestaurant.objects.filter(idRestaurant=pk)
     avis = Avis.objects.filter(restaurant_fk=restaurant[0]);
-    user = Adherant.objects.get(mail=request.session['mailUser'])
     context = {
         'restaurant': restaurant,
         'imgRestaurants': imgRestaurants,
         'avis': avis,
-        'mail': request.session['mailUser'],
-        'photo': user.profile_picture.url,
     }
+    if 'mailUser' in request.session:
+        user = Adherant.objects.get(mail=request.session['mailUser'])
+        context= {
+            'restaurant': restaurant,
+            'imgRestaurants': imgRestaurants,
+            'avis': avis,
+            'mail': request.session['mailUser'],
+            'photo': user.profile_picture.url,
+        }
+
     return render(request, 'restaurants/vueRestaurant.html', context)
 
 
@@ -160,7 +167,6 @@ def addCommentaires(request, pk):
         'imgRestaurants': imgRestaurants,
         'avis': avis
     }
-    print(request.POST['comm'])
     if (request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST):
         user = Adherant.objects.get(mail=request.session['mailUser'])
         print(user.pk)
