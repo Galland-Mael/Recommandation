@@ -57,7 +57,7 @@ def liste_avis(restaurant, num):
     elif taille < (num +1 ) *taille_liste:
         return avis[num*taille_liste:taille]
 
-def listeSansUser(restaurant, user, num = 0):
+def avisUser(restaurant, user, num = 0):
     """ Renvoie la liste des avis 10 par 10,
     sauf si un des avis appartient à l'utilisateur user,
     dans ce cas, il renvoie seulement 9 avis.
@@ -68,7 +68,7 @@ def listeSansUser(restaurant, user, num = 0):
     @param num: le numero de la liste
     @return: une liste d'avis
     """
-    list = liste_avis(restaurant, num)
+    list = avisUser(restaurant, num)
     avis_user = afficherAvis(user, restaurant)
 
     if avis_user == None:
