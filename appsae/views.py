@@ -148,13 +148,9 @@ def vueRestaurant(request, pk):
     imgRestaurants=ImageRestaurant.objects.filter
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
 
-
 def matteo(request):
-    # user = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")
-    # resto = Restaurant.objects.filter(nom="Burger King")
-    # print(ajoutAvis(user[0], resto[0], 2, "aifneizfbizl"))
-    # updateAvis(user[0], resto[0], 5, "CT super")
-    # deleteAvis(user[0],resto[0])
+    liste = listeAffichageCaroussel()
+    print(liste)
     return redirect('index')
 
 
