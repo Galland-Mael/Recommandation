@@ -10,7 +10,12 @@ def carrousel():
         list.append(restaurant[i]);
     return list;
 
-
+def connect(request,context):
+    if 'mailUser' in request.session:
+        user = Adherant.objects.get(mail=request.session['mailUser'])
+        context['mail'] = request.session['mailUser']
+        context['photo'] = user.profile_picture.url
+    return context
 def randomValue():
     ''' Fonction qui renvoie une chaîne composée de 6 caractères entre 0 et 9 '''
     value_random = ""

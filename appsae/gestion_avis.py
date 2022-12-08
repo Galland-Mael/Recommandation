@@ -27,7 +27,7 @@ def avisExist(user, restaurant):
         return False
     return True
 
-def afficherAvis(user, restaurant):
+def afficherAvisUser(user, restaurant):
     """ Renvoie l'avis de l'utilisateur s'il existe
 
     @param restaurant: le restaurant
@@ -69,7 +69,7 @@ def avisUser(restaurant, user, num = 0):
     @return: une liste d'avis
     """
     list = avisUser(restaurant, num)
-    avis_user = afficherAvis(user, restaurant)
+    avis_user = afficherAvisUser(user, restaurant)
 
     if avis_user == None:
         return list

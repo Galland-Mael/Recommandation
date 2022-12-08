@@ -126,16 +126,14 @@
                                                                                              class="half"></label>
                 </div>
             </div>
-            {% for msg in messages %}
-                <div class="failInfo">{{ msg }}</div>
-            {% endfor %}
             <label for="comments">commentaire</label>
             <input type="text" name="comm">
             <button type="submit">Ajouter</button>
         </form>
+            <div class="separator avis-separator"></div>
         {% endif %}
     {% endfor %}
-<div class="separator avis-separator"></div>
+
 <div class="avis-title-container">
     <div class="avis-title bottom-space title2" id="commentaires">Commentaire{{ avis|pluralize }} </div>
     <div class="nb-commentaire title2">({{ avis|length }})</div>
@@ -180,7 +178,6 @@
             </div>
         {% endif %}
         {% endfor %}
-        <div>voir plus</div>
     </div>
 {% endblock %}
 {% block footer %}

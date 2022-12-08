@@ -98,14 +98,10 @@ def verificationEmail(request):
         return HttpResponse("<p>Next</p>")
 
 
-
-
-
 def meilleurs_resto(request):
     ''' Renvoie les restaurants les mieux notés '''
     liste = carrousel();
     return render(request, 'testMatteo.html', {'list': liste});
-
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''
@@ -137,44 +133,34 @@ def vueRestaurant(request, pk):
     context = {
         'restaurant': restaurant,
         'imgRestaurants': imgRestaurants,
-        'avis': avis,
+        'avis': avis
     }
-    if 'mailUser' in request.session:
-        user = Adherant.objects.get(mail=request.session['mailUser'])
-        context= {
-            'restaurant': restaurant,
-            'imgRestaurants': imgRestaurants,
-            'avis': avis,
-            'mail': request.session['mailUser'],
-            'photo': user.profile_picture.url,
-        }
-
+    connect(request,context),
     return render(request, 'restaurants/vueRestaurant.html', context)
 
 
 def addCommentaires(request, pk):
-    valide = False;
-    restaurant = Restaurant.objects.filter(pk=pk)
-    imgRestaurants = ImageRestaurant.objects.filter(idRestaurant=pk)
-    avis = Avis.objects.filter(restaurant_fk=restaurant[0]);
     context = {
-        'restaurant': restaurant,
-        'imgRestaurants': imgRestaurants,
-        'avis': avis
+        'restaurant': Restaurant.objects.filter(pk=pk),
+        'imgRestaurants': ImageRestaurant.objects.filter(idRestaurant=pk),
+        'avis': Avis.objects.filter(restaurant_fk=restaurant[0]),
     }
+
+
     if (request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST):
-        user = Adherant.objects.get(mail=request.session['mailUser'])
-        print(user.pk)
-        valide = True;
-        Avis(note=request.POST['title-rating'], texte=request.POST['comm'], restaurant_fk=restaurant[0],adherant_fk=user).save()
-    if (valide):
-
-        return render(request, 'restaurants/vueRestaurant.html', context)
+        ajoutAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.filter(pk=pk), request.POST['title-rating'], request.POST['comm'])
+        context = {
+            'restaurant': restaurant,
+            'imgRestaurants': imgRestaurants,
+            'avis': avis,
+            'mail': user.mail,
+            'photo': user.profile_picture.url,
+        }
     else:
+        del messages
         messages.success(request, 'Les deux champs doivent être remplis.')
-        return render(request, 'restaurants/vueRestaurant.html', context)
-
-
+    connect(request,context)
+    return render(request, 'restaurants/vueRestaurant.html', context)
 
 
 def export_restaurant(request):
@@ -189,6 +175,7 @@ def export_restaurant(request):
     print(file)
     return redirect('index')
 
+
 def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
@@ -200,7 +187,3 @@ def export_ratings(request):
         f.write('\n')
     print(file)
     return redirect('index')
-
-
-
-
