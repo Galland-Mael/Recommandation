@@ -15,6 +15,7 @@ urlpatterns = [
     path('adherant/', update, name='update'),
     path('', index, name='index'),
     path('logout/', logoutUser, name='logout'),
+    path('addCommentaires/(<pk>)',addCommentaires,name='addCommentaires'),
     path('matteo/', matteo, name='matteo'),
     path('search/', search, name='search'),
     path('carrousel/', meilleurs_resto, name='meilleurs_resto'),

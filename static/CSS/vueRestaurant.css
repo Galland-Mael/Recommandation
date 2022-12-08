@@ -38,7 +38,7 @@ a:hover {
 }
 
 .phone-container {
-    width: 100%;
+    width: 0%;
 }
 
 .nav-restaurants {
@@ -223,12 +223,18 @@ input:checked ~ label, label:hover ~ label {
     font-size: 1.5em;
     font-family: 'Poppins', sans-serif;
 }
+.margin-right{
+    margin-right: 10px;
+}
 
 @media (max-width: 1200px) {
     .nav-localisation {
         display: none;
     }
+
 }
+
+
 
 .card-img-container {
     margin: 10px 10px 10px 0;

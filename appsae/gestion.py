@@ -1,4 +1,4 @@
-from .models import *
+from appsae.model.models import *
 
 NB_CARROUSEL = 10
 

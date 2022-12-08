@@ -4,8 +4,8 @@
         <a class="img-logo-container" href="{% url 'index' %}"><img class="img-logo" src="{% static '/Image/logo.png' %}" alt=""></a>
         <ul>
             {% if mail %}
-                <li><a href="#" class="btn">Groupe</a></li> <!-- Penser a assigner href pour le bouton connexion -->
-                <li><a href="{% url 'logout' %}" class="btn">Deconnexion</a></li>
+                <li><a href="#" class="btn-header">Groupe</a></li> <!-- Penser a assigner href pour le bouton connexion -->
+                <li><a href="{% url 'logout' %}" class="btn-header">Deconnexion</a></li>
                 <a class="img-container-user" href="{% url 'modifUser' %}">
                     <img src="{{ photo }}" alt="marche pas" class="img-user">
                 </a>
