@@ -112,7 +112,7 @@ def carrousel():
     list = [];
     for i in range(10):
         list.append(restaurant[i]);
-    return list;
+    return list
 
 
 def recommandation():
@@ -121,10 +121,6 @@ def recommandation():
     for i in range(3):
         list.append(restaurant[i]);
     return list;
-
-def note_moyenne(request):
-    update_note_moyenne_restaurant("testMatteo")
-    return redirect('index')
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''
@@ -151,11 +147,6 @@ def vueRestaurant(request, pk):
     restaurant = Restaurant.objects.filter(pk=pk)
     imgRestaurants=ImageRestaurant.objects.filter
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
-
-
-def update(request):
-    return redirect('index')
-
 
 def matteo(request):
     return redirect('index')
@@ -189,4 +180,9 @@ def export_ratings(request):
 
 def test_groupes(request):
     #listeGroupe(Groupe.objects.all()[0])
+    user = Adherant.objects.filter(mail="test@gmail.com")
+    resto = Restaurant.objects.filter(nom="Burger King")
+    #print(ajoutAvis(user[0], resto[0], 2, "aifneizfbizl"))
+    #updateAvis(user[0], resto[0], 5, "CT super")
+    deleteAvis(user[0],resto[0])
     return redirect('index')
