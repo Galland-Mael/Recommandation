@@ -189,4 +189,8 @@ def export_ratings(request):
 
 def test_groupes(request):
     #listeGroupe(Groupe.objects.all()[0])
+    user = Adherant.objects.filter(mail="test@gmail.com")
+    resto = Restaurant.objects.filter(nom="Burger King")
+    #print(ajoutAvis(user[0], resto[0], 2, "aifneizfbizl"))
+    updateAvis(user[0], resto[0], 5, "CT super")
     return redirect('index')
