@@ -1,8 +1,2 @@
 restaurant_id,user_id,note,timestamp
-18, 'Test@gmail.com', 3, '1669885582873.823'
-18, 'testt@kdkd.dlldl', 2, '1669885582873.823'
-18, 'feze@fref.dl', 2, '1669885582873.823'
-14, 'Test@gmail.com', 3, '1669885582873.823'
-18, 'mael.aa@me.com', 1, '1669885834607.6018'
-18, 'dz@fl.lcd', 3, '1669886116000.0'
-9, 'Test@gmail.com', 0, '1669893771000.0'
+1, 1, 2, '1670502564000.0'

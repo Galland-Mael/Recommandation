@@ -8,10 +8,10 @@ from unixtimestampfield.fields import UnixTimeStampField
 
 
 class Adherant(models.Model):
-    id = models.IntegerField(default=0)
+    id_yelp = models.CharField(max_length=150, default='')
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
-    mail = models.EmailField(primary_key=True)
+    mail = models.EmailField(max_length=254)
     birthDate = models.DateField("Date", default=datetime.date.today())
     pseudo = models.CharField(max_length=20)
     password = models.CharField(max_length=20)

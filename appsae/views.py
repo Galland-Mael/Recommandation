@@ -9,7 +9,7 @@ from django.conf import settings
 from django.utils.dateformat import format
 
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import smart_str
 
 from .models import *
@@ -204,29 +204,4 @@ def test_groupes(request):
     groupe = Groupe.objects.filter(idGroupe=10)[0]
     updateNom(groupe, "CA MARCHE")
     return redirect('index')
-
-
-def load_dataset():
-    file = str(settings.BASE_DIR) + '/' + "ratings.csv"
-    reader = Reader(line_format='user item rating timestamp', sep=',', skip_lines=1)
-    ratings_dataset = Dataset.load_from_file(file, reader=reader)
-
-    # Lookup a movie's name with it's Movielens ID as key
-    restaurantID_to_name = {}
-    file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
-    with open(file, newline='', encoding='ISO-8859-1') as csvfile:
-            restaurant_reader = csv.reader(csvfile)
-            next(restaurant_reader)
-            for row in restaurant_reader:
-                restaurantID = int(row[0])
-                restaurant_name = row[1]
-                restaurantID_to_name[restaurantID] = restaurant_name
-    # Return both the dataset and lookup dict in tuple
-    return (ratings_dataset, restaurantID_to_name)
-
-
-dataset, restaurantID_to_name = load_dataset()
-
-# Build a full Surprise training set from dataset
-trainset = dataset.build_full_trainset()
 
