@@ -1,9 +1,23 @@
 
-from .models import *
+from appsae.model.models import *
 from django.db.models import Avg
 
 NB_CARROUSEL = 10
+def carrousel():
+    restaurant = Restaurant.objects.order_by('-note');
+    list = [];
+    for i in range(10):
+        list.append(restaurant[i]);
+    return list;
 
+
+def randomValue():
+    ''' Fonction qui renvoie une chaîne composée de 6 caractères entre 0 et 9 '''
+    value_random = ""
+    for i in range(6):
+        value_random += str(random.randint(0, 9))
+        print(value_random);
+    return value_random
 
 def liste_carrousel(type):
     """ Renvoie les meilleurs restaurants selon le type de restaurant donné en paramètres,

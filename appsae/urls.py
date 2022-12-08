@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-
-from .views import *
+from appsae.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -11,15 +10,10 @@ urlpatterns = [
     path('user/login/', login, name='login'),
     path('modifuser/', modifUser, name='modifUser'),
     path('verificationEmail/', verificationEmail, name='verificationEmail'),
-    path('test/', meilleurs_resto, name='meilleurs_resto'),
-    path('adherant/', update, name='update'),
-    path('groupes/', test_groupes, name='test_groupes'),
-    path('noteMoyenne/', note_moyenne,name='note_moyenne'),
     path('', index, name='index'),
     path('carrousel/', meilleurs_resto, name='meilleurs_resto'),
     path('logout/', logoutUser, name='logout'),
     path('addCommentaires/(<pk>)',addCommentaires,name='addCommentaires'),
-    path('matteo/', matteo, name='matteo'),
     path('vueRestaurant/(<pk>)', vueRestaurant, name='vueRestaurant'),
     path('search/', search, name='search'),
     path('export_restaurant/', export_restaurant, name='export'),

@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.encoding import smart_str
 
-from .models import *
+from appsae.model.models import *
 from .formulaire import *
 from django.core.mail import send_mail
 import random
@@ -98,13 +98,7 @@ def verificationEmail(request):
         return HttpResponse("<p>Next</p>")
 
 
-def randomValue():
-    ''' Fonction qui renvoie une chaîne composée de 6 caractères entre 0 et 9 '''
-    value_random = ""
-    for i in range(6):
-        value_random += str(random.randint(0, 9))
-        print(value_random);
-    return value_random
+
 
 
 def meilleurs_resto(request):
@@ -112,25 +106,6 @@ def meilleurs_resto(request):
     liste = carrousel();
     return render(request, 'testMatteo.html', {'list': liste});
 
-
-def carrousel():
-    restaurant = Restaurant.objects.order_by('-note');
-    list = [];
-    for i in range(10):
-        list.append(restaurant[i]);
-    return list;
-
-
-def recommandation():
-    restaurant = Restaurant.objects.order_by('-note');
-    list = [];
-    for i in range(3):
-        list.append(restaurant[i]);
-    return list;
-
-def note_moyenne(request):
-    update_note_moyenne_restaurant("testMatteo")
-    return redirect('index')
 
 
 '''Fonction qui detruit la session et redirige sur la page index'''
@@ -200,9 +175,32 @@ def addCommentaires(request, pk):
         return render(request, 'restaurants/vueRestaurant.html', context)
 
 
-def update(request):
+
+
+def export_restaurant(request):
+    file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
+    f = open(file, "w")
+    f.writelines("id ,nom ,pays, telephone ,image_front ,note")
+    f.write('\n')
+
+    for restaurant in Restaurant.objects.all().values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note'):
+        f.write(str(restaurant))
+        f.write('\n')
+    print(file)
+    return redirect('index')
+
+def export_ratings(request):
+    file = str(settings.BASE_DIR) + '/' + "ratings.csv"
+    f = open(file, "w")
+    f.writelines("restaurant_id,user_id,note")
+    f.write('\n')
+
+    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note'):
+        f.write(str(rating))
+        f.write('\n')
+    print(file)
     return redirect('index')
 
 
-def matteo(request):
-    return redirect('index')
+
+
