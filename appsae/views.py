@@ -1,15 +1,27 @@
 import json
 import os.path
+import sqlite3
+import csv
+from sqlite3 import OperationalError
+import os, tempfile, zipfile, mimetypes
+from wsgiref.util import FileWrapper
+from django.conf import settings
+
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
-from appsae.model.models import *
+from django.utils.encoding import smart_str
+
+from .models import *
 from .formulaire import *
 from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
-from .gestion import liste_carrousel
+from .gestion import *
 from .gestion_utilisateur import *
+from .gestion_groupes import *
+from .gestion_avis import *
+import datetime
 
 
 def register(request):
@@ -41,6 +53,7 @@ def login(request):
             request.session['mailUser'] = user.mail
             sessionMailUser = request.session['mailUser'];
             context = {
+                'idUser': user.id,
                 'name': user.nom,
                 'prenom': user.prenom,
                 'mail': user.mail,
@@ -95,7 +108,9 @@ def randomValue():
 
 
 def meilleurs_resto(request):
-    """ Renvoie les restaurants les mieux notés pour les carrousels """
+    ''' Renvoie les restaurants les mieux notés '''
+    liste = carrousel();
+    return render(request, 'testMatteo.html', {'list': liste});
 
 
 def carrousel():
@@ -113,6 +128,10 @@ def recommandation():
         list.append(restaurant[i]);
     return list;
 
+def note_moyenne(request):
+    update_note_moyenne_restaurant("testMatteo")
+    return redirect('index')
+
 
 '''Fonction qui detruit la session et redirige sur la page index'''
 
@@ -126,6 +145,7 @@ def logoutUser(request):
 
 
 def search(request):
+    print("kerkekeke")
     if request.GET["search"] != "":
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
         context = {
