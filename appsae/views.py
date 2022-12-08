@@ -153,16 +153,15 @@ def vueRestaurant(request, pk):
 def addCommentaires(request, pk):
     valide = False;
     restaurant = Restaurant.objects.filter(pk=pk)
-
     imgRestaurants = ImageRestaurant.objects.filter(idRestaurant=pk)
     avis = Avis.objects.filter(restaurant_fk=restaurant[0]);
     user = Adherant.objects.get(mail=request.session['mailUser'])
-
     context = {
         'restaurant': restaurant,
         'imgRestaurants': imgRestaurants,
         'avis': avis
     }
+    print(request.POST['comm'])
     if (request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST):
         valide = True;
         Avis(note=request.POST['title-rating'], texte=request.POST['comm'], restaurant_fk=restaurant[0],adherant_fk=user).save()
