@@ -20,6 +20,7 @@ from django.http import HttpResponse
 from .gestion import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
+from .gestion_avis import *
 import datetime
 
 
