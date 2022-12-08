@@ -148,7 +148,13 @@ def vueRestaurant(request, pk):
     imgRestaurants=ImageRestaurant.objects.filter
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
 
+
 def matteo(request):
+    # user = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")
+    # resto = Restaurant.objects.filter(nom="Burger King")
+    # print(ajoutAvis(user[0], resto[0], 2, "aifneizfbizl"))
+    # updateAvis(user[0], resto[0], 5, "CT super")
+    # deleteAvis(user[0],resto[0])
     return redirect('index')
 
 
@@ -175,14 +181,4 @@ def export_ratings(request):
         f.write(str(rating))
         f.write('\n')
     print(file)
-    return redirect('index')
-
-
-def test_groupes(request):
-    #listeGroupe(Groupe.objects.all()[0])
-    user = Adherant.objects.filter(mail="test@gmail.com")
-    resto = Restaurant.objects.filter(nom="Burger King")
-    #print(ajoutAvis(user[0], resto[0], 2, "aifneizfbizl"))
-    #updateAvis(user[0], resto[0], 5, "CT super")
-    deleteAvis(user[0],resto[0])
     return redirect('index')
