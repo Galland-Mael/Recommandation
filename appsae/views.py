@@ -155,7 +155,6 @@ def addCommentaires(request, pk):
     restaurant = Restaurant.objects.filter(pk=pk)
     imgRestaurants = ImageRestaurant.objects.filter(idRestaurant=pk)
     avis = Avis.objects.filter(restaurant_fk=restaurant[0]);
-    user = Adherant.objects.get(mail=request.session['mailUser'])
     context = {
         'restaurant': restaurant,
         'imgRestaurants': imgRestaurants,
@@ -163,6 +162,8 @@ def addCommentaires(request, pk):
     }
     print(request.POST['comm'])
     if (request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST):
+        user = Adherant.objects.get(mail=request.session['mailUser'])
+        print(user.pk)
         valide = True;
         Avis(note=request.POST['title-rating'], texte=request.POST['comm'], restaurant_fk=restaurant[0],adherant_fk=user).save()
     if (valide):
