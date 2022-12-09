@@ -17,13 +17,13 @@ django.setup()
 
 
 def load_dataset():
-    file = str(settings.BASE_DIR) + '/' + "ratings.csv"
+    file = str(settings.BASE_DIR) + '/' + "ratingsmovies.csv"
     reader = Reader(line_format='user item rating timestamp', sep=',', skip_lines=1)
     ratings_dataset = Dataset.load_from_file(file, reader=reader)
 
     # Lookup a movie's name with it's Movielens ID as key
     restaurantID_to_name = {}
-    file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
+    file = str(settings.BASE_DIR) + '/' + "movies.csv"
     with open(file, newline='', encoding='ISO-8859-1') as csvfile:
             restaurant_reader = csv.reader(csvfile)
             next(restaurant_reader)
@@ -47,9 +47,9 @@ similarity_matrix = KNNBasic(sim_options={
         .fit(trainset)\
         .compute_similarities()
 
-test_subject = '1'
+test_subject = '12'
 
-k = 3
+k = 5
 
 test_subject_iid = trainset.to_inner_uid(test_subject)
 test_subject_ratings = trainset.ur[test_subject_iid]
@@ -71,6 +71,7 @@ def getRestaurantName(RestaurantID):
     return restaurantID_to_name[int(RestaurantID)]
   else:
       return ""
+
 
 visited = {}
 for itemID, rating in trainset.ur[test_subject_iid]:
