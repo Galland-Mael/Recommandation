@@ -1,7 +1,12 @@
 id ,nom ,pays, telephone ,image_front ,note
-(7, 'test reccomendation 1', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000.jpg', 5)
-(8, 'test reccomendation 2', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_ZM14Yzd.jpg', 4)
-(9, 'test reccomendation 3', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_9WG4RPH.jpg', 4)
-(10, 'test reccomendation 4', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_Cds7NXY.jpg', 3)
-(11, 'test reccomendation 5', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_i2Qiopo.jpg', 4)
-(12, 'test 6', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_e5PdDvt.jpg', 4)
+1, 'ere', 'er', '0660000000', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_Ao3lYWr.jpg', 2.0
+2, 'Burger King', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_AbAAAbC.jpg', 4.0
+3, 'Burger King', 'France', '0650404040', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_zDggRYL.jpg', 4.0
+4, 'fe', 'f', '6660606', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_rI8bKiy.jpg', 3.0
+5, 'azer', 'azre', '20202', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_IWcFZld.jpg', 2.0
+6, 'zaer', 'zaer', 'arze', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_jbuCuwA.jpg', 4.0
+7, 'aer', 'azer', '06606060', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_bmPs5Ol.jpg', 3.0
+8, 'azer', 'zaer', '066066060', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_bWIwtA4.jpg', 4.0
+9, 'azer', 'azer', '6000060', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_7OYCmqx.jpg', 3.0
+10, 'azerazer', 'azer', '0660000', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_woXuYOa.jpg', 3.0
+11, 'azerazer', 'zear', '0660060', 'img_restaurant/ScreenShot_22-11-06_13-19-48-000_4Q4UwHc.jpg', 3.0
