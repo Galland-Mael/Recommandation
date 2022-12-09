@@ -6,9 +6,10 @@ from sqlite3 import OperationalError
 import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
 from django.conf import settings
+from django.utils.dateformat import format
 
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import smart_str
 
 from .models import *
@@ -22,6 +23,10 @@ from .gestion_utilisateur import *
 from .gestion_groupes import *
 from .gestion_avis import *
 import datetime
+import time
+from surprise import KNNBasic
+from surprise import Dataset
+from surprise import Reader
 
 
 def register(request):
@@ -120,8 +125,7 @@ def recommandation():
     list = [];
     for i in range(3):
         list.append(restaurant[i]);
-    return list;
-
+    return list
 
 '''Fonction qui detruit la session et redirige sur la page index'''
 
@@ -162,7 +166,7 @@ def export_restaurant(request):
     f.write('\n')
 
     for restaurant in Restaurant.objects.all().values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note'):
-        f.write(str(restaurant))
+        f.write(str(restaurant)[1:-1])
         f.write('\n')
     print(file)
     return redirect('index')
@@ -171,11 +175,18 @@ def export_restaurant(request):
 def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
-    f.writelines("restaurant_id,user_id,note")
+    f.writelines("restaurant_id,user_id,note,timestamp")
     f.write('\n')
+    for ratings in Avis.objects.all():
+        dt = ratings.created_date
+        print(dt)
+        unix_dt = datetime.datetime.timestamp(dt) * 1000
+        print(unix_dt)
+        unix_str = str(unix_dt)
+        Avis.objects.filter(created_date=dt).update(unix_date=unix_str)
 
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note'):
-        f.write(str(rating))
+    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note','unix_date'):
+        f.write(str(rating)[1:-1])
         f.write('\n')
     print(file)
     return redirect('index')
