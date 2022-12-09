@@ -79,8 +79,11 @@ def listeAffichageAvis(restaurant, user, num = 0):
 
 
 def afficherVoirPlus(restaurant, user, num):
-    """ Renvoie true s'il faut afficher le bouton "Voir Plus", false sinon
+    """Renvoie true s'il faut afficher le bouton "Voir Plus", false sinon
 
+    @param restaurant: le restaurant concerné
+    @param user: l'utilisateur concerné
+    @param num: le numéro de la page actuelle
     @return: booléen en fonction de s'il faut afficher ou non "Voir Plus"
     """
-    return listeAffichageAvis(restaurant, user, num).count() != 0
+    return listeAffichageAvis(restaurant, user, num + 1).count() != 0
