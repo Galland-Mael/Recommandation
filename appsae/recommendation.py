@@ -47,9 +47,9 @@ similarity_matrix = KNNBasic(sim_options={
         .fit(trainset)\
         .compute_similarities()
 
-test_subject = '12'
+test_subject = '500'
 
-k = 5
+k = 20
 
 test_subject_iid = trainset.to_inner_uid(test_subject)
 test_subject_ratings = trainset.ur[test_subject_iid]
