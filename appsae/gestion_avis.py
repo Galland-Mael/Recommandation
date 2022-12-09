@@ -63,44 +63,26 @@ def afficherAvis(user, restaurant):
         return Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
     return None
 
-
-def liste_avis(restaurant, num):
-    """ Renvoie une liste d'avis 10 par 10,
+def listeAffichageAvis(restaurant, user, num = 0):
+    """ Renvoie une liste d'avis 10 par 10 ne contenant pas l'avis de l'utilisateur user,
     si num vaut 0, on renvoie de 0 à 9 dans la liste des avis, etc...
-
-    @param restaurant: le restaurant où chercher les avis
-    @param num: le numero de la liste
-    @return: une liste d'avis sous forme de QuerySet
-    """
-    avis = Avis.objects.filter(restaurant_fk=restaurant)
-    taille = avis.count()
-    taille_liste= 10 # Taille de la liste à prendre
-    if taille < num*taille_liste:
-        return []
-    elif taille >= (num + 1) *taille_liste:
-        return avis[num*taille_liste:(num + 1)*taille_liste]
-    elif taille < (num +1 ) *taille_liste:
-        return avis[num*taille_liste:taille]
-
-def avisUser(restaurant, user, num = 0):
-    """ Renvoie la liste des avis 10 par 10,
-    sauf si un des avis appartient à l'utilisateur user,
-    dans ce cas, il renvoie seulement 9 avis.
-    Si num vaut 0, on renvoie de 0 à 9 dans la liste des avis, etc...
 
     @param restaurant: le restaurant
     @param user: l'utilisateur
-    @param num: le numero de la liste
-    @return: une liste d'avis
+    @param num: le numéro de la page
+    @return: une liste (QuerySet) d'avis
     """
-    list = avisUser(restaurant, num)
-    avis_user = afficherAvis(user, restaurant)
+    taille_list = 2
+    avis = Avis.objects.filter(restaurant_fk=restaurant).exclude(adherant_fk=user)
+    return avis[num*taille_list:(num + 1)*taille_list]
 
-    if avis_user == None:
-        return list
 
-    list_avis = []
-    for item in list:
-        if item != avis_user[0]:
-            list_avis.append(item)
-    return list_avis
+def afficherVoirPlus(restaurant, user, num):
+    """Renvoie true s'il faut afficher le bouton "Voir Plus", false sinon
+
+    @param restaurant: le restaurant concerné
+    @param user: l'utilisateur concerné
+    @param num: le numéro de la page actuelle
+    @return: booléen en fonction de s'il faut afficher ou non "Voir Plus"
+    """
+    return listeAffichageAvis(restaurant, user, num + 1).count() != 0

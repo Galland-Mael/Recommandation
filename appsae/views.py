@@ -23,6 +23,12 @@ from .gestion_groupes import *
 from .gestion_avis import *
 import datetime
 
+PAGE = 0
+
+
+def modifPAGE():
+    global PAGE
+    PAGE += 1
 
 def register(request):
     if request.method == "POST":
@@ -149,9 +155,18 @@ def vueRestaurant(request, pk):
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
 
 def matteo(request):
-    liste = listeAffichageCaroussel()
-    print(liste)
-    print(listeAffichageDejaVisiter(Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]))
+    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
+    resto = Restaurant.objects.filter(nom="Burger King")[0]
+    print(afficherAvis(adherant, resto))
+    print("------------------------------------------------")
+    print(listeAffichageAvis(resto, adherant, PAGE))
+    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0], Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    modifPAGE()
+    print("------------------------------------------------")
+    print(listeAffichageAvis(resto, adherant, PAGE))
+    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0], Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    modifPAGE()
+    print("------------------------------------------------")
     return redirect('index')
 
 
