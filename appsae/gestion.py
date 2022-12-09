@@ -19,16 +19,14 @@ def listeAffichageCaroussel(type=""):
     return Restaurant.objects.order_by('-note')[:NB_CARROUSEL]
 
 
-def update_note_moyenne_restaurant(nomRestaurant):
+def updateNoteMoyenneRestaurant(restaurant):
     """ Fonction de mise à jour de la note moyenne d'un restaurant passé en paramètres
 
     @param nomRestaurant: le nom du restaurant
     @return: /
     """
-    restaurant = Restaurant.objects.filter(nom=nomRestaurant)
-    if restaurant.count() != 0:
-        note = Avis.objects.filter(restaurant=restaurant[0]).aggregate(Avg("note"))
-        Restaurant.objects.filter(nom=nomRestaurant).update(note=note['note__avg'])
+    note = Avis.objects.filter(restaurant_fk=restaurant).aggregate(Avg("note"))
+    Restaurant.objects.filter(nom=restaurant.nom).update(note=round(note['note__avg'], 2))
 
 
 def listeAffichageDejaVisiter(user):
