@@ -151,6 +151,7 @@ def vueRestaurant(request, pk):
 def matteo(request):
     liste = listeAffichageCaroussel()
     print(liste)
+    print(listeAffichageDejaVisiter(Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]))
     return redirect('index')
 
 

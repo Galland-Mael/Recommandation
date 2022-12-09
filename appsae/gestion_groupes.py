@@ -30,6 +30,15 @@ def updateId_gerant(groupe,id):
     Groupe.objects.filter(idGroupe=groupe.idGroupe).update(id_gerant=id)
 
 
+def getGerant(groupe):
+    """ Renvoie l'utilisateur qui est gérant du groupe
+
+    @param groupe: le groupe
+    @return: l'utilisateur qui est gérant du groupe
+    """
+    return Groupe.objects.filter(idGroupe=groupe.idGroupe)[0]
+
+
 def updateNom(groupe, nom):
     """ Fonction de mise à jour du nom du groupe
 

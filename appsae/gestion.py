@@ -30,20 +30,12 @@ def update_note_moyenne_restaurant(nomRestaurant):
         note = Avis.objects.filter(restaurant=restaurant[0]).aggregate(Avg("note"))
         Restaurant.objects.filter(nom=nomRestaurant).update(note=note['note__avg'])
 
-def liste_avis(restaurant, num = 0):
-    """ Fonction pour renvoyer une liste d'avis 10 par 10,
-    si num vaut 0, on renvoie de 0 à 9 dans la liste des avis, etc...
 
-    @param restaurant: le restaurant où chercher les avis
-    @param num: le numero de la liste
-    @return:
+def listeAffichageDejaVisiter(user):
+    """ Renvoie une liste de taille max NB_CARROUSEL contenant les restaurants que l'utilisateur
+    a déjà noté, et qu'il a apprécié (note >= 3.5)
+
+    @param user: l'utilisateur
+    @return: une liste de restaurants
     """
-    avis = Avis.objects.filter(restaurant_fk=restaurant)
-    taille = avis.count()
-    taille_liste= 10 # Taille de la liste à prendre
-    if taille < num*taille_liste:
-        return []
-    elif taille >= (num + 1) *taille_liste:
-        return avis[num*taille_liste:(num + 1)*taille_liste]
-    elif taille < (num +1 ) *taille_liste:
-        return avis[num*taille_liste:taille]
+    return Avis.objects.filter(adherant_fk=user, note__gte=3.5)[:NB_CARROUSEL]
