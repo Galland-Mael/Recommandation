@@ -149,7 +149,7 @@ def vueRestaurant(request, pk):
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
 
 def matteo(request):
-    liste = listeAffichageCaroussel("français")
+    print(listeAffichageDejaVisiter(Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]))
     return redirect('index')
 
 
