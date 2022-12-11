@@ -159,16 +159,17 @@ def vueRestaurant(request, pk):
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
 
 def matteo(request):
-    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
+    #adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
+    adherant = ""
     resto = Restaurant.objects.filter(nom="Burger King")[0]
-    print(afficherAvis(adherant, resto))
+    #print(afficherAvis(adherant,resto))
     print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0], Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    print(listeAffichageAvis(resto, PAGE, adherant))
+    print(afficherVoirPlus(resto, PAGE, adherant))
     modifPAGE()
     print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0], Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    print(listeAffichageAvis(resto, PAGE, adherant))
+    print(afficherVoirPlus(resto, PAGE, adherant))
     modifPAGE()
     print("------------------------------------------------")
     return redirect('index')

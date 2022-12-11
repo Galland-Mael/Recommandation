@@ -1,4 +1,5 @@
 from .models import *
+from .gestion import *
 
 def ajoutAvis(user, restaurant, note, avis = ""):
     """ Ajout d'un avis à la base de données,
@@ -14,6 +15,7 @@ def ajoutAvis(user, restaurant, note, avis = ""):
         return False
     avis = Avis(adherant_fk=user, restaurant_fk=restaurant, note=note, texte=avis)
     avis.save()
+    updateNoteMoyenneRestaurant(restaurant)
     return True
 
 
@@ -28,7 +30,7 @@ def updateAvis(user, restaurant, note, avis):
     """
     if (avisExist(user, restaurant)):
         Avis.objects.filter(adherant_fk=user, restaurant_fk=restaurant).update(note=note, texte=avis)
-
+    updateNoteMoyenneRestaurant(restaurant)
 
 def deleteAvis(user, restaurant):
     """ Supprime l'avis de l'utilsateur user pour le restaurant
@@ -63,7 +65,7 @@ def afficherAvis(user, restaurant):
         return Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
     return None
 
-def listeAffichageAvis(restaurant, user, num = 0):
+def listeAffichageAvis(restaurant, num, user=""):
     """ Renvoie une liste d'avis 10 par 10 ne contenant pas l'avis de l'utilisateur user,
     si num vaut 0, on renvoie de 0 à 9 dans la liste des avis, etc...
 
@@ -73,16 +75,19 @@ def listeAffichageAvis(restaurant, user, num = 0):
     @return: une liste (QuerySet) d'avis
     """
     taille_list = 2
-    avis = Avis.objects.filter(restaurant_fk=restaurant).exclude(adherant_fk=user)
+    if user == "":
+        avis = Avis.objects.filter(restaurant_fk=restaurant)
+    else:
+        avis = Avis.objects.filter(restaurant_fk=restaurant).exclude(adherant_fk=user)
     return avis[num*taille_list:(num + 1)*taille_list]
 
 
-def afficherVoirPlus(restaurant, user, num):
+def afficherVoirPlus(restaurant, num, user=""):
     """Renvoie true s'il faut afficher le bouton "Voir Plus", false sinon
 
     @param restaurant: le restaurant concerné
-    @param user: l'utilisateur concerné
     @param num: le numéro de la page actuelle
+    @param user: l'utilisateur concerné
     @return: booléen en fonction de s'il faut afficher ou non "Voir Plus"
     """
-    return listeAffichageAvis(restaurant, user, num + 1).count() != 0
+    return listeAffichageAvis(restaurant, num + 1, user).count() != 0
