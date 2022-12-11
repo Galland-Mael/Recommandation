@@ -52,7 +52,7 @@ class Restaurant(models.Model):
     pays = models.CharField(max_length=50)
     etat = models.CharField(max_length=50, default='')
     telephone = models.CharField(max_length=10)
-    note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
+    note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(-1)], default=0)
     image_front = models.ImageField(upload_to='img_restaurant/')
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)

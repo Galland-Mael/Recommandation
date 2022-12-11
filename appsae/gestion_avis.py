@@ -1,4 +1,5 @@
 from .models import *
+from .gestion import *
 
 def ajoutAvis(user, restaurant, note, avis = ""):
     """ Ajout d'un avis à la base de données,
@@ -13,7 +14,9 @@ def ajoutAvis(user, restaurant, note, avis = ""):
     if (avisExist(user,restaurant)):
         return False
     avis = Avis(adherant_fk=user, restaurant_fk=restaurant, note=note, texte=avis)
-    avis.save()
+    avis.save(force_insert=True)
+    print(Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user))
+    updateNoteMoyenneRestaurant(restaurant)
     return True
 
 
@@ -28,6 +31,7 @@ def updateAvis(user, restaurant, note, avis):
     """
     if (avisExist(user, restaurant)):
         Avis.objects.filter(adherant_fk=user, restaurant_fk=restaurant).update(note=note, texte=avis)
+    updateNoteMoyenneRestaurant(restaurant)
 
 
 def deleteAvis(user, restaurant):
@@ -39,6 +43,7 @@ def deleteAvis(user, restaurant):
     """
     if (avisExist(user, restaurant)):
         Avis.objects.filter(adherant_fk=user, restaurant_fk=restaurant).delete()
+    updateNoteMoyenneRestaurant(restaurant)
 
 
 def avisExist(user, restaurant):
