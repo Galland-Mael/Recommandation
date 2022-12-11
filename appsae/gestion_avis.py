@@ -15,6 +15,7 @@ def ajoutAvis(user, restaurant, note, avis = ""):
         return False
     avis = Avis(adherant_fk=user, restaurant_fk=restaurant, note=note, texte=avis)
     avis.save()
+    print(Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user))
     updateNoteMoyenneRestaurant(restaurant)
     return True
 
@@ -32,6 +33,7 @@ def updateAvis(user, restaurant, note, avis):
         Avis.objects.filter(adherant_fk=user, restaurant_fk=restaurant).update(note=note, texte=avis)
     updateNoteMoyenneRestaurant(restaurant)
 
+
 def deleteAvis(user, restaurant):
     """ Supprime l'avis de l'utilsateur user pour le restaurant
 
@@ -41,6 +43,7 @@ def deleteAvis(user, restaurant):
     """
     if (avisExist(user, restaurant)):
         Avis.objects.filter(adherant_fk=user, restaurant_fk=restaurant).delete()
+    updateNoteMoyenneRestaurant(restaurant)
 
 
 def avisExist(user, restaurant):

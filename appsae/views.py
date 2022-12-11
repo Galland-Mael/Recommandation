@@ -159,6 +159,7 @@ def vueRestaurant(request, pk):
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
 
 def matteo(request):
+    '''
     #adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
     adherant = ""
     resto = Restaurant.objects.filter(nom="Burger King")[0]
@@ -172,6 +173,14 @@ def matteo(request):
     print(afficherVoirPlus(resto, PAGE, adherant))
     modifPAGE()
     print("------------------------------------------------")
+    '''
+    resto = Restaurant.objects.filter(nom="Burger King")[0]
+    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
+    print(Avis.objects.filter(adherant_fk=adherant, restaurant_fk=resto))
+    #ajoutAvis(adherant,resto,4,"carré")
+    #updateAvis(adherant, resto, 2, "pas ouf")
+    #deleteAvis(adherant, resto)
+    print(Avis.objects.filter(adherant_fk=adherant, restaurant_fk=resto))
     return redirect('index')
 
 
