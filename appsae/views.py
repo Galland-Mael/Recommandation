@@ -192,16 +192,8 @@ def export_ratings(request):
     f = open(file, "w")
     f.writelines("restaurant_id,user_id,note,timestamp")
     f.write('\n')
-    for ratings in Avis.objects.all():
-        dt = ratings.created_date
-        print(dt)
-        unix_dt = datetime.datetime.timestamp(dt) * 1000
-        print(unix_dt)
-        unix_str = str(unix_dt)
-        Avis.objects.filter(created_date=dt).update(unix_date=unix_str)
-
     for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note','unix_date'):
         f.write(str(rating)[1:-1])
         f.write('\n')
-    print(file)
+    print(file)s
     return redirect('index')
