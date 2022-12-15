@@ -15,6 +15,7 @@ class Adherant(models.Model):
     mail = models.EmailField(max_length=254)
     birthDate = models.DateField("Date", default=datetime.date.today())
     pseudo = models.CharField(max_length=20)
+    nb_review = models.IntegerField(default=0)
     password = models.CharField(max_length=20)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
 
@@ -56,8 +57,11 @@ class Restaurant(models.Model):
     zip_code = models.CharField(max_length=50, default='')
     pays = models.CharField(max_length=50)
     etat = models.CharField(max_length=50, default='')
+    longitude = models.CharField(max_length=70, default='')
+    latitude = models.CharField(max_length=70, default='')
     telephone = models.CharField(max_length=10)
     note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(-1)], default=0)
+    nb_review = models.IntegerField(default=0)
     image_front = models.ImageField(upload_to='img_restaurant/')
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)
@@ -92,16 +96,9 @@ class Horaire(models.Model):
 class Avis(models.Model):
     note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)],default=0)
     texte = models.CharField(max_length=1000, default=" ")
-    created_date = models.DateTimeField(default=datetime.datetime.now(), blank=True)
-    unix_date = models.CharField(max_length=1000, default="")
+    unix_date = models.CharField(max_length=1000, default=datetime.datetime.timestamp(datetime.datetime.now()))
     restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     adherant_fk = models.ForeignKey(Adherant, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'Avis'
-        constraints = [
-            models.UniqueConstraint(fields=['restaurant_fk', 'adherant_fk'], name='unique avis')
-        ]
 
     def __str__(self):
         return str(self.restaurant_fk) + " - " + str(self.adherant_fk)
