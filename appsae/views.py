@@ -7,6 +7,23 @@ import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
 from django.conf import settings
 from django.utils.dateformat import format
+from surprise import KNNBasic
+from surprise import Dataset
+from surprise import Reader
+from django.conf import settings
+
+from collections import defaultdict
+from operator import itemgetter
+import heapq
+
+import os
+import csv
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "appsae.settings")
+
+import django
+
+django.setup()
 
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
@@ -34,6 +51,7 @@ PAGE = 0
 def modifPAGE():
     global PAGE
     PAGE += 1
+
 
 def register(request):
     if request.method == "POST":
@@ -133,6 +151,7 @@ def recommandation():
         list.append(restaurant[i]);
     return list
 
+
 '''Fonction qui detruit la session et redirige sur la page index'''
 
 
@@ -155,8 +174,9 @@ def search(request):
 def vueRestaurant(request, pk):
     print("vuerestaurant")
     restaurant = Restaurant.objects.filter(pk=pk)
-    imgRestaurants=ImageRestaurant.objects.filter
+    imgRestaurants = ImageRestaurant.objects.filter
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
+
 
 def matteo(request):
     adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
@@ -164,11 +184,13 @@ def matteo(request):
     print(afficherAvis(adherant, resto))
     print("------------------------------------------------")
     print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0], Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
+                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
     modifPAGE()
     print("------------------------------------------------")
     print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0], Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
+                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
     modifPAGE()
     print("------------------------------------------------")
     return redirect('index')
@@ -179,7 +201,6 @@ def export_restaurant(request):
     f = open(file, "w")
     f.writelines("id ,nom ,pays, telephone ,image_front ,note")
     f.write('\n')
-
     for restaurant in Restaurant.objects.all().values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note'):
         f.write(str(restaurant)[1:-1])
         f.write('\n')
@@ -192,8 +213,117 @@ def export_ratings(request):
     f = open(file, "w")
     f.writelines("restaurant_id,user_id,note,timestamp")
     f.write('\n')
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note','unix_date'):
+    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note', 'unix_date'):
         f.write(str(rating)[1:-1])
         f.write('\n')
-    print(file)s
+    print(file)
+    return redirect('index')
+
+
+def setImg(request):
+    i = 0
+    y = 0
+    for restaurant in Restaurant.objects.all():
+        y = y % 4
+        if y == 0:
+            print("insertion img front"'\n')
+            restaurant.image_front = '/img_restaurant/imagefront1.jpg'
+            restaurant.save()
+        elif y == 1:
+            print("insertion img front"'\n')
+            restaurant.image_front = '/img_restaurant/imagefront2.jpg'
+            restaurant.save()
+        elif y == 2:
+            print("insertion img front"'\n')
+            restaurant.image_front = '/img_restaurant/imagefront3.jpg'
+            restaurant.save()
+        elif y == 3:
+            print("insertion img front"'\n')
+            restaurant.image_front = '/img_restaurant/imagefront4.jpg'
+            restaurant.save()
+        y += 1
+        i = i % 12
+        print("insertion liste img"'\n')
+        imgset = ImageRestaurant.objects.all()
+        restaurant.img.add(imgset[i])
+        i += 1
+        restaurant.img.add(imgset[i])
+        i += 1
+        restaurant.img.add(imgset[i])
+        i += 1
+        restaurant.img.add(imgset[i])
+        i += 1
+    return redirect('index')
+
+
+def recommandation(request):
+    def load_dataset():
+        file = str(settings.BASE_DIR) + '/' + "ratings.csv"
+        reader = Reader(line_format='user item rating timestamp', sep=',', skip_lines=1)
+        ratings_dataset = Dataset.load_from_file(file, reader=reader)
+
+        # Lookup a movie's name with it's Movielens ID as key
+        restaurantID_to_name = {}
+        file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
+        with open(file, newline='', encoding='ISO-8859-1') as csvfile:
+            restaurant_reader = csv.reader(csvfile)
+            next(restaurant_reader)
+            for row in restaurant_reader:
+                restaurantID = int(row[0])
+                restaurant_name = row[1]
+                restaurantID_to_name[restaurantID] = restaurant_name
+        # Return both the dataset and lookup dict in tuple
+        return (ratings_dataset, restaurantID_to_name)
+
+    dataset, restaurantID_to_name = load_dataset()
+
+    # Build a full Surprise training set from dataset
+    trainset = dataset.build_full_trainset()
+
+    similarity_matrix = KNNBasic(sim_options={
+        'name': 'cosine',
+        'user_based': False
+    }) \
+        .fit(trainset) \
+        .compute_similarities()
+
+    test_subject = '500'
+
+    k = 1
+
+    test_subject_iid = trainset.to_inner_uid(test_subject)
+    test_subject_ratings = trainset.ur[test_subject_iid]
+    k_neighbors = heapq.nlargest(k, test_subject_ratings, key=lambda t: t[1])
+
+    candidates = defaultdict(float)
+
+    for itemID, rating in k_neighbors:
+        try:
+            similaritities = similarity_matrix[itemID]
+            for innerID, score in enumerate(similaritities):
+                candidates[innerID] += score * (rating / 5.0)
+        except:
+            continue
+
+    def getRestaurantName(RestaurantID):
+        if int(RestaurantID) in restaurantID_to_name:
+            return restaurantID_to_name[int(RestaurantID)]
+        else:
+            return ""
+
+    visited = {}
+    for itemID, rating in trainset.ur[test_subject_iid]:
+        visited[itemID] = 1
+        recommendations = []
+
+        position = 0
+        for itemID, rating_sum in sorted(candidates.items(), key=itemgetter(1), reverse=True):
+            if not itemID in visited:
+                recommendations.append(getRestaurantName(trainset.to_raw_iid(itemID)))
+                position += 1
+                if (position > 10): break  # We only want top 10
+
+        for rec in recommendations:
+            print("Restaurant: ", rec)
+
     return redirect('index')
