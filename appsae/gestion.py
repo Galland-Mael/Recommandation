@@ -1,5 +1,4 @@
 from .models import *
-from django.db.models import Avg
 
 NB_CARROUSEL = 10
 
@@ -19,18 +18,29 @@ def listeAffichageCaroussel(type=""):
     return Restaurant.objects.order_by('-note')[:NB_CARROUSEL]
 
 
-def updateNoteMoyenneRestaurant(restaurant):
-    """ Fonction de mise à jour de la note moyenne d'un restaurant passé en paramètres
+def listeAffichageCarrouselVilles(ville="", type=""):
+    """ Renvoie les meilleurs restaurants selon le type de restaurant et la ville donnés en paramètres,
+    s'il n'y a pas de de ville et de filtre, on renvoit les meilleurs restaurants de la base de données,
+    s'il n'y a pas de ville mais un filtre, on renvoit les meilleurs restaurants de la base de données avec le filtre
+    s'il y a une ville mais pas de filtre, on renvoit les meilleurs restaurants dans la ville donnée,
+    s'il y a une ville et un filtre, on renvoit les meilleurs restaurants avec le filtre et dans la ville donnée
 
-    @param nomRestaurant: le nom du restaurant
-    @return: /
+    @param ville: la ville concernée
+    @param type: le type de restaurant recherché
+    @return:
     """
-    avis_resto = Avis.objects.filter(restaurant_fk=restaurant)
-    if avis_resto.count() != 0:
-        note = avis_resto.aggregate(Avg("note"))
-        Restaurant.objects.filter(nom=restaurant.nom).update(note=round(note['note__avg'], 2))
-    else:
-        Restaurant.objects.filter(nom=restaurant.nom).update(note=-1)
+    if type != "":
+        type_restaurant = RestaurantType.objects.filter(nom=type.lower())  # on stock le type de restaurant correspondant au filtre
+        if type_restaurant.count() == 0: # si il n'y a pas de type avec ce nom on arête la fonction
+                return []
+
+        if ville != "":
+            return Restaurant.objects.filter(ville=ville, type=type_restaurant[0]).order_by('-note')[:NB_CARROUSEL]
+        else:
+            return Restaurant.objects.filter(type=type_restaurant[0]).order_by('-note')[:NB_CARROUSEL]
+    if ville != "" and type == "":
+        return Restaurant.objects.filter(ville=ville).order_by('-note')[:NB_CARROUSEL]
+    return Restaurant.objects.order_by('-note')[:NB_CARROUSEL]
 
 
 def listeAffichageDejaVisiter(user):
@@ -41,4 +51,3 @@ def listeAffichageDejaVisiter(user):
     @return: une liste de restaurants
     """
     return Avis.objects.filter(adherant_fk=user, note__gte=3.5)[:NB_CARROUSEL]
-

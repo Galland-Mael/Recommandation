@@ -22,8 +22,11 @@ from .gestion import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
 from .gestion_avis import *
+from .gestion_note import *
+from .recommandation_groupe import *
 import datetime
 import time
+import random
 from surprise import KNNBasic
 from surprise import Dataset
 from surprise import Reader
@@ -34,6 +37,7 @@ PAGE = 0
 def modifPAGE():
     global PAGE
     PAGE += 1
+
 
 def register(request):
     if request.method == "POST":
@@ -158,30 +162,14 @@ def vueRestaurant(request, pk):
     imgRestaurants=ImageRestaurant.objects.filter
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
 
+
 def matteo(request):
-    '''
-    #adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
-    adherant = ""
-    resto = Restaurant.objects.filter(nom="Burger King")[0]
-    #print(afficherAvis(adherant,resto))
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, PAGE, adherant))
-    print(afficherVoirPlus(resto, PAGE, adherant))
-    modifPAGE()
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, PAGE, adherant))
-    print(afficherVoirPlus(resto, PAGE, adherant))
-    modifPAGE()
-    print("------------------------------------------------")
-    '''
-    resto = Restaurant.objects.filter(nom="Burger King")[0]
-    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
-    print(Avis.objects.filter(adherant_fk=adherant, restaurant_fk=resto))
-    #ajoutAvis(adherant,resto,4,"carré")
-    #updateAvis(adherant, resto, 2, "pas ouf")
-    #deleteAvis(adherant, resto)
-    print(Avis.objects.filter(adherant_fk=adherant, restaurant_fk=resto))
-    return redirect('index')
+    gp = Groupe.objects.get(idGroupe=1222) # idGroupe=623
+    start = time.time()
+    print(recommandationGroupeAvisGroupeComplet(gp, "Philadelphia")[:25])
+    print(time.time() - start)
+
+    return HttpResponse('')
 
 
 def export_restaurant(request):
