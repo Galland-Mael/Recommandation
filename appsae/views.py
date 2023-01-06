@@ -199,11 +199,11 @@ def matteo(request):
 def export_restaurant(request):
     file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
     f = open(file, "w")
-    f.writelines("id ,nom ,pays, telephone ,image_front ,note")
+    f.writelines("id ,nom ,pays, telephone ,image_front ,note, ville ")
     f.write('\n')
-    for restaurant in Restaurant.objects.all().values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note'):
-        f.write(str(restaurant)[1:-1])
-        f.write('\n')
+    for restaurant in Restaurant.objects.all().filter(ville='Tucson').values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note', 'ville'):
+            f.write(str(restaurant)[1:-1])
+            f.write('\n')
     print(file)
     return redirect('index')
 

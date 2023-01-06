@@ -2,22 +2,18 @@ from surprise import KNNBasic
 from surprise import Dataset
 from surprise import Reader
 from django.conf import settings
-
 from collections import defaultdict
 from operator import itemgetter
 import heapq
-
 import os
 import csv
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "appsae.settings")
 
-import django
-django.setup()
 
 
 def load_dataset():
-    file = str(settings.BASE_DIR) + '/' + "ratingsmovies.csv"
+    file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     reader = Reader(line_format='user item rating timestamp', sep=',', skip_lines=1)
     ratings_dataset = Dataset.load_from_file(file, reader=reader)
 
@@ -47,9 +43,9 @@ similarity_matrix = KNNBasic(sim_options={
         .fit(trainset)\
         .compute_similarities()
 
-test_subject = '500'
+test_subject = '50'
 
-k = 1
+k = 10
 
 test_subject_iid = trainset.to_inner_uid(test_subject)
 test_subject_ratings = trainset.ur[test_subject_iid]
