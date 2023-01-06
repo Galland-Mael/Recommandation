@@ -164,9 +164,9 @@ def vueRestaurant(request, pk):
 
 
 def matteo(request):
-    gp = Groupe.objects.get(idGroupe=1222) # idGroupe=623
+    # gp = Groupe.objects.get(idGroupe=1222) # idGroupe=623
     start = time.time()
-    print(recommandationGroupeAvisGroupeComplet(gp, "Philadelphia")[:25])
+    # print(recommandationGroupeAvisGroupeComplet(gp, "Philadelphia")[:25])
     print(time.time() - start)
 
     return HttpResponse('')
