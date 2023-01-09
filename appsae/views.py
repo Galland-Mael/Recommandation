@@ -11,7 +11,6 @@ from surprise import KNNBasic
 from surprise import Dataset
 from surprise import Reader
 from django.conf import settings
-
 from collections import defaultdict
 from operator import itemgetter
 import heapq
@@ -35,6 +34,7 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
+from .recommendation import *
 from .gestion import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
@@ -97,6 +97,7 @@ def login(request):
 
 def index(request):
     liste = carrousel();
+    Restaurant.objects.filter(nom="Eleven Cafē").delete()
     return render(request, 'index/index.html', {'list': liste})
 
 
@@ -132,7 +133,7 @@ def randomValue():
 
 def meilleurs_resto(request):
     ''' Renvoie les restaurants les mieux notés '''
-    liste = carrousel();
+    liste = listeAffichageCaroussel();
     return render(request, 'testMatteo.html', {'list': liste});
 
 
@@ -196,12 +197,18 @@ def matteo(request):
     return redirect('index')
 
 
+def recommendation(request):
+    start = time.time()
+    finalRecommendation()
+    print(time.time() - start)
+    return HttpResponse('')
+
 def export_restaurant(request):
     file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
     f = open(file, "w")
     f.writelines("id ,nom ,pays, telephone ,image_front ,note, ville ")
     f.write('\n')
-    for restaurant in Restaurant.objects.all().filter(ville='Tucson').values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note', 'ville'):
+    for restaurant in Restaurant.objects.all().filter(ville='Philadelphia').values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note', 'ville'):
             f.write(str(restaurant)[1:-1])
             f.write('\n')
     print(file)
@@ -256,74 +263,7 @@ def setImg(request):
     return redirect('index')
 
 
-def recommandation(request):
-    def load_dataset():
-        file = str(settings.BASE_DIR) + '/' + "ratings.csv"
-        reader = Reader(line_format='user item rating timestamp', sep=',', skip_lines=1)
-        ratings_dataset = Dataset.load_from_file(file, reader=reader)
-
-        # Lookup a movie's name with it's Movielens ID as key
-        restaurantID_to_name = {}
-        file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
-        with open(file, newline='', encoding='ISO-8859-1') as csvfile:
-            restaurant_reader = csv.reader(csvfile)
-            next(restaurant_reader)
-            for row in restaurant_reader:
-                restaurantID = int(row[0])
-                restaurant_name = row[1]
-                restaurantID_to_name[restaurantID] = restaurant_name
-        # Return both the dataset and lookup dict in tuple
-        return (ratings_dataset, restaurantID_to_name)
-
-    dataset, restaurantID_to_name = load_dataset()
-
-    # Build a full Surprise training set from dataset
-    trainset = dataset.build_full_trainset()
-
-    similarity_matrix = KNNBasic(sim_options={
-        'name': 'cosine',
-        'user_based': False
-    }) \
-        .fit(trainset) \
-        .compute_similarities()
-
-    test_subject = '500'
-
-    k = 1
-
-    test_subject_iid = trainset.to_inner_uid(test_subject)
-    test_subject_ratings = trainset.ur[test_subject_iid]
-    k_neighbors = heapq.nlargest(k, test_subject_ratings, key=lambda t: t[1])
-
-    candidates = defaultdict(float)
-
-    for itemID, rating in k_neighbors:
-        try:
-            similaritities = similarity_matrix[itemID]
-            for innerID, score in enumerate(similaritities):
-                candidates[innerID] += score * (rating / 5.0)
-        except:
-            continue
-
-    def getRestaurantName(RestaurantID):
-        if int(RestaurantID) in restaurantID_to_name:
-            return restaurantID_to_name[int(RestaurantID)]
-        else:
-            return ""
-
-    visited = {}
-    for itemID, rating in trainset.ur[test_subject_iid]:
-        visited[itemID] = 1
-        recommendations = []
-
-        position = 0
-        for itemID, rating_sum in sorted(candidates.items(), key=itemgetter(1), reverse=True):
-            if not itemID in visited:
-                recommendations.append(getRestaurantName(trainset.to_raw_iid(itemID)))
-                position += 1
-                if (position > 10): break  # We only want top 10
-
-        for rec in recommendations:
-            print("Restaurant: ", rec)
-
-    return redirect('index')
+def suppVille():
+    listVilles = ["Philadelphia","Tampa","Indianapolis","Nashville","Tucson","New Orleans","Edmonton","Saint Louis","Reno",
+                  "Saint Petersburg","Boise", "Santa Barbara","Clearwater","Wilmington","St. Louis","Metairie","Franklin"]
+    Restaurant.objects.all().exclude(ville__in=listVilles).delete()
