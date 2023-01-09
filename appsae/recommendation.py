@@ -19,7 +19,7 @@ def load_dataset():
 
     # Lookup a movie's name with it's Movielens ID as key
     restaurantID_to_name = {}
-    file = str(settings.BASE_DIR) + '/' + "movies.csv"
+    file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
     with open(file, newline='', encoding='ISO-8859-1') as csvfile:
             restaurant_reader = csv.reader(csvfile)
             next(restaurant_reader)
@@ -43,7 +43,7 @@ similarity_matrix = KNNBasic(sim_options={
         .fit(trainset)\
         .compute_similarities()
 
-test_subject = '50'
+test_subject = '339825'
 
 k = 10
 
