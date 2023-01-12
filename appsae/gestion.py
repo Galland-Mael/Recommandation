@@ -2,6 +2,12 @@ from .models import *
 
 NB_CARROUSEL = 10
 
+def connect(request,context):
+    if 'mailUser' in request.session:
+        user = Adherant.objects.get(mail=request.session['mailUser'])
+        context['mail'] = request.session['mailUser']
+        context['photo'] = user.profile_picture.url
+    return context
 
 def listeAffichageCaroussel(type=""):
     """ Renvoie les meilleurs restaurants selon le type de restaurant donné en paramètres,

@@ -80,7 +80,7 @@ def creationGroupe(nom, user):
     @return: /
     """
     # A faire : gérer l'id Groupe
-    gp = Groupe(nom_groupe=nom, id_gerant=user.id_yelp, idGroupe=10)
+    gp = Groupe(nom_groupe=nom, id_gerant=user.id_yelp)
     gp.save()
     gp.liste_adherants.add(user)
 

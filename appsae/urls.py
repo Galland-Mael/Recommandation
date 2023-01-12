@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-
-from .views import *
+from appsae.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -12,12 +11,22 @@ urlpatterns = [
     path('modifuser/', modifUser, name='modifUser'),
     path('verificationEmail/', verificationEmail, name='verificationEmail'),
     path('', index, name='index'),
+    path('carrousel/', meilleurs_resto, name='meilleurs_resto'),
     path('logout/', logoutUser, name='logout'),
-    path('matteo/', matteo, name='matteo'),
+    path('addCommentaires/(<pk>)', addCommentaires, name='addCommentaires'),
     path('vueRestaurant/(<pk>)', vueRestaurant, name='vueRestaurant'),
     path('search/', search, name='search'),
+    path('addUser/(<user>)', addUser, name='addUser'),
+    path('removeUser/(<user>)', removeUser, name='removeUser'),
+    path('searchUser/', searchUser, name='searchUser'),
     path('export_restaurant/', export_restaurant, name='export'),
     path('export_ratings/', export_ratings, name='export'),
+    path('voirPlus/(<pk>)', voirPlus, name='voirPlus'),
+    path('groupe/', groupe, name='groupe'),
+    path('creationGroup/',creationGroup,name='creationGroup'),
+    path('nomGroup/',nomGroup,name='nomGroup'),
+    path('createGroupe/',createGroupe,name='createGroupe'),
+    path('createGroup/', createGroup, name='createGroup'),
 ]
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
