@@ -25,6 +25,7 @@ import datetime
 
 
 def register(request):
+    print(request.POST)
     if request.method == "POST":
         '''Remplissage de la base de données'''
         form = AdherantForm(request.POST).save()
@@ -60,6 +61,7 @@ def login(request):
                 'birthDate': user.birthDate,
                 'pseudo': user.pseudo,
                 'photo': user.profile_picture.url,
+                'ville': user.ville,
                 'list': carrousel()
             }
             return render(request, 'index/index.html', context)
