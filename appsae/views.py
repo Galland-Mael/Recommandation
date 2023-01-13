@@ -78,8 +78,10 @@ def login(request):
 
 
 def index(request):
-    exemple()
-    liste = carrousel();
+    list=getFirstElement()
+
+    print(list[8])
+    liste = carrousel()
     return render(request, 'index/index.html', {'list': liste})
 
 
@@ -209,17 +211,17 @@ def export_ratings(request):
 
 import csv
 
-def exemple():
-   fichier = open("C:/Users/alhdv/Downloads/patronymes.csv","r")
-   cr = csv.reader( fichier,delimiter=",")
-   for row in cr:
-       texte = str(row)
-       print(texte)
 
-   fichier.close()
+def getFirstElement():
+    liste = []
+    fichier = open("C:/Users/alhdv/Downloads/patronymes.csv","r")
+    cr = csv.reader( fichier,delimiter=",")
+    for row in cr:
+       liste.append(row[0])
+    fichier.close()
+    return liste
 
-   # fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", 'w')
-   # cw = csv.writer(fichier, delimiter=';')
-   # for i in range(0, 3):
-   #    cw.writerow( [i, i+1, i+2] )
-   # fichier.close()
+def insert_nom():
+    liste = getFirstElement()
+    obj=Adherant.objects.all()
+
