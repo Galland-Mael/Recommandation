@@ -24,6 +24,7 @@ urlpatterns = [
     path('voirPlus/(<pk>)', voirPlus, name='voirPlus'),
     path('groupe/', groupe, name='groupe'),
     path('creationGroup/', creationGroup, name='creationGroup'),
+    path('groupePage/', groupePage, name='groupePage'),
     path('nomGroup/', nomGroup, name='nomGroup'),
     path('createGroupe/', createGroupe, name='createGroupe'),
     path('recommandation/', recommandation, name='recommandation'),

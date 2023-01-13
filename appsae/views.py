@@ -254,7 +254,7 @@ def login(request):
 
 
 def index(request):
-    liste = carrousel();
+    liste = listeAffichageCaroussel();
     return render(request, 'index/index.html', {'list': liste})
 
 
