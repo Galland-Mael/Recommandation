@@ -23,10 +23,12 @@ urlpatterns = [
     path('export_ratings/', export_ratings, name='export'),
     path('voirPlus/(<pk>)', voirPlus, name='voirPlus'),
     path('groupe/', groupe, name='groupe'),
-    path('creationGroup/',creationGroup,name='creationGroup'),
-    path('nomGroup/',nomGroup,name='nomGroup'),
-    path('createGroupe/',createGroupe,name='createGroupe'),
-    path('groupePage/', groupePage, name='groupePage'),
+    path('creationGroup/', creationGroup, name='creationGroup'),
+    path('nomGroup/', nomGroup, name='nomGroup'),
+    path('createGroupe/', createGroupe, name='createGroupe'),
+    path('recommandation/', recommandation, name='recommandation'),
+    path('setImg/', setImg, name='setImg'),
+    path('recommendation', recommendation,name='recommendation')
 ]
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

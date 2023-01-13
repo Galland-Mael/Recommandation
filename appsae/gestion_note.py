@@ -47,3 +47,31 @@ def suppressionAvis(user, restaurant):
     """
     Avis.objects.get(restaurant_fk=restaurant, adherant_fk=user).delete()
     updateNoteMoyenneRestaurant(restaurant)
+
+def supplettreUTF():
+    """
+
+    @return:
+    """
+    for resto in Restaurant.objects.all():
+        nouveau_nom = testNomUTF(resto.nom)
+        if (nouveau_nom != resto.nom):
+            Restaurant.objects.filter(id_yelp=resto.id_yelp).update(nom=nouveau_nom)
+
+
+def testNomUTF(nom):
+    """
+
+    @param nom:
+    @return:
+    """
+    list = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789&'-_+/:,*²#|!?°. "
+    nouveau_nom = ""
+    for lettre in nom:
+        if lettre in list:
+            nouveau_nom += lettre
+        elif lettre in 'éèê':
+            nouveau_nom += 'e'
+        elif lettre in 'ÉÈ':
+            nouveau_nom += 'E'
+    return nouveau_nom
