@@ -58,7 +58,7 @@ def search(request):
 
 def groupe(request):
     user = Adherant.objects.get(mail=request.session['mailUser'])
-    list = Groupe.objects.filter(id_gerant=user.id)
+    list = Groupe.objects.filter(id_gerant=user.pk)
     context = {
         'listGroupe': list
     }
@@ -98,7 +98,9 @@ def createGroupe(request):
     for user in Adherant.objects.filter(mail__in=request.session['groupe']):
         ajoutUtilisateurGroupe(user,groupe)
     user = Adherant.objects.get(mail=request.session['mailUser'])
-    list = Groupe.objects.filter(id_gerant=user.id)
+
+    list = Groupe.objects.filter(id_gerant=user.pk)
+    print(list)
     context = {
         'groupe': Adherant.objects.filter(mail__in=request.session['groupe']),
         'nomGroup': request.POST['nomGroupe'],
