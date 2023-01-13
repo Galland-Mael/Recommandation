@@ -23,7 +23,6 @@ from surprise.model_selection import cross_validate
 import chart_studio
 import os
 import csv
-
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.encoding import smart_str
@@ -36,6 +35,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .recommendation import *
 from .gestion import *
+from .gestion_note import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
 from .gestion_avis import *
@@ -280,7 +280,7 @@ def login(request):
 
 def index(request):
     liste = carrousel();
-    Restaurant.objects.filter(nom="Eleven Cafē").delete()
+    supplettreUTF()
     return render(request, 'index/index.html', {'list': liste})
 
 
