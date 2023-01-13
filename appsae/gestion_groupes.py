@@ -1,7 +1,7 @@
 from .models import *
 
 
-def ajout_utilisateur(user, groupe):
+def ajoutUtilisateurGroupe(user, groupe):
     """ Ajout d'un utilisateur au groupe
 
     @param user: l'utilisateur à ajouter
@@ -49,7 +49,7 @@ def updateNom(groupe, nom):
     Groupe.objects.filter(idGroupe=groupe.idGroupe).update(nom_groupe=nom)
 
 
-def suppression_utilisateur(user, groupe):
+def suppressionUtilisateur(user, groupe):
     """ Suppression d'un utilisateur au groupe
     Si il n'y a qu'un utilisateur dans le groupe, le groupe est supprimé,
     Si le gérant est supprimé du groupe on donne l'id_gerant au premier utilisateur
@@ -60,18 +60,18 @@ def suppression_utilisateur(user, groupe):
     @param groupe: le groupe dans lequel supprimer l'utilisateur
     @return:/
     """
-    if user.id == groupe.id_gerant:
+    if user.id_yelp == groupe.id_gerant:
         if groupe.liste_adherants.count() == 1:
             groupe.delete()
         else:
             groupe.liste_adherants.remove(user)
             new_gerant = groupe.liste_adherants.all()[0]
-            updateId_gerant(groupe, new_gerant.id)
+            updateId_gerant(groupe, new_gerant.id_yelp)
     else:
         groupe.liste_adherants.remove(user)
 
 
-def creation_groupe(nom, user):
+def creationGroupe(nom, user):
     """ Création d'un groupe à partir de l'utilisateur user, user sera le
     gérant du groupe
 
@@ -80,12 +80,12 @@ def creation_groupe(nom, user):
     @return: /
     """
     # A faire : gérer l'id Groupe
-    gp = Groupe(nom_groupe=nom, id_gerant=user.id, idGroupe=10)
+    gp = Groupe(nom_groupe=nom, id_gerant=user.id_yelp)
     gp.save()
     gp.liste_adherants.add(user)
 
 
-def listeGroupe(groupe):
+def getListeAdherantsGroupe(groupe):
     """ Renvoie la liste des utilisateurs présents dans le groupe
 
     @param groupe: le groupe
