@@ -195,33 +195,6 @@ def addCommentaires(request, pk):
     return render(request, 'restaurants/vueRestaurant.html', context)
 
 
-def export_restaurant(request):
-    file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
-    f = open(file, "w")
-    f.writelines("id ,nom ,pays, telephone ,image_front ,note")
-    f.write('\n')
-
-    for restaurant in Restaurant.objects.all().values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note'):
-        f.write(str(restaurant))
-        f.write('\n')
-    print(file)
-    return redirect('index')
-
-
-def export_ratings(request):
-    file = str(settings.BASE_DIR) + '/' + "ratings.csv"
-    f = open(file, "w")
-    f.writelines("restaurant_id,user_id,note")
-    f.write('\n')
-
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note'):
-        f.write(str(rating))
-        f.write('\n')
-    print(file)
-    return redirect('index')
-
-
-
 def voirPlus(request, pk):
     context = {
         'avis': listeAffichageAvis(Restaurant.objects.get(pk=pk), 1),
@@ -229,7 +202,6 @@ def voirPlus(request, pk):
     if (afficherVoirPlus(Restaurant.objects.get(pk=pk), 1)):
         context['endAvis'] = True
     return render(request, 'avis/moreAvis.html', context)
-
 
 
 def register(request):
@@ -280,7 +252,6 @@ def login(request):
 
 def index(request):
     liste = carrousel();
-    supplettreUTF()
     return render(request, 'index/index.html', {'list': liste})
 
 
@@ -375,14 +346,16 @@ def recommendation(request):
     start = time.time()
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
-    reader = Reader(rating_scale=(1, 5))
+    restaurant_metadata.info()
+    ratings_data.info()
+    """reader = Reader(rating_scale=(1, 5))
     data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
     svd = SVD(verbose=True, n_epochs=10, n_factors=100)
     cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=True)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    print(svd.predict(uid=397784, iid=7859))  # uid user id iid item id
-    #generate_recommendation(397784, svd, restaurant_metadata)
+    print(svd.predict(uid=397784, iid=7859))  # uid user id iid item id"""
+    # generate_recommendation(397784, svd, restaurant_metadata)
     print(time.time() - start)
     return HttpResponse('')
 
@@ -412,9 +385,9 @@ def export_ratings(request):
     f = open(file, "w")
     f.writelines("user_id,restaurant_id,note,timestamp")
     f.write('\n')
-    for rating in Avis.objects.all().values_list('adherant_fk','restaurant_fk','note', 'unix_date'):
-        f.write(str(rating)[1:-1])
-        f.write('\n')
+    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note', 'unix_date'):
+            f.write(str(rating)[1:-1])
+            f.write('\n')
     print(file)
     return redirect('index')
 
