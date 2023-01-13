@@ -78,6 +78,7 @@ def login(request):
 
 
 def index(request):
+    exemple()
     liste = carrousel();
     return render(request, 'index/index.html', {'list': liste})
 
@@ -205,3 +206,20 @@ def export_ratings(request):
         f.write('\n')
     print(file)
     return redirect('index')
+
+import csv
+
+def exemple():
+   fichier = open("C:/Users/alhdv/Downloads/patronymes.csv","r")
+   cr = csv.reader( fichier,delimiter=",")
+   for row in cr:
+       texte = str(row)
+       print(texte)
+
+   fichier.close()
+
+   # fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", 'w')
+   # cw = csv.writer(fichier, delimiter=';')
+   # for i in range(0, 3):
+   #    cw.writerow( [i, i+1, i+2] )
+   # fichier.close()
