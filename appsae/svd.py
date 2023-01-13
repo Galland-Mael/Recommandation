@@ -24,8 +24,7 @@ def get_restaurant_info(restaurant_id, metadata):
     Returns some basic information about a book given the book id and the metadata dataframe.
     """
 
-    restaurant_info = metadata[metadata['id'] == restaurant_id][['id', 'nom',
-                                                     'type']]
+    restaurant_info = metadata[metadata['id'] == restaurant_id][['id', 'nom']]
     return restaurant_info.to_dict(orient='records')
 
 
@@ -39,7 +38,7 @@ def predict_review(user_id, restaurant_name, model, metadata):
     return review_prediction.est
 
 
-def generate_recommendation(user_id, model, metadata, thresh=4):
+def generate_recommendation(user_id, model, metadata, thresh=3.):
     """
     Generates a book recommendation for a user based on a rating threshold. Only
     books with a predicted rating at or above the threshold will be recommended

@@ -348,14 +348,16 @@ def recommendation(request):
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
     restaurant_metadata.info()
     ratings_data.info()
-    """reader = Reader(rating_scale=(1, 5))
+    reader = Reader(rating_scale=(1, 5))
     data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
     svd = SVD(verbose=True, n_epochs=10, n_factors=100)
     cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=True)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    print(svd.predict(uid=397784, iid=7859))  # uid user id iid item id"""
-    # generate_recommendation(397784, svd, restaurant_metadata)
+    print(svd.predict(uid=339825, iid=7859))  # uid user id iid item id
+    print(generate_recommendation(339825, svd, restaurant_metadata))
+    print(generate_recommendation(339825, svd, restaurant_metadata))
+    print(generate_recommendation(339825, svd, restaurant_metadata))
     print(time.time() - start)
     return HttpResponse('')
 
@@ -363,7 +365,7 @@ def recommendation(request):
 def export_restaurant(request):
     file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
     f = open(file, "w")
-    f.writelines("id ,nom, genre ")
+    f.writelines("id;nom;genre")
     f.write('\n')
     for restaurant in Restaurant.objects.filter(ville='Philadelphia'):
         f.write(str(restaurant.pk))
