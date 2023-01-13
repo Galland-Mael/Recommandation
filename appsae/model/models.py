@@ -13,8 +13,6 @@ class Adherant(models.Model):
     password = models.CharField(max_length=20)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
     ville = models.CharField(max_length=100, default="none")
-    def __str__(self):
-        return self.mail
 
 
 class Groupe(models.Model):

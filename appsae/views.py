@@ -27,8 +27,19 @@ import datetime
 def register(request):
     print(request.POST)
     if request.method == "POST":
+        user=request.POST
+        print(user)
         '''Remplissage de la base de données'''
-        form = AdherantForm(request.POST).save()
+        obj = Adherant.objects.create(
+            prenom=user['prenom'],
+            nom=user['nom'],
+            pseudo=user['pseudo'],
+            ville=user['ville'],
+            mail=user['mail'],
+            birthDate=user['birthDate'],
+            password=user['password']
+        )
+        obj.save()
         return redirect('login')
     form = AdherantForm()
     context = {
