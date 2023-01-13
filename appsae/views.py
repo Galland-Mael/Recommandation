@@ -55,10 +55,30 @@ def search(request):
         }
     return render(request, 'restaurants/searchRestaurants.html', context)
 
+def createGroupe(request):
+    groupe = creationGroupe(request.POST['nomGroupe'], Adherant.objects.get(mail=request.session['mailUser']))
+    for user in Adherant.objects.filter(mail__in=request.session['groupe']):
+        ajoutUtilisateurGroupe(user,groupe)
+    user = Adherant.objects.get(mail=request.session['mailUser'])
+    list = []
+    for groupe in Groupe.objects.all():
+        if user in groupe.liste_adherants.all():
+                list.append(groupe)
+    context = {
+        'groupe': Adherant.objects.filter(mail__in=request.session['groupe']),
+        'nomGroup': request.POST['nomGroupe'],
+        'listGroupe': list
+    }
+    connect(request, context)
+    return render(request, 'user/groupe.html', context)
+
 
 def groupe(request):
     user = Adherant.objects.get(mail=request.session['mailUser'])
-    list = Groupe.objects.filter(id_gerant=user.pk)
+    list=[]
+    for groupe in Groupe.objects.all():
+        if user in groupe.liste_adherants.all():
+                list.append(groupe)
     context = {
         'listGroupe': list
     }
@@ -93,21 +113,6 @@ def addUser(request, user):
     return render(request, 'user/createGroup.html', context)
 
 
-def createGroupe(request):
-    groupe = creationGroupe(request.POST['nomGroupe'], Adherant.objects.get(mail=request.session['mailUser']))
-    for user in Adherant.objects.filter(mail__in=request.session['groupe']):
-        ajoutUtilisateurGroupe(user,groupe)
-    user = Adherant.objects.get(mail=request.session['mailUser'])
-
-    list = Groupe.objects.filter(id_gerant=user.pk)
-    print(list)
-    context = {
-        'groupe': Adherant.objects.filter(mail__in=request.session['groupe']),
-        'nomGroup': request.POST['nomGroupe'],
-        'listGroupe': list
-    }
-    connect(request, context)
-    return render(request, 'user/groupe.html', context)
 
 
 def nomGroup(request):
