@@ -14,7 +14,13 @@ from django.conf import settings
 from collections import defaultdict
 from operator import itemgetter
 import heapq
-
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import chart_studio.plotly as py
+from surprise import SVD
+from surprise.model_selection import cross_validate
+import chart_studio
 import os
 import csv
 
@@ -39,6 +45,7 @@ from .gestion import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
 from .gestion_avis import *
+from .svd import *
 import datetime
 import time
 from surprise import KNNBasic
@@ -199,18 +206,36 @@ def matteo(request):
 
 def recommendation(request):
     start = time.time()
-    finalRecommendation()
+    ratings_data = pd.read_csv('./ratings.csv')
+    restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
+    reader = Reader(rating_scale=(1, 5))
+    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
+    svd = SVD(verbose=True, n_epochs=10, n_factors=100)
+    cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=True)
+    trainset = data.build_full_trainset()
+    svd.fit(trainset)
+    print(svd.predict(uid=397784, iid=7859))  # uid user id iid item id
+    #generate_recommendation(397784, svd, restaurant_metadata)
     print(time.time() - start)
     return HttpResponse('')
+
 
 def export_restaurant(request):
     file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
     f = open(file, "w")
-    f.writelines("id ,nom ,pays, telephone ,image_front ,note, ville ")
+    f.writelines("id ,nom, genre ")
     f.write('\n')
-    for restaurant in Restaurant.objects.all().filter(ville='Philadelphia').values_list('id', 'nom', 'pays', 'telephone', 'image_front', 'note', 'ville'):
-            f.write(str(restaurant)[1:-1])
-            f.write('\n')
+    for restaurant in Restaurant.objects.filter(ville='Philadelphia'):
+        f.write(str(restaurant.pk))
+        f.write(";")
+        f.write(restaurant.nom)
+        f.write(";")
+        taille = restaurant.type.all().count()
+        for i in range(taille):
+            f.write(str(restaurant.type.all()[i]))
+            if i != taille-1:
+                f.write(" ")
+        f.write('\n')
     print(file)
     return redirect('index')
 
@@ -218,9 +243,9 @@ def export_restaurant(request):
 def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
-    f.writelines("restaurant_id,user_id,note,timestamp")
+    f.writelines("user_id,restaurant_id,note,timestamp")
     f.write('\n')
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note', 'unix_date'):
+    for rating in Avis.objects.all().values_list('adherant_fk','restaurant_fk','note', 'unix_date'):
         f.write(str(rating)[1:-1])
         f.write('\n')
     print(file)

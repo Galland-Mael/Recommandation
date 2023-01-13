@@ -51,7 +51,7 @@ def finalRecommendation():
             .fit(trainset)\
             .compute_similarities()
 
-    test_subject = '12'
+    test_subject = '409696'
 
     k = 5
 
@@ -79,7 +79,7 @@ def finalRecommendation():
           if not itemID in visited:
               recommendations.append(getRestaurantName(trainset.to_raw_iid(itemID),restaurantID_to_name))
               position += 1
-              if (position > 10): break  # We only want top 10
+              if (position > 5): break  # We only want top 10
 
       for rec in recommendations:
           print("Restaurant: ", rec)
