@@ -83,6 +83,7 @@ def creationGroupe(nom, user):
     gp = Groupe(nom_groupe=nom, id_gerant=user.id_yelp)
     gp.save()
     gp.liste_adherants.add(user)
+    return gp
 
 
 def getListeAdherantsGroupe(groupe):

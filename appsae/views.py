@@ -94,10 +94,9 @@ def addUser(request, user):
 
 
 def createGroupe(request):
-    print(Adherant.objects.get(mail=request.session['mailUser']))
-    groupe = creation_groupe(request.POST['nomGroupe'], Adherant.objects.get(mail=request.session['mailUser']))
+    groupe = creationGroupe(request.POST['nomGroupe'], Adherant.objects.get(mail=request.session['mailUser']))
     for user in Adherant.objects.filter(mail__in=request.session['groupe']):
-        ajout_utilisateur(user, groupe)
+        ajoutUtilisateurGroupe(user,groupe)
     user = Adherant.objects.get(mail=request.session['mailUser'])
     list = Groupe.objects.filter(id_gerant=user.id)
     context = {
@@ -117,7 +116,7 @@ def nomGroup(request):
     return render(request, 'user/nomGroup.html', context)
 
 
-def createGroup(request):
+def groupePage(request):
     if 'groupe' in request.session:
         del request.session['groupe']
     context = {}

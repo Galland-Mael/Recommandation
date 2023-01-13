@@ -26,7 +26,7 @@ urlpatterns = [
     path('creationGroup/',creationGroup,name='creationGroup'),
     path('nomGroup/',nomGroup,name='nomGroup'),
     path('createGroupe/',createGroupe,name='createGroupe'),
-    path('createGroup/', createGroup, name='createGroup'),
+    path('groupePage/', groupePage, name='groupePage'),
 ]
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
