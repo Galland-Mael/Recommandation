@@ -41,12 +41,10 @@ class RestaurantType(models.Model):
 
 
 class ImageRestaurant(models.Model):
-    idRestaurant = models.IntegerField(default=0,blank=False)
     image = models.ImageField(upload_to='liste_images')
-    default = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.idRestaurant)
+        return str(self.id)
 
 
 class Restaurant(models.Model):
@@ -59,10 +57,10 @@ class Restaurant(models.Model):
     etat = models.CharField(max_length=50, default='')
     longitude = models.CharField(max_length=70, default='')
     latitude = models.CharField(max_length=70, default='')
-    telephone = models.CharField(max_length=10)
-    note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(-1)], default=0)
+    telephone = models.CharField(max_length=10, default='')
+    note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     nb_review = models.IntegerField(default=0)
-    image_front = models.ImageField(upload_to='img_restaurant/')
+    image_front = models.ImageField(upload_to='img_restaurant/', default='img_restaurant/avatar.png')
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)
 
@@ -95,10 +93,16 @@ class Horaire(models.Model):
 
 class Avis(models.Model):
     note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)],default=0)
-    texte = models.CharField(max_length=1000, default=" ")
+    texte = models.CharField(max_length=3000, default=" ")
     unix_date = models.CharField(max_length=1000, default=datetime.datetime.timestamp(datetime.datetime.now()))
     restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     adherant_fk = models.ForeignKey(Adherant, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'Avis'
+        constraints = [
+            models.UniqueConstraint(fields=['restaurant_fk', 'adherant_fk'], name='unique avis')
+        ]
 
     def __str__(self):
         return str(self.restaurant_fk) + " - " + str(self.adherant_fk)
