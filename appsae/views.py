@@ -78,7 +78,7 @@ def login(request):
 
 
 def index(request):
-
+    list = getFirstElement()
     liste = carrousel()
     return render(request, 'index/index.html', {'list': liste})
 
@@ -215,16 +215,15 @@ def getFirstElement():
     fichier = open("C:/Users/alhdv/Downloads/patronymes.csv","r")
     cr = csv.reader( fichier,delimiter=",")
     for row in cr:
-       liste.append(row[0])
+        if " " not in str(row[0]):
+            liste.append(row[0])
     fichier.close()
     return liste
 
 def insert_nom():
     list = getFirstElement()
-    alea = random.randint(1000, 600000)
-    for personne in Avis.objects.all():
-        tmp=personne.prenom;
-        alea = random.randint(1000, 600000)
-        Adherant.objects.filter(created_date=tmp).update(nom=list[alea])
+    for personne in Adherant.objects.all():
+        alea = random.randint(1000, 650000)
+        Adherant.objects.filter(pk=personne.pk).update(nom=list[alea])
 
 
