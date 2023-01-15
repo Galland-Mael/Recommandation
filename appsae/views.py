@@ -78,9 +78,7 @@ def login(request):
 
 
 def index(request):
-    list=getFirstElement()
 
-    print(list[8])
     liste = carrousel()
     return render(request, 'index/index.html', {'list': liste})
 
@@ -222,6 +220,11 @@ def getFirstElement():
     return liste
 
 def insert_nom():
-    liste = getFirstElement()
-    obj=Adherant.objects.all()
+    list = getFirstElement()
+    alea = random.randint(1000, 600000)
+    for personne in Avis.objects.all():
+        tmp=personne.prenom;
+        alea = random.randint(1000, 600000)
+        Adherant.objects.filter(created_date=tmp).update(nom=list[alea])
+
 
