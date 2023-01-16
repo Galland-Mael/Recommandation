@@ -130,7 +130,7 @@ def addUser(request, user):
     request.session['groupe'] = list
     context = {
         'groupe': Adherant.objects.filter(mail__in=request.session['groupe']),
-    }
+    }e
     connect(request, context)
     return render(request, 'user/createGroup.html', context)
 
