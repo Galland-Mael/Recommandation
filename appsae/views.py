@@ -349,15 +349,19 @@ def recommendation(request):
     restaurant_metadata.info()
     ratings_data.info()
     reader = Reader(rating_scale=(1, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
+    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
     svd = SVD(verbose=True, n_epochs=10, n_factors=100)
     cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=True)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    print(svd.predict(uid=339825, iid=7859))  # uid user id iid item id
+    print(svd.predict(uid=339825, iid=9189))
+    print(svd.predict(uid=339825, iid=51698))
+    print(svd.predict(uid=339825, iid=30195))
+    print(svd.predict(uid=339825, iid=16755))  # uid user id iid item id
     print(generate_recommendation(339825, svd, restaurant_metadata))
     print(generate_recommendation(339825, svd, restaurant_metadata))
     print(generate_recommendation(339825, svd, restaurant_metadata))
+    testMatteoRecommandation(339825, svd, restaurant_metadata)
     print(time.time() - start)
     return HttpResponse('')
 
@@ -385,9 +389,9 @@ def export_restaurant(request):
 def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
-    f.writelines("user_id,restaurant_id,note,timestamp")
+    f.writelines("restaurant_id,user_id,note")
     f.write('\n')
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note', 'unix_date'):
+    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note'):
             f.write(str(rating)[1:-1])
             f.write('\n')
     print(file)

@@ -1,4 +1,4 @@
-id ,nom, genre 
+id;nom;genre
 5725;St Honore Pastries;bubble tea coffee & tea bakeries
 5732;Tuna Bar;sushi bars japanese
 5733;BAP;korean
@@ -53,6 +53,7 @@ id ,nom, genre
 6151;Tandoor Authentic Indian Restaurant;pakistani indian food delivery services halal buffets
 6166;Forin Cafe;cafes
 6170;Tony's Luke;cheesesteaks
+6171;Saige Cafe;coffee & tea sandwiches breakfast & brunch cafes juice bars & smoothies
 6181;Sunoco;sandwiches
 6204;Mood Cafe;coffee & tea ice cream & frozen yogurt cafes juice bars & smoothies pakistani indian halal
 6213;Wilson's Market;sandwiches specialty food meat shops
@@ -81,12 +82,14 @@ id ,nom, genre
 6416;Capogiro Gelato;coffee & tea ice cream & frozen yogurt pizza gelato
 6428;Chenango Restaurant & Bar;bars nightlife barbeque
 6430;John's Seafood;seafood
+6434;Mexico Lindo;mexican
 6435;The Blarney Stone;burgers pubs bars american (traditional) nightlife karaoke
 6444;Junes Breakfast;coffee & tea sandwiches breakfast & brunch american (new)
 6470;Lincoln Chicken Pizza And Grill;pizza chicken wings cheesesteaks
 6479;The Farm and Fisherman;american (new)
 6496;Urban Eatery;food court
 6500;Dragon House;chinese
+6511;Buca DOro ;italian
 6530;Pho Nam Giang;vietnamese asian fusion chinese
 6539;Grain Exchange;pubs bars american (traditional) nightlife american (new) gastropubs southern
 6572;Chuck's Alibi;seafood
@@ -103,6 +106,7 @@ id ,nom, genre
 6667;Archway Sandwich Shop;sandwiches breakfast & brunch
 6681;Dmitri's;greek seafood mediterranean
 6682;Franzone's Pizzeria & Restaurant;pizza
+6689;Vientiane Cafe;coffee & tea vietnamese thai laotian
 6706;Sonam;tapas bars
 6728;Citi Market place;convenience stores vegan vegetarian
 6729;Passero's Coffee Roasters;coffee & tea sandwiches coffee roasteries
@@ -126,6 +130,7 @@ id ,nom, genre
 6870;Wiz Kid;fast food vegan cheesesteaks
 6887;Latin Flavor;caribbean latin american cuban
 6896;Tom's Corner Grill & Pizza;pizza
+6897;Slinte Pub & Grill;pubs bars nightlife irish
 6902;Empress Garden;chinese noodles taiwanese
 6907;The Fat ChickeN;fast food japanese chicken wings
 6910;Chinese Restaurant;chinese
@@ -150,6 +155,7 @@ id ,nom, genre
 7080;New England Pizza;pizza
 7091;Ramble Pizza;food trucks pizza
 7101;Sue's Market;sandwiches specialty food fruits & veggies beer wine & spirits
+7106;Chevys Famous Thin Crust Pizza;sandwiches pizza chicken wings
 7116;Kanella;greek breakfast & brunch mediterranean
 7123;Lulu's Pizza Bar;bars nightlife pizza beer wine & spirits
 7130;Commonwealth Kitchen;american (traditional) pizza cheesesteaks
@@ -170,6 +176,7 @@ id ,nom, genre
 7245;Bareburger - Midtown Village;burgers bars american (traditional) nightlife cocktail bars salad american (new)
 7248;Dough Boy Pizza;pizza
 7253;Cafe Habana;bars nightlife lounges
+7254;Gaetanos;sandwiches pizza cheesesteaks
 7269;Las Cazuelas Restaurant BYOB;mexican latin american tacos spanish
 7281;D'S Caribbean And American Food;cajun/creole southern caribbean
 7304;Hai Street Kitchen & Co;japanese asian fusion
@@ -180,6 +187,7 @@ id ,nom, genre
 7350;4 Seasons Grill Mexican Restaurant;mexican
 7352;The Centennial Cafe;coffee & tea sandwiches breakfast & brunch
 7354;Camac;bars american (traditional) nightlife gay bars
+7366;Bistro La Bete;french
 7371;Sam's Pizza;pizza
 7376;McDonald's;coffee & tea burgers fast food
 7409;Queen Sheba;bars nightlife sports bars ethiopian
@@ -224,6 +232,7 @@ id ,nom, genre
 7731;Foodery;beer wine & spirits
 7744;Fratelly Pizza & Restaurant;sandwiches italian pizza
 7759;Dagwood's Pub;pubs bars nightlife seafood
+7765;Alenas Cafe;cafes
 7769;Cornerstone Inn;bars american (traditional) nightlife breakfast & brunch american (new) sports bars
 7778;Kato's Cajun;cajun/creole
 7791;Venuto's Old World Pizza;italian pizza
@@ -236,6 +245,7 @@ id ,nom, genre
 7832;Mom Mom's Kitchen and Polish Food Cart;food trucks street vendors polish
 7844;Hibachi 2 Go;sushi bars japanese
 7845;Snackbar;bars nightlife wine bars tapas bars
+7851;Gabys Station Pizza;pizza mexican
 7855;Day Break Eggs;breakfast & brunch
 7863;Bitar's;bakeries greek mediterranean middle eastern falafel
 7879;Cily Chicken Rice;coffee & tea fast food chinese thai hainan
@@ -324,6 +334,7 @@ id ,nom, genre
 8566;JD's Soul Food Kitchen;american (traditional) chicken wings barbeque soul food
 8573;Non Stop Pizza & Grille;pizza
 8575;Frank's Spaghetti House;italian bars nightlife wine bars american (new)
+8590;O blue cafe;cafes
 8602;Sbarro;pizza
 8606;Allegro Pizza;sandwiches italian american (traditional) pizza
 8609;Solly Pizza;pizza
@@ -441,6 +452,7 @@ id ,nom, genre
 9568;Lemoncello Restaurant Philly;latin american colombian
 9571;A Tutti, Ristorante Italiano;coffee & tea italian pizza
 9585;2 in One Cafe;asian fusion
+9598;Essene Market & Cafe;bakeries specialty food organic stores vegetarian
 9610;Mac Mart;american (traditional) american (new)
 9611;Wishbone;coffee & tea chicken wings specialty food american (new) chicken shop thai comfort food
 9630;Lucatelli's;italian pizza salad gluten-free
@@ -450,6 +462,7 @@ id ,nom, genre
 9665;Bourbon & Branch;bars american (traditional) nightlife breakfast & brunch music venues
 9675;Pizza Hut;italian pizza chicken wings
 9690;Pasqually's Pizza;italian pizza beer wine & spirits food delivery services beverage store
+9725;South Philly Smkhaus;barbeque smokehouse
 9732;Moy Fong Restaurant;chinese
 9734;Wings To Go;fast food chicken wings
 9738;Convenient Food Mart;bars nightlife beer bar convenience stores
@@ -543,13 +556,14 @@ id ,nom, genre
 10439;Heffe;salad american (new) mexican latin american tacos
 10441;Bocconcini;italian pizza gluten-free
 10444;Chef Joseph Poon;specialty food chinese hotels & travel ethnic food local flavor cooking classes
+10468;Ants Pants Cafe;coffee & tea sandwiches breakfast & brunch desserts
 10473;McDonald's;coffee & tea burgers fast food
 10475;Golden China Wok Restaurant;chinese
 10477;Taco Bell;mexican
 10482;Midori Sushi;sushi bars japanese salad
 10483;Mayura Indian Restaurant;soup indian desserts
 10487;Honey's Sit-N-Eat;american (traditional) southern
-10489;@Ramen;japanese ramen
+10489;Ramen;japanese ramen
 10491;Happy Panda;chinese
 10492;Mandalay Bowl;asian fusion salad
 10495;Loews Philadelphia Hotel;seafood hotels & travel hotels
@@ -610,6 +624,7 @@ id ,nom, genre
 10967;Revolution House;italian bars american (traditional) nightlife breakfast & brunch pizza american (new) beer wine & spirits
 10968;Mediterranean Banquet Hall;italian caterers mediterranean party & event planning food delivery services
 10993;Tacconelli's Pizzeria;pizza
+10994;Chapterhouse Cafe & Gallery;coffee & tea
 10999;Gilben's Bakery;bakeries sandwiches cupcakes
 11018;Charlie Gray's Rib Crib;barbeque
 11024;Star Fusion;cafes
@@ -618,6 +633,7 @@ id ,nom, genre
 11035;Amada;breakfast & brunch spanish tapas bars iberian
 11052;King of Pizza;pizza
 11054;Buk Chon Korean Cuisine;korean asian fusion
+11060;Cafe y Chocolate;coffee & tea bakeries breakfast & brunch cafes juice bars & smoothies mexican vegetarian desserts
 11063;Oishii;sushi bars japanese ramen
 11065;Dream House Asian Bistro;sushi bars japanese asian fusion chinese thai
 11080;The Yachtsman;bars nightlife cocktail bars hawaiian dive bars
@@ -626,6 +642,7 @@ id ,nom, genre
 11105;Maplewood Nutrition & Dietary Food Shop;specialty food vegetarian
 11108;Core De Roma;italian
 11119;Jimmy G's Steaks;sandwiches steakhouses cheesesteaks
+11126;BR Craft & Wurst;bars nightlife beer bar beer wine & spirits beer gardens german
 11129;Bank & Bourbon;american (new) gastropubs
 11134;Le Viet Restaurant;vietnamese
 11141;Pete's Pizza;pizza
@@ -680,6 +697,7 @@ id ,nom, genre
 11653;Chifa;asian fusion chinese latin american peruvian
 11666;Dunkin';coffee & tea donuts
 11671;Dmitri's;greek seafood mediterranean
+11679;El Cafe;coffee & tea breakfast & brunch mexican
 11691;Cassizzi Pizzeria;pizza
 11732;Italian Bistro;italian
 11733;Halal Food Special;food trucks halal
@@ -774,6 +792,7 @@ id ,nom, genre
 12500;SoBol-University City;cafes wraps juice bars & smoothies acai bowls
 12502;Green Garden;sushi bars seafood soup chinese
 12506;Applebee's Grill + Bar;burgers bars american (traditional) nightlife steakhouses chicken wings salad american (new) sports bars
+12519;Oishii Poke;japanese mexican hawaiian poke
 12522;Pearls Caribbean and Soul Food;caribbean
 12535;Lake Blue Sushi & Cuisine;american (traditional) breakfast & brunch sushi bars japanese seafood
 12540;First Street Steaks;sandwiches breakfast & brunch cheesesteaks
@@ -784,12 +803,14 @@ id ,nom, genre
 12576;Bob's Diner;diners breakfast & brunch
 12578;Cucina Maria;italian seafood
 12595;Olive Garden Italian Restaurant;italian bars nightlife wine bars salad soup
+12600;Casa Mexico;mexican
 12615;Originals Italian Restaurant & Bar;sandwiches pizza beer wine & spirits food delivery services
 12628;Beijing Panda;chinese
 12633;Pizzata Pizzeria;pizza
 12634;Kurths Sea Food;seafood
 12638;IndeBlue Modern Indian Food & Spirits;bars nightlife breakfast & brunch cocktail bars caterers indian food delivery services
 12646;Syrenka Luncheonette;american (traditional) polish
+12654;EAT Cafe;sandwiches cafes desserts
 12660;Sky Cafe;noodles indonesian
 12666;Live Casino Hotel;burgers american (traditional) hotels & travel hotels
 12673;Parc;bars nightlife breakfast & brunch cafes wine bars american (new) french
@@ -801,7 +822,9 @@ id ,nom, genre
 12757;Mexican Post Express;mexican
 12791;DP Dough;pizza chicken wings food delivery services
 12820;Iron Tower Deli Shop;sandwiches
+12821;Sabrina's Cafe;american (traditional) diners breakfast & brunch cafes american (new) vegetarian
 12824;La Casa Del Mofongo;sandwiches breakfast & brunch soup juice bars & smoothies caribbean latin american
+12848;Crepe Town;sandwiches creperies
 12866;Cadillac Grille;steakhouses
 12884;Marathon;american (new)
 12899;The Strip Joint;american (traditional) breakfast & brunch steakhouses american (new)
@@ -815,6 +838,7 @@ id ,nom, genre
 12965;Charlie Was a Sinner;burgers bars american (traditional) nightlife seafood cocktail bars vegan tapas/small plates vegetarian kosher
 12971;Abbraccio;italian
 12972;Terakawa Ramen;japanese specialty food ethnic food local flavor ramen
+12973;Cosmic Cafe and Ciderhouse;bars nightlife breakfast & brunch cafes beer bar
 12988;Lost Bread;bakeries pizza bagels
 13019;Johnny Brenda's;burgers sandwiches bars nightlife greek breakfast & brunch seafood american (new) gastropubs beer wine & spirits music venues
 13020;Kanella South;bars nightlife greek mediterranean
@@ -863,6 +887,7 @@ id ,nom, genre
 13397;Yards Brewing Company;pubs bars american (traditional) nightlife breweries american (new) beer wine & spirits local flavor
 13399;Bangin' Curry Franklin;food trucks japanese street vendors food delivery services food court japanese curry
 13403;New Imperial;chinese
+13406;Jeongs Noodle;korean asian fusion seafood chinese noodles
 13409;Tiki Philly;bars nightlife hawaiian tiki bars
 13413;Chipotle Mexican Grill;fast food caterers mexican
 13415;Fredy & Tony's Restaurant;spanish
@@ -982,9 +1007,11 @@ id ,nom, genre
 14526;V Street;bars nightlife breakfast & brunch wine bars american (new) vegan vegetarian
 14535;Fish;seafood
 14543;Haru;japanese
+14548;Sabrina's Cafe;american (traditional) breakfast & brunch cafes american (new) comfort food vegetarian
 14549;Michael's Family Restaurant;american (new)
 14557;New Leaf 2 Chinese & Japanese Cuisine;bars nightlife japanese chinese
 14566;Talk Of The Town;burgers sandwiches cheesesteaks
+14572;Ray's Cafe & Teahouse;coffee & tea chinese
 14575;Point of Destination Cafe;coffee & tea sandwiches american (traditional) breakfast & brunch cafes caterers american (new) vegan vegetarian
 14582;Cafe Nhan;vietnamese
 14597;By George! Pizza Pasta & Cheesesteaks;italian pizza cheesesteaks
@@ -1117,6 +1144,7 @@ id ,nom, genre
 15754;Chipotle Mexican Grill;fast food mexican
 15759;Keller Market;sandwiches
 15760;Yomitori;sushi bars
+15769;Chius Kitchen;breakfast & brunch asian fusion chinese cantonese
 15776;Tiffin;vegetarian pakistani indian food delivery services
 15780;The Milk House;ice cream & frozen yogurt breakfast & brunch american (new)
 15785;Tommy's Place;fast food breakfast & brunch
@@ -1351,6 +1379,7 @@ id ,nom, genre
 17673;Caffeination;coffee & tea breakfast & brunch cafes caterers bagels
 17690;The Black Squirrel Pub and Haunt;pubs bars nightlife
 17692;Milano Pizza & Grill;pizza
+17697;Sphinx Cafe;coffee & tea bars nightlife juice bars & smoothies mediterranean hookah bars
 17702;Green Village;breakfast & brunch
 17709;Lucky Star Asian Cuisine;asian fusion chinese thai
 17710;Fresh Works of Mayfair;sandwiches
@@ -1373,6 +1402,7 @@ id ,nom, genre
 17822;Sammy Chon's Koagie Truck;korean street vendors
 17845;Pho Viet;vietnamese
 17849;Cafe Canela;fast food sandwiches american (traditional) breakfast & brunch mexican comfort food
+17862;Top of the Hill Cafe;sandwiches cafes soup caterers
 17872;Nomad Roman Pizza;italian bars nightlife wine bars pizza
 17899;Chengdu Famous Food;seafood chinese szechuan noodles
 17904;Dunkin';coffee & tea breakfast & brunch bagels donuts
@@ -1438,8 +1468,10 @@ id ,nom, genre
 18432;Victory Brewing Company Philadelphia;pubs bars nightlife brewpubs breweries
 18450;Key Food Pizza;american (traditional) pizza
 18459;Kim's Restaurant;korean specialty food barbeque ethnic food
+18473;Dalessandros Steaks & Hoagies;sandwiches cheesesteaks
 18474;Mama Yolanda's Italian Restaurant;italian
 18475;Hatch & Coop;fast food sandwiches chicken shop
+18478;Manayunk Cafe;american (traditional) american (new)
 18490;Divan Turkish Kitchen;mediterranean middle eastern turkish
 18492;Wajoe;korean
 18496;Katie O'Donnell's;burgers pubs bars nightlife pizza irish
@@ -1471,6 +1503,7 @@ id ,nom, genre
 18751;Tequilas Restaurant;bars nightlife mexican
 18755;Montesini Pizza;italian pizza
 18773;Artigiano Pizza;pizza
+18788;Crepe Town;creperies
 18799;Baba Olga's Cafe & Supper Club;coffee & tea american (traditional) nightlife cafes caterers american (new) music venues
 18827;Kristina Pizza;pizza
 18833;El Boom Catracho;american (traditional) chicken wings mexican latin american spanish
@@ -1550,10 +1583,12 @@ id ,nom, genre
 19603;Flat Iron;bars american (traditional) nightlife sports bars beer wine & spirits
 19612;La Viola Ovest;italian
 19626;The Penthouse Club;pubs bars nightlife steakhouses lounges
+19632;The PokeSpot;fast food japanese hawaiian poke
 19659;Germantown Biergarten;american (new)
 19696;Cafe Mi Quang;vietnamese
 19710;Fishtown Pizza;burgers pizza cheesesteaks
 19752;City Winery - Philadelphia;bars american (traditional) nightlife wine bars american (new) music venues wineries
+19774;Volver;bars nightlife diners american (new) tapas/small plates
 19787;Coins Restaurant and Pub;american (traditional)
 19797;Il Polpo;italian mediterranean russian uzbek
 19812;KFC;fast food chicken wings chicken shop
@@ -1645,6 +1680,7 @@ id ,nom, genre
 20467;Aramingo Buffet;buffets
 20473;Dienner's Bar-B-Q Chicken;barbeque food stands
 20476;A's Place;bars nightlife american (new) lounges
+20478;bology;street vendors taiwanese
 20489;Mole Poblano Restaurant;mexican
 20491;Monte Cristo;american (traditional) pizza
 20494;Sexy Green Truck;sandwiches food trucks specialty food caterers food stands
@@ -1659,6 +1695,7 @@ id ,nom, genre
 20605;Chix & Wings;fast food korean chicken wings chicken shop soul food comfort food
 20606;Bain's Deli;sandwiches
 20611;Chickie's Italian Deli;burgers sandwiches
+20624;Chu Shang Spicy ;chinese
 20626;Tacos California;mexican tacos
 20631;Unsoulfood;southern vegan
 20662;Indian Cuisine;indian
@@ -1707,6 +1744,7 @@ id ,nom, genre
 21084;Indiana Joe's;sandwiches
 21091;Saladworks;sandwiches salad american (new) vegetarian
 21102;Winkel;coffee & tea sandwiches breakfast & brunch cafes salad modern european
+21104;Mons;italian gluten-free
 21120;Casablanca Moroccan Restaurant;moroccan
 21126;Francoluigi's Pizzeria & Italian Restaurant;italian pizza
 21129;E-Z Brunch;breakfast & brunch
@@ -1746,6 +1784,7 @@ id ,nom, genre
 21500;Tk Homestyle cooking;american (traditional) breakfast & brunch seafood chicken wings soul food desserts
 21507;A Quality Cafe;food trucks mediterranean halal falafel
 21511;Restaurant Neuf;breakfast & brunch french moroccan
+21519;Capital One Cafe;coffee & tea cafes internet cafes
 21521;Denise's Delicacies;bakeries desserts
 21529;Subway;fast food sandwiches
 21559;McDonald's;coffee & tea burgers fast food
@@ -1788,6 +1827,7 @@ id ,nom, genre
 21807;Asian Fusion Garden;asian fusion chinese thai
 21812;Fatboy & Slim's;burgers sandwiches
 21813;Tastykake;bakeries
+21820;Cafe Lutecia;breakfast & brunch french
 21839;Hadramout;halal middle eastern arabic
 21844;Kings Oak;bars nightlife american (new)
 21865;Big Ass Slices;american (traditional) pizza
@@ -1856,6 +1896,7 @@ id ,nom, genre
 22509;Taqueria Del Norte;mexican tacos
 22538;China House;chinese
 22539;Cosi;sandwiches american (new)
+22541;Glicks Rib Shack;barbeque food stands farmers market
 22558;Popeyes Louisiana Kitchen;fast food american (traditional) chicken wings southern local flavor
 22576;Andorra Ping Pong;seafood chinese szechuan
 22588;The Piazza;local flavor home services
@@ -1914,6 +1955,7 @@ id ,nom, genre
 23123;Chef Johnny Bravo's Surf N Turf;sandwiches food trucks asian fusion seafood street vendors
 23125;Schmear It;sandwiches food trucks bagels
 23130;Sophia's;bars nightlife american (new)
+23131;Mimis Cafe & Market;coffee & tea breakfast & brunch cafes
 23140;YOLO;coffee & tea cafes
 23145;Pete's Famous Pizza Restaurant;pizza food delivery services
 23148;Mister Chubby's;sandwiches
@@ -1963,7 +2005,7 @@ id ,nom, genre
 23518;M Kee;chinese
 23531;Pizza Hut;italian pizza chicken wings
 23537;Twenty Manning;bars nightlife asian fusion cocktail bars american (new) desserts middle eastern
-23545;Balcony Bar @ The Kimmel Center;nightlife beer gardens pop-up restaurants
+23545;Balcony Bar  The Kimmel Center;nightlife beer gardens pop-up restaurants
 23546;Pink Rose Pastry Shop;bakeries breakfast & brunch
 23549;Tastee D's;african
 23551;Poppy's Cafe;coffee & tea cafes
@@ -2016,6 +2058,7 @@ id ,nom, genre
 23952;Tazia Restaurant;vietnamese asian fusion chinese indian dim sum
 23958;Rising Tide;bars nightlife asian fusion seafood chinese
 23959;Hai Street Kitchen & Co;fast food japanese asian fusion
+23965;The Belgian Cafe;pubs bars nightlife breakfast & brunch belgian
 23969;Dante & Luigi's;italian
 23991;Dim Sum Garden;asian fusion chinese shanghainese dim sum
 23992;A Mano;italian
@@ -2029,6 +2072,7 @@ id ,nom, genre
 24086;Pelicana Chicken;korean chicken wings chicken shop
 24097;Northeast Sandwich Co.;sandwiches breakfast & brunch salad
 24098;Asian Bamboo House;sushi bars japanese chinese
+24104;Hive Cafe;coffee & tea sandwiches cafes juice bars & smoothies
 24116;Brilliant Pizza Company;pizza
 24132;Hong Kong Cafe;chinese thai
 24146;Wedge + Fig;sandwiches breakfast & brunch salad specialty food american (new) desserts cheese shops
@@ -2068,6 +2112,7 @@ id ,nom, genre
 24419;Tony's Famous Tomato Pie;bars nightlife steakhouses pizza american (new)
 24450;The Havana Room;cuban
 24453;Matyson;breakfast & brunch american (new)
+24464;Grill Fish Cafe;vietnamese asian fusion seafood
 24486;Andy's Chicken;korean chicken shop
 24493;Tweed;american (new)
 24507;Four Seasons Food Court;sandwiches breakfast & brunch beer wine & spirits buffets
@@ -2117,6 +2162,7 @@ id ,nom, genre
 24831;Crabby Cafe and Sports Bar;sandwiches bars nightlife vietnamese seafood sports bars cajun/creole beer gardens
 24839;Bobs Crab House;seafood specialty food cajun/creole seafood markets
 24870;Tap Room On 19th;american (new) gastropubs
+24878;Meme;american (new)
 24893;Mood Cafe;cafes pakistani halal desserts
 24894;Tokyo Sushi & Catering;sushi bars japanese chinese caterers
 24911;Gia Pronto;coffee & tea sandwiches italian specialty food fruits & veggies
@@ -2205,6 +2251,7 @@ id ,nom, genre
 25629;The Pharmacy;coffee & tea breakfast & brunch cafes
 25632;PrimoHoagies;sandwiches italian
 25633;The Union Tap;sandwiches pubs bars nightlife cocktail bars sports bars gastropubs beer bar
+25652;Cafe Estelle;sandwiches breakfast & brunch american (new)
 25653;Kennedy Food Garden;sandwiches
 25664;Five Spot;bars nightlife lounges music venues dance clubs
 25666;Pizza Hub;pizza
@@ -2271,6 +2318,7 @@ id ,nom, genre
 26248;Sugafoot Cafe;breakfast & brunch southern soul food
 26297;HOSHI'S;sushi bars
 26300;Waterfront Gourmet Cafe & Deli;sandwiches cafes
+26306;Emmas Liberian Kitchen;african
 26311;Papa John's Pizza;pizza
 26324;Lucky Strike - Philadelphia;bars american (traditional) nightlife cocktail bars american (new) lounges bowling
 26327;Chef Ken's Cafe;cafes southern
@@ -2370,6 +2418,7 @@ id ,nom, genre
 27282;Cereality;breakfast & brunch
 27295;Snap Kitchen;specialty food american (new) gluten-free vegetarian food delivery services
 27296;Kosmo Pizza & Grille;sandwiches american (traditional) pizza food delivery services
+27311;Cooperage Cafe;sandwiches cafes
 27370;Sazon Restaurant & Cafe;cafes latin american vegetarian desserts venezuelan
 27387;JAVA Ink;coffee & tea american (new) internet cafes
 27394;Pizza Fanatic;pizza
@@ -2380,6 +2429,7 @@ id ,nom, genre
 27422;Cafe Liz;bars nightlife portuguese iberian
 27463;The Original Tony Lukes;sandwiches breakfast & brunch cheesesteaks
 27480;Checkers;burgers fast food
+27486;Binch;bars nightlife sushi bars japanese chinese barbeque tapas/small plates
 27504;Bistro Perrier;bakeries bars nightlife wine bars american (new) french mediterranean cooking classes
 27507;MrBeast Burger;burgers food delivery services
 27516;Play2;bars nightlife sports bars
@@ -2419,6 +2469,7 @@ id ,nom, genre
 27799;Sutton's;bars american (traditional) nightlife cocktail bars
 27801;The Palm Philadelphia;italian steakhouses seafood american (new)
 27807;Philadelphia Museum of Art;nightlife american (new) jazz & blues
+27830;Hawthornes Biercafe;sandwiches american (traditional) breakfast & brunch american (new) beer wine & spirits
 27832;The Bagel Hut;sandwiches breakfast & brunch bagels
 27837;MangoMoon;thai tapas bars
 27853;Lorenzo's Pizza;burgers pizza cheesesteaks
@@ -2562,6 +2613,7 @@ id ,nom, genre
 28897;La Fusion ;bars nightlife sushi bars japanese asian fusion lounges thai
 28904;ZEPS Pizza & Shish Kabobs;pizza middle eastern
 28915;Adelie Coffee House;coffee & tea breakfast & brunch cafes
+28936;Le Cheri;french
 28940;Trio;seafood thai
 28977;Jaggie's Restaurant;caribbean
 28981;Dansavann Laos Cafe;salad thai laotian
@@ -2658,6 +2710,8 @@ id ,nom, genre
 29898;Raindrop Cafe;sandwiches breakfast & brunch cafes
 29906;Raindrop Cafe;sandwiches juice bars & smoothies
 29908;PTG Catering;italian salad caterers
+29918;Luna Cafe & Provisions;coffee & tea bars nightlife breakfast & brunch cafes american (new)
+29920;Chef Li ;chinese hot pot
 29950;China Moon;chinese
 29952;Marinucci's Deli - Port Richmond;sandwiches wraps
 29955;Dessertcrazy;coffee & tea bakeries specialty food cupcakes gluten-free desserts
@@ -2682,6 +2736,7 @@ id ,nom, genre
 30104;Fishtown Diner;burgers american (traditional) diners breakfast & brunch american (new)
 30109;Balkan Express Restaurant;mediterranean hungarian
 30110;Ms Tootsie's RBL;soul food
+30112;Nannie Francos Pizzeria;italian pizza
 30117;The Buffalo House;american (traditional) pizza
 30124;Parmigiana;italian
 30149;Bobby Chez;seafood
@@ -2733,6 +2788,7 @@ id ,nom, genre
 30541;Burg's Hideaway Lounge;burgers bars nightlife chicken wings
 30547;Pizzeria L'Angolo;american (traditional) pizza gluten-free
 30558;Jose's Tacos;mexican
+30575;Petes Place;korean asian fusion chicken wings
 30576;PaperMill - Fresh Asian Kitchen;vietnamese food trucks asian fusion caterers
 30598;Kaufman's Delicatessen;sandwiches steakhouses caterers cheesesteaks home services
 30617;Singapore Chinese Vegetarian Restaurant;chinese vegetarian dim sum
@@ -2750,6 +2806,7 @@ id ,nom, genre
 30701;Adrian's Sports Bar And Grill;bars american (traditional) nightlife sports bars soul food caribbean
 30702;KFC;fast food chicken wings chicken shop
 30703;Golden Dragon;chinese
+30741;El Costeo;mexican
 30748;Taco Bell;fast food mexican tex-mex tacos
 30758;Taste Africa;african
 30760;The Bagel Place;coffee & tea sandwiches caterers bagels
@@ -2761,12 +2818,14 @@ id ,nom, genre
 30836;Harry the K's Broadcast Bar & Grille;american (traditional) gastropubs
 30838;Cibo Ristorante Italiano;italian bars nightlife jazz & blues piano bars
 30851;Call Me Cupcake;food stands desserts
+30857;Evil Eye Cafe;coffee & tea bakeries sandwiches ice cream & frozen yogurt italian greek cafes caterers turkish
 30867;McFadden's;bars nightlife american (new)
 30901;The Gold Standard Cafe;coffee & tea american (traditional) breakfast & brunch american (new)
 30908;Fiesta Pizza II;sandwiches italian pizza
 30913;Liu's Garden;chinese
 30919;Mi Lah;chinese vegan tapas/small plates dim sum
 30923;Fifi's Creole Cuisine;caribbean haitian
+30924;La Scalas;sandwiches italian pizza salad
 30931;Saint Lazarus;burgers bars nightlife american (new)
 30932;Octo Waterfront Grille;seafood
 30956;Fishtown Pizza Truck;italian food trucks pizza food stands
@@ -2774,6 +2833,7 @@ id ,nom, genre
 30983;Common Wealth Old City;seafood american (new) gastropubs
 30992;Campo's Philly Cheesesteaks;fast food sandwiches local flavor cheesesteaks
 30999;Sona Pub & Kitchen;pubs bars nightlife cocktail bars american (new) gastropubs irish pub
+31007;Luna Cafe;coffee & tea burgers sandwiches american (traditional) breakfast & brunch cafes caterers american (new) vegetarian
 31008;Main Street Munchies;pizza
 31021;TradeWinds;breakfast & brunch japanese korean asian fusion seafood hawaiian poke
 31036;Quiznos;fast food sandwiches
@@ -2785,6 +2845,7 @@ id ,nom, genre
 31071;Distrito;bars nightlife cocktail bars mexican
 31087;Moffin's Steak;cheesesteaks
 31095;Crab House 5706;bars nightlife seafood lounges
+31096;Dolce & Caffe;italian cafes gelato cafeteria
 31104;Jezabel's Studio;coffee & tea empanadas home & garden argentine cooking classes
 31113;HubBub Coffee;coffee & tea cafes caterers internet cafes
 31114;Wendy's;burgers fast food
@@ -2818,6 +2879,7 @@ id ,nom, genre
 31314;Diamante Pizzaria;pizza
 31319;Bella Trattoria;italian
 31328;Good Spoon Soupery;soup
+31333;Liberte Lounge;bars nightlife lounges french
 31339;What's In This?;food trucks street vendors polish
 31340;Auntie Anne's;bakeries fast food pretzels
 31359;On & Sons Seafood;seafood
@@ -2851,6 +2913,7 @@ id ,nom, genre
 31560;Bull's BBQ;barbeque
 31566;Han-Wool;japanese korean
 31623;The Pizza Place;pizza
+31630;Prive;greek mediterranean beer wine & spirits
 31639;2nd Street Pizza;pizza
 31640;Machi Sushi Bar;sushi bars
 31644;Penne Restaurant & Wine Bar;italian bars nightlife wine bars
@@ -3105,6 +3168,7 @@ id ,nom, genre
 34062;Moju's Family Pizzeria;pizza
 34072;Papa John's Pizza;pizza
 34078;3rd Base Bar and Grill;bars american (traditional) nightlife sports bars
+34086;Pop Up Cafe;vietnamese
 34089;Nitty's Tavern;italian bars nightlife sports bars
 34100;El Cantinflas;bars nightlife specialty food caribbean ethnic food puerto rican spanish dive bars
 34102;RAW at the Piazza;sushi bars
@@ -3133,6 +3197,7 @@ id ,nom, genre
 34299;Tokyo Hibachi Steakhouse & Sushi Bar;sushi bars japanese steakhouses
 34312;Chubby crab;burgers seafood fish & chips
 34324;Doliva Evoo Pizza & Grill ;italian american (traditional) pizza
+34326;Chickies & Petes;fast food seafood
 34338;Dottie's Dinette;diners
 34347;Ritz Diner;diners breakfast & brunch
 34351;Rex at the Royal;seafood salad american (new) southern
@@ -3296,7 +3361,9 @@ id ,nom, genre
 35785;Underdogs;hot dogs american (new)
 35824;Fox and Hound;burgers bars american (traditional) nightlife sports bars buffets
 35848;Pizza City;pizza
+35858;Abekes Kitchen;american (traditional) african
 35860;BurgerFi;burgers fast food
+35873;Bar Bombn;vegan latin american vegetarian
 35874;Villagio Pizza;greek pizza chicken wings salad specialty food pasta shops
 35883;Harbor Seafood Garden;seafood chinese dim sum cantonese
 35890;Livy's Plant Based Foods;burgers salad vegan vegetarian
@@ -3323,6 +3390,7 @@ id ,nom, genre
 36067;City View Pizza and Grill;burgers sandwiches pizza
 36077;Blume;bars nightlife cocktail bars american (new)
 36079;Bonte Wafflerie & Cafe;coffee & tea bakeries sandwiches desserts belgian
+36092;Sakana Omakase Sushi;sushi bars japanese
 36101;San Lucas Pizzeria;italian pizza mexican cheesesteaks
 36114;Oyster House;steakhouses seafood
 36123;Old Nelson Food Company;coffee & tea sandwiches salad soup
@@ -3333,6 +3401,7 @@ id ,nom, genre
 36195;Santini's South Philly Grille;sandwiches italian
 36203;Smokes Poutinerie;american (traditional) chicken shop poutineries
 36209;Green Rock Tavern;pubs bars american (traditional) nightlife
+36212;Millions Crab Boiled Seafood;seafood american (new) cajun/creole
 36215;Cafe Huong Lan;sandwiches vietnamese
 36248;Happily Ever After;coffee & tea sandwiches ice cream & frozen yogurt desserts
 36252;Quiznos;fast food sandwiches
@@ -3340,6 +3409,7 @@ id ,nom, genre
 36293;Szechuan East;chinese
 36298;Marigold Kitchen;sandwiches breakfast & brunch salad american (new) tapas/small plates
 36321;Snap Kitchen;american (traditional) breakfast & brunch salad specialty food american (new) convenience stores gluten-free vegetarian food delivery services
+36325;Juice!;juice bars & smoothies vegetarian
 36328;Tea Bowl Shop;bubble tea coffee & tea fast food sushi bars poke
 36342;China Ruby;chinese
 36348;Bistro Sorriso;italian
@@ -3510,6 +3580,7 @@ id ,nom, genre
 37739;S & M Seafood;seafood specialty food seafood markets
 37741;Chestnut 7;burgers pubs bars nightlife pizza american (new)
 37747;Zio's Brick Oven Pizzeria;italian pizza
+37750;Fad Irish Pub;pubs bars nightlife irish irish pub
 37762;Joyce's Soulful Cuisine;chicken wings salad caterers soul food
 37765;Marathon Pizza;pizza
 37771;Tampopo;japanese korean
@@ -3539,6 +3610,7 @@ id ,nom, genre
 37951;KoJa;japanese korean food stands
 37953;Atiya Ola's Spirit First Foods;burgers salad specialty food wraps juice bars & smoothies fruits & veggies live/raw food vegetarian farmers market
 37965;Rival Bros Coffee;coffee & tea sandwiches cafes coffee roasteries
+37973;DaM Pasta Lab;italian specialty food pasta shops
 37990;Penn's Port Pub;bars american (traditional) nightlife
 38003;Opa;greek mediterranean tapas/small plates
 38014;Max's Steaks;sandwiches bars nightlife steakhouses cheesesteaks
@@ -3557,6 +3629,7 @@ id ,nom, genre
 38105;Eeva;bakeries pizza beer wine & spirits
 38121;Au Bon Pain;bakeries cafes
 38126;Avance;american (new)
+38128;Plenty Cafe;coffee & tea bars nightlife breakfast & brunch cafes wine bars american (new)
 38129;Bintou African & American Restaurant;american (traditional) african
 38154;Lucky's Last Chance;burgers pubs bars nightlife hot dogs beer wine & spirits
 38155;Gigi Pizza;sandwiches pizza american (new)
@@ -3623,6 +3696,7 @@ id ,nom, genre
 38762;Bottle Bar East;pubs bars american (traditional) nightlife breakfast & brunch sports bars gastropubs beer bar beer wine & spirits barbeque
 38771;Home Cuban Cafe;breakfast & brunch cafes vegan caribbean latin american cuban
 38804;Saladworks at Shoprite;salad juice bars & smoothies
+38809;Sarcones Bakery;bakeries
 38833;Qdoba Mexican Grill;mexican
 38845;Metropolitan Bakery;coffee & tea bakeries breakfast & brunch
 38876;Java Colonial Cafe;indonesian
@@ -3644,6 +3718,7 @@ id ,nom, genre
 39020;Tea Leaf;coffee & tea
 39044;Muscle Maker Grill;salad american (new) wraps juice bars & smoothies
 39053;Academic Bistro;american (new)
+39055;Cafe Loftus Downtown;coffee & tea sandwiches
 39057;Wise Fries Burger & Pies;burgers fast food
 39064;Fiesta Acapulco;mexican
 39066;Vesper Sporting Club - Northern Liberties;bars nightlife breakfast & brunch sports bars
@@ -3675,6 +3750,7 @@ id ,nom, genre
 39301;Mexi-Talian Grill Restaurant;italian diners breakfast & brunch mexican
 39305;Mong Kok Station;coffee & tea bakeries specialty food chinese ethnic food
 39308;Hue Fusion Food Market;burgers sandwiches korean asian fusion specialty food american (new) convenience stores ethnic food
+39352;Dner en Blanc;diners local flavor festivals
 39362;The Dandelion;bars nightlife gastropubs british
 39367;Healthy Picks;juice bars & smoothies desserts
 39374;Dezzy's Jamaican Restaurant;caribbean
@@ -3727,6 +3803,7 @@ id ,nom, genre
 39752;Pinch Dumplings;chinese dim sum
 39755;Genji Japanese Restaurant;japanese
 39767;La Pizzeria;pizza
+39777;Boule Cafe;sandwiches breakfast & brunch cafes salad
 39790;Mayfair Bakery;bakeries
 39806;3 Brothers Pizza & Pasta;italian pizza
 39812;Vesuvio Restaurant & Bar;italian
@@ -3761,7 +3838,7 @@ id ,nom, genre
 40031;Owen's Cafe;bars nightlife cafes
 40046;NINE;breakfast & brunch cafes asian fusion french thai vegan caribbean vegetarian
 40052;Cavanaughs Headhouse;bars american (traditional) nightlife sports bars
-40072;Asia @ Cafe;chinese thai
+40072;Asia  Cafe;chinese thai
 40085;South Street Souvlaki;greek
 40096;Fat Tuesday;coffee & tea ice cream & frozen yogurt bars american (traditional) nightlife cocktail bars american (new) juice bars & smoothies
 40100;Good Karma Cafe;coffee & tea cafes
@@ -3784,6 +3861,7 @@ id ,nom, genre
 40259;El Meson Latin American Cuisine;bars nightlife latin american comfort food
 40264;Geno's Steaks at Rivers Casino Philadelphia;sandwiches cheesesteaks
 40282;Michael's Ridge Diner;diners
+40284;Brown Street Coffee & Bnhery;coffee & tea sandwiches vietnamese breakfast & brunch
 40293;Rival Bros Coffee;coffee & tea cafes coffee roasteries
 40294;Philly Burgers & Shakes;burgers desserts
 40297;Henry James Saloon;sandwiches pubs bars nightlife pizza
@@ -3796,6 +3874,7 @@ id ,nom, genre
 40363;The Boyler Room;sandwiches pubs bars american (traditional) nightlife american (new) irish
 40368;Jamba;sandwiches american (new) juice bars & smoothies acai bowls
 40373;Jason's Cozyday;korean
+40388;Independence Mall Cafe;cafes
 40391;Subway Restaurants;fast food sandwiches
 40407;Sarcone's Deli;bakeries sandwiches american (traditional)
 40410;Emma's Cafe;italian
@@ -3925,6 +4004,7 @@ id ,nom, genre
 41579;Pumpkin Market;sandwiches breakfast & brunch cafes american (new)
 41589;Trendsetters Bar & Lounge;burgers italian bars nightlife seafood lounges wraps fish & chips
 41590;The Jerk Pit At Chestnut Hill;salad mexican barbeque caribbean tacos farmers market
+41597;Good Harvest ;seafood chinese cantonese
 41621;Larry's Steaks & Hoagies;pizza
 41634;City Gourmet Deli;sandwiches
 41640;Guisados Don Roman;mexican
@@ -3942,6 +4022,7 @@ id ,nom, genre
 41771;Mike's Pizza;pizza
 41781;Mix Bar and Grill;bars nightlife pizza american (new)
 41783;Lemon Leaf;thai
+41788;Marcellos Pizza-Grill;italian pizza food delivery services
 41793;Panda Chinese Restaurant;chinese
 41800;Tenth Street Pourhouse;coffee & tea cajun/creole
 41801;Ristorante Aroma;italian
@@ -3965,6 +4046,7 @@ id ,nom, genre
 41944;Keven Parker Soul Food Cafe;southern soul food comfort food
 41954;Aladdin Pizzeria & Eatery;italian american (traditional) pizza
 41960;Bok Bar;bars nightlife vietnamese wine bars beer bar lounges mexican mediterranean filipino tacos kebab falafel
+41962;Dilworth Park Cafe;coffee & tea cafes
 41963;Tres Jalapenos;mexican
 41968;Texas Chicken & Burgers;fast food halal
 41969;Spiga;italian
@@ -3976,6 +4058,7 @@ id ,nom, genre
 42013;Vince's Pizzeria;pizza
 42024;Wister BYOB;american (traditional) breakfast & brunch seafood american (new)
 42030;Sabroso+Sorbo;tapas/small plates spanish tapas bars
+42039;Profi's Creperie;french creperies
 42052;Lucky's Mexican Spot Food Truck;food trucks mexican
 42056;On Charcoal;latin american colombian
 42058;Pho Ha;vietnamese chinese
@@ -3991,6 +4074,7 @@ id ,nom, genre
 42160;Miel Patisserie;coffee & tea bakeries specialty food desserts chocolatiers & shops
 42164;Del Frisco's Double Eagle Steakhouse;american (traditional) steakhouses seafood specialty food
 42173;Mad River Manayunk;bars american (traditional) nightlife sports bars
+42180;T-Swirl Crepe;coffee & tea ice cream & frozen yogurt japanese salad juice bars & smoothies gluten-free desserts creperies
 42209;McDonald's;coffee & tea burgers fast food
 42212;The Bao Bar;sandwiches bars nightlife barbeque
 42221;Cantina Los Caballitos;fast food bars nightlife breakfast & brunch mexican
@@ -4004,6 +4088,7 @@ id ,nom, genre
 42282;Vernalicious;burgers sandwiches food trucks chicken wings salad american (new) street vendors
 42299;Pappy's Pizza;pizza
 42310;The Hadley;bars american (traditional) nightlife cocktail bars american (new) lounges desserts
+42319;Sabrina's Cafe;coffee & tea american (traditional) diners breakfast & brunch cafes caterers american (new) vegetarian
 42338;Butcher Burger Philly;burgers american (traditional)
 42345;Ed's Pizza House;pizza
 42366;Ro-Zu;sushi bars
@@ -4049,6 +4134,7 @@ id ,nom, genre
 42716;Amari's Restaurant;breakfast & brunch seafood american (new) soul food
 42739;K Diner;diners
 42743;Wing Shop;fast food american (traditional) chicken wings american (new)
+42777;Club Risque;nightlife
 42778;Lucky Garden;chinese
 42779;Cafe Roma Bakery;bakeries donuts
 42783;Riehl Deli & Cheese Shop;specialty food meat shops cheese shops
@@ -4178,6 +4264,7 @@ id ,nom, genre
 43952;Little Caesars;fast food pizza
 43963;Rustica Rosticceria;sandwiches chicken shop
 43967;Bain's Deli;sandwiches
+43972;Chickies and Petes;bars american (traditional) nightlife seafood chicken wings specialty food sports bars
 43979;Pret A Manger;coffee & tea sandwiches breakfast & brunch cafes salad
 43988;Olde Creamery Cafe;coffee & tea bakeries ice cream & frozen yogurt cafes desserts
 43995;Delancey Street Pizzeria;pizza
@@ -4217,6 +4304,7 @@ id ,nom, genre
 44384;Joe Santucci's Square Pizza Bar & Grill;sandwiches italian bars nightlife seafood pizza salad
 44391;New China;chinese
 44398;Franklin Social;breakfast & brunch cafes
+44399;Guy Fieris Taco Joint;mexican tacos
 44402;Tang's;chinese food stands
 44438;Philly's Gourmet Steaks;burgers sandwiches breakfast & brunch beer wine & spirits buffets cheesesteaks
 44439;Zavino;italian bars nightlife wine bars pizza tapas/small plates
@@ -4290,7 +4378,7 @@ id ,nom, genre
 44926;Xinying Chinese Restaurant;chinese
 44930;Federal Donuts;coffee & tea chicken shop donuts
 44931;Cold Cut Hut;convenience stores
-44944;$5 Fresh Burger Stop;food stands burmese
+44944;5 Fresh Burger Stop;food stands burmese
 44947;Gearo's;pizza
 44951;Fitz and Starts;bakeries bars nightlife breakfast & brunch wine bars american (new)
 44965;Lee's Hoagie House;sandwiches wraps cheesesteaks
@@ -4312,6 +4400,7 @@ id ,nom, genre
 45118;Souped Up Hotpot and Asian Bistro;bars nightlife japanese korean ramen pan asian hot pot
 45135;Gnocchi;italian
 45136;Hip City Veg;burgers sandwiches salad vegetarian
+45151;Philly Poke;fast food sushi bars poke
 45160;Taqueria La Prima;mexican tacos
 45164;Bliss;american (new)
 45181;Gianfranco Pizza Rustica;sandwiches italian pizza
@@ -4319,6 +4408,7 @@ id ,nom, genre
 45194;Burger King;burgers fast food
 45197;Taste of Asia;vietnamese chinese thai laotian
 45207;In & Out Express Pizza;pizza
+45214;Odd Fellows Cafe;cafes latin american
 45218;Philadelphia Fish & Co.;seafood
 45223;Soul Boat;seafood soul food
 45224;Moldova Restaurant;breakfast & brunch steakhouses modern european russian
@@ -4328,6 +4418,7 @@ id ,nom, genre
 45257;Buffalo Billiards;bars american (traditional) nightlife sports bars pool halls
 45278;Wood Street Pizza;burgers sandwiches pizza salad
 45284;Chiquita's Pizzeria & Mexican Grill;italian pizza mexican
+45289;Cafe Soho;coffee & tea japanese korean asian fusion chicken wings
 45294;Angelo & Josephine's Gourmet;sandwiches specialty food
 45302;El Cafeito;coffee & tea sandwiches latin american cuban
 45304;Viet Tofu;vietnamese specialty food ethnic food
@@ -4374,6 +4465,7 @@ id ,nom, genre
 45614;Kurry Shack;indian
 45615;Bucks County Coffee Co;coffee & tea
 45623;Pura Vida;seafood mexican latin american spanish tapas bars
+45630;Cafe Rue 52;coffee & tea desserts creperies
 45635;Chipotle;fast food mexican
 45636;Eulogy Belgian Tavern;bars nightlife beer wine & spirits food delivery services fish & chips belgian
 45638;IHOP;burgers american (traditional) breakfast & brunch american (new)
@@ -4386,6 +4478,7 @@ id ,nom, genre
 45682;The Flying Saucer Cafe;coffee & tea breakfast & brunch bagels
 45702;Carman's Country Kitchen;breakfast & brunch
 45734;Pizzeria Beddia;italian bars nightlife pizza specialty food juice bars & smoothies
+45736;Blue Bananas Cafe;caribbean
 45743;Pho Street;vietnamese gluten-free
 45752;Pho & Cafe Saigon;vietnamese specialty food ethnic food
 45760;Kai Japanese Cuisine;sushi bars japanese
@@ -4430,6 +4523,7 @@ id ,nom, genre
 46085;Checkers;burgers fast food
 46088;JC's Deli;italian
 46096;Wendy's;burgers fast food
+46110;Dukes Of Marlborough;sandwiches
 46123;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
 46144;Little Italy Pizza & Trattoria;pizza
 46147;McDonald's;coffee & tea burgers fast food
@@ -4447,6 +4541,7 @@ id ,nom, genre
 46239;Old City Frozen Yogurt & Crepes;coffee & tea ice cream & frozen yogurt desserts creperies do-it-yourself food
 46242;Pizza Boli's;sandwiches italian pizza
 46243;IHOP;burgers american (traditional) breakfast & brunch american (new)
+46254;Under the Oak Cafe;bakeries american (traditional) breakfast & brunch american (new) french
 46256;Canton 11;bars nightlife sushi bars cocktail bars chinese szechuan karaoke food delivery services dim sum cantonese
 46261;Tasty Pot - Philadelphia;bubble tea taiwanese hot pot
 46280;Mrs. K's Koffee Shop;coffee & tea burgers diners breakfast & brunch
@@ -4472,7 +4567,7 @@ id ,nom, genre
 46542;Popeyes Louisiana Kitchen;fast food sandwiches american (traditional) seafood chicken wings desserts
 46552;Sancho Pistola's;bars nightlife cocktail bars sports bars mexican
 46567;Delilah's Southern Cafe;southern soul food
-46571;@Ramen;japanese ramen
+46571;Ramen;japanese ramen
 46574;The American Pub;pubs bars nightlife american (new)
 46577;Midtown II Restaurant;sandwiches diners
 46580;Tavern On Camac;bars nightlife american (new) dance clubs gay bars
@@ -4480,6 +4575,7 @@ id ,nom, genre
 46609;Jason's Cozyday;bars nightlife korean
 46627;Get Fried;fast food american (traditional) cafes waffles
 46638;Rana Halal Cuisine;halal middle eastern
+46652;Turps Kitchen;sandwiches chicken wings soul food
 46658;Burrito Elito;mexican tex-mex vegetarian
 46680;Pastificio;sandwiches food delivery services
 46681;Allegro Pizza City Line;pizza
@@ -4543,6 +4639,7 @@ id ,nom, genre
 47156;Tangerine;french moroccan
 47159;One Shot Coffee;coffee & tea american (traditional) breakfast & brunch cafes patisserie/cake shop
 47162;Mr Martino's Trattoria;italian
+47170;Usaquen;breakfast & brunch latin american colombian
 47184;Engimono Sushi;sushi bars japanese
 47187;Boutros Greek & Middle Eastern Food;middle eastern
 47200;Tommy's Pizza;pizza american (new)
@@ -4589,6 +4686,7 @@ id ,nom, genre
 47527;Landmark Americana Tap & Grill - City Line;bars american (traditional) nightlife sports bars beer wine & spirits
 47547;Asia On the Parkway;asian fusion thai singaporean
 47554;Panda Cafe;bubble tea vegetarian indonesian
+47558;Bud & Marilyns;american (traditional) breakfast & brunch
 47559;No.1 House;chinese
 47560;Gatehouse Cafe;american (new)
 47573;Family Spot Jamaican Restaurant;caribbean
@@ -4885,6 +4983,7 @@ id ,nom, genre
 50393;Toyotomi Sushi Bar &  Asian Cuisine;sushi bars
 50395;Tropical Sensation;caribbean
 50404;Criniti;italian
+50419;Champs Diner;american (traditional) diners breakfast & brunch salad american (new)
 50422;Pietro's Coal Oven Pizzeria;italian bars nightlife cocktail bars pizza salad
 50423;Tae Hwa Kwan;korean
 50425;Old English Style Pizza;pizza
@@ -4941,6 +5040,7 @@ id ,nom, genre
 50934;Beiler's Bakery;bakeries breakfast & brunch specialty food donuts food stands
 50971;Moonlight Cuisine;american (new) caribbean
 50977;On Point Bistro;burgers american (traditional) breakfast & brunch american (new)
+50978;Engimono Poke & Deli;sandwiches breakfast & brunch cafes hawaiian poke
 50984;Minar Palace;pakistani indian buffets
 50987;Philly's Cafe;coffee & tea bakeries sandwiches cafes
 50990;Custard & Cakes Creamery;sandwiches ice cream & frozen yogurt desserts
@@ -4948,6 +5048,7 @@ id ,nom, genre
 50996;Lucy's Hat Shop;pubs bars american (traditional) nightlife american (new) sports bars lounges mexican
 51025;Medora's Mecca;italian
 51026;Cafe Chismosa;coffee & tea breakfast & brunch mexican latin american vegetarian internet cafes
+51040;General Tsaos House;chinese
 51056;New Samosa;vegetarian indian halal
 51063;Valanni;bars nightlife greek cocktail bars pizza american (new) lounges mediterranean tapas/small plates latin american tapas bars
 51084;Tien Bo;chinese
@@ -4961,6 +5062,7 @@ id ,nom, genre
 51145;Bala Inn;bars nightlife dive bars pool halls
 51161;Cafe Twelve;coffee & tea bakeries sandwiches cafes bagels
 51174;Kin Wha Garden;chinese
+51189;Chloes Corner;ice cream & frozen yogurt food stands desserts
 51233;El Toro Pizza and Grill;pizza
 51254;Blue Cat Restaurant;sandwiches american (new) latin american
 51264;Mokas Mediterranean Restaurant;mediterranean
@@ -5007,6 +5109,7 @@ id ,nom, genre
 51552;Chick's Philly;bars nightlife breakfast & brunch cocktail bars pizza beer bar
 51554;Sportmaster Bait and Tackle;sporting goods fish & chips
 51564;Fitler Dining Room;diners american (new) desserts
+51568;Hotpot Gourmet ;chinese hot pot
 51571;LaScala's Pronto;italian pizza salad
 51572;Mark's Cafe;coffee & tea breakfast & brunch bagels
 51577;Twenty First Street Gourmet;breakfast & brunch
@@ -5017,6 +5120,7 @@ id ,nom, genre
 51633;Philadium;bars american (traditional) nightlife sports bars
 51649;McDonald's;coffee & tea burgers fast food
 51650;Dragon Phoenix House;chinese
+51678;Plenty Cafe;coffee & tea sandwiches bars american (traditional) nightlife
 51692;Emperor Restaurant;american (traditional) modern european russian
 51697;Craft & Claw;seafood
 51698;King's Wok Chinese Food;food trucks chinese food stands
@@ -5034,8 +5138,10 @@ id ,nom, genre
 51779;Frak's Steaks;sandwiches cheesesteaks
 51782;Not Just Pizza;burgers sandwiches italian american (traditional) pizza
 51792;The Dinner House;caterers modern european polish
+51798;Cafe Ole;coffee & tea mediterranean
 51799;Red Central Chinese Restaurant;sandwiches asian fusion chinese food delivery services
 51800;Lee's Market;coffee & tea sandwiches italian convenience stores cheesesteaks turkish
+51805;Cajun Heroes Seafood Boil Gumbo & PoBoys;seafood american (new) cajun/creole
 51809;Moda;italian bars nightlife lounges
 51827;Cafe Diem;vietnamese
 51836;Taqueria Amor;mexican
@@ -5046,6 +5152,7 @@ id ,nom, genre
 51882;Local Tavern;italian bars american (traditional) nightlife american (new)
 51884;The Taggart House;pubs bars nightlife chicken wings sports bars
 51907;Resurrection Ale House;bars nightlife gastropubs
+51912;Arbol Cafe;coffee & tea latin american
 51916;Zesto Pizza & Grill;burgers american (traditional) pizza chicken wings salad desserts cheesesteaks
 51942;Chili Garden;japanese asian fusion chinese szechuan
 51977;Pizza House & Steaks;sandwiches italian pizza cheesesteaks
@@ -5073,6 +5180,7 @@ id ,nom, genre
 52179;The Olde Bar;bars nightlife breakfast & brunch seafood cocktail bars american (new) lounges
 52184;DeNofa's Italian Deli;sandwiches italian
 52197;Chima Steakhouse;steakhouses chinese american (new) barbeque desserts dim sum brazilian
+52203;Inchins Bamboo Garden;bars nightlife asian fusion cocktail bars salad chinese indian pan asian
 52205;Taco Bell;mexican
 52226;General Tso;chinese
 52240;Tenth Floor Grill;american (new)
@@ -5160,6 +5268,7 @@ id ,nom, genre
 52945;Cafe Tinto;coffee & tea bakeries latin american colombian
 52947;Wendy's;burgers fast food
 52949;New York Gyro Truck;food stands
+52956;Tinas tacos;bars nightlife mexican tacos
 52969;Clock Bar;bars nightlife seafood
 53009;Miller's Ale House;bars american (traditional) nightlife seafood chicken wings american (new) sports bars
 53017;Jade Palace;chinese
@@ -5192,6 +5301,7 @@ id ,nom, genre
 53289;Colombian Bakery;bakeries latin american colombian
 53293;Naked Chocolate Cafe;coffee & tea bakeries specialty food desserts chocolatiers & shops
 53296;Ardiente;bars nightlife asian fusion lounges latin american
+53300;Basic 4 Vegetarian Cafe;vegan vegetarian
 53302;Sonata Restaurant;american (new)
 53308;Wawa;coffee & tea sandwiches gas stations convenience stores
 53316;Hong Qi Gong;chinese hot pot
@@ -5241,6 +5351,7 @@ id ,nom, genre
 53679;Peter's Chicken & Seafood;seafood chicken wings
 53692;Don Quixote Tapas & Things;tapas/small plates spanish tapas bars
 53711;Main Street Pho;vietnamese asian fusion
+53728;Cafe L'Aube;coffee & tea french desserts creperies
 53740;Action Pizza;italian pizza
 53741;Koja Grille;japanese korean
 53744;B2;coffee & tea vegan
@@ -5260,6 +5371,7 @@ id ,nom, genre
 53894;Crab Du Jour - Philadelphia;seafood cajun/creole
 53899;ShopRite of Front & Olney;bakeries specialty food caterers fruits & veggies shopping centers
 53911;Taste King Restaurant;chinese
+53914;Saltys Seafood & Ice Cream Shack;ice cream & frozen yogurt american (traditional) seafood pop-up restaurants
 53923;Han Dynasty;soup chinese beer wine & spirits szechuan noodles
 53933;Puyero Venezuelan Flavor;sandwiches gluten-free latin american desserts cheesesteaks venezuelan
 53934;Chattime;japanese
@@ -5291,9 +5403,11 @@ id ,nom, genre
 54275;Ristorante Pesto;italian
 54297;Stock;vietnamese american (new) thai
 54305;W XYZ Bar;bars nightlife cocktail bars tapas/small plates
+54310;Cafe Carmela;italian pizza specialty food pasta shops
 54342;El Bocado;mexican latin american honduran
 54352;Monster Vegan;sandwiches italian vegan vegetarian
 54372;Corner Bakery;coffee & tea bakeries breakfast & brunch cafes caterers food delivery services
+54378;PhoHouse Thang Long;coffee & tea vietnamese breakfast & brunch soup noodles
 54381;1100 Social;bars nightlife american (new)
 54393;Smokey Joe's Tavern;bars nightlife pizza dive bars
 54399;Steak 48;steakhouses seafood salad american (new)
@@ -5410,6 +5524,7 @@ id ,nom, genre
 55346;Saloon Restaurant;italian chinese
 55385;BAMBU;bubble tea coffee & tea vietnamese juice bars & smoothies desserts
 55394;Golden Cuisine;chinese
+55404;Dante;coffee & tea cafes
 55415;Fortune Kitchen;chinese
 55426;Mamma Mia Pizzeria;pizza
 55430;Ikki Sushi;sushi bars japanese
@@ -5438,6 +5553,7 @@ id ,nom, genre
 55640;Bodhi Coffee;coffee & tea sandwiches breakfast & brunch
 55666;I CE NY;ice cream & frozen yogurt desserts food court
 55671;Swiss Haus Cafe & Pastry Bar;coffee & tea bakeries cafes desserts
+55676;Bonte Wafflerie & Cafe;coffee & tea ice cream & frozen yogurt breakfast & brunch
 55681;Alif Brew & Mini Mart;cafes convenience stores ethiopian
 55683;Shana's Caribbean Cafe;bakeries specialty food caribbean ethnic food
 55686;Ramayana Store;specialty food ethnic food indonesian
@@ -5478,6 +5594,7 @@ id ,nom, genre
 55981;Yello'bar;pubs bars nightlife american (new) beer wine & spirits irish
 55994;La Calenita Bakery Cafe;bakeries breakfast & brunch specialty food ethnic food latin american colombian
 56027;Pho Palace;vietnamese asian fusion seafood soup comfort food desserts
+56037;Mister Ps Pizza & Pasta;sandwiches italian pizza
 56080;BUY the Dozen;bakeries
 56084;Accu Pizza;seafood pizza barbeque desserts
 56092;Virginio's Pizza & Grill;pizza mexican
@@ -5505,6 +5622,7 @@ id ,nom, genre
 56298;Makhani;seafood vegetarian indian desserts
 56309;Trio Delight Cafe;cafes steakhouses
 56315;Herban Quality Eats;sandwiches breakfast & brunch salad caterers american (new) vegan gluten-free food delivery services
+56320;Lily Of The Valley Cupcakery and Cafe;coffee & tea bakeries cafes cupcakes
 56322;Ichiban;chinese food delivery services
 56326;Spring Chinese;seafood soup chinese
 56332;Day N Nite;bars nightlife cocktail bars lounges hookah bars karaoke cheesesteaks
@@ -5558,6 +5676,7 @@ id ,nom, genre
 56717;Humpty's Dumplings;fast food american (traditional) asian fusion chinese american (new) noodles dim sum
 56746;Slice;italian pizza barbeque
 56757;China King;seafood soup chinese
+56760;Green Eggs Cafe;diners breakfast & brunch american (new)
 56785;Akbar restaurant and Banquet Hall;bars nightlife asian fusion hookah bars pakistani indian dance clubs
 56802;KFC;fast food chicken wings chicken shop
 56805;Brazilian Pizza Philly;italian pizza brazilian
@@ -5568,6 +5687,7 @@ id ,nom, genre
 56833;Xiao Guan Garden;chinese
 56836;Stockyard Sandwich;sandwiches breakfast & brunch salad caterers gluten-free
 56843;Meatheads Deli;sandwiches
+56851;Aejo Philadelphia;mexican new mexican cuisine
 56865;Old Nelson Food Company;sandwiches
 56866;Larry's Steaks;sandwiches pizza cheesesteaks
 56875;Istanbul Grill & Cafe;mediterranean turkish
@@ -5620,6 +5740,8 @@ id ,nom, genre
 57243;LALO;fast food filipino comfort food
 57253;Greek From Greece;coffee & tea bakeries greek cafes mediterranean
 57262;Giuseppe & Sons;italian bars nightlife
+57263;Green Eggs Cafe;diners breakfast & brunch american (new)
+57276;St. Oners;brewpubs breweries noodles
 57295;The Turf Club;american (traditional) local flavor
 57309;John's Place;sandwiches breakfast & brunch pizza
 57317;Nick's Old Original Roast Beef;sandwiches bars nightlife dive bars
@@ -5650,6 +5772,7 @@ id ,nom, genre
 57490;The Living Room;asian fusion
 57497;Au Bon Pain;coffee & tea bakeries breakfast & brunch
 57499;El Greco Pizza & Luncheonette;pizza
+57512;Luigis Pizza Fresca;italian pizza hawaiian
 57522;Mugshots Coffeehouse;coffee & tea nightlife breakfast & brunch music venues gluten-free
 57528;Spuntino Wood Fired Pizza;pizza
 57541;Pamir Grill Kabob;halal afghan

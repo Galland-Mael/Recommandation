@@ -38,7 +38,7 @@ def predict_review(user_id, restaurant_name, model, metadata):
     return review_prediction.est
 
 
-def generate_recommendation(user_id, model, metadata, thresh=3.):
+def generate_recommendation(user_id, model, metadata, thresh=3.5):
     """
     Generates a book recommendation for a user based on a rating threshold. Only
     books with a predicted rating at or above the threshold will be recommended
@@ -52,3 +52,22 @@ def generate_recommendation(user_id, model, metadata, thresh=3.):
         if rating >= thresh:
             restaurant_id = get_restaurant_id(restaurant_name, metadata)
             return get_restaurant_info(restaurant_id, metadata)
+
+
+def testMatteoRecommandation(user_id, model, metadata):
+    """
+
+    @param user_id:
+    @param model:
+    @param metadata:
+    @return:
+    """
+    restaurant_names = list(metadata['nom'].values)
+    dico_all = {}
+    cpt = 0
+
+    for restaurant_name in restaurant_names:
+        rating = predict_review(user_id, restaurant_name, model, metadata)
+        cpt+=1
+        if (cpt < 100):
+            print(str(restaurant_name) + "  " + str(rating))
