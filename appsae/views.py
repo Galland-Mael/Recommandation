@@ -51,6 +51,7 @@ def modifPAGE():
 
 
 def index(request):
+    #insert_nom()
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
@@ -245,11 +246,6 @@ def login(request):
         return render(request, 'user/login.html')
 
 
-def index(request):
-    liste = carrousel();
-    return render(request, 'index/index.html', {'list': liste})
-
-
 def modifUser(request):
     return render(request, 'user/modifUser.html')
 
@@ -438,8 +434,15 @@ def getFirstElement():
 
 def insert_nom():
     list = getFirstElement()
+    random.shuffle(list)
+    i=0
     for personne in Adherant.objects.all():
-        alea = random.randint(1000, 650000)
-        Adherant.objects.filter(pk=personne.pk).update(nom=list[alea])
+        tmp = list[i].lower()
+        tmp = tmp[0].upper() + tmp[1:]
+        print(tmp)
+        Adherant.objects.filter(pk=personne.pk).update(nom=tmp)
+        Adherant.objects.filter(pk=personne.pk).update(mail=personne.prenom.lower() + "." + list[i].lower() + "@eatadvisor.com")
+        i+=1
+        print(i)
 
 
