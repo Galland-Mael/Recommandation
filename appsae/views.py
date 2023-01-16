@@ -1,7 +1,6 @@
 import json
 import os.path
 import sqlite3
-import csv
 from sqlite3 import OperationalError
 import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
@@ -210,11 +209,7 @@ def register(request):
         form = AdherantForm(request.POST).save()
         return redirect('login')
     form = AdherantForm()
-    context = {
-        'form': form,
-        'info': Adherant.objects.all
-    }
-    return render(request, 'user/register.html', context)
+    return render(request, 'user/register.html', {'form': form, 'info': Adherant.objects.all})
     # return JsonResponse({"form": list(form.values) })
 
 
@@ -228,7 +223,7 @@ def login(request):
                 if (request.POST['password'] == adherant.password):
                     contain = True
         if contain:
-            user = Adherant.objects.get(mail=request.POST['mail']);
+            user = Adherant.objects.get(mail=request.POST['mail'])
             '''Création de la session ou je récupère que le mail de l'utilisateur'''
             request.session['mailUser'] = user.mail
             sessionMailUser = request.session['mailUser'];
@@ -297,7 +292,6 @@ def recommandation():
         list.append(restaurant[i]);
     return list
 
-
 '''Fonction qui detruit la session et redirige sur la page index'''
 
 
@@ -322,7 +316,6 @@ def vueRestaurant(request, pk):
     restaurant = Restaurant.objects.filter(pk=pk)
     imgRestaurants = ImageRestaurant.objects.filter
     return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
-
 
 def matteo(request):
     adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
@@ -432,3 +425,21 @@ def suppVille():
     listVilles = ["Philadelphia","Tampa","Indianapolis","Nashville","Tucson","New Orleans","Edmonton","Saint Louis","Reno",
                   "Saint Petersburg","Boise", "Santa Barbara","Clearwater","Wilmington","St. Louis","Metairie","Franklin"]
     Restaurant.objects.all().exclude(ville__in=listVilles).delete()
+
+def getFirstElement():
+    liste = []
+    fichier = open("C:/Users/alhdv/Downloads/patronymes.csv","r")
+    cr = csv.reader( fichier,delimiter=",")
+    for row in cr:
+        if " " not in str(row[0]):
+            liste.append(row[0])
+    fichier.close()
+    return liste
+
+def insert_nom():
+    list = getFirstElement()
+    for personne in Adherant.objects.all():
+        alea = random.randint(1000, 650000)
+        Adherant.objects.filter(pk=personne.pk).update(nom=list[alea])
+
+
