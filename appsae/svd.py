@@ -24,8 +24,7 @@ def get_restaurant_info(restaurant_id, metadata):
     Returns some basic information about a book given the book id and the metadata dataframe.
     """
 
-    restaurant_info = metadata[metadata['id'] == restaurant_id][['id', 'nom',
-                                                     'type']]
+    restaurant_info = metadata[metadata['id'] == restaurant_id][['id', 'nom']]
     return restaurant_info.to_dict(orient='records')
 
 
@@ -51,5 +50,26 @@ def generate_recommendation(user_id, model, metadata, thresh=4):
     for restaurant_name in restaurant_names:
         rating = predict_review(user_id, restaurant_name, model, metadata)
         if rating >= thresh:
+            print(rating)
             restaurant_id = get_restaurant_id(restaurant_name, metadata)
             return get_restaurant_info(restaurant_id, metadata)
+
+def testMatteoRecommandation(user_id, model, metadata):
+    """
+
+    @param user_id:
+    @param model:
+    @param metadata:
+    @return:
+    """
+    restaurant_names = list(metadata['nom'].values)
+    dico_all = {}
+    cpt = 0
+
+    for restaurant_name in restaurant_names:
+        rating = predict_review(user_id, restaurant_name, model, metadata)
+        cpt+=1
+        if (cpt < 100):
+            print(str(restaurant_name) + "  " + str(rating))
+        #dico_all[str(restaurant_name)] = rating
+    #print("Taille dico : " + str(len(dico_all)))
