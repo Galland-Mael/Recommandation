@@ -1,0 +1,13 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/vueRestaurant.css' %}"/>
+
+{% endblock %}
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+{% block main %}
+    <a href="{% url 'creationGroup' %}">Create Groupe</a>
+{% endblock %}

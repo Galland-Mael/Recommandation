@@ -1,0 +1,51 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/addUserGroup.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/creationGroup.css' %}"/>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+{% endblock %}
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+{% block main %}
+    <div class="search-container">
+        <form action="{% url 'index' %}" method="POST" class="post-form form">
+            {% csrf_token %}
+            <div class="search">
+                <input class="searchTerm" type="text" name="search"
+                       hx-get="{% url 'searchUser' %}"
+                       hx-trigger="keyup changed delay:250ms"
+                       hx-target="#search-results"
+                       placeholder="Search..."
+                >
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+
+            </div>
+        </form>
+        <div class="result-container">
+            <div id="search-results">
+
+            </div>
+        </div>
+    </div>
+    {% for element in groupe %}
+        <section class="user-card">
+            <img class="image" src="{{ element.profile_picture.url }}" alt="image Restaurant">
+            <div class="info-user-container">
+                <span>{{ element.mail }}</span>
+                <box-icon class="box" name='x' color='#297373'
+                hx-get="{% url 'removeUser' element %}"
+                       hx-trigger="click"
+                       hx-target="closest section"
+                          hx-swap="outerHTML"
+                ></box-icon>
+            </div>
+        </section>
+    {% endfor %}
+
+    <a href="{% url 'nomGroup' %}" class="suivant"> suivant</a>
+{% endblock %}
