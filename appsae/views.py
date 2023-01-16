@@ -350,18 +350,20 @@ def recommendation(request):
     ratings_data.info()
     reader = Reader(rating_scale=(1, 5))
     data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
-    svd = SVD(verbose=True, n_epochs=10, n_factors=100)
-    cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=True)
+    svd = SVD(verbose=False, n_epochs=10, n_factors=100)
+    cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=False)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    print(svd.predict(uid=339825, iid=9189))
-    print(svd.predict(uid=339825, iid=51698))
-    print(svd.predict(uid=339825, iid=30195))
-    print(svd.predict(uid=339825, iid=16755))  # uid user id iid item id
+    # print(svd.predict(uid=339825, iid=16755))  # uid user id iid item id
     print(generate_recommendation(339825, svd, restaurant_metadata))
-    print(generate_recommendation(339825, svd, restaurant_metadata))
-    print(generate_recommendation(339825, svd, restaurant_metadata))
-    testMatteoRecommandation(339825, svd, restaurant_metadata)
+    #testMatteoRecommandation(339825, svd, restaurant_metadata)
+    print(algoRecommandationIndividuelle(339825,svd,restaurant_metadata,10))
+    '''
+    list = [("A",4.2),("B",4.12),("E",3.99),("F",3.78),("G",3.69),("H",3.66),("I",3.58),("J",3.52),("H", 3.46)]
+    list = testA(list,"MATTEO",3.95)
+    print(list)
+    #print(list[9][1])
+    '''
     print(time.time() - start)
     return HttpResponse('')
 
