@@ -354,16 +354,9 @@ def recommendation(request):
     cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=False)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    # print(svd.predict(uid=339825, iid=16755))  # uid user id iid item id
     print(generate_recommendation(339825, svd, restaurant_metadata))
-    #testMatteoRecommandation(339825, svd, restaurant_metadata)
-    print(algoRecommandationIndividuelle(339825,svd,restaurant_metadata,10))
-    '''
-    list = [("A",4.2),("B",4.12),("E",3.99),("F",3.78),("G",3.69),("H",3.66),("I",3.58),("J",3.52),("H", 3.46)]
-    list = testA(list,"MATTEO",3.95)
-    print(list)
-    #print(list[9][1])
-    '''
+    # print(algoRecommandationIndividuelle_v2(339825,svd,restaurant_metadata,10))
+    print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
     print(time.time() - start)
     return HttpResponse('')
 

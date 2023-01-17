@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import chart_studio.plotly as py
 import chart_studio
 import os
-
+import time
 
 def get_restaurant_id(restaurant_name, metadata):
     """
@@ -53,7 +53,43 @@ def generate_recommendation(user_id, model, metadata, thresh=3.5):
             restaurant_id = get_restaurant_id(restaurant_name, metadata)
             return get_restaurant_info(restaurant_id, metadata)
 
-import time
+
+def algoRecommandationGroupe(groupe, model, metadata, taille=10):
+    restaurant_names = list(metadata['nom'].values)
+    liste_recommandations = []
+    liste_length = 0
+
+    for restaurant_name in restaurant_names:
+        moyenne = 0
+        for people in groupe.liste_adherants.all():
+            moyenne += predict_review(people.pk, restaurant_name, model, metadata)
+
+        moyenne = moyenne/(groupe.liste_adherants.all().count())
+        if moyenne > 4.5:
+            liste_recommandations.append((restaurant_name, moyenne))
+            liste_length+=1
+            if liste_length == taille:
+                return liste_recommandations
+    return liste_recommandations
+
+
+def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
+    restaurant_names = list(metadata['nom'].values)
+    liste = []
+    list_length = 0
+
+    st = time.time()
+    for restaurant_name in restaurant_names:
+        rating = predict_review(user_id, restaurant_name, model, metadata)
+        if rating > 4.5:
+            liste.append((restaurant_name, rating))
+            list_length+=1
+            if (list_length == taille):
+                print(time.time() - st)
+                return liste
+    print(time.time() - st)
+    return liste
+
 
 def algoRecommandationIndividuelle(user_id, model, metadata,taille=10):
     """
@@ -71,6 +107,8 @@ def algoRecommandationIndividuelle(user_id, model, metadata,taille=10):
 
     liste = []
     st = time.time()
+    '''
+    # Pour prendre les elements dans une liste de 10 max
     for restaurant_name in restaurant_names[:10]:
         rating = predict_review(user_id, restaurant_name, model, metadata)
         liste = ajoutDebutListe(liste,restaurant_name, rating,10)
@@ -78,19 +116,18 @@ def algoRecommandationIndividuelle(user_id, model, metadata,taille=10):
     if (min < 3.99):
         min = 3.99
     print(time.time() - st)
+    '''
 
     st = time.time()
     for restaurant_name in restaurant_names:
         rating = predict_review(user_id, restaurant_name, model, metadata)
-        '''
         if rating > min:
             liste = ajoutList(liste,restaurant_name, rating, taille)
             min = liste[9][1]
         '''
-        '''
         if rating > min:
             liste.append((restaurant_name,rating))
-            min = liste[9][1]
+            # min = liste[9][1]
         '''
     print(time.time() - st)
     return liste[:10]
