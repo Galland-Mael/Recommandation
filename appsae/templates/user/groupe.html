@@ -3,11 +3,22 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/vueRestaurant.css' %}"/>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/groupe.css' %}"/>
 {% endblock %}
 {% block header %}
     {% include "source/header.html" %}
 {% endblock %}
 {% block main %}
     <a href="{% url 'creationGroup' %}">Create Groupe</a>
+
+    <div class="grid">
+    {% for element in listGroupe %}
+        <div class="group-card">
+            <div class="group-title"><span>{{ element }}</span></div>
+            {% for user in element.liste_adherants.all %}
+                <div>{{ user }}</div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}

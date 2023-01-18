@@ -70,6 +70,7 @@
     display: flex;
     padding: 30px 0;
     width: 60%;
+    height: 40px;
     margin: auto;
 }
 
@@ -244,7 +245,40 @@
     font-size: 1.3rem;
 }
 
+.groupe{
+    display: flex;
+    flex-direction: column;
+        width: 12rem;
+    margin: auto;
+}
+.group-name{
+    height: 1.5rem;
+}
+.groupe-label{
+    font-size: 1.3rem;
+}
 .info-user-container {
     display: flex;
     align-items: center;
+}
+.btn-container{
+    border: none;
+    display: flex;
+    justify-content: center;
+}
+.btn-container-button{
+        display: block;
+    margin: auto;
+    border: none;
+}
+.suivant{
+    font-size: 1.3rem;
+    border-radius: 10px;
+    padding: 4px 9px;
+    color: black;
+    text-decoration: none;
+    background-color: var(--bleu);
+}
+button{
+
 }

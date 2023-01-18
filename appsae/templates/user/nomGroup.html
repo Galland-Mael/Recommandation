@@ -1,0 +1,40 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/addUserGroup.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/creationGroup.css' %}"/>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+{% endblock %}
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+{% block main %}
+    <form action="{% url 'createGroupe' %}" method="POST" class="post-form form">
+        <div class="search-container">
+
+            {% csrf_token %}
+            <div class="groupe">
+                <label for="nomGroupe" class="groupe-label">Nom du Groupe</label>
+                <input name="nomGroupe" type="text" class="group-name">
+            </div>
+        </div>
+        {% for element in groupe %}
+            <section class="user-card">
+                <img class="image" src="{{ element.profile_picture.url }}" alt="image Restaurant">
+                <div class="info-user-container">
+                    <span>{{ element.mail }}</span>
+                    <box-icon class="box" name='x' color='#297373'
+                              hx-get="{% url 'removeUser' element %}"
+                              hx-trigger="click"
+                              hx-target="closest section"
+                              hx-swap="outerHTML"
+                    ></box-icon>
+                </div>
+            </section>
+        {% endfor %}
+        <button type="submit" class="btn-container-button">
+            <div class="suivant">suivant</div>
+        </button>
+    </form>
+{% endblock %}

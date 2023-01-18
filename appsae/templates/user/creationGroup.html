@@ -11,7 +11,7 @@
 {% endblock %}
 {% block main %}
     <div class="search-container">
-        <form action="{% url 'index' %}" method="POST" class="post-form form">
+        <form action="{% url 'groupe' %}" method="POST" class="post-form form">
             {% csrf_token %}
             <div class="search">
                 <input class="searchTerm" type="text" name="search"
@@ -38,14 +38,15 @@
             <div class="info-user-container">
                 <span>{{ element.mail }}</span>
                 <box-icon class="box" name='x' color='#297373'
-                hx-get="{% url 'removeUser' element %}"
-                       hx-trigger="click"
-                       hx-target="closest section"
+                          hx-get="{% url 'removeUser' element %}"
+                          hx-trigger="click"
+                          hx-target="closest section"
                           hx-swap="outerHTML"
                 ></box-icon>
             </div>
         </section>
     {% endfor %}
-
-    <a href="{% url 'nomGroup' %}" class="suivant"> suivant</a>
+    <button class="btn-container-button">
+        <a href="{% url 'nomGroup' %}" class="suivant"> suivant</a>
+    </button>
 {% endblock %}

@@ -61,9 +61,13 @@ def index(request):
 
 
 def creationGroup(request):
+    if 'groupe' in request.session:
+        del request.session['groupe']
+    if 'nomGroupe' in request.session:
+        del request.session['nomGroupe']
     context = {}
     connect(request, context)
-    return render(request, 'user/groupe.html', context)
+    return render(request, 'user/creationGroup.html', context)
 
 
 def search(request):
@@ -78,6 +82,12 @@ def search(request):
     return render(request, 'restaurants/searchRestaurants.html', context)
 
 def createGroupe(request):
+    print("test")
+    print(request.POST)
+    if 'nomGroupe' not in request.POST:
+        context = {}
+        connect(request, context)
+        return render(request, 'user/groupe.html', context)
     groupe = creationGroupe(request.POST['nomGroupe'], Adherant.objects.get(mail=request.session['mailUser']))
     for user in Adherant.objects.filter(mail__in=request.session['groupe']):
         ajoutUtilisateurGroupe(user,groupe)
@@ -121,6 +131,7 @@ def removeUser(request, user):
 
 
 def addUser(request, user):
+    currentUser = Adherant.objects.get(mail=request.session['mailUser'])
     if 'groupe' in request.session:
         list = request.session['groupe']
     else:
@@ -132,7 +143,7 @@ def addUser(request, user):
         'groupe': Adherant.objects.filter(mail__in=request.session['groupe']),
     }
     connect(request, context)
-    return render(request, 'user/createGroup.html', context)
+    return render(request, 'user/creationGroup.html', context)
 
 
 
@@ -156,7 +167,7 @@ def groupePage(request):
 def searchUser(request):
     if request.GET["search"] != "":
         context = {
-            'user': Adherant.objects.filter(mail__icontains=request.GET["search"])[:3]
+            'user': Adherant.objects.filter(mail__icontains=request.GET["search"]).exclude(mail=request.session['mailUser'])[:3]
         }
     elif request.GET["search"] == "":
         context = {
@@ -252,10 +263,6 @@ def login(request):
     else:
         return render(request, 'user/login.html')
 
-
-def index(request):
-    liste = listeAffichageCaroussel();
-    return render(request, 'index/index.html', {'list': liste})
 
 
 def modifUser(request):

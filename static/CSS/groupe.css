@@ -1,19 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
+.group-card{
+    margin: 30px;
+    background-color: yellow;
 }
 
-body {
-    min-height: 100vh;
-}
-
-.flex {
-    display: flex;
-}
-
-.field {
-}
-
-.submit {
-
+.grid{
+     display: grid;
+     width: 100%;
+    grid-template-columns: repeat(3, 1fr);
 }
