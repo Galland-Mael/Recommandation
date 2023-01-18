@@ -73,6 +73,29 @@ def algoRecommandationGroupe(groupe, model, metadata, taille=10):
     return liste_recommandations
 
 
+def algoRecommandationIndividuelle_v3(user_id, model, metadata, taille=10):
+    restaurant_names = list(metadata['nom'].values)
+    liste = []
+
+    # Pour prendre les elements dans une liste de 10 max
+    for restaurant_name in restaurant_names[:taille]:
+        rating = predict_review(user_id, restaurant_name, model, metadata)
+        liste = ajoutDebutListe(liste,restaurant_name, rating,taille)
+    min = liste[taille-1][1]
+    # on fait commencer le min à minimum 4.5
+    if (min < 4.5):
+        min = 4.5
+
+    st = time.time()
+    for restaurant_name in restaurant_names[taille:]:
+        rating = predict_review(user_id, restaurant_name, model, metadata)
+        if rating > min:
+            liste = ajoutList(liste, restaurant_name, rating, taille)
+            min = liste[taille-1][1]
+    print(time.time() - st)
+    return liste[:taille]
+
+
 def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
     restaurant_names = list(metadata['nom'].values)
     liste = []
@@ -92,45 +115,27 @@ def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
 
 
 def algoRecommandationIndividuelle(user_id, model, metadata,taille=10):
-    """
-
-    @param user_id:
-    @param model:
-    @param metadata:
-    @param taille:
-    @return:
-    """
     restaurant_names = list(metadata['nom'].values)
     liste = []
     list_length = 0
-    min = 5
 
-    liste = []
-    st = time.time()
-    '''
     # Pour prendre les elements dans une liste de 10 max
-    for restaurant_name in restaurant_names[:10]:
+    for restaurant_name in restaurant_names[:taille]:
         rating = predict_review(user_id, restaurant_name, model, metadata)
-        liste = ajoutDebutListe(liste,restaurant_name, rating,10)
-    min = liste[9][1]
-    if (min < 3.99):
-        min = 3.99
-    print(time.time() - st)
-    '''
+        liste = ajoutDebutListe(liste, restaurant_name, rating, taille)
+    min = liste[taille-1][1]
+    # on fait commencer le min à minimum 4.5
+    if (min < 4.5):
+        min = 4.5
 
     st = time.time()
-    for restaurant_name in restaurant_names:
+    for restaurant_name in restaurant_names[taille:]:
         rating = predict_review(user_id, restaurant_name, model, metadata)
         if rating > min:
             liste = ajoutList(liste,restaurant_name, rating, taille)
-            min = liste[9][1]
-        '''
-        if rating > min:
-            liste.append((restaurant_name,rating))
-            # min = liste[9][1]
-        '''
+            min = liste[taille-1][1]
     print(time.time() - st)
-    return liste[:10]
+    return liste
 
 
 def ajoutDebutListe(list,resto_name, prediction, taille_max=10):
