@@ -82,8 +82,6 @@ def search(request):
     return render(request, 'restaurants/searchRestaurants.html', context)
 
 def createGroupe(request):
-    print("test")
-    print(request.POST)
     if 'nomGroupe' not in request.POST:
         context = {}
         connect(request, context)
@@ -149,6 +147,9 @@ def addUser(request, user):
 
 
 def nomGroup(request):
+    print(request.session)
+    if 'groupe' not in request.session:
+        return redirect('groupe')
     context = {
         'groupe': Adherant.objects.filter(mail__in=request.session['groupe']),
     }
