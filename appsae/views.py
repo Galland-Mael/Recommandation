@@ -250,11 +250,6 @@ def login(request):
         return render(request, 'user/login.html')
 
 
-def index(request):
-    liste = carrousel();
-    return render(request, 'index/index.html', {'list': liste})
-
-
 def modifUser(request):
     return render(request, 'user/modifUser.html')
 
@@ -354,9 +349,9 @@ def recommendation(request):
     cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=False)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    print(generate_recommendation(339825, svd, restaurant_metadata))
-    # print(algoRecommandationIndividuelle_v2(339825,svd,restaurant_metadata,10))
-    print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
+    # print(generate_recommendation(776322, svd, restaurant_metadata))
+    print(algoRecommandationIndividuelle_v2(339825,svd,restaurant_metadata,10))
+    # print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
     print(time.time() - start)
     return HttpResponse('')
 
