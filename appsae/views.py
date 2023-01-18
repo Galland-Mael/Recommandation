@@ -250,6 +250,11 @@ def login(request):
         return render(request, 'user/login.html')
 
 
+def index(request):
+    liste = carrousel();
+    return render(request, 'index/index.html', {'list': liste})
+
+
 def modifUser(request):
     return render(request, 'user/modifUser.html')
 
@@ -284,14 +289,14 @@ def carrousel():
         list.append(restaurant[i]);
     return list
 
-
+'''
 def recommandation():
     restaurant = Restaurant.objects.order_by('-note');
     list = [];
     for i in range(3):
         list.append(restaurant[i]);
     return list
-
+'''
 
 '''Fonction qui detruit la session et redirige sur la page index'''
 
@@ -320,6 +325,7 @@ def vueRestaurant(request, pk):
 
 
 def matteo(request):
+    '''
     adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
     resto = Restaurant.objects.filter(nom="Burger King")[0]
     print(afficherAvis(adherant, resto))
@@ -334,24 +340,31 @@ def matteo(request):
                            Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
     modifPAGE()
     print("------------------------------------------------")
+    '''
+
     return redirect('index')
 
 
 def recommendation(request):
+    # ad = Adherant.objects.get(pk=40000)
+    print(Avis.objects.filter(adherant_fk=450665).count())
+
     start = time.time()
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
     restaurant_metadata.info()
     ratings_data.info()
     reader = Reader(rating_scale=(1, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
-    svd = SVD(verbose=False, n_epochs=10, n_factors=100)
+    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
+    svd = SVD(verbose=True, n_epochs=10, n_factors=100, init_std_dev=0.001, lr_all=0.019)
     cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=False)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    # print(generate_recommendation(776322, svd, restaurant_metadata))
-    print(algoRecommandationIndividuelle_v2(339825,svd,restaurant_metadata,10))
-    # print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
+    # print(svd.predict(uid=397784, iid=7859))  # uid user id iid item id"""
+    #print(generate_recommendation(387787, svd, restaurant_metadata, 3.82))
+    #print(generate_recommendation(387787, svd, restaurant_metadata, 3.82))
+    #print(generate_recommendation(387787, svd, restaurant_metadata, 3.82))
+    testMatteoRecommandation(339825, svd, restaurant_metadata)
     print(time.time() - start)
     return HttpResponse('')
 
@@ -359,7 +372,7 @@ def recommendation(request):
 def export_restaurant(request):
     file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
     f = open(file, "w")
-    f.writelines("id;nom;genre")
+    f.writelines("id ;nom; genre ")
     f.write('\n')
     for restaurant in Restaurant.objects.filter(ville='Philadelphia'):
         f.write(str(restaurant.pk))
@@ -379,9 +392,9 @@ def export_restaurant(request):
 def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
-    f.writelines("restaurant_id,user_id,note")
+    f.writelines("user_id,restaurant_id,note,timestamp")
     f.write('\n')
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note'):
+    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note', 'unix_date'):
             f.write(str(rating)[1:-1])
             f.write('\n')
     print(file)

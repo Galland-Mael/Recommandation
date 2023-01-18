@@ -9,6 +9,7 @@ urlpatterns = [
     path('user/register/', register, name='register'),
     path('user/login/', login, name='login'),
     path('modifuser/', modifUser, name='modifUser'),
+    path('modifuser/', modifUser, name='modifUser'),
     path('verificationEmail/', verificationEmail, name='verificationEmail'),
     path('', index, name='index'),
     path('carrousel/', meilleurs_resto, name='meilleurs_resto'),
@@ -27,7 +28,7 @@ urlpatterns = [
     path('nomGroup/', nomGroup, name='nomGroup'),
     path('createGroupe/', createGroupe, name='createGroupe'),
     path('createGroup/', createGroup, name='createGroup'),
-    path('recommandation/', recommandation, name='recommandation'),
+    #path('recommandation/', recommandation, name='recommandation'),
     path('setImg/', setImg, name='setImg'),
     path('recommendation', recommendation,name='recommendation')
 ]
