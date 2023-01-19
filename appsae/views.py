@@ -47,6 +47,10 @@ def modifPAGE():
     global PAGE
     PAGE += 1
 
+def groupRecommandations(request):
+    context={}
+    connect(request,context)
+    return render(request,'user/groupRecommandations.html',context)
 
 def index(request):
     if 'groupe' in request.session:
@@ -147,7 +151,6 @@ def addUser(request, user):
 
 
 def nomGroup(request):
-    print(request.session)
     if 'groupe' not in request.session:
         return redirect('groupe')
     context = {
@@ -178,12 +181,21 @@ def searchUser(request):
 
 
 def vueRestaurant(request, pk):
+    img=Restaurant.objects.get(pk=pk).img.all()
     context = {
         'restaurant': Restaurant.objects.filter(pk=pk),
-        'imgRestaurants': ImageRestaurant.objects.filter(idRestaurant=pk),
+        'imgRestaurants':ImageRestaurant.objects.filter(pk__in=img),
         'avis': Avis.objects.filter(restaurant_fk=Restaurant.objects.get(pk=pk))[:10],
         'nbAvis': Avis.objects.filter(restaurant_fk=Restaurant.objects.get(pk=pk)),
     }
+    images = ImageRestaurant.objects.filter(pk__in=img)
+    print(images)
+    print("-------------------")
+    for image in images:
+        print(image.image.url)
+    print(images[0].image.url)
+    print("-------------------")
+    print(images)
     connect(request, context),
     if 'mailUser' in request.session:
         context['commentaire'] = True
@@ -321,18 +333,10 @@ def logoutUser(request):
 
 
 def search(request):
-    print("kerkekeke")
     if request.GET["search"] != "":
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
         return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
-
-
-def vueRestaurant(request, pk):
-    print("vuerestaurant")
-    restaurant = Restaurant.objects.filter(pk=pk)
-    imgRestaurants = ImageRestaurant.objects.filter
-    return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
 
 
 def matteo(request):

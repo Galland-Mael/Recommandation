@@ -94,33 +94,33 @@ path {
     transition: fill .45s ease;
 }
 
-a:hover {
+.data-card:hover {
     background: var(--bleu);
     transform: scale(1.02);
 }
 
-a:hover h3 {
+.data-card.data-card:hover h3 {
     color: #FFFFFF;
     border-bottom-color: #23bcae;
 }
 
-a:hover span {
+.data-card:hover span {
     color: #FFFFFF;
 }
 
-a:hover h4 {
+.data-card:hover h4 {
     color: #FFFFFF;
 }
 
-a:hover .link-text {
+.data-card:hover .link-text {
     color: #FFFFFF;
 }
 
-a:hover svg {
+.data-card:hover svg {
     animation: point 1.25s infinite alternate;
 }
 
-a:hover path {
+.data-card:hover path {
     fill: #FFFFFF;
 }
 

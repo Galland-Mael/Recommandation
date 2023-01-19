@@ -52,17 +52,19 @@
                     <div class="split-image-container flex column multiple-img">
                         <div class="split-img-container margin-bottom flex ">
                             <div class="split-img">
-                                {% for image in imgRestaurants %}
+                                {% for image in imgRestaurants|slice:":4" %}
                                     {% if forloop.counter == 1 %}
+                                        {{ image.image.url }}
                                         <img class="img" src="{{ image.image.url }}" alt="marche pas">
                                     {% endif %}
                                 {% endfor %}
                             </div>
 
                             <div class="split-img">
-                                {% for element in imgRestaurants %}
+                                {% for image in imgRestaurants %}
                                     {% if forloop.counter == 2 %}
-                                        <img class="img top-right-radius" src="{{ element.image.url }}"
+                                        {{ image.image.url }}
+                                        <img class="img top-right-radius" src="{{ image.image.url }}"
                                              alt="marche pas">
                                     {% endif %}
                                 {% endfor %}
@@ -71,16 +73,18 @@
 
                         <div class="split-img-container flex">
                             <div class="split-img">
-                                {% for element in imgRestaurants %}
+                                {% for image in imgRestaurants %}
                                     {% if forloop.counter == 3 %}
-                                        <img class="img" src="{{ element.image.url }}" alt="marche pas">
+                                                                   {{ image.image.url }}
+                                        <img class="img" src="{{ image.image.url }}" alt="marche pas">
                                     {% endif %}
                                 {% endfor %}
                             </div>
                             <div class="split-img">
-                                {% for element in imgRestaurants %}
+                                {% for image in imgRestaurants %}
                                     {% if forloop.counter == 4 %}
-                                        <img class="img bottom-right-radius" src="{{ element.image.url }}"
+                                                                   {{ image.image.url }}
+                                        <img class="img bottom-right-radius" src="{{ image.image.url }}"
                                              alt="marche pas">
                                     {% endif %}
                                 {% endfor %}
