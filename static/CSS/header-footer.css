@@ -10,6 +10,10 @@ html {
     padding: 0;
 }
 
+img{
+    object-fit: cover;
+}
+
 .btn-header {
     background-color: var(--blanc);
     color: var(--bleu);

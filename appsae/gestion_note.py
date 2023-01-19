@@ -4,7 +4,6 @@ from django.db.models import Avg
 
 def updateNoteMoyenneRestaurant(restaurant):
     """ Fonction de mise à jour de la note moyenne d'un restaurant passé en paramètres
-
     @param nomRestaurant: le nom du restaurant
     @return: /
     """
@@ -37,7 +36,6 @@ def updateAvis(user, restaurant, note, avis):
     """
     Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user).update(note=note, texte=avis)
     updateNoteMoyenneRestaurant(restaurant)
-
 def suppressionAvis(user, restaurant):
     """ Suppression de l'avis de l'utilisateur user sur le restaurant restaurant
 

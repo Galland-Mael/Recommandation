@@ -278,13 +278,17 @@ input:checked ~ label, label:hover ~ label {
 .margin-auto{
     margin:auto ;
 }
-
 .voir-plus-container{
     width: 100%;
     display: flex;
     justify-content: center;
 }
-
+img{
+    object-fit: cover;
+}
+.overflow{
+    overflow: hidden;
+}
 .voir-plus-btn{
     border-radius: 20px;
     width: 65px;

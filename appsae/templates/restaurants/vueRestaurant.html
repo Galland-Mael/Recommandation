@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="separator"></div>
-                <div class="flex">
+                <div class="flex overflow">
                     <div class="split-image-container">
 
                         <div class="main-img-container"><img class="img main-img" src="{{ element.image_front.url }}"
@@ -54,7 +54,6 @@
                             <div class="split-img">
                                 {% for image in imgRestaurants|slice:":4" %}
                                     {% if forloop.counter == 1 %}
-                                        {{ image.image.url }}
                                         <img class="img" src="{{ image.image.url }}" alt="marche pas">
                                     {% endif %}
                                 {% endfor %}
@@ -63,7 +62,6 @@
                             <div class="split-img">
                                 {% for image in imgRestaurants %}
                                     {% if forloop.counter == 2 %}
-                                        {{ image.image.url }}
                                         <img class="img top-right-radius" src="{{ image.image.url }}"
                                              alt="marche pas">
                                     {% endif %}
@@ -75,7 +73,6 @@
                             <div class="split-img">
                                 {% for image in imgRestaurants %}
                                     {% if forloop.counter == 3 %}
-                                                                   {{ image.image.url }}
                                         <img class="img" src="{{ image.image.url }}" alt="marche pas">
                                     {% endif %}
                                 {% endfor %}
@@ -83,7 +80,6 @@
                             <div class="split-img">
                                 {% for image in imgRestaurants %}
                                     {% if forloop.counter == 4 %}
-                                                                   {{ image.image.url }}
                                         <img class="img bottom-right-radius" src="{{ image.image.url }}"
                                              alt="marche pas">
                                     {% endif %}
@@ -162,46 +158,68 @@
     <!-- afficher les avis -->
 
 
-   <div class="comment margin-auto">
-        {% for element in avis %}
-
-                <div class="flex margin-bottom">
-
-        <div class="avis-border flex column ">
-            <div class="card-avis flex">
-                <div class="card-user-container flex">
-                    <div class="card-img-container flex ">
-                        <img class="img" src="{{ element.adherant_fk.profile_picture.url }}" alt="marche pas">
-                    </div>
-                </div>
-                <div class="flex column">
-
-
-                    <span class="avis-user-name flex">{{ element.adherant_fk.prenom }}</span>
-                    <div class="note-restaurant flex">
-                        <span>Note : {{ element.note }}</span>
-                        <div class="star-icon">
-                            <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+    <div class="comment margin-auto">
+        {% for element in avisUser %}
+            <div class="flex margin-bottom">
+                <div class="avis-border flex column ">
+                    <div class="card-avis flex">
+                        <div class="card-user-container flex">
+                            <div class="card-img-container flex ">
+                                <img class="img" src="{{ element.adherant_fk.profile_picture.url }}" alt="marche pas">
+                            </div>
+                        </div>
+                        <div class="flex column">
+                            <span class="avis-user-name flex">{{ element.adherant_fk.prenom }}</span>
+                            <div class="note-restaurant flex">
+                                <span>Note : {{ element.note }}</span>
+                                <div class="star-icon">
+                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <span class="avis-text flex">{{ element.texte }}</span>
                 </div>
             </div>
-            <span class="avis-text flex">{{ element.texte }}</span>
-        </div>
+        {% endfor %}
+        {% for element in avis %}
+            <div class="flex margin-bottom">
+
+                <div class="avis-border flex column ">
+                    <div class="card-avis flex">
+                        <div class="card-user-container flex">
+                            <div class="card-img-container flex ">
+                                <img class="img" src="{{ element.adherant_fk.profile_picture.url }}" alt="marche pas">
+                            </div>
+                        </div>
+                        <div class="flex column">
+
+
+                            <span class="avis-user-name flex">{{ element.adherant_fk.prenom }}</span>
+                            <div class="note-restaurant flex">
+                                <span>Note : {{ element.note }}</span>
+                                <div class="star-icon">
+                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="avis-text flex">{{ element.texte }}</span>
+                </div>
             </div>
         {% endfor %}
     </div>
     {% for element in restaurant %}
         {% if not endAvis %}
-        <div id="container-voir-plus-result"></div>
-        <div class="voir-plus-container">
-            <div class="voir-plus-btn"
-                    hx-get="{% url 'voirPlus' element.pk %}"
-                    hx-trigger="click"
-                    hx-target="#container-voir-plus-result"
-            >voir plus
+            <div id="container-voir-plus-result"></div>
+            <div class="voir-plus-container">
+                <div class="voir-plus-btn"
+                     hx-get="{% url 'voirPlus' element.pk %}"
+                     hx-trigger="click"
+                     hx-target="#container-voir-plus-result"
+                >voir plus
+                </div>
             </div>
-        </div>
         {% endif %}
     {% endfor %}
 

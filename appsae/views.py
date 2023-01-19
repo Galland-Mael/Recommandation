@@ -47,10 +47,12 @@ def modifPAGE():
     global PAGE
     PAGE += 1
 
+
 def groupRecommandations(request):
-    context={}
-    connect(request,context)
-    return render(request,'user/groupRecommandations.html',context)
+    context = {}
+    connect(request, context)
+    return render(request, 'user/groupRecommandations.html', context)
+
 
 def index(request):
     if 'groupe' in request.session:
@@ -85,6 +87,7 @@ def search(request):
         }
     return render(request, 'restaurants/searchRestaurants.html', context)
 
+
 def createGroupe(request):
     if 'nomGroupe' not in request.POST:
         context = {}
@@ -92,12 +95,12 @@ def createGroupe(request):
         return render(request, 'user/groupe.html', context)
     groupe = creationGroupe(request.POST['nomGroupe'], Adherant.objects.get(mail=request.session['mailUser']))
     for user in Adherant.objects.filter(mail__in=request.session['groupe']):
-        ajoutUtilisateurGroupe(user,groupe)
+        ajoutUtilisateurGroupe(user, groupe)
     user = Adherant.objects.get(mail=request.session['mailUser'])
     list = []
     for groupe in Groupe.objects.all():
         if user in groupe.liste_adherants.all():
-                list.append(groupe)
+            list.append(groupe)
     context = {
         'groupe': Adherant.objects.filter(mail__in=request.session['groupe']),
         'nomGroup': request.POST['nomGroupe'],
@@ -109,10 +112,10 @@ def createGroupe(request):
 
 def groupe(request):
     user = Adherant.objects.get(mail=request.session['mailUser'])
-    list=[]
+    list = []
     for groupe in Groupe.objects.all():
         if user in groupe.liste_adherants.all():
-                list.append(groupe)
+            list.append(groupe)
     context = {
         'listGroupe': list
     }
@@ -148,8 +151,6 @@ def addUser(request, user):
     return render(request, 'user/creationGroup.html', context)
 
 
-
-
 def nomGroup(request):
     if 'groupe' not in request.session:
         return redirect('groupe')
@@ -171,7 +172,8 @@ def groupePage(request):
 def searchUser(request):
     if request.GET["search"] != "":
         context = {
-            'user': Adherant.objects.filter(mail__icontains=request.GET["search"]).exclude(mail=request.session['mailUser'])[:3]
+            'user': Adherant.objects.filter(mail__icontains=request.GET["search"]).exclude(
+                mail=request.session['mailUser'])[:3]
         }
     elif request.GET["search"] == "":
         context = {
@@ -181,41 +183,53 @@ def searchUser(request):
 
 
 def vueRestaurant(request, pk):
-    img=Restaurant.objects.get(pk=pk).img.all()
+    img = Restaurant.objects.get(pk=pk).img.all()
+    user = Adherant.objects.get(mail=request.session['mailUser'])
+    restaurant =Restaurant.objects.get(pk=pk)
+    if(avisExist(user,restaurant)):
+        avisUser = Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
+        list = Avis.objects.filter().all()[:9]
+    else :
+        list = Avis.objects.filter().all()[:10]
     context = {
         'restaurant': Restaurant.objects.filter(pk=pk),
-        'imgRestaurants':ImageRestaurant.objects.filter(pk__in=img),
-        'avis': Avis.objects.filter(restaurant_fk=Restaurant.objects.get(pk=pk))[:10],
+        'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
+        'avis': list,
         'nbAvis': Avis.objects.filter(restaurant_fk=Restaurant.objects.get(pk=pk)),
     }
-    images = ImageRestaurant.objects.filter(pk__in=img)
-    print(images)
-    print("-------------------")
-    for image in images:
-        print(image.image.url)
-    print(images[0].image.url)
-    print("-------------------")
-    print(images)
-    connect(request, context),
-    if 'mailUser' in request.session:
-        context['commentaire'] = True
+    if Avis.objects.filter(adherant_fk= user, restaurant_fk=Restaurant.objects.get(pk=pk)):
+        context['commentaire']=True
+    if (avisExist(user, restaurant)):
+        context['avisUser'] = avisUser
+    connect(request, context)
     return render(request, 'restaurants/vueRestaurant.html', context)
 
 
 def addCommentaires(request, pk):
+    user = Adherant.objects.get(mail=request.session['mailUser'])
+    restaurant = Restaurant.objects.filter(pk=pk)
+    img = Restaurant.objects.get(pk=pk).img.all()
+    if (avisExist(user,restaurant[0])):
+        avisUser = Avis.objects.filter(restaurant_fk=restaurant[0], adherant_fk=user)
+        list = Avis.objects.filter().all()[:9]
+    else:
+        list = Avis.objects.filter().all()[:10]
     context = {
-        'restaurant': Restaurant.objects.filter(pk=pk),
-        'imgRestaurants': ImageRestaurant.objects.filter(idRestaurant=pk),
-        'avis': Avis.objects.filter(restaurant_fk=Restaurant.objects.get(pk=pk)),
+        'restaurant': restaurant,
+        'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
+        'avis':list,
+        'nbAvis': Avis.objects.filter(restaurant_fk=Restaurant.objects.get(pk=pk)),
     }
     if 'mailUser' in request.session:
         context['commentaire'] = True
+    if (avisExist(user, restaurant[0])):
+        context['avisUser'] = avisUser
     if (request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST):
-        ajoutAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),
-                  request.POST['title-rating'],
-                  request.POST['comm'])
-        updateAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),
-                   request.POST['title-rating'], request.POST['comm'])
+        print(Adherant.objects.get(mail=request.session['mailUser']))
+        print( Restaurant.objects.get(pk=pk))
+        ajoutAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),request.POST['title-rating'],request.POST['comm'])
+        if Avis.objects.get(adherant_fk=Adherant.objects.get(mail=request.session['mailUser']),restaurant_fk=Restaurant.objects.get(pk=pk)) is not None :
+             updateAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),request.POST['title-rating'], request.POST['comm'])
     else:
         messages.success(request, 'Les deux champs doivent être remplis.')
     connect(request, context)
@@ -275,7 +289,6 @@ def login(request):
             return redirect('login')
     else:
         return render(request, 'user/login.html')
-
 
 
 def modifUser(request):
@@ -388,7 +401,7 @@ def export_restaurant(request):
         taille = restaurant.type.all().count()
         for i in range(taille):
             f.write(str(restaurant.type.all()[i]))
-            if i != taille-1:
+            if i != taille - 1:
                 f.write(" ")
         f.write('\n')
     print(file)
@@ -401,8 +414,8 @@ def export_ratings(request):
     f.writelines("user_id,restaurant_id,note,timestamp")
     f.write('\n')
     for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note', 'unix_date'):
-            f.write(str(rating)[1:-1])
-            f.write('\n')
+        f.write(str(rating)[1:-1])
+        f.write('\n')
     print(file)
     return redirect('index')
 
@@ -444,6 +457,8 @@ def setImg(request):
 
 
 def suppVille():
-    listVilles = ["Philadelphia","Tampa","Indianapolis","Nashville","Tucson","New Orleans","Edmonton","Saint Louis","Reno",
-                  "Saint Petersburg","Boise", "Santa Barbara","Clearwater","Wilmington","St. Louis","Metairie","Franklin"]
+    listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
+                  "Saint Louis", "Reno",
+                  "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
+                  "Franklin"]
     Restaurant.objects.all().exclude(ville__in=listVilles).delete()

@@ -1,6 +1,19 @@
+from django.conf import settings
 from .models import *
 from .gestion import *
+from django.db.models import Avg
 
+def updateNoteMoyenneRestaurant(restaurant):
+    """ Fonction de mise à jour de la note moyenne d'un restaurant passé en paramètres
+    @param nomRestaurant: le nom du restaurant
+    @return: /
+    """
+    avis_resto = Avis.objects.filter(restaurant_fk=restaurant)
+    if avis_resto.count() != 0:
+        note = avis_resto.aggregate(Avg("note"))
+        Restaurant.objects.filter(nom=restaurant.nom).update(note=round(note['note__avg'], 2))
+    else:
+        Restaurant.objects.filter(nom=restaurant.nom).update(note=-1)
 def ajoutAvis(user, restaurant, note, avis = ""):
     """ Ajout d'un avis à la base de données,
     Renvoie true s'il a été ajouté, false sinon
@@ -94,3 +107,14 @@ def afficherVoirPlus(restaurant, num, user=""):
     @return: booléen en fonction de s'il faut afficher ou non "Voir Plus"
     """
     return listeAffichageAvis(restaurant, num + 1, user).count() != 0
+
+def addavis(avis):
+    file = str(settings.BASE_DIR) + '/' + "ratings.csv"
+    f = open(file, "w")
+    f.write(str(avis.restaurant_fk_id))
+    f.write(",")
+    f.write(str(avis.adherant_fk_id))
+    f.write(",")
+    f.write(str(avis.note))
+    f.write('\n')
+    print(file)
