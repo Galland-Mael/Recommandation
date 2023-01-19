@@ -100,3 +100,5 @@ class Avis(models.Model):
 
     def __str__(self):
         return str(self.restaurant_fk) + " - " + str(self.adherant_fk)
+
+
