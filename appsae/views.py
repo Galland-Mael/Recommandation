@@ -26,7 +26,6 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.encoding import smart_str
 
-from appsae.models import *
 from .formulaire import *
 from django.core.mail import send_mail
 import random
@@ -39,6 +38,7 @@ from .gestion_utilisateur import *
 from .gestion_groupes import *
 from .gestion_avis import *
 from .svd import *
+from .models import *
 import datetime
 import time
 

@@ -1,4 +1,4 @@
-from appsae.model.models import Adherant
+from appsae.models import Adherant
 
 
 def updateMdp(mail_user, password):
