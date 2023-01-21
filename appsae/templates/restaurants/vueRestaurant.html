@@ -145,19 +145,13 @@
             <div class="separator avis-separator"></div>
         {% endif %}
     {% endfor %}
-
 <div class="avis-title-container">
     <div class="avis-title bottom-space title2" id="commentaires">Commentaire{{ avis|pluralize }} </div>
     <div class="nb-commentaire title2">({{ nbAvis|length }})</div>
 </div>
 <div class="separator avis-separator"></div>
 </div>
-
-
-
     <!-- afficher les avis -->
-
-
     <div class="comment margin-auto">
         {% for element in avisUser %}
             <div class="flex margin-bottom">
@@ -184,7 +178,6 @@
         {% endfor %}
         {% for element in avis %}
             <div class="flex margin-bottom">
-
                 <div class="avis-border flex column ">
                     <div class="card-avis flex">
                         <div class="card-user-container flex">
@@ -193,8 +186,6 @@
                             </div>
                         </div>
                         <div class="flex column">
-
-
                             <span class="avis-user-name flex">{{ element.adherant_fk.prenom }}</span>
                             <div class="note-restaurant flex">
                                 <span>Note : {{ element.note }}</span>
