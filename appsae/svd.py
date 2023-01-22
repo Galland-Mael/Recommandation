@@ -7,6 +7,8 @@ import chart_studio.plotly as py
 import chart_studio
 import os
 import time
+from .models import *
+
 
 def get_restaurant_id(restaurant_name, metadata):
     """
@@ -71,29 +73,6 @@ def algoRecommandationGroupe(groupe, model, metadata, taille=10):
             if liste_length == taille:
                 return liste_recommandations
     return liste_recommandations
-
-
-def algoRecommandationIndividuelle_v3(user_id, model, metadata, taille=10):
-    restaurant_names = list(metadata['nom'].values)
-    liste = []
-
-    # Pour prendre les elements dans une liste de 10 max
-    for restaurant_name in restaurant_names[:taille]:
-        rating = predict_review(user_id, restaurant_name, model, metadata)
-        liste = ajoutDebutListe(liste,restaurant_name, rating,taille)
-    min = liste[taille-1][1]
-    # on fait commencer le min à minimum 4.5
-    if (min < 4.5):
-        min = 4.5
-
-    st = time.time()
-    for restaurant_name in restaurant_names[taille:]:
-        rating = predict_review(user_id, restaurant_name, model, metadata)
-        if rating > min:
-            liste = ajoutList(liste, restaurant_name, rating, taille)
-            min = liste[taille-1][1]
-    print(time.time() - st)
-    return liste[:taille]
 
 
 def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
@@ -177,6 +156,7 @@ def ajoutList(list, resto_name, prediction, taille=10):
             break
     return list
 
+
 def testMatteoRecommandation(user_id, model, metadata):
     """
 
@@ -186,11 +166,60 @@ def testMatteoRecommandation(user_id, model, metadata):
     @return:
     """
     restaurant_names = list(metadata['nom'].values)
+
+    # Liste des avis triés par date
+    avis = Avis.objects.all().order_by("unix_date")
+    taille_totale = avis.count()
+    taille_soixante = round((taille_totale / 100) * 60)
+    taille_quatre_vingt = round((taille_totale / 100) * 80)
+    taille_vingt = round((taille_totale / 100) * 20)
+
+    liste_vingt = avis[taille_soixante:taille_quatre_vingt]
     dico_all = {}
     cpt = 0
 
-    for restaurant_name in restaurant_names:
-        rating = predict_review(user_id, restaurant_name, model, metadata)
-        cpt+=1
-        if (cpt < 100):
-            print(str(restaurant_name) + "  " + str(rating))
+    for restaurant in liste_vingt:
+        note = restaurant.note
+        prediction = predict_review(user_id,restaurant.restaurant_fk.nom,model,metadata)
+        difference = abs(prediction - note)
+        print(difference)
+
+
+from surprise import SVD, Reader, Dataset
+from surprise.model_selection import GridSearchCV
+from .gestion_note import *
+
+def testSVD():
+    ratings_data = pd.read_csv('./ratings.csv')
+
+    restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
+    restaurant_metadata.info()
+
+    reader = Reader(line_format='user item rating timestamp', sep=',', rating_scale=(0.5, 5.0), skip_lines=1)
+    ratings = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
+    trainset = ratings.build_full_trainset()
+
+    # Find the best hyperparameters for an SVD model via grid search cross-validation
+    param_grid = {
+        'n_factors': [10, 100, 500],
+        'n_epochs': [5, 20, 50],
+        'lr_all': [0.001, 0.005, 0.02],
+        'reg_all': [0.005, 0.02, 0.1]}
+
+    gs_model = GridSearchCV(
+        algo_class=SVD,
+        param_grid=param_grid,
+        n_jobs=-1,
+        joblib_verbose=5)
+
+    gs_model.fit(ratings)
+
+    # Train the SVD model with the parameters that minimise the root mean squared error
+    best_SVD = gs_model.best_estimator['rmse']
+    best_SVD.fit(trainset)
+
+    updateAvis(Adherant.objects.get(mail="titouan.jeantet@etu.univ-lyon1.fr"),
+               Restaurant.objects.get(nom="Bridesburg Pizza"), 5, "")
+    #print(predict_review(Adherant.objects.get(mail="joan.brassas@eatadvisor.com").pk, "Bridesburg Pizza", best_SVD,
+    #                     restaurant_metadata))
+    print(best_SVD.predict(uid=Adherant.objects.get(mail="joan.brassas@eatadvisor.com").pk,iid="Bridesburg Pizza"))

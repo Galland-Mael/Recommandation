@@ -38,7 +38,7 @@ from .gestion import *
 from .gestion_note import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
-from .gestion_avis import *
+# from .gestion_avis import *
 from .svd import *
 import datetime
 import time
@@ -344,23 +344,34 @@ def matteo(request):
 
 def recommendation(request):
     start = time.time()
+    #testSVD()
+    #ad = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
+    #resto = Restaurant.objects.filter(type=RestaurantType.objects.get(nom="fast food"), ville="Philadelphia")
+    #print(resto)
+    #Restaurant.objects.filter()
+    adherents_avis = Avis.objects.filter(restaurant_fk=Restaurant.objects.filter(nom="Philadelphia Museum of Art")[0].pk)
+    liste = []
+    for elem in adherents_avis:
+        liste.append(elem.adherant_fk.pk)
+    t = [5796,28170,32347,35938,40744,44784,50108,52346]
+    avis = Avis.objects.filter(adherant_fk__in=liste).order_by("-restaurant_fk")
+    for a in avis:
+        if (a.restaurant_fk.pk in t):
+            print(a.restaurant_fk.pk)
+
+    '''
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
-    restaurant_metadata.info()
-    ratings_data.info()
-    reader = Reader(rating_scale=(1, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
-    svd = SVD(verbose=False, n_epochs=10, n_factors=100)
-    cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=False)
+    # restaurant_metadata.info()
+    # ratings_data.info()
+    reader = Reader(rating_scale=(0, 5))
+    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader=reader)
+    svd = SVD(verbose=False, n_epochs=5, n_factors=100)
+    # cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=False)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    print(algoRecommandationIndividuelle(339825,svd,restaurant_metadata,10))
-    print("-------------------------")
-    print(algoRecommandationIndividuelle_v2(339825,svd,restaurant_metadata,10))
-    print("-------------------------")
-    print(algoRecommandationIndividuelle_v3(339825,svd,restaurant_metadata,10))
-    # print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
-    # print(generate_recommendation(339825, svd, restaurant_metadata))
+    print(algoRecommandationIndividuelle(776322,svd,restaurant_metadata,100))
+    '''
     print(time.time() - start)
     return HttpResponse('')
 
@@ -388,9 +399,9 @@ def export_restaurant(request):
 def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
-    f.writelines("restaurant_id,user_id,note")
+    f.writelines("user_id,restaurant_id,note")
     f.write('\n')
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note'):
+    for rating in Avis.objects.all().values_list('adherant_fk', 'restaurant_fk', 'note'):
             f.write(str(rating)[1:-1])
             f.write('\n')
     print(file)

@@ -1,6 +1,7 @@
 from .models import *
 from .gestion import *
 
+
 def ajoutAvis(user, restaurant, note, avis = ""):
     """ Ajout d'un avis à la base de données,
     Renvoie true s'il a été ajouté, false sinon
