@@ -18,7 +18,7 @@ class Adherant(models.Model):
     nb_review = models.IntegerField(default=0)
     password = models.CharField(max_length=20)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
-
+    ville = models.CharField(max_length=100, default="none")
     def __str__(self):
         return self.mail
 
@@ -100,3 +100,5 @@ class Avis(models.Model):
 
     def __str__(self):
         return str(self.restaurant_fk) + " - " + str(self.adherant_fk)
+
+

@@ -1,6 +1,6 @@
 from django.forms import ModelForm
-from .models import RestaurantType
-from .models import Adherant
+from appsae.models import RestaurantType
+from appsae.models import Adherant
 from django import forms
 
 

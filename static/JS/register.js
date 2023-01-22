@@ -159,3 +159,22 @@ item.forEach((item, index) => {
         }
     })
 })
+
+var buttons = document.querySelectorAll("button");
+
+buttons.forEach(function(button) {
+    // Vérifiez si le bouton a la classe submit
+    if (!button.classList.contains("submit")) {
+      // Ajoutez un événement clic au bouton
+      button.addEventListener("click", function() {
+        // Récupérez le contenu du bouton
+        var content = this.textContent;
+
+        // Récupérez l'élément h2
+        var h2 = document.querySelector("#ville");
+
+        // Mettez à jour le contenu de l'élément h2 avec la variable content
+        h2.innerHTML = content;
+      });
+    }
+  });

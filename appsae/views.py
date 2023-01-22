@@ -17,13 +17,16 @@ import heapq
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import chart_studio.plotly as py
 from surprise import SVD
 from surprise.model_selection import cross_validate
+import chart_studio
 import os
 import csv
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils.encoding import smart_str
+
 from appsae.models import *
 from .formulaire import *
 from django.core.mail import send_mail
@@ -37,6 +40,7 @@ from .gestion_utilisateur import *
 from .gestion_groupes import *
 from .gestion_avis import *
 from .svd import *
+from .models import *
 import datetime
 import time
 
@@ -54,7 +58,7 @@ def index(request):
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
     context = {
-        'meilleurRestaurants': listeAffichageCaroussel()
+        'list': listeAffichageCaroussel()
     }
     connect(request, context)
     return render(request, 'index/index.html', context)
@@ -256,8 +260,18 @@ def voirPlus(request, pk):
 
 def register(request):
     if request.method == "POST":
+        user=request.POST
         '''Remplissage de la base de données'''
-        form = AdherantForm(request.POST).save()
+        obj = Adherant.objects.create(
+            prenom=user['prenom'],
+            nom=user['nom'],
+            pseudo=user['pseudo'],
+            ville=user['ville'],
+            mail=user['mail'],
+            birthDate=user['birthDate'],
+            password=user['password']
+        )
+        obj.save()
         return redirect('login')
     form = AdherantForm()
     context = {
@@ -290,6 +304,7 @@ def login(request):
                 'birthDate': user.birthDate,
                 'pseudo': user.pseudo,
                 'photo': user.profile_picture.url,
+                'ville': user.ville,
                 'meilleurRestaurants': listeAffichageCaroussel()
             }
             return render(request, 'index/index.html', context)
@@ -302,8 +317,6 @@ def login(request):
 
 def modification(request):
     user = Adherant.objects.get(mail=request.session['mailUser'])
-    #if request.FILES['photo'] !='' and request.FILES['photo'] != user.profile_picture.url:
-        #updateProfilPick(user.mail,request.FILES['photo'])
     if request.POST['nom'] != '' and request.POST['nom'] != user.nom:
         updateNomUser(user.mail, request.POST['nom'])
     if request.POST['prenom'] != '' and request.POST['nom'] != user.prenom:
@@ -380,6 +393,13 @@ def search(request):
     return HttpResponse('')
 
 
+def vueRestaurant(request, pk):
+    print("vuerestaurant")
+    restaurant = Restaurant.objects.filter(pk=pk)
+    imgRestaurants = ImageRestaurant.objects.filter
+    return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
+
+
 def matteo(request):
     adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
     resto = Restaurant.objects.filter(nom="Burger King")[0]
@@ -429,7 +449,7 @@ def export_restaurant(request):
         taille = restaurant.type.all().count()
         for i in range(taille):
             f.write(str(restaurant.type.all()[i]))
-            if i != taille - 1:
+            if i != taille-1:
                 f.write(" ")
         f.write('\n')
     print(file)
@@ -442,8 +462,8 @@ def export_ratings(request):
     f.writelines("user_id,restaurant_id,note,timestamp")
     f.write('\n')
     for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note', 'unix_date'):
-        f.write(str(rating)[1:-1])
-        f.write('\n')
+            f.write(str(rating)[1:-1])
+            f.write('\n')
     print(file)
     return redirect('index')
 
@@ -490,3 +510,35 @@ def suppVille():
                   "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
                   "Franklin"]
     Restaurant.objects.all().exclude(ville__in=listVilles).delete()
+
+def getFirstElement():
+    liste = []
+    fichier = open("C:/Users/alhdv/Downloads/patronymes.csv","r")
+    cr = csv.reader( fichier,delimiter=",")
+    for row in cr:
+        if " " not in str(row[0]):
+            liste.append(row[0])
+    fichier.close()
+    return liste
+
+def insert_nom():
+    list = getFirstElement()
+    random.shuffle(list)
+    i=0
+    for personne in Adherant.objects.all():
+        tmp = list[i].lower()
+        tmp = tmp[0].upper() + tmp[1:]
+        print(tmp)
+        Adherant.objects.filter(pk=personne.pk).update(nom=tmp)
+        Adherant.objects.filter(pk=personne.pk).update(mail=personne.prenom.lower() + "." + list[i].lower() + "@eatadvisor.com")
+        i+=1
+        print(i)
+
+
+
+def addAvis(request, pk):
+    context = {
+        'avis': liste_avis(Restaurant.objects.get(pk=pk), 1)
+    }
+    connect(request, context)
+    return render(request, 'avis/moreAvis.html',context)

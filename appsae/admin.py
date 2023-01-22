@@ -1,10 +1,8 @@
-from django.contrib import admin
-
 # Register your models here.
 
 from django.contrib import admin
 
-from .models import Adherant, Groupe, Restaurant, RestaurantType, Horaire, ImageRestaurant, Avis
+from appsae.models import Adherant, Groupe, Restaurant, RestaurantType, Horaire, ImageRestaurant, Avis
 
 admin.site.register(Adherant)
 admin.site.register(Groupe)

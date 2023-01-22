@@ -1,4 +1,4 @@
-from .models import *
+from appsae.models import *
 
 
 def ajoutUtilisateurGroupe(user, groupe):
