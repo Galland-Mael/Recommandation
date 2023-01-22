@@ -64,8 +64,7 @@ Début de la progress bar
     padding: 0 0 20px 0;
 }
 
-.progress-bars {
-    flex-direction: row;
+.progress-bar {
     padding: 0 0 40px 0;
     width: 100%;
 }
@@ -76,7 +75,7 @@ Début de la progress bar
     width: 25%;
 }
 
-.progress-bars .step .check {
+.progress-bar .step .check {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -85,7 +84,7 @@ Début de la progress bar
     display: none;
 }
 
-.progress-bars .step .check.active {
+.progress-bar .step .check.active {
     display: block;
     color: #fff;
 }
@@ -95,7 +94,7 @@ Début de la progress bar
     font-size: 18px;
 }
 
-.progress-bars .step .name-step.active {
+.progress-bar .step .name-step.active {
     color: var(--color);
     transition: 0.2s linear;
 }
@@ -118,19 +117,19 @@ Début de la progress bar
     width: 25px;
 }
 
-.progress-bars .step .circle.active span {
+.progress-bar .step .circle.active span {
     display: none;
 }
 
-.progress-bars .step .circle.active:after {
+.progress-bar .step .circle.active:after {
     background: var(--color);
     transform: scaleX(1);
     transform-origin: left;
     animation: animate 0.3s linear forwards;
 }
 
-.progress-bars .step .circle:before,
-.progress-bars .step .circle:after {
+.progress-bar .step .circle:before,
+.progress-bar .step .circle:after {
     position: absolute;
     top: 50%;
     content: '';
@@ -145,8 +144,8 @@ Début de la progress bar
     background: var(--color);
 }
 
-.progress-bars .step:last-child .circle:before,
-.progress-bars .step:last-child .circle:after {
+.progress-bar .step:last-child .circle:before,
+.progress-bar .step:last-child .circle:after {
     display: none;
 }
 
@@ -365,10 +364,7 @@ a{
     text-align: center;
 }
 
-/* SCROLL DOWN MENU */
-
 .ville{
     margin: 0;
     width: 100%;
-
 }
