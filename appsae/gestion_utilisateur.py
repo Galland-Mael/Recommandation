@@ -11,7 +11,7 @@ def updateMdp(mail_user, password):
     Adherant.objects.filter(mail=mail_user).update(password=password)
 
 
-def updateNom(mail_user, nom):
+def updateNomUser(mail_user, nom):
     """ Fonction de mise à jour du nom d'un utilsateur à partir de son mail
 
     @param mail_user: le mail de l'utilisateur

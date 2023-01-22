@@ -36,7 +36,7 @@
 
     <div class="glider-contain">
         <div class="glider">
-            {% for element in list %}
+            {% for element in  meilleurRestaurants %}
                 <div class="card">
                     <a class="decoration-none hover" href="{% url 'vueRestaurant' element.pk %}">
                         <div class="img-container"><img src="{{ element.image_front.url }}" alt="marche pas"></div>

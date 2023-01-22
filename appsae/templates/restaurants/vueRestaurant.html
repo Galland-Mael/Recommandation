@@ -201,7 +201,7 @@
         {% endfor %}
     </div>
     {% for element in restaurant %}
-        {% if not endAvis %}
+        {% if nbAvis|length >= 11 %}
             <div id="container-voir-plus-result"></div>
             <div class="voir-plus-container">
                 <div class="voir-plus-btn"

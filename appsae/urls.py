@@ -28,6 +28,7 @@ urlpatterns = [
     path('nomGroup/', nomGroup, name='nomGroup'),
     path('createGroupe/', createGroupe, name='createGroupe'),
     path('groupRecommandations/', groupRecommandations, name='groupRecommandations'),
+    path('modification/',modification,name='modification'),
     path('recommandation/', recommandation, name='recommandation'),
     path('setImg/', setImg, name='setImg'),
     path('recommendation', recommendation,name='recommendation'),

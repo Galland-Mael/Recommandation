@@ -48,22 +48,24 @@ def modifPAGE():
     PAGE += 1
 
 
-def groupRecommandations(request):
-    context = {}
-    connect(request, context)
-    return render(request, 'user/groupRecommandations.html', context)
-
-
 def index(request):
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
     context = {
-        'list': listeAffichageCaroussel()
+        'meilleurRestaurants': listeAffichageCaroussel()
     }
     connect(request, context)
     return render(request, 'index/index.html', context)
+
+
+def groupRecommandations(request):
+    context = {
+        'restaurants': listeAffichageCaroussel()
+    }
+    connect(request, context)
+    return render(request, 'user/groupRecommandations.html', context)
 
 
 def creationGroup(request):
@@ -185,20 +187,20 @@ def searchUser(request):
 def vueRestaurant(request, pk):
     img = Restaurant.objects.get(pk=pk).img.all()
     user = Adherant.objects.get(mail=request.session['mailUser'])
-    restaurant =Restaurant.objects.get(pk=pk)
-    if(avisExist(user,restaurant)):
+    restaurant = Restaurant.objects.get(pk=pk)
+    if (avisExist(user, restaurant)):
         avisUser = Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
-        list = Avis.objects.filter().all()[:9]
-    else :
-        list = Avis.objects.filter().all()[:10]
+        list = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
+    else:
+        list = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
     context = {
         'restaurant': Restaurant.objects.filter(pk=pk),
         'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
         'avis': list,
-        'nbAvis': Avis.objects.filter(restaurant_fk=Restaurant.objects.get(pk=pk)),
+        'nbAvis': Avis.objects.filter(restaurant_fk=restaurant),
     }
-    if Avis.objects.filter(adherant_fk= user, restaurant_fk=Restaurant.objects.get(pk=pk)):
-        context['commentaire']=True
+    if Avis.objects.filter(adherant_fk=user, restaurant_fk=Restaurant.objects.get(pk=pk)):
+        context['commentaire'] = True
     if (avisExist(user, restaurant)):
         context['avisUser'] = avisUser
     connect(request, context)
@@ -209,7 +211,7 @@ def addCommentaires(request, pk):
     user = Adherant.objects.get(mail=request.session['mailUser'])
     restaurant = Restaurant.objects.filter(pk=pk)
     img = Restaurant.objects.get(pk=pk).img.all()
-    if (avisExist(user,restaurant[0])):
+    if (avisExist(user, restaurant[0])):
         avisUser = Avis.objects.filter(restaurant_fk=restaurant[0], adherant_fk=user)
         list = Avis.objects.filter().all()[:9]
     else:
@@ -217,7 +219,7 @@ def addCommentaires(request, pk):
     context = {
         'restaurant': restaurant,
         'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
-        'avis':list,
+        'avis': list,
         'nbAvis': Avis.objects.filter(restaurant_fk=Restaurant.objects.get(pk=pk)),
     }
     if 'mailUser' in request.session:
@@ -226,10 +228,13 @@ def addCommentaires(request, pk):
         context['avisUser'] = avisUser
     if (request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST):
         print(Adherant.objects.get(mail=request.session['mailUser']))
-        print( Restaurant.objects.get(pk=pk))
-        ajoutAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),request.POST['title-rating'],request.POST['comm'])
-        if Avis.objects.get(adherant_fk=Adherant.objects.get(mail=request.session['mailUser']),restaurant_fk=Restaurant.objects.get(pk=pk)) is not None :
-             updateAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),request.POST['title-rating'], request.POST['comm'])
+        print(Restaurant.objects.get(pk=pk))
+        ajoutAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),
+                  request.POST['title-rating'], request.POST['comm'])
+        if Avis.objects.get(adherant_fk=Adherant.objects.get(mail=request.session['mailUser']),
+                            restaurant_fk=Restaurant.objects.get(pk=pk)) is not None:
+            updateAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),
+                       request.POST['title-rating'], request.POST['comm'])
     else:
         messages.success(request, 'Les deux champs doivent être remplis.')
     connect(request, context)
@@ -269,7 +274,7 @@ def login(request):
                 if (request.POST['password'] == adherant.password):
                     contain = True
         if contain:
-            user = Adherant.objects.get(mail=request.POST['mail']);
+            user = Adherant.objects.get(mail=request.POST['mail'])
             '''Création de la session ou je récupère que le mail de l'utilisateur'''
             request.session['mailUser'] = user.mail
             sessionMailUser = request.session['mailUser'];
@@ -281,7 +286,7 @@ def login(request):
                 'birthDate': user.birthDate,
                 'pseudo': user.pseudo,
                 'photo': user.profile_picture.url,
-                'list': listeAffichageCaroussel()
+                'meilleurRestaurants': listeAffichageCaroussel()
             }
             return render(request, 'index/index.html', context)
         else:
@@ -291,8 +296,27 @@ def login(request):
         return render(request, 'user/login.html')
 
 
+def modification(request):
+    user = Adherant.objects.get(mail=request.session['mailUser'])
+    #if request.FILES['photo'] !='' and request.FILES['photo'] != user.profile_picture.url:
+        #updateProfilPick(user.mail,request.FILES['photo'])
+    if request.POST['nom'] != '' and request.POST['nom'] != user.nom:
+        updateNomUser(user.mail, request.POST['nom'])
+    if request.POST['prenom'] != '' and request.POST['nom'] != user.prenom:
+        updatePrenom(user.mail, request.POST['prenom'])
+    context = {
+        'meilleurRestaurants': listeAffichageCaroussel()
+    }
+    connect(request, context)
+    return render(request, 'index/index.html', context)
+
+
 def modifUser(request):
-    return render(request, 'user/modifUser.html')
+    context = {
+        'user': Adherant.objects.get(mail=request.session['mailUser']),
+    }
+    connect(request, context)
+    return render(request, 'user/modifUser.html', context)
 
 
 def verificationEmail(request):

@@ -19,61 +19,35 @@
 </div>
 <div class="img-container flex">
     <div class="profil-container">
-
+        <img src="{{ user.profile_picture.url }}" alt="photo de profil">
         <span class="profil-span opacity-null">Change</span>
     </div>
 </div>
-<form action="#" method="post" enctype="multipart/form-data">
-    <div class="change-photo">
-        <label for="photo">photo</label>
-        <input class="profil" type="file" name="photo">
-    </div>
-    <div class="field">
-        <div>
-            <span class="name">
-                FirstName
-            </span>
-            <input class="firstName" type="text">
-        </div>
-        <div class="field">
-            <span class="name">
-                LastName
-            </span>
-            <input class="lastName" type="text">
-        </div>
-        <div class="field">
-            <span class="name">
-                Pseudo
-            </span>
-            <input class="pseudo" type="text">
-        </div>
-        <div class="field">
-            <span class="name">
-                FirstName
-            </span>
-            <input class="date" type="date">
-        </div>
-                <div class="field">
-            <span class="name">
-                Old Password
-            </span>
-            <input class="oldPassword" type="password">
-        </div>
-                <div class="field">
-            <span class="name">
-                New Password
-            </span>
-            <input class="newpassword" type="password">
-        </div>
-                <div class="field">
-            <span class="name">
-                Confirm Password
-            </span>
-            <input class="confirmPassword" type="password">
-        </div>
 
-    </div>
-</form>
+<div class="form-container">
+    <form action="{% url 'modification' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="change-photo">
+            <label for="photo">photo</label>
+            <input class="profil" type="file" name="photo">
+        </div>
+        <div class="field">
+            <div class="label">
+                Prénom :
+            </div>
+            <input class="firstName" name="prenom" type="text" value="{{ user.prenom }}">
+        </div>
+        <div class="field">
+            <div class="label">
+                Nom :
+            </div>
+            <input class="lastName" name="nom" type="text" value="{{ user.nom }}">
+        </div>
+        <div class="field">
+            <button type="submit" class="next-1">Valider</button>
+        </div>
+    </form>
+</div>
 <script src="{% static 'JS/modifUser.js' %}"></script>
 </body>
 </html>

@@ -1,0 +1,53 @@
+.grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+.data-card {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    min-height: 20.75em;
+    overflow: hidden;
+    border-radius: .5em;
+    text-decoration: none;
+    background: white;
+    margin: 2em auto;
+    box-shadow: 0 1.5em 2.5em -.5em white;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.img-card {
+    width: 100%;
+    height: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.star-icon{
+        display: flex;
+    width: 17px;
+}
+.align{
+    align-items: center;
+}
+.flex{
+    display: flex;
+}
+.nav-localisation{
+    display: flex;
+    flex-direction: row;
+}
+.text{
+   color: #2E3C40;
+}
+.nom{
+    font-size: 1.3rem;
+}
