@@ -39,7 +39,6 @@ class RestaurantType(models.Model):
     def __str__(self):
         return self.nom
 
-
 class ImageRestaurant(models.Model):
     image = models.ImageField(upload_to='liste_images')
 

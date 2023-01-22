@@ -55,9 +55,9 @@ def index(request):
     # resto = Restaurant.objects.get(ville="Philadelphia")
     # for i in resto:
     #     print(i)
-    # obj_re = Restaurant.objects.filter(nom="Bridesburg Pizza")
-    # obj_ad = Adherant.objects.filter(mail="titouan.jeantet@etu.univ-lyon1.fr")
-    # avis = Avis(note=5, texte="", unix_date="1674088922", restaurant_fk=obj_re[0], adherant_fk=obj_ad[0])
+    # obj_re = Restaurant.objects.filter(nom="Frank's Steaks & Burgers")
+    # obj_ad = Adherant.objects.filter(mail="lygruss@gmail.com")
+    # avis = Avis(note=3.5, texte="pas ouf", unix_date="1674088922", restaurant_fk=obj_re[0], adherant_fk=obj_ad[0])
     # avis.save()
 
 
@@ -347,7 +347,7 @@ def matteo(request):
 
 
 def recommendation(request):
-    adh = Adherant.objects.get(mail='titouan.jeantet@etu.univ-lyon1.fr').pk
+    #adh = Adherant.objects.get(mail='titouan.jeantet@etu.univ-lyon1.fr').pk
     start = time.time()
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
@@ -359,19 +359,36 @@ def recommendation(request):
     cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=False)
     trainset = data.build_full_trainset()
     svd.fit(trainset)
-    #result=algoRecommandationIndividuelle(adh,svd,restaurant_metadata,10)
 
-    result = predict_review(684189,"Bridesburg Pizza", svd, restaurant_metadata)
+    l=algoRecommandationIndividuelle(684190,svd,restaurant_metadata,100)
+    result = []
+    for elem in l:
+        result.append(elem[0])
+    print("result :")
     print(result)
-    #stock the result in a csv file using csv writer qui ecrit a la suite
+    print("--------------------")
+    for resto_note in Restaurant.objects.filter(nom__in=result):
+        adherents_avis = Avis.objects.filter(restaurant_fk=resto_note.pk)
+        liste = []
+        for elem in adherents_avis:
+            liste.append(elem.adherant_fk.pk)
+        t = [5835, 33473, 27807, 6740, 9464, 9568, 56549, 41011, 15707, 5740]
+
+        avis = Avis.objects.filter(adherant_fk__in=liste).order_by("-restaurant_fk")
+        for a in avis:
+            if (a.restaurant_fk.pk in t):
+                print(a.restaurant_fk.pk)
+        print("----------------------------------")
+    #result = predict_review(684189,"Bridesburg Pizza", svd, restaurant_metadata)
+    # print(result)
     # with open('result.csv', 'a', newline='') as file:
     #     writer = csv.writer(file)
     #     writer.writerow(["restaurant_id", "restaurant_name", "restaurant_address", "restaurant_note"])
     #     for row in result:
     #         writer.writerow(row)
-
-    # print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
-    # print(generate_recommendation(339825, svd, restaurant_metadata))
+    #
+    # # print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
+    # # print(generate_recommendation(339825, svd, restaurant_metadata))
     print(time.time() - start)
     return HttpResponse('')
 
@@ -399,9 +416,9 @@ def export_restaurant(request):
 def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
-    f.writelines("restaurant_id,user_id,note")
+    f.writelines("user_id,restaurant_id,note")
     f.write('\n')
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note'):
+    for rating in Avis.objects.all().values_list('adherant_fk', 'restaurant_fk', 'note'):
             f.write(str(rating)[1:-1])
             f.write('\n')
     print(file)
