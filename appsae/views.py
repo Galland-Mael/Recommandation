@@ -60,9 +60,13 @@ def index(request):
     return render(request, 'index/index.html', context)
 
 
-def groupRecommandations(request):
+def groupRecommandations(request,pk):
+    print(pk)
+    groupe=Groupe.objects.get(pk=pk)
+    membres=groupe.liste_adherants.all()
     context = {
-        'restaurants': listeAffichageCaroussel()
+        'restaurants': listeAffichageCaroussel(),
+        'membres':membres,
     }
     connect(request, context)
     return render(request, 'user/groupRecommandations.html', context)

@@ -8,31 +8,48 @@
     {% include "source/header.html" %}
 {% endblock %}
 {% block main %}
+    <div class="container">
+        <aside>
+            <div class="title">
+                <h1 class="text">Membres du groupe</h1>
+            </div>
+            {% for user in membres %}
+                <div class="user">
+                    <div class="img">
+                        <img src="{{ user.profile_picture.url }}" alt="avatar de l'utilisateur">
+                    </div>
+                    <div class="mail">
+                        <p class="p">{{ user.mail }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </aside>
 
-    <div class="grid">
-        {% for element in restaurants %}
-            <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
-                <div class="img-card">
-                    <img src="{{ element.image_front.url }}" alt="image du restaurant">
-                </div>
-                <div class="info-card">
-                    <div class="name">
-                        <span class="text nom">{{ element.nom }}</span>
+        <div class="grid">
+            {% for element in restaurants %}
+                <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
+                    <div class="img-card">
+                        <img src="{{ element.image_front.url }}" alt="image du restaurant">
                     </div>
-                    <div class="flex align">
-                        <span class="text">{{ element.note }}</span>
-                        <div class="star-icon">
-                            <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                    <div class="info-card">
+                        <div class="name">
+                            <span class="text nom">{{ element.nom }}</span>
                         </div>
+                        <div class="flex align">
+                            <span class="text">{{ element.note }}</span>
+                            <div class="star-icon">
+                                <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                            </div>
+                        </div>
+                        <div class="nav-localisation text">
+                            <div>{{ element.adresse }}</div>
+                            <div>{{ element.ville }}</div>
+                        </div>
+                        <div class="text">({{ element.zip_code }})</div>
                     </div>
-                    <div class="nav-localisation text">
-                        <div>{{ element.adresse }}</div>
-                        <div>{{ element.ville }}</div>
-                    </div>
-                    <div class="text">({{ element.zip_code }})</div>
-                </div>
-            </a>
-        {% endfor %}
+                </a>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 

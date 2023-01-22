@@ -11,7 +11,7 @@
 {% block main %}
     <div class="grid">
         {% for element in listGroupe %}
-            <a href="{% url 'groupRecommandations' %}" class="data-card">
+            <a href="{% url 'groupRecommandations' element.pk %}" class="data-card">
                 <h3>{{ element.nom_groupe }}</h3>
                 {% for user in element.liste_adherants.all|slice:":3" %}
                     <div class="user-container">
