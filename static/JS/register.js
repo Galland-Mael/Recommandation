@@ -22,103 +22,75 @@ const response = document.querySelector('.response');
 const code = document.querySelector('.lastName');
 let current = 1;
 
-
 firstNext.addEventListener('click', () => {
-    /*if (firstName.value != "") {
-        failInfo[0].classList.add('none');
+    if (firstName.value != "") {
+        failInfo[0].classList.add('none')
         if (lastName.value != "") {
             failInfo[1].classList.add('none');
-            if (pseudo.value != "") {
-                failInfo[2].classList.add('none');
-                if (date.value != "") {
-                    failInfo[3].classList.add('none');
-                    if (date.valueAsNumber < Date.now()) {
-                        slidePage.style.marginLeft = "-25%";
-                        circle[current - 1].classList.add("active");
-                        progressCheck[current - 1].classList.add("active");
-                        progressText[current - 1].classList.add("active");
-                        current += 1;
-                    } else {
-                        failInfo[3].textContent = "*Date impossible";
-                        showCLassTimer(failInfo[3], 2000, "none");
-                    }
-                } else {
-                    failInfo[3].textContent = "*Ce champs ne peut pas être vide";
-                    showCLassTimer(failInfo[3], 2000, "none")
-                }
-
-            } else {
-                failInfo[2].textContent = "*Ce champs ne peut pas être vide";
-                showCLassTimer(failInfo[2], 2000, "none")
-            }
+            slidePage.style.marginLeft = "-25%";
+            circle[current - 1].classList.add("active");
+            progressCheck[current - 1].classList.add("active");
+            progressText[current - 1].classList.add("active");
+            current += 1;
         } else {
             showCLassTimer(failInfo[1], 2000, "none")
         }
     } else {
         showCLassTimer(failInfo[0], 2000, "none")
     }
-    showCLassTimer(failInfo[4], 5000, "none");*/
-    slidePage.style.marginLeft = "-25%";
-                        circle[current - 1].classList.add("active");
-                        progressCheck[current - 1].classList.add("active");
-                        progressText[current - 1].classList.add("active");
-                        current += 1;
 })
 
 secNext.addEventListener('click', () => {
-    /*if (mail.value != "") {
-         failInfo[3].textContent = "*Ce champs ne peut pas être vide";
+    if (mail.value != "") {
+        failInfo[2].textContent = "*Ce champs ne peut pas être vide";
+        failInfo[2].classList.add('none');
+    } else {
+        showCLassTimer(failInfo[2], 2000, "none");
+    }
+    if (pwd1.value != "") {
         failInfo[3].classList.add('none');
     } else {
         showCLassTimer(failInfo[3], 2000, "none");
     }
-    if (pwd1.value != "") {
+    if (pwd2.value != "") {
         failInfo[4].classList.add('none');
     } else {
         showCLassTimer(failInfo[4], 2000, "none");
     }
-    if (pwd2.value != "") {
-        failInfo[5].classList.add('none');
-    } else {
-        showCLassTimer(failInfo[5], 2000, "none");
-    }
     if ((/^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/.test(mail.value))) {
         if (/^[\w$@%*+\-_!]{8,15}$/.test((pwd1.value))) {
             if (pwd1.value == pwd2.value) {
-                failInfo[5].classList.add('none');
+                failInfo[4].classList.add('none');
                 slidePage.style.marginLeft = "-50%";
                 circle[current - 1].classList.add("active");
                 progressCheck[current - 1].classList.add("active");
                 progressText[current - 1].classList.add("active");
                 current += 1;
             } else {
-                showCLassTimer(failInfo[5], 2000, "none")
+                showCLassTimer(failInfo[4], 2000, "none")
             }
         } else {
-            showCLassTimer(failInfo[4], 2000, "none");
-        }
-    }else
-        {
-            failInfo[3].textContent = "*Adresse mail introuvable";
             showCLassTimer(failInfo[3], 2000, "none");
-        }*/
-    slidePage.style.marginLeft = "-50%";
-    circle[current - 1].classList.add("active");
-    progressCheck[current - 1].classList.add("active");
-    progressText[current - 1].classList.add("active");
-    current += 1;
-
+        }
+    } else {
+        failInfo[2].textContent = "*Adresse mail introuvable";
+        showCLassTimer(failInfo[2], 2000, "none");
+    }
 })
 
 thirdNext.addEventListener('click', () => {
-    slidePage.style.marginLeft = "-75%";
-    circle[current - 1].classList.add("active");
-    progressCheck[current - 1].classList.add("active");
-    progressText[current - 1].classList.add("active");
-    current += 1;
-})
-fourthNext.addEventListener('click', () => {
-    console.log("end");
+    console.log(date.valueAsNumber)
+    console.log( Date.now())
+    if (date.valueAsNumber < Date.now() && date.value != "") {
+        failInfo[5].classList.add('none');
+        slidePage.style.marginLeft = "-75%";
+        circle[current - 1].classList.add("active");
+        progressCheck[current - 1].classList.add("active");
+        progressText[current - 1].classList.add("active");
+        current += 1;
+    } else {
+        showCLassTimer(failInfo[5], 2000, "none");
+    }
 })
 secondPrevious.addEventListener('click', () => {
     slidePage.style.marginLeft = "0%";
@@ -150,7 +122,7 @@ function showCLassTimer(selector, timer, type) {
     }, timer);
 }
 
-item.forEach((item, index) => {
+/*item.forEach((item, index) => {
     item.addEventListener('click', event => {
         if (item.firstElementChild.classList.contains("none")) {
             item.firstElementChild.classList.remove("none")
@@ -158,4 +130,4 @@ item.forEach((item, index) => {
             item.firstElementChild.classList.add("none")
         }
     })
-})
+})*/

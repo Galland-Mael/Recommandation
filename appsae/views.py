@@ -323,6 +323,7 @@ def modification(request):
         updateNomUser(user.mail, request.POST['nom'])
     if request.POST['prenom'] != '' and request.POST['nom'] != user.prenom:
         updatePrenom(user.mail, request.POST['prenom'])
+    Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
     context = {
         'meilleurRestaurants': listeAffichageCaroussel(),
         'pizza': Restaurant.objects.filter(type=RestaurantType.objects.get(nom='pizza'.lower())).order_by('-note')[:6]

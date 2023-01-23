@@ -14,7 +14,7 @@
     <div class="container">
         <form action="" method="POST" class="post-form form">
             {% csrf_token %}
-            <div class="title-setting">SignIn</div>
+            <div class="title-setting">Connexion</div>
             <div class="field">
                 <div class="label">
                     Mail
@@ -31,7 +31,7 @@
                 <input type="password" name="password" class="input">
             </div>
             <div class="field">
-                <button class="next-1">connection</button>
+                <button class="next-1">connexion</button>
             </div>
         </form>
             <a href="{% url 'register' %}"><span class="new-account">je n'ai pas de compte</span></a>

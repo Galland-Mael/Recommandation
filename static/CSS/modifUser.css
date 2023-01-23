@@ -10,6 +10,14 @@ h2{
         font-size: 35px;
     font-weight: 600;
 }
+.input{
+    height: 100%;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 5px;
+    padding-left: 15px;
+    font-size: 18px;
+}
 .backward {
     position: absolute;
     height: 50px;
