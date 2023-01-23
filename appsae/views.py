@@ -58,8 +58,10 @@ def index(request):
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
     context = {
-        'list': listeAffichageCaroussel()
+        'meilleurRestaurants': listeAffichageCaroussel(),
+        'pizza' : Restaurant.objects.filter(type=RestaurantType.objects.get(nom='pizza'.lower())).order_by('-note')[:6]
     }
+    print(Restaurant.objects.filter(type=RestaurantType.objects.get(nom='pizza'.lower())).order_by('-note')[:3])
     connect(request, context)
     return render(request, 'index/index.html', context)
 
@@ -212,31 +214,31 @@ def vueRestaurant(request, pk):
     if (avisExist(user, restaurant)):
         context['avisUser'] = avisUser
     connect(request, context)
+    print(context['restaurant'])
     return render(request, 'restaurants/vueRestaurant.html', context)
 
 
 def addCommentaires(request, pk):
     user = Adherant.objects.get(mail=request.session['mailUser'])
     restaurant = Restaurant.objects.filter(pk=pk)
+    restaurants = Restaurant.objects.get(pk=pk)
     img = Restaurant.objects.get(pk=pk).img.all()
     if (avisExist(user, restaurant[0])):
         avisUser = Avis.objects.filter(restaurant_fk=restaurant[0], adherant_fk=user)
-        list = Avis.objects.filter().all()[:9]
+        list = Avis.objects.filter(restaurant_fk=restaurants).all().exclude(adherant_fk=user)[:9]
     else:
-        list = Avis.objects.filter().all()[:10]
+        list = Avis.objects.filter(restaurant_fk=restaurants).all()[:10]
     context = {
         'restaurant': restaurant,
         'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
-        'avis': list,
-        'nbAvis': Avis.objects.filter(restaurant_fk=Restaurant.objects.get(pk=pk)),
+         'avis': list,
+        'nbAvis': Avis.objects.filter(restaurant_fk=restaurants),
     }
     if 'mailUser' in request.session:
         context['commentaire'] = True
     if (avisExist(user, restaurant[0])):
         context['avisUser'] = avisUser
     if (request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST):
-        print(Adherant.objects.get(mail=request.session['mailUser']))
-        print(Restaurant.objects.get(pk=pk))
         ajoutAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),
                   request.POST['title-rating'], request.POST['comm'])
         if Avis.objects.get(adherant_fk=Adherant.objects.get(mail=request.session['mailUser']),
@@ -304,7 +306,8 @@ def login(request):
                 'pseudo': user.pseudo,
                 'photo': user.profile_picture.url,
                 'ville': user.ville,
-                'meilleurRestaurants': listeAffichageCaroussel()
+                'meilleurRestaurants': listeAffichageCaroussel(),
+                'pizza': Restaurant.objects.filter(type=RestaurantType.objects.get(nom='pizza'.lower())).order_by('-note')[:6]
             }
             return render(request, 'index/index.html', context)
         else:
@@ -321,7 +324,8 @@ def modification(request):
     if request.POST['prenom'] != '' and request.POST['nom'] != user.prenom:
         updatePrenom(user.mail, request.POST['prenom'])
     context = {
-        'meilleurRestaurants': listeAffichageCaroussel()
+        'meilleurRestaurants': listeAffichageCaroussel(),
+        'pizza': Restaurant.objects.filter(type=RestaurantType.objects.get(nom='pizza'.lower())).order_by('-note')[:6]
     }
     connect(request, context)
     return render(request, 'index/index.html', context)
@@ -390,14 +394,6 @@ def search(request):
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
         return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
-
-
-def vueRestaurant(request, pk):
-    print("vuerestaurant")
-    restaurant = Restaurant.objects.filter(pk=pk)
-    imgRestaurants = ImageRestaurant.objects.filter
-    return render(request, 'restaurants/vueRestaurant.html', context={'restaurant': restaurant})
-
 
 def matteo(request):
     adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
