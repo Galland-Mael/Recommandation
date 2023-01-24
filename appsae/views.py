@@ -18,7 +18,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import chart_studio.plotly as py
-from surprise import SVD
+from surprise import accuracy, SVD
+from surprise.model_selection import train_test_split
 from surprise.model_selection import cross_validate
 import chart_studio
 import os
@@ -38,7 +39,6 @@ from .gestion import *
 from .gestion_note import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
-# from .gestion_avis import *
 from .svd import *
 import datetime
 import time
@@ -249,12 +249,6 @@ def login(request):
     else:
         return render(request, 'user/login.html')
 
-
-def index(request):
-    liste = carrousel();
-    return render(request, 'index/index.html', {'list': liste})
-
-
 def modifUser(request):
     return render(request, 'user/modifUser.html')
 
@@ -344,34 +338,28 @@ def matteo(request):
 
 def recommendation(request):
     start = time.time()
-    #testSVD()
-    #ad = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
-    #resto = Restaurant.objects.filter(type=RestaurantType.objects.get(nom="fast food"), ville="Philadelphia")
-    #print(resto)
-    #Restaurant.objects.filter()
-    adherents_avis = Avis.objects.filter(restaurant_fk=Restaurant.objects.filter(nom="Philadelphia Museum of Art")[0].pk)
-    liste = []
-    for elem in adherents_avis:
-        liste.append(elem.adherant_fk.pk)
-    t = [5796,28170,32347,35938,40744,44784,50108,52346]
-    avis = Avis.objects.filter(adherant_fk__in=liste).order_by("-restaurant_fk")
-    for a in avis:
-        if (a.restaurant_fk.pk in t):
-            print(a.restaurant_fk.pk)
-
-    '''
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
     # restaurant_metadata.info()
-    # ratings_data.info()
-    reader = Reader(rating_scale=(0, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader=reader)
-    svd = SVD(verbose=False, n_epochs=5, n_factors=100)
-    # cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=False)
-    trainset = data.build_full_trainset()
-    svd.fit(trainset)
-    print(algoRecommandationIndividuelle(776322,svd,restaurant_metadata,100))
-    '''
+    #  ratings_data.info()
+    reader = Reader(rating_scale=(1, 5))
+    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
+    trainset, testset = train_test_split(data, test_size=0.20)
+    svd = SVD(verbose=False, n_epochs=23, n_factors=7)
+    predictions = svd.fit(trainset).test(testset)
+    accuracy.rmse(predictions)
+    # cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=2, verbose=True)
+    l=algoRecommandationIndividuelle(684190,svd,restaurant_metadata,100)
+    #result = predict_review(684189,"Bridesburg Pizza", svd, restaurant_metadata)
+    # print(result)
+    # with open('result.csv', 'a', newline='') as file:
+    #     writer = csv.writer(file)
+    #     writer.writerow(["restaurant_id", "restaurant_name", "restaurant_address", "restaurant_note"])
+    #     for row in result:
+    #         writer.writerow(row)
+    #
+    # # print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
+    # # print(generate_recommendation(339825, svd, restaurant_metadata))
     print(time.time() - start)
     return HttpResponse('')
 

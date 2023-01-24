@@ -75,6 +75,29 @@ def algoRecommandationGroupe(groupe, model, metadata, taille=10):
     return liste_recommandations
 
 
+def algoRecommandationIndividuelle_v3(user_id, model, metadata, taille=10):
+    restaurant_names = list(metadata['nom'].values)
+    liste = []
+
+    # Pour prendre les elements dans une liste de 10 max
+    for restaurant_name in restaurant_names[:taille]:
+        rating = predict_review(user_id, restaurant_name, model, metadata)
+        liste = ajoutDebutListe(liste,restaurant_name, rating,taille)
+    min = liste[taille-1][1]
+    # on fait commencer le min à minimum 4.5
+    if (min < 4.5):
+        min = 4.5
+
+    st = time.time()
+    for restaurant_name in restaurant_names[taille:]:
+        rating = predict_review(user_id, restaurant_name, model, metadata)
+        if rating > min:
+            liste = ajoutList(liste, restaurant_name, rating, taille)
+            min = liste[taille-1][1]
+    print(time.time() - st)
+    return liste[:taille]
+
+
 def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
     restaurant_names = list(metadata['nom'].values)
     liste = []
