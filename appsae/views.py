@@ -18,7 +18,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import chart_studio.plotly as py
-from surprise import SVD
+from surprise import accuracy, SVD
+from surprise.model_selection import train_test_split
 from surprise.model_selection import cross_validate
 import chart_studio
 import os
@@ -347,19 +348,19 @@ def matteo(request):
 
 
 def recommendation(request):
-    #adh = Adherant.objects.get(mail='titouan.jeantet@etu.univ-lyon1.fr').pk
+    # adh = Adherant.objects.get(mail='titouan.jeantet@etu.univ-lyon1.fr').pk
     start = time.time()
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
-    restaurant_metadata.info()
-    ratings_data.info()
+    # restaurant_metadata.info()
+    #  ratings_data.info()
     reader = Reader(rating_scale=(1, 5))
     data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
-    svd = SVD(verbose=False, n_epochs=20, n_factors=100)
-    cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=False)
-    trainset = data.build_full_trainset()
-    svd.fit(trainset)
-
+    trainset, testset = train_test_split(data, test_size=0.20)
+    svd = SVD(verbose=False, n_epochs=23, n_factors=7)
+    predictions = svd.fit(trainset).test(testset)
+    accuracy.rmse(predictions)
+    # cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=2, verbose=True)
     l=algoRecommandationIndividuelle(684190,svd,restaurant_metadata,100)
     result = []
     for elem in l:
@@ -372,7 +373,8 @@ def recommendation(request):
         liste = []
         for elem in adherents_avis:
             liste.append(elem.adherant_fk.pk)
-        t = [5835, 33473, 27807, 6740, 9464, 9568, 56549, 41011, 15707, 5740]
+        t = [5835, 33473, 27807, 6740, 9464, 9568, 56549, 41011, 15707, 5740,31290,37581,12633,16972,6373,17514,12499,
+             20611,40337,40294,8940,34903]
 
         avis = Avis.objects.filter(adherant_fk__in=liste).order_by("-restaurant_fk")
         for a in avis:
