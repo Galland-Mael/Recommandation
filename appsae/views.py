@@ -430,26 +430,13 @@ def recommendation(request):
     start = time.time()
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
-    # restaurant_metadata.info()
-    #  ratings_data.info()
     reader = Reader(rating_scale=(1, 5))
     data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
     trainset, testset = train_test_split(data, test_size=0.20)
     svd = SVD(verbose=False, n_epochs=23, n_factors=7)
     predictions = svd.fit(trainset).test(testset)
     accuracy.rmse(predictions)
-    # cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=2, verbose=True)
     l=algoRecommandationIndividuelle(684190,svd,restaurant_metadata,100)
-    #result = predict_review(684189,"Bridesburg Pizza", svd, restaurant_metadata)
-    # print(result)
-    # with open('result.csv', 'a', newline='') as file:
-    #     writer = csv.writer(file)
-    #     writer.writerow(["restaurant_id", "restaurant_name", "restaurant_address", "restaurant_note"])
-    #     for row in result:
-    #         writer.writerow(row)
-    #
-    # # print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
-    # # print(generate_recommendation(339825, svd, restaurant_metadata))
     print(time.time() - start)
     return HttpResponse('')
 
