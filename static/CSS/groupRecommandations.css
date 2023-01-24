@@ -4,7 +4,7 @@
     grid-template-columns: repeat(3, 1fr);
 }
 aside{
-    width:25%;
+    width: 23%;
 }
 .user{
     display: flex;

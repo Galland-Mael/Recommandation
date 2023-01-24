@@ -19,6 +19,7 @@ class Adherant(models.Model):
     password = models.CharField(max_length=20)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
     ville = models.CharField(max_length=100, default="none")
+
     def __str__(self):
         return self.mail
 
@@ -68,10 +69,16 @@ class Restaurant(models.Model):
         return str(self.nom)
 
 
-class Horaire(models.Model):
+class ImageUser(models.Model):
+    img = models.ImageField(upload_to='img_user/')
 
+    def __str__(self):
+        return str(self.img)
+
+
+class Horaire(models.Model):
     class Nom_jour(models.IntegerChoices):
-        Lundi= 1
+        Lundi = 1
         Mardi = 2
         Mercredi = 3
         Jeudi = 4
@@ -92,7 +99,7 @@ class Horaire(models.Model):
 
 
 class Avis(models.Model):
-    note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)],default=0)
+    note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     texte = models.CharField(max_length=3000, default=" ")
     unix_date = models.CharField(max_length=1000, default=datetime.datetime.timestamp(datetime.datetime.now()))
     restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
@@ -100,5 +107,3 @@ class Avis(models.Model):
 
     def __str__(self):
         return str(self.restaurant_fk) + " - " + str(self.adherant_fk)
-
-

@@ -33,54 +33,74 @@
             </div>
         </div>
     </div>
-
-    <div class="glider-contain">
-        <div class="best">
-            <p class="title-slider text">Les meilleurs restaurants</p>
-        </div>
-        <div class="glider">
-            {% for element in  meilleurRestaurants %}
-                <div class="card">
-                    <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
-                        <div class="img-card">
-                            <img src="{{ element.image_front.url }}" alt="image du restaurant">
-                        </div>
-                        <div class="info-card">
-                            <div class="name">
-                                <span class="text nom">{{ element.nom }}</span>
+    {% if mail %}
+        <div class="glider-contain">
+            <div class="best">
+                <p class="title-slider text">Vos recommandations</p>
+            </div>
+            <div class="glider">
+                {% for element in  recommandation %}
+                    <div class="card">
+                        <a href="{% url 'vueRestaurant' element.pk %}">
+                            <div class="img-card">
+                                <img src="{{ element.image_front.url }}" alt="image du restaurant">
                             </div>
-                            <div class="flex align">
-                                <span class="text">{{ element.note }}</span>
-                                <div class="star-icon">
-                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                            <div class="info-card">
+                                <div class="name">
+                                    <span class="text nom">{{ element.nom }}</span>
                                 </div>
+                                <div class="flex align">
+                                    <span class="text">{{ element.note }}</span>
+                                    <div class="star-icon">
+                                        <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                                    </div>
+                                </div>
+                                <div class="nav-localisation text">
+                                    <div>{{ element.adresse }}</div>
+                                    <div>{{ element.ville }}</div>
+                                </div>
+                                <div class="text">({{ element.zip_code }})</div>
                             </div>
-                            <div class="nav-localisation text">
-                                <div>{{ element.adresse }}</div>
-                                <div>{{ element.ville }}</div>
-                            </div>
-                            <div class="text">({{ element.zip_code }})</div>
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            <button aria-label="Previous" class="glider-prev">«</button>
+            <button aria-label="Next" class="glider-next">»</button>
+            <div role="tablist" class="dots"></div>
         </div>
-        <button aria-label="Previous" class="glider-prev">«</button>
-        <button aria-label="Next" class="glider-next">»</button>
-        <div role="tablist" class="dots"></div>
-    </div>
+    {% endif %}
     <div class="container">
         <div class="best margin-top">
-            <p class="title text">Les meilleurs Pizza</p>
+            <p class="title text">Les meilleurs restaurants</p>
         </div>
         <div class="grid">
-            {% for element in pizza %}
+            {% for element in meilleurRestaurants %}
                 <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
-                <div class="element text">{{ element }}</div>
+                    <div class="img-card">
+                        <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
+                    </div>
+                    <div class="info-card">
+                        <div class="name">
+                            <span class="text nom">{{ element.nom }}</span>
+                        </div>
+                        <div class="flex align">
+                            <span class="text">{{ element.note }}</span>
+                            <div class="star-icon">
+                                <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                            </div>
+                        </div>
+                        <div class="nav-localisation text">
+                            <div>{{ element.adresse }}</div>
+                            <div>{{ element.ville }}</div>
+                        </div>
+                        <div class="text">({{ element.zip_code }})</div>
+                    </div>
                 </a>
             {% endfor %}
         </div>
     </div>
+
 {% endblock %}
 
 

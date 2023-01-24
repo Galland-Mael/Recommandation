@@ -58,21 +58,21 @@ def index(request):
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
     context = {
-        'meilleurRestaurants': listeAffichageCaroussel(),
-        'pizza' : Restaurant.objects.filter(type=RestaurantType.objects.get(nom='pizza'.lower())).order_by('-note')[:6]
+        'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
     }
-    print(Restaurant.objects.filter(type=RestaurantType.objects.get(nom='pizza'.lower())).order_by('-note')[:3])
+    if 'mailUser' in request.session:
+        context['recommandation'] = listeAffichageCaroussel()
     connect(request, context)
     return render(request, 'index/index.html', context)
 
 
-def groupRecommandations(request,pk):
+def groupRecommandations(request, pk):
     print(pk)
-    groupe=Groupe.objects.get(pk=pk)
-    membres=groupe.liste_adherants.all()
+    groupe = Groupe.objects.get(pk=pk)
+    membres = groupe.liste_adherants.all()
     context = {
-        'restaurants': listeAffichageCaroussel(),
-        'membres':membres,
+        'restaurants': listeAffichageCaroussel()[:9],
+        'membres': membres,
     }
     connect(request, context)
     return render(request, 'user/groupRecommandations.html', context)
@@ -196,11 +196,14 @@ def searchUser(request):
 
 def vueRestaurant(request, pk):
     img = Restaurant.objects.get(pk=pk).img.all()
-    user = Adherant.objects.get(mail=request.session['mailUser'])
     restaurant = Restaurant.objects.get(pk=pk)
-    if (avisExist(user, restaurant)):
-        avisUser = Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
-        list = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
+    if 'mailUser' in request.session:
+        user = Adherant.objects.get(mail=request.session['mailUser'])
+        if (avisExist(user, restaurant)):
+            avisUser = Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
+            list = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
+        else:
+            list = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
     else:
         list = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
     context = {
@@ -209,12 +212,13 @@ def vueRestaurant(request, pk):
         'avis': list,
         'nbAvis': Avis.objects.filter(restaurant_fk=restaurant),
     }
-    if Avis.objects.filter(adherant_fk=user, restaurant_fk=Restaurant.objects.get(pk=pk)):
-        context['commentaire'] = True
-    if (avisExist(user, restaurant)):
-        context['avisUser'] = avisUser
+    if 'mailUser' in request.session:
+        user = Adherant.objects.get(mail=request.session['mailUser'])
+        if Avis.objects.filter(adherant_fk=user, restaurant_fk=Restaurant.objects.get(pk=pk)):
+            context['commentaire'] = True
+        if (avisExist(Adherant.objects.get(mail=request.session['mailUser']), restaurant)):
+            context['avisUser'] = avisUser
     connect(request, context)
-    print(context['restaurant'])
     return render(request, 'restaurants/vueRestaurant.html', context)
 
 
@@ -231,7 +235,7 @@ def addCommentaires(request, pk):
     context = {
         'restaurant': restaurant,
         'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
-         'avis': list,
+        'avis': list,
         'nbAvis': Avis.objects.filter(restaurant_fk=restaurants),
     }
     if 'mailUser' in request.session:
@@ -262,7 +266,7 @@ def voirPlus(request, pk):
 
 def register(request):
     if request.method == "POST":
-        user=request.POST
+        user = request.POST
         '''Remplissage de la base de données'''
         obj = Adherant.objects.create(
             prenom=user['prenom'],
@@ -306,8 +310,8 @@ def login(request):
                 'pseudo': user.pseudo,
                 'photo': user.profile_picture.url,
                 'ville': user.ville,
-                'meilleurRestaurants': listeAffichageCaroussel(),
-                'pizza': Restaurant.objects.filter(type=RestaurantType.objects.get(nom='pizza'.lower())).order_by('-note')[:6]
+                'recommandation': listeAffichageCaroussel(),
+                'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
             }
             return render(request, 'index/index.html', context)
         else:
@@ -323,10 +327,17 @@ def modification(request):
         updateNomUser(user.mail, request.POST['nom'])
     if request.POST['prenom'] != '' and request.POST['nom'] != user.prenom:
         updatePrenom(user.mail, request.POST['prenom'])
+    if len(request.FILES) != 0:
+        img = ImageUser.objects.create(
+           img=request.FILES['photo']
+        )
+        img.save();
+        updateProfilPick(user.mail,'img_user/'+str(request.FILES['photo']))
+        print(request.FILES)
     Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
     context = {
-        'meilleurRestaurants': listeAffichageCaroussel(),
-        'pizza': Restaurant.objects.filter(type=RestaurantType.objects.get(nom='pizza'.lower())).order_by('-note')[:6]
+        'recommandation': listeAffichageCaroussel(),
+        'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
     }
     connect(request, context)
     return render(request, 'index/index.html', context)
@@ -396,6 +407,7 @@ def search(request):
         return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
 
+
 def matteo(request):
     adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
     resto = Restaurant.objects.filter(nom="Burger King")[0]
@@ -445,7 +457,7 @@ def export_restaurant(request):
         taille = restaurant.type.all().count()
         for i in range(taille):
             f.write(str(restaurant.type.all()[i]))
-            if i != taille-1:
+            if i != taille - 1:
                 f.write(" ")
         f.write('\n')
     print(file)
@@ -458,8 +470,8 @@ def export_ratings(request):
     f.writelines("user_id,restaurant_id,note,timestamp")
     f.write('\n')
     for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note', 'unix_date'):
-            f.write(str(rating)[1:-1])
-            f.write('\n')
+        f.write(str(rating)[1:-1])
+        f.write('\n')
     print(file)
     return redirect('index')
 
@@ -507,29 +519,31 @@ def suppVille():
                   "Franklin"]
     Restaurant.objects.all().exclude(ville__in=listVilles).delete()
 
+
 def getFirstElement():
     liste = []
-    fichier = open("C:/Users/alhdv/Downloads/patronymes.csv","r")
-    cr = csv.reader( fichier,delimiter=",")
+    fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", "r")
+    cr = csv.reader(fichier, delimiter=",")
     for row in cr:
         if " " not in str(row[0]):
             liste.append(row[0])
     fichier.close()
     return liste
 
+
 def insert_nom():
     list = getFirstElement()
     random.shuffle(list)
-    i=0
+    i = 0
     for personne in Adherant.objects.all():
         tmp = list[i].lower()
         tmp = tmp[0].upper() + tmp[1:]
         print(tmp)
         Adherant.objects.filter(pk=personne.pk).update(nom=tmp)
-        Adherant.objects.filter(pk=personne.pk).update(mail=personne.prenom.lower() + "." + list[i].lower() + "@eatadvisor.com")
-        i+=1
+        Adherant.objects.filter(pk=personne.pk).update(
+            mail=personne.prenom.lower() + "." + list[i].lower() + "@eatadvisor.com")
+        i += 1
         print(i)
-
 
 
 def addAvis(request, pk):
@@ -537,4 +551,4 @@ def addAvis(request, pk):
         'avis': liste_avis(Restaurant.objects.get(pk=pk), 1)
     }
     connect(request, context)
-    return render(request, 'avis/moreAvis.html',context)
+    return render(request, 'avis/moreAvis.html', context)
