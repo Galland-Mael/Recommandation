@@ -19,6 +19,7 @@ class Adherant(models.Model):
     password = models.CharField(max_length=20)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
     ville = models.CharField(max_length=100, default="none")
+
     def __str__(self):
         return self.mail
 
@@ -77,7 +78,7 @@ class ImageUser(models.Model):
 
 class Horaire(models.Model):
     class Nom_jour(models.IntegerChoices):
-        Lundi= 1
+        Lundi = 1
         Mardi = 2
         Mercredi = 3
         Jeudi = 4
@@ -107,6 +108,7 @@ class Avis(models.Model):
     def __str__(self):
         return str(self.restaurant_fk) + " - " + str(self.adherant_fk)
 
+
 class RecommandationUser(models.Model):
     adherant_fk = models.ForeignKey(Adherant, on_delete=models.PROTECT)
     date = models.DateTimeField(default=datetime.datetime.now)
@@ -123,5 +125,3 @@ class RecommandationGroupe(models.Model):
 
     def __str__(self):
         return str(self.groupe_fk) + " - " + str(self.date)
-
-

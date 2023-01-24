@@ -38,7 +38,7 @@ from .gestion import *
 from .gestion_note import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
-from .gestion_avis import *
+from .gestion_note import *
 from .svd import *
 from .models import *
 import datetime
