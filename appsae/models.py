@@ -101,4 +101,20 @@ class Avis(models.Model):
     def __str__(self):
         return str(self.restaurant_fk) + " - " + str(self.adherant_fk)
 
+class RecommandationUser(models.Model):
+    adherant_fk = models.ForeignKey(Adherant, on_delete=models.PROTECT)
+    date = models.DateTimeField(default=datetime.datetime.now)
+    recommandation = models.ManyToManyField(Restaurant)
+
+    def __str__(self):
+        return str(self.adherant_fk) + " - " + str(self.date)
+
+class RecommandationGroupe(models.Model):
+    groupe_fk = models.ForeignKey(Groupe, on_delete=models.PROTECT)
+    date = models.DateTimeField(default=datetime.datetime.now)
+    recommandation = models.ManyToManyField(Restaurant)
+
+    def __str__(self):
+        return str(self.groupe_fk) + " - " + str(self.date)
+
 
