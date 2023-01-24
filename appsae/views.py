@@ -44,7 +44,9 @@ from .svd import *
 from .models import *
 import datetime
 import time
-
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+import hashlib
 PAGE = 0
 
 
@@ -54,6 +56,12 @@ def modifPAGE():
 
 
 def index(request):
+    message1 = "test".encode()
+    message2 = "test".encode()
+    hashed_password = hashlib.sha256(message1).hexdigest()
+    hashed_password2 = hashlib.sha256(message2).hexdigest()
+    print(hashed_password)
+    print(hashed_password2)
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
@@ -269,13 +277,15 @@ def register(request):
     if request.method == "POST":
         user = request.POST
         '''Remplissage de la base de données'''
+        password = user['password']
+        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
         obj = Adherant.objects.create(
             prenom=user['prenom'],
             nom=user['nom'],
             ville=user['ville'],
             mail=user['mail'],
             birthDate=user['birthDate'],
-            password=user['password']
+            password=hashed_password,
         )
         obj.save()
         return redirect('login')
@@ -295,7 +305,9 @@ def login(request):
         for adherant in info:
             '''Verification'''
             if (request.POST['mail'] == adherant.mail):
-                if (request.POST['password'] == adherant.password):
+                password = request.POST['password']
+                hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+                if (hashed_password == adherant.password):
                     contain = True
         if contain:
             user = Adherant.objects.get(mail=request.POST['mail'])
@@ -560,6 +572,8 @@ def setVille():
         max_elem = max(dico, key=dico.get)
         Adherant.objects.filter(pk=user.pk).update(ville=max_elem)
 
+
+#fonction a lancer
 def calculNb_reviewAdherent():
     for adherent in Adherant.objects.all():
         somme = Avis.objects.filter(adherant_fk=adherent.pk).count()
@@ -569,3 +583,10 @@ def calculNb_reviewAdherent():
 def calculNb_reviewRestaurant():
     for resto in Restaurant.objects.all():
         somme = Avis.objects.filter(restaurant_fk=resto.pk).count()
+        Restaurant.objects.filter(pk=resto.pk).update(nb_review=somme)
+
+def create_password():
+    for user in Adherant.objects.all():
+        mdp = user.prenom.lower() + user.nom.lower()
+        hashed_password = hashlib.sha256(mdp.encode('utf-8')).hexdigest()
+        Adherant.objects.filter(pk=user.pk).update(password=hashed_password)
