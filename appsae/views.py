@@ -18,7 +18,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import chart_studio.plotly as py
-from surprise import SVD
+from surprise import accuracy, SVD
+from surprise.model_selection import train_test_split
 from surprise.model_selection import cross_validate
 import chart_studio
 import os
@@ -429,16 +430,26 @@ def recommendation(request):
     start = time.time()
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
-    restaurant_metadata.info()
-    ratings_data.info()
-    """reader = Reader(rating_scale=(1, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
-    svd = SVD(verbose=True, n_epochs=10, n_factors=100)
-    cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=4, verbose=True)
-    trainset = data.build_full_trainset()
-    svd.fit(trainset)
-    print(svd.predict(uid=397784, iid=7859))  # uid user id iid item id"""
-    # generate_recommendation(397784, svd, restaurant_metadata)
+    # restaurant_metadata.info()
+    #  ratings_data.info()
+    reader = Reader(rating_scale=(1, 5))
+    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
+    trainset, testset = train_test_split(data, test_size=0.20)
+    svd = SVD(verbose=False, n_epochs=23, n_factors=7)
+    predictions = svd.fit(trainset).test(testset)
+    accuracy.rmse(predictions)
+    # cross_validate(svd, data, measures=['RMSE', 'MAE'], cv=2, verbose=True)
+    l=algoRecommandationIndividuelle(684190,svd,restaurant_metadata,100)
+    #result = predict_review(684189,"Bridesburg Pizza", svd, restaurant_metadata)
+    # print(result)
+    # with open('result.csv', 'a', newline='') as file:
+    #     writer = csv.writer(file)
+    #     writer.writerow(["restaurant_id", "restaurant_name", "restaurant_address", "restaurant_note"])
+    #     for row in result:
+    #         writer.writerow(row)
+    #
+    # # print(algoRecommandationGroupe(Groupe.objects.get(nom_groupe="test"),svd,restaurant_metadata,10))
+    # # print(generate_recommendation(339825, svd, restaurant_metadata))
     print(time.time() - start)
     return HttpResponse('')
 
@@ -446,7 +457,7 @@ def recommendation(request):
 def export_restaurant(request):
     file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
     f = open(file, "w")
-    f.writelines("id ,nom, genre ")
+    f.writelines("id;nom;genre")
     f.write('\n')
     for restaurant in Restaurant.objects.filter(ville='Philadelphia'):
         f.write(str(restaurant.pk))
@@ -466,11 +477,11 @@ def export_restaurant(request):
 def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
-    f.writelines("user_id,restaurant_id,note,timestamp")
+    f.writelines("user_id,restaurant_id,note")
     f.write('\n')
-    for rating in Avis.objects.all().values_list('restaurant_fk', 'adherant_fk', 'note', 'unix_date'):
-        f.write(str(rating)[1:-1])
-        f.write('\n')
+    for rating in Avis.objects.all().values_list('adherant_fk', 'restaurant_fk', 'note'):
+            f.write(str(rating)[1:-1])
+            f.write('\n')
     print(file)
     return redirect('index')
 

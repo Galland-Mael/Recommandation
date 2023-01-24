@@ -28,7 +28,6 @@ urlpatterns = [
     path('groupePage/', groupePage, name='groupePage'),
     path('nomGroup/', nomGroup, name='nomGroup'),
     path('createGroupe/', createGroupe, name='createGroupe'),
-    path('groupRecommandations/(<pk>)', groupRecommandations, name='groupRecommandations'),
     path('modification/',modification,name='modification'),
     path('recommandation/', recommandation, name='recommandation'),
     path('setImg/', setImg, name='setImg'),
