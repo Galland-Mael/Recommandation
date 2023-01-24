@@ -407,7 +407,6 @@ def search(request):
         return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
 
-
 def matteo(request):
     adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
     resto = Restaurant.objects.filter(nom="Burger King")[0]
@@ -519,7 +518,6 @@ def suppVille():
                   "Franklin"]
     Restaurant.objects.all().exclude(ville__in=listVilles).delete()
 
-
 def getFirstElement():
     liste = []
     fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", "r")
@@ -529,7 +527,6 @@ def getFirstElement():
             liste.append(row[0])
     fichier.close()
     return liste
-
 
 def insert_nom():
     list = getFirstElement()
@@ -552,3 +549,25 @@ def addAvis(request, pk):
     }
     connect(request, context)
     return render(request, 'avis/moreAvis.html', context)
+
+def setVille():
+    for user in Adherant.objects.all():
+        dico = {"Philadelphia" : 0, "Tampa" : 0, "Indianapolis" : 0, "Nashville" : 0, "Tucson" : 0, "New Orleans" : 0,
+                "Saint Louis" : 0, "Edmonton" :0, "Reno" : 0, "Saint Petersburg" : 0, "Boise" : 0, "Santa Barbara" : 0,
+                "Clearwater" : 0, "Wilmington" : 0, "Metairie" : 0, "Franklin" : 0}
+        for avis in Avis.objects.filter(adherant_fk=user):
+            str_ville = str(avis.restaurant_fk.ville)
+            if str_ville in dico.keys():
+                dico[str_ville] += 1
+        max_elem = max(dico, key=dico.get)
+        Adherant.objects.filter(pk=user.pk).update(ville=max_elem)
+
+def calculNb_reviewAdherent():
+    for adherent in Adherant.objects.all():
+        somme = Avis.objects.filter(adherant_fk=adherent.pk).count()
+        Adherant.objects.filter(pk=adherent.pk).update(nb_review=somme)
+
+
+def calculNb_reviewRestaurant():
+    for resto in Restaurant.objects.all():
+        somme = Avis.objects.filter(restaurant_fk=resto.pk).count()
