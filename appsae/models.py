@@ -115,6 +115,7 @@ class RecommandationUser(models.Model):
     def __str__(self):
         return str(self.adherant_fk) + " - " + str(self.date)
 
+
 class RecommandationGroupe(models.Model):
     groupe_fk = models.ForeignKey(Groupe, on_delete=models.PROTECT)
     date = models.DateTimeField(default=datetime.datetime.now)
