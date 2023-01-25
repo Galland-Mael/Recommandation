@@ -1,4 +1,10 @@
+from django.http import request
+from surprise import Dataset
+
+from .views import *
 from .models import *
+from .svd import *
+from time import mktime
 from django.db.models import Avg
 from django.conf import settings
 from csv import writer
@@ -18,6 +24,20 @@ def addavisCSV(avis):
         f_object.write('\n')
         f_object.write(str(avis.adherant_fk_id)+ ', ' + str(avis.restaurant_fk_id) + ', ' + str(float(avis.note)))
         f_object.close()
+
+
+def filterNomRestaurant(nom):
+    """
+
+    @param nom:
+    @return:
+    """
+    list = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789"
+    nouveau_nom = ""
+    for lettre in nom:
+        if lettre in list:
+            nouveau_nom += lettre
+    return nouveau_nom
 
 
 def avisExist(user, restaurant):
@@ -155,3 +175,48 @@ def afficherVoirPlus(restaurant, num, user=""):
     @return: booléen en fonction de s'il faut afficher ou non "Voir Plus"
     """
     return listeAffichageAvis(restaurant, num + 1, user).count() != 0
+
+
+def listRecommandationGroupe(groupe):
+    ratings_data = pd.read_csv('./ratings.csv')
+    user_idgerant = Groupe.objects.get(pk=groupe.pk).id_gerant
+    user = Adherant.objects.filter(pk=user_idgerant)
+    restaurant_metadata = pd.read_csv('./restaurant_' + filterNomRestaurant(str(user[0].ville)) + '.csv', delimiter=';', engine='python')
+    reader = Reader(rating_scale=(0, 5))
+    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
+    trainset, testset = train_test_split(data, test_size=0.20)
+    svd = SVD(verbose=False, n_epochs=23, n_factors=7)
+    predictions = svd.fit(trainset).test(testset)
+    accuracy.rmse(predictions)
+    l = algoRecommandationGroupe(groupe, svd, restaurant_metadata, 100)
+    liste_complete = []
+    for elem in l:
+        liste_complete.append(get_restaurant_id(elem[0], restaurant_metadata))
+    return liste_complete
+
+
+def ajoutBDRecommandationGroupe(groupe):
+    reco_groupe= RecommandationGroupe.objects.filter(groupe_fk=groupe)
+    if reco_groupe.count() == 0:
+        reco = RecommandationGroupe(groupe_fk=groupe)
+        reco.save()
+        list = listRecommandationGroupe(groupe)
+        for elem in list:
+            reco.recommandation.add(elem)
+        RecommandationGroupe.objects.filter(groupe_fk=groupe).update(date=datetime.datetime.now())
+    else:
+        date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
+        date_bd = reco_groupe[0].date.replace(tzinfo=None).timetuple()
+        if mktime(date_bd) <= mktime(date_actuelle)-200:
+            RecommandationGroupe.objects.filter(groupe_fk=groupe).update(date=datetime.datetime.now())
+            list = listRecommandationGroupe(groupe)
+            reco = RecommandationGroupe.objects.get(groupe_fk=groupe)
+            list_Reco = reco.recommandation.all()
+            for elem in list_Reco:
+                reco.recommandation.remove(elem)
+            reco = RecommandationGroupe.objects.get(groupe_fk=groupe)
+            for elem in list:
+                reco.recommandation.add(elem)
+            RecommandationGroupe.objects.filter(groupe_fk=groupe).update(date=datetime.datetime.now())
+
+

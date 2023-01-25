@@ -79,6 +79,7 @@ def index(request):
 def groupRecommandations(request, pk):
     groupe = Groupe.objects.get(pk=pk)
     membres = groupe.liste_adherants.all()
+    print(listRecommandationGroupe(groupe,request))
     context = {
         'membres': membres,
     }
@@ -116,6 +117,38 @@ def search(request):
     return render(request, 'restaurants/searchRestaurants.html', context)
 
 
+
+
+
+def testNomUTF(nom):
+    """
+
+    @param nom:
+    @return:
+    """
+    list = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789&'-+/:,*#|!?°. "
+    nouveau_nom = ""
+    for lettre in nom:
+        if lettre in list:
+            nouveau_nom += lettre
+        elif lettre in 'éèê':
+            nouveau_nom += 'e'
+        elif lettre in 'ÉÈ':
+            nouveau_nom += 'E'
+    return nouveau_nom
+
+
+def supplettreUTF():
+    """
+
+    @return:
+    """
+    for resto in Restaurant.objects.all():
+        nouveau_nom = testNomUTF(resto.nom)
+        if (nouveau_nom != resto.nom):
+            Restaurant.objects.filter(id_yelp=resto.id_yelp).update(nom=nouveau_nom)
+
+
 def createGroupe(request):
     if 'nomGroupe' not in request.POST:
         context = {}
@@ -125,6 +158,7 @@ def createGroupe(request):
     user = Adherant.objects.get(mail=request.session['mailUser'])
     for user in Adherant.objects.filter(mail__in=request.session['groupe']):
         ajoutUtilisateurGroupe(user, groupe)
+    ajoutBDRecommandationGroupe(groupe)
     list = []
     for groupe in Groupe.objects.all():
         if user in groupe.liste_adherants.all():
@@ -466,22 +500,28 @@ def recommendation(request):
 
 
 def export_restaurant(request):
-    file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
-    f = open(file, "w")
-    f.writelines("id;nom;genre")
-    f.write('\n')
-    for restaurant in Restaurant.objects.filter(ville='Philadelphia'):
-        f.write(str(restaurant.pk))
-        f.write(";")
-        f.write(restaurant.nom)
-        f.write(";")
-        taille = restaurant.type.all().count()
-        for i in range(taille):
-            f.write(str(restaurant.type.all()[i]))
-            if i != taille - 1:
-                f.write(" ")
+    listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
+                  "Saint Louis", "Reno",
+                  "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
+                  "Franklin"]
+    # user = Adherant.objects.get(mail=request.session['mailUser'])
+    for villes in listVilles:
+        file = str(settings.BASE_DIR) + '/' + "restaurant_" + filterNomRestaurant(villes) + ".csv"
+        f = open(file, "w")
+        f.writelines("id;nom;genre")
         f.write('\n')
-    print(file)
+        for restaurant in Restaurant.objects.filter(ville=villes):
+            f.write(str(restaurant.pk))
+            f.write(";")
+            f.write(restaurant.nom)
+            f.write(";")
+            taille = restaurant.type.all().count()
+            for i in range(taille):
+                f.write(str(restaurant.type.all()[i]))
+                if i != taille - 1:
+                    f.write(" ")
+            f.write('\n')
+        print(file)
     return redirect('index')
 
 
