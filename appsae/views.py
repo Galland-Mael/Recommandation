@@ -62,7 +62,8 @@ def index(request):
         'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
     }
     if 'mailUser' in request.session:
-        context['recommandation'] = listeAffichageCaroussel()
+        if RecommandationUser.objects.filter(adherant_fk = Adherant.objects.get(mail=request.session['mailUser'])).count() !=0:
+            context['recommandation'] = RecommandationUser.objects.get(adherant_fk = Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
     connect(request, context)
     return render(request, 'index/index.html', context)
 
@@ -311,9 +312,13 @@ def login(request):
                 'pseudo': user.pseudo,
                 'photo': user.profile_picture.url,
                 'ville': user.ville,
-                'recommandation': listeAffichageCaroussel(),
                 'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
             }
+            if 'mailUser' in request.session:
+                if RecommandationUser.objects.filter(
+                        adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
+                    context['recommandation'] = RecommandationUser.objects.get(
+                        adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
             return render(request, 'index/index.html', context)
         else:
             messages.success(request, '*Wrong mail or password')
@@ -330,16 +335,21 @@ def modification(request):
         updatePrenom(user.mail, request.POST['prenom'])
     if len(request.FILES) != 0:
         img = ImageUser.objects.create(
-           img=request.FILES['photo']
+            img=request.FILES['photo']
         )
         img.save();
-        updateProfilPick(user.mail,'img_user/'+str(request.FILES['photo']))
+        updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
         print(request.FILES)
     Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
     context = {
         'recommandation': listeAffichageCaroussel(),
         'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
     }
+    if 'mailUser' in request.session:
+        if RecommandationUser.objects.filter(
+                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
+            context['recommandation'] = RecommandationUser.objects.get(
+                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
     connect(request, context)
     return render(request, 'index/index.html', context)
 
@@ -408,6 +418,7 @@ def search(request):
         return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
 
+
 def matteo(request):
     adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
     resto = Restaurant.objects.filter(nom="Burger King")[0]
@@ -431,12 +442,12 @@ def recommendation(request):
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
     reader = Reader(rating_scale=(1, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
+    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
     trainset, testset = train_test_split(data, test_size=0.20)
     svd = SVD(verbose=False, n_epochs=23, n_factors=7)
     predictions = svd.fit(trainset).test(testset)
     accuracy.rmse(predictions)
-    l=algoRecommandationIndividuelle(684190,svd,restaurant_metadata,100)
+    l = algoRecommandationIndividuelle(684190, svd, restaurant_metadata, 100)
     print(time.time() - start)
     return HttpResponse('')
 
@@ -467,8 +478,8 @@ def export_ratings(request):
     f.writelines("user_id,restaurant_id,note")
     f.write('\n')
     for rating in Avis.objects.all().values_list('adherant_fk', 'restaurant_fk', 'note'):
-            f.write(str(rating)[1:-1])
-            f.write('\n')
+        f.write(str(rating)[1:-1])
+        f.write('\n')
     print(file)
     return redirect('index')
 
@@ -516,6 +527,7 @@ def suppVille():
                   "Franklin"]
     Restaurant.objects.all().exclude(ville__in=listVilles).delete()
 
+
 def getFirstElement():
     liste = []
     fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", "r")
@@ -525,6 +537,7 @@ def getFirstElement():
             liste.append(row[0])
     fichier.close()
     return liste
+
 
 def insert_nom():
     list = getFirstElement()
@@ -548,17 +561,19 @@ def addAvis(request, pk):
     connect(request, context)
     return render(request, 'avis/moreAvis.html', context)
 
+
 def setVille():
     for user in Adherant.objects.all():
-        dico = {"Philadelphia" : 0, "Tampa" : 0, "Indianapolis" : 0, "Nashville" : 0, "Tucson" : 0, "New Orleans" : 0,
-                "Saint Louis" : 0, "Edmonton" :0, "Reno" : 0, "Saint Petersburg" : 0, "Boise" : 0, "Santa Barbara" : 0,
-                "Clearwater" : 0, "Wilmington" : 0, "Metairie" : 0, "Franklin" : 0}
+        dico = {"Philadelphia": 0, "Tampa": 0, "Indianapolis": 0, "Nashville": 0, "Tucson": 0, "New Orleans": 0,
+                "Saint Louis": 0, "Edmonton": 0, "Reno": 0, "Saint Petersburg": 0, "Boise": 0, "Santa Barbara": 0,
+                "Clearwater": 0, "Wilmington": 0, "Metairie": 0, "Franklin": 0}
         for avis in Avis.objects.filter(adherant_fk=user):
             str_ville = str(avis.restaurant_fk.ville)
             if str_ville in dico.keys():
                 dico[str_ville] += 1
         max_elem = max(dico, key=dico.get)
         Adherant.objects.filter(pk=user.pk).update(ville=max_elem)
+
 
 def calculNb_reviewAdherent():
     for adherent in Adherant.objects.all():
