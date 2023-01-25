@@ -1,0 +1,46 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/searchRestau.css' %}"/>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="title">
+            <h3>liste des restaurants</h3>
+        </div>
+        {% for element in list %}
+            <a class="decoration-none hover" href="{% url 'vueRestaurant' element.pk %}">
+                <div class="cards ">
+                    <div class="image-container-search-results">
+                        <img class="image-search-results" src="{{ element.image_front.url }}" alt="image Restaurant">
+                    </div>
+                    <div class="info-container">
+                        <div class="flex">
+                            <div class="column">
+                                <span class="field nom">{{ element.nom }},</span>
+                                <div class="row">
+                                    <span>{{ element.note }}</span>
+                                    <span>
+                        <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="field">{{ element.adresse }} {{ element.zip_code }},</span>
+                        <span class="field">{{ element.ville }}</span>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+{% endblock %}

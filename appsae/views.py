@@ -34,6 +34,8 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from .recommandation_groupe import recommandationGroupeAvisGroupeComplet
 from .recommendation import *
 from .gestion import *
 from .gestion_note import *
@@ -44,6 +46,9 @@ from .svd import *
 from .models import *
 import datetime
 import time
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+import hashlib
 
 PAGE = 0
 
@@ -62,13 +67,15 @@ def index(request):
         'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
     }
     if 'mailUser' in request.session:
-        context['recommandation'] = listeAffichageCaroussel()
+        if RecommandationUser.objects.filter(
+                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
+            context['recommandation'] = RecommandationUser.objects.get(
+                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
     connect(request, context)
     return render(request, 'index/index.html', context)
 
 
 def groupRecommandations(request, pk):
-    print(pk)
     groupe = Groupe.objects.get(pk=pk)
     membres = groupe.liste_adherants.all()
     context = {
@@ -107,9 +114,9 @@ def createGroupe(request):
         connect(request, context)
         return render(request, 'user/groupe.html', context)
     groupe = creationGroupe(request.POST['nomGroupe'], Adherant.objects.get(mail=request.session['mailUser']))
+    user = Adherant.objects.get(mail=request.session['mailUser'])
     for user in Adherant.objects.filter(mail__in=request.session['groupe']):
         ajoutUtilisateurGroupe(user, groupe)
-    user = Adherant.objects.get(mail=request.session['mailUser'])
     list = []
     for groupe in Groupe.objects.all():
         if user in groupe.liste_adherants.all():
@@ -172,6 +179,16 @@ def nomGroup(request):
     }
     connect(request, context)
     return render(request, 'user/nomGroup.html', context)
+
+
+def searchRestau(request):
+    if(request.POST["search"]==""):
+        return redirect('index')
+    context={
+        'list':  Restaurant.objects.filter(nom__icontains=request.POST["search"])
+    }
+    connect(request,context)
+    return render(request, 'restaurants/searchRestau.html',context)
 
 
 def groupePage(request):
@@ -330,16 +347,21 @@ def modification(request):
         updatePrenom(user.mail, request.POST['prenom'])
     if len(request.FILES) != 0:
         img = ImageUser.objects.create(
-           img=request.FILES['photo']
+            img=request.FILES['photo']
         )
         img.save();
-        updateProfilPick(user.mail,'img_user/'+str(request.FILES['photo']))
+        updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
         print(request.FILES)
     Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
     context = {
         'recommandation': listeAffichageCaroussel(),
         'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
     }
+    if 'mailUser' in request.session:
+        if RecommandationUser.objects.filter(
+                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
+            context['recommandation'] = RecommandationUser.objects.get(
+                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
     connect(request, context)
     return render(request, 'index/index.html', context)
 
@@ -407,6 +429,7 @@ def search(request):
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
         return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
+
 
 def matteo(request):
     adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
@@ -504,6 +527,7 @@ def suppVille():
                   "Franklin"]
     Restaurant.objects.all().exclude(ville__in=listVilles).delete()
 
+
 def getFirstElement():
     liste = []
     fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", "r")
@@ -513,6 +537,7 @@ def getFirstElement():
             liste.append(row[0])
     fichier.close()
     return liste
+
 
 def insert_nom():
     list = getFirstElement()
@@ -536,11 +561,12 @@ def addAvis(request, pk):
     connect(request, context)
     return render(request, 'avis/moreAvis.html', context)
 
+
 def setVille():
     for user in Adherant.objects.all():
-        dico = {"Philadelphia" : 0, "Tampa" : 0, "Indianapolis" : 0, "Nashville" : 0, "Tucson" : 0, "New Orleans" : 0,
-                "Saint Louis" : 0, "Edmonton" :0, "Reno" : 0, "Saint Petersburg" : 0, "Boise" : 0, "Santa Barbara" : 0,
-                "Clearwater" : 0, "Wilmington" : 0, "Metairie" : 0, "Franklin" : 0}
+        dico = {"Philadelphia": 0, "Tampa": 0, "Indianapolis": 0, "Nashville": 0, "Tucson": 0, "New Orleans": 0,
+                "Saint Louis": 0, "Edmonton": 0, "Reno": 0, "Saint Petersburg": 0, "Boise": 0, "Santa Barbara": 0,
+                "Clearwater": 0, "Wilmington": 0, "Metairie": 0, "Franklin": 0}
         for avis in Avis.objects.filter(adherant_fk=user):
             str_ville = str(avis.restaurant_fk.ville)
             if str_ville in dico.keys():
@@ -548,12 +574,8 @@ def setVille():
         max_elem = max(dico, key=dico.get)
         Adherant.objects.filter(pk=user.pk).update(ville=max_elem)
 
-def calculNb_reviewAdherent():
-    for adherent in Adherant.objects.all():
-        somme = Avis.objects.filter(adherant_fk=adherent.pk).count()
-        Adherant.objects.filter(pk=adherent.pk).update(nb_review=somme)
-
-
-def calculNb_reviewRestaurant():
-    for resto in Restaurant.objects.all():
-        somme = Avis.objects.filter(restaurant_fk=resto.pk).count()
+def create_password():
+    for user in Adherant.objects.all():
+        mdp = user.prenom.lower() + user.nom.lower()
+        hashed_password = hashlib.sha256(mdp.encode('utf-8')).hexdigest()
+        Adherant.objects.filter(pk=user.pk).update(password=hashed_password)
