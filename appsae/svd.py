@@ -19,6 +19,11 @@ def get_restaurant_id(restaurant_name, metadata):
     return restaurant_id
 
 
+def get_restaurant_objects(restaurant_id):
+    restaurant_objects = Restaurant.objects.filter(id__in=restaurant_id)
+    return restaurant_objects
+
+
 def get_restaurant_info(restaurant_id, metadata):
     """
     Returns some basic information about a book given the book id and the metadata dataframe.
