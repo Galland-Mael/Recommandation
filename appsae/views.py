@@ -66,13 +66,18 @@ def index(request):
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
     context = {
-        'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
     }
     if 'mailUser' in request.session:
+        user = Adherant.objects.get(mail=request.session['mailUser'])
+        context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
+        context['italian'] = listeAffichageCarrouselVilles(user.ville, "Italian")
         if RecommandationUser.objects.filter(
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
             context['recommandation'] = RecommandationUser.objects.get(
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
+    else:
+        context['meilleurRestaurants'] = listeAffichageCarrouselVilles()
+        context['italian'] = listeAffichageCaroussel("Italian")
     connect(request, context)
     return render(request, 'index/index.html', context)
 
@@ -112,9 +117,6 @@ def search(request):
             'user': {}
         }
     return render(request, 'restaurants/searchRestaurants.html', context)
-
-
-
 
 
 def testNomUTF(nom):
@@ -371,7 +373,8 @@ def login(request):
                 'pseudo': user.pseudo,
                 'photo': user.profile_picture.url,
                 'ville': user.ville,
-                'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
+                'meilleurRestaurants': listeAffichageCarrouselVilles(user.ville),
+                'italian': listeAffichageCarrouselVilles(user.ville, "Italian"),
             }
             if 'mailUser' in request.session:
                 if RecommandationUser.objects.filter(
@@ -398,11 +401,14 @@ def modification(request):
         )
         img.save();
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
-    Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
-    context = {
-        'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
-    }
+    if (request.POST['ville'] != user.ville):
+        Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
+        if (user.nb_review >= 5):
+            majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
+    context = {}
     if 'mailUser' in request.session:
+        context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
+        context['italian'] = listeAffichageCarrouselVilles(user.ville, "Italian")
         if RecommandationUser.objects.filter(
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
             context['recommandation'] = RecommandationUser.objects.get(

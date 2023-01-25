@@ -64,7 +64,7 @@ def updateNoteMoyenneRestaurant(restaurant):
         Restaurant.objects.filter(nom=restaurant.nom).update(note=-1)
 
 
-def majRecommandationsIndividuellesBD(user, restaurant, recommandation_user):
+def majRecommandationsIndividuellesBD(user, recommandation_user):
     """ Appel de l'algorithme de recommandation individuelle pour l'utilisateur user
 
     @param user: l'utilisateur
@@ -117,7 +117,7 @@ def ajoutAvis(user, restaurant, note, avis):
                     reco.recommandation.add(elem)
                 RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
             else:
-                majRecommandationsIndividuellesBD(user,restaurant, recommandation_user[0])
+                majRecommandationsIndividuellesBD(user, recommandation_user[0])
 
 
 def updateAvis(user, restaurant, note, avis):

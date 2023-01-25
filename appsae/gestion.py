@@ -1,6 +1,6 @@
 from .models import *
 
-NB_CARROUSEL = 10
+NB_CARROUSEL = 8
 
 def connect(request,context):
     if 'mailUser' in request.session:
