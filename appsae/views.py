@@ -49,6 +49,7 @@ import time
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 import hashlib
+
 PAGE = 0
 
 
@@ -70,8 +71,10 @@ def index(request):
         'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
     }
     if 'mailUser' in request.session:
-        if RecommandationUser.objects.filter(adherant_fk = Adherant.objects.get(mail=request.session['mailUser'])).count() !=0:
-            context['recommandation'] = RecommandationUser.objects.get(adherant_fk = Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
+        if RecommandationUser.objects.filter(
+                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
+            context['recommandation'] = RecommandationUser.objects.get(
+                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
     connect(request, context)
     return render(request, 'index/index.html', context)
 
@@ -180,6 +183,16 @@ def nomGroup(request):
     }
     connect(request, context)
     return render(request, 'user/nomGroup.html', context)
+
+
+def searchRestau(request):
+    if(request.POST["search"]==""):
+        return redirect('index')
+    context={
+        'list':  Restaurant.objects.filter(nom__icontains=request.POST["search"])
+    }
+    connect(request,context)
+    return render(request, 'restaurants/searchRestau.html',context)
 
 
 def groupePage(request):
@@ -441,16 +454,17 @@ def matteo(request):
 
 
 def recommendation(request):
+    user = Adherant.objects.get(mail=request.session['mailUser'])
     start = time.time()
     ratings_data = pd.read_csv('./ratings.csv')
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
     reader = Reader(rating_scale=(1, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
+    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
     trainset, testset = train_test_split(data, test_size=0.20)
     svd = SVD(verbose=False, n_epochs=23, n_factors=7)
     predictions = svd.fit(trainset).test(testset)
     accuracy.rmse(predictions)
-    l=algoRecommandationIndividuelle(684190,svd,restaurant_metadata,100)
+    l = algoRecommandationIndividuelle(user.pk, svd, restaurant_metadata, 100)
     print(time.time() - start)
     return HttpResponse('')
 
@@ -577,7 +591,7 @@ def setVille():
         Adherant.objects.filter(pk=user.pk).update(ville=max_elem)
 
 
-#fonction a lancer
+# fonction a lancer
 
 def calculNb_reviewAdherent():
     for adherent in Adherant.objects.all():
@@ -589,6 +603,7 @@ def calculNb_reviewRestaurant():
     for resto in Restaurant.objects.all():
         somme = Avis.objects.filter(restaurant_fk=resto.pk).count()
         Restaurant.objects.filter(pk=resto.pk).update(nb_review=somme)
+
 
 def create_password():
     for user in Adherant.objects.all():

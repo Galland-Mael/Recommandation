@@ -27,6 +27,7 @@ urlpatterns = [
     path('creationGroup/', creationGroup, name='creationGroup'),
     path('groupRecommandations/(<pk>)',groupRecommandations,name='groupRecommandations'),
     path('groupePage/', groupePage, name='groupePage'),
+    path('searchRestau/',searchRestau,name='searchRestau'),
     path('nomGroup/', nomGroup, name='nomGroup'),
     path('createGroupe/', createGroupe, name='createGroupe'),
     path('modification/',modification,name='modification'),
