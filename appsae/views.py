@@ -427,17 +427,6 @@ def matteo(request):
 
 
 def recommendation(request):
-    #for i in range(100):
-        #listeRecommandationIndividuelle(684190)
-    ad = Adherant.objects.all()[0]
-    print(RecommandationUser.objects.get(adherant_fk=ad).recommandation.all())
-    resto = Restaurant.objects.all()[0]
-    print("ad:" + str(ad.nb_review)+ " & resto :" + str(resto.nb_review))
-    if avisExist(ad, resto):
-        suppressionAvis(ad,resto)
-    ajoutAvis(ad,resto,5,"pas mal")
-    print("ad:" + str(ad.nb_review) + " & resto :" + str(resto.nb_review))
-    print(RecommandationUser.objects.get(adherant_fk=ad).recommandation.all())
     return HttpResponse('')
 
 
