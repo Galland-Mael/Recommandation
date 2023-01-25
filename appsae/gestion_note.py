@@ -8,8 +8,8 @@ def addavisCSV(avis):
     list = [str(avis.adherant_fk_id), ' ' + str(avis.restaurant_fk_id), ' ' + str(float(avis.note))]
 
     with open(str(settings.BASE_DIR) + '/' + "ratings.csv", 'a') as f_object:
-        writer_object = writer(f_object)
-        writer_object.writerow(list)
+        f_object.write('\n')
+        f_object.write(str(avis.adherant_fk_id)+ ', ' + str(avis.restaurant_fk_id) + ', ' + str(float(avis.note)))
         f_object.close()
 
 
