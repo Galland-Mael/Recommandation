@@ -588,14 +588,6 @@ def setImg(request):
     return redirect('index')
 
 
-def suppVille():
-    listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
-                  "Saint Louis", "Reno",
-                  "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
-                  "Franklin"]
-    Restaurant.objects.all().exclude(ville__in=listVilles).delete()
-
-
 def getFirstElement():
     liste = []
     fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", "r")
@@ -607,44 +599,9 @@ def getFirstElement():
     return liste
 
 
-def insert_nom():
-    list = getFirstElement()
-    random.shuffle(list)
-    i = 0
-    for personne in Adherant.objects.all():
-        tmp = list[i].lower()
-        tmp = tmp[0].upper() + tmp[1:]
-        print(tmp)
-        Adherant.objects.filter(pk=personne.pk).update(nom=tmp)
-        Adherant.objects.filter(pk=personne.pk).update(
-            mail=personne.prenom.lower() + "." + list[i].lower() + "@eatadvisor.com")
-        i += 1
-        print(i)
-
-
 def addAvis(request, pk):
     context = {
         'avis': liste_avis(Restaurant.objects.get(pk=pk), 1)
     }
     connect(request, context)
     return render(request, 'avis/moreAvis.html', context)
-
-
-def setVille():
-    for user in Adherant.objects.all():
-        dico = {"Philadelphia": 0, "Tampa": 0, "Indianapolis": 0, "Nashville": 0, "Tucson": 0, "New Orleans": 0,
-                "Saint Louis": 0, "Edmonton": 0, "Reno": 0, "Saint Petersburg": 0, "Boise": 0, "Santa Barbara": 0,
-                "Clearwater": 0, "Wilmington": 0, "Metairie": 0, "Franklin": 0}
-        for avis in Avis.objects.filter(adherant_fk=user):
-            str_ville = str(avis.restaurant_fk.ville)
-            if str_ville in dico.keys():
-                dico[str_ville] += 1
-        max_elem = max(dico, key=dico.get)
-        Adherant.objects.filter(pk=user.pk).update(ville=max_elem)
-
-
-def create_password():
-    for user in Adherant.objects.all():
-        mdp = user.prenom.lower() + user.nom.lower()
-        hashed_password = hashlib.sha256(mdp.encode('utf-8')).hexdigest()
-        Adherant.objects.filter(pk=user.pk).update(password=hashed_password)
