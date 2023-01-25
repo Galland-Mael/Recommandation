@@ -479,10 +479,9 @@ def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
     f.writelines("user_id,restaurant_id,note")
-    f.write('\n')
     for rating in Avis.objects.all().values_list('adherant_fk', 'restaurant_fk', 'note'):
-        f.write(str(rating)[1:-1])
         f.write('\n')
+        f.write(str(rating)[1:-1])
     print(file)
     return redirect('index')
 

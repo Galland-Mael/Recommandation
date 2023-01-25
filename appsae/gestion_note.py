@@ -6,9 +6,10 @@ from csv import writer
 
 def addavisCSV(avis):
     list = [str(avis.adherant_fk_id), ' ' + str(avis.restaurant_fk_id), ' ' + str(float(avis.note))]
+
     with open(str(settings.BASE_DIR) + '/' + "ratings.csv", 'a') as f_object:
-        writer_object = writer(f_object)
-        writer_object.writerow("red")
+        f_object.write('\n')
+        f_object.write(str(avis.adherant_fk_id)+ ', ' + str(avis.restaurant_fk_id) + ', ' + str(float(avis.note)))
         f_object.close()
 
 
@@ -48,7 +49,7 @@ def ajoutAvis(user, restaurant, note, avis):
         ajout = Avis(note=note, texte=avis, restaurant_fk=restaurant, adherant_fk=user)
         ajout.save()
         updateNoteMoyenneRestaurant(restaurant)
-        if nb_review_ad > 5:  # & tps dans la bd < à 200 secondes
+        if nb_review_ad > 5: # & tps dans la bd < à 200 secondes
             # algorecommendation
             a = 1
         addavisCSV(ajout)
@@ -62,7 +63,7 @@ def updateAvis(user, restaurant, note, avis):
     @param avis: le nouvel avis
     @return: /
     """
-    if avisExist(user, restaurant):
+    if avisExist(user,restaurant):
         Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user).update(note=note, texte=avis)
         updateNoteMoyenneRestaurant(restaurant)
 
@@ -74,7 +75,7 @@ def suppressionAvis(user, restaurant):
     @param restaurant: le restaurant
     @return: /
     """
-    if avisExist(user, restaurant):
+    if avisExist(user,restaurant):
         Avis.objects.get(restaurant_fk=restaurant, adherant_fk=user).delete()
         updateNoteMoyenneRestaurant(restaurant)
 
@@ -93,7 +94,7 @@ def listeAffichageAvis(restaurant, num, user=""):
         avis = Avis.objects.filter(restaurant_fk=restaurant)
     else:
         avis = Avis.objects.filter(restaurant_fk=restaurant).exclude(adherant_fk=user)
-    return avis[num * taille_list:(num + 1) * taille_list]
+    return avis[num*taille_list:(num + 1)*taille_list]
 
 
 def afficherVoirPlus(restaurant, num, user=""):
