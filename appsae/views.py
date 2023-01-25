@@ -427,17 +427,17 @@ def matteo(request):
 
 
 def recommendation(request):
-    start = time.time()
-    ratings_data = pd.read_csv('./ratings.csv')
-    restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
-    reader = Reader(rating_scale=(1, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id','restaurant_id','note']], reader)
-    trainset, testset = train_test_split(data, test_size=0.20)
-    svd = SVD(verbose=False, n_epochs=23, n_factors=7)
-    predictions = svd.fit(trainset).test(testset)
-    accuracy.rmse(predictions)
-    l=algoRecommandationIndividuelle(684190,svd,restaurant_metadata,100)
-    print(time.time() - start)
+    #for i in range(100):
+        #listeRecommandationIndividuelle(684190)
+    ad = Adherant.objects.all()[0]
+    print(RecommandationUser.objects.get(adherant_fk=ad).recommandation.all())
+    resto = Restaurant.objects.all()[0]
+    print("ad:" + str(ad.nb_review)+ " & resto :" + str(resto.nb_review))
+    if avisExist(ad, resto):
+        suppressionAvis(ad,resto)
+    ajoutAvis(ad,resto,5,"pas mal")
+    print("ad:" + str(ad.nb_review) + " & resto :" + str(resto.nb_review))
+    print(RecommandationUser.objects.get(adherant_fk=ad).recommandation.all())
     return HttpResponse('')
 
 
@@ -465,10 +465,9 @@ def export_ratings(request):
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
     f.writelines("user_id,restaurant_id,note")
-    f.write('\n')
     for rating in Avis.objects.all().values_list('adherant_fk', 'restaurant_fk', 'note'):
-            f.write(str(rating)[1:-1])
-            f.write('\n')
+        f.write('\n')
+        f.write(str(rating)[1:-1])
     print(file)
     return redirect('index')
 

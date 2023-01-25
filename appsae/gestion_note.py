@@ -2,14 +2,16 @@ from .models import *
 from django.db.models import Avg
 from django.conf import settings
 from csv import writer
+from .svd import *
+from time import mktime
 
 
 def addavisCSV(avis):
     list = [str(avis.adherant_fk_id), ' ' + str(avis.restaurant_fk_id), ' ' + str(float(avis.note))]
 
     with open(str(settings.BASE_DIR) + '/' + "ratings.csv", 'a') as f_object:
-        writer_object = writer(f_object)
-        writer_object.writerow(list)
+        f_object.write('\n')
+        f_object.write(str(avis.adherant_fk_id)+ ', ' + str(avis.restaurant_fk_id) + ', ' + str(float(avis.note)))
         f_object.close()
 
 
@@ -43,16 +45,43 @@ def ajoutAvis(user, restaurant, note, avis):
     @param restaurant: le restaurant
     @return: /
     """
-    if avisExist(user, restaurant) == False:
+    # si l'avis n'existe pas déjà
+    if not avisExist(user, restaurant):
         nb_review_ad = Adherant.objects.get(pk=user.pk).nb_review
-        print("nb review adherannt :" + str(nb_review_ad))
+        nb_review_resto = Restaurant.objects.get(pk=restaurant.pk).nb_review
         ajout = Avis(note=note, texte=avis, restaurant_fk=restaurant, adherant_fk=user)
         ajout.save()
-        updateNoteMoyenneRestaurant(restaurant)
-        if nb_review_ad > 5: # & tps dans la bd < à 200 secondes
-            # algorecommendation
-            a = 1
+        Restaurant.objects.filter(pk=restaurant.pk).update(nb_review=(nb_review_resto+1))
+        Adherant.objects.filter(pk=user.pk).update(nb_review=(nb_review_ad+1))
         addavisCSV(ajout)
+        updateNoteMoyenneRestaurant(restaurant)
+        if nb_review_ad > 5: # si l'adhérent à déjà posté 5 notes
+            recommandation_user = RecommandationUser.objects.filter(adherant_fk=user.pk)
+            if recommandation_user.count() == 0: # si il n'a pas encore de recommandation
+                reco = RecommandationUser(adherant_fk=user)
+                reco.save()
+                liste = listeRecommandationIndividuelle(user.pk)
+                for elem in liste:
+                    reco.recommandation.add(elem)
+                RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
+            else:
+                date_bd = recommandation_user[0].date.replace(tzinfo=None).timetuple()
+                date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
+                if mktime(date_bd) <= mktime(date_actuelle) - 10:
+                    # MAJ de la date de la recommandation
+                    RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
+                    liste = listeRecommandationIndividuelle(user.pk) # Liste des restaurants à recommander
+                    reco = RecommandationUser.objects.get(adherant_fk=user.pk)
+                    liste_reco = reco.recommandation.all()
+                    # Supprime les recommandations existantes
+                    for elem in liste_reco:
+                        reco.recommandation.remove(elem)
+                    # Ajoute les nouvelles recommandations à la liste
+                    reco = RecommandationUser.objects.get(adherant_fk=user.pk)
+                    for elem in liste:
+                        reco.recommandation.add(elem)
+                    # MAJ du datetime
+                    RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
 
 
 def updateAvis(user, restaurant, note, avis):
@@ -66,6 +95,9 @@ def updateAvis(user, restaurant, note, avis):
     if avisExist(user,restaurant):
         Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user).update(note=note, texte=avis)
         updateNoteMoyenneRestaurant(restaurant)
+        nb_review_ad = Adherant.objects.get(pk=user.pk).nb_review
+        if nb_review_ad > 5:
+            liste = listeRecommandationIndividuelle(user.pk)
 
 
 def suppressionAvis(user, restaurant):
