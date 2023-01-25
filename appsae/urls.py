@@ -33,6 +33,7 @@ urlpatterns = [
     path('modification/',modification,name='modification'),
     path('recommandation/', recommandation, name='recommandation'),
     path('setImg/', setImg, name='setImg'),
+    path('deleteGroup/(<pk>)',deleteGroup,name='deleteGroup'),
     path('recommendation', recommendation,name='recommendation'),
 ]
 '''Utile pour afficher les images de la base de données'''

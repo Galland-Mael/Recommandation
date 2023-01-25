@@ -16,7 +16,7 @@ class Adherant(models.Model):
     birthDate = models.DateField("Date", default=datetime.date.today())
     pseudo = models.CharField(max_length=20)
     nb_review = models.IntegerField(default=0)
-    password = models.CharField(max_length=20)
+    password = models.CharField(max_length=255)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
     ville = models.CharField(max_length=100, default="none")
 
@@ -60,7 +60,7 @@ class Restaurant(models.Model):
     telephone = models.CharField(max_length=10, default='')
     note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     nb_review = models.IntegerField(default=0)
-    image_front = models.ImageField(upload_to='img_restaurant/', default='img_restaurant/avatar.png')
+    image_front = models.ImageField(upload_to='img_restaurant/', default='img_restaurant/avatar.jpeg')
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)
 
@@ -118,7 +118,7 @@ class RecommandationUser(models.Model):
 
 
 class RecommandationGroupe(models.Model):
-    groupe_fk = models.ForeignKey(Groupe, on_delete=models.PROTECT)
+    groupe_fk = models.ForeignKey(Groupe, on_delete=models.CASCADE)
     date = models.DateTimeField(default=datetime.datetime.now)
     recommandation = models.ManyToManyField(Restaurant)
 

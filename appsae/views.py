@@ -2,6 +2,7 @@ import json
 import os.path
 import sqlite3
 import csv
+import hashlib
 from sqlite3 import OperationalError
 import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
@@ -82,12 +83,22 @@ def index(request):
     return render(request, 'index/index.html', context)
 
 
+def deleteGroup(request, pk):
+    groupe = Groupe.objects.get(pk=pk)
+    suppressionGroupe(groupe)
+    return redirect('groupe')
+
+
 def groupRecommandations(request, pk):
+    user = Adherant.objects.get(mail=request.session['mailUser'])
     groupe = Groupe.objects.get(pk=pk)
     membres = groupe.liste_adherants.all()
     context = {
         'membres': membres,
+        'groupe': groupe,
     }
+    if groupe.id_gerant == user.pk:
+        context['chef'] = True
     if 'mailUser' in request.session:
         if RecommandationGroupe.objects.filter(
                 groupe_fk=groupe).count() != 0:
