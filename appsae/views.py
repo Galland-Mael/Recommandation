@@ -59,10 +59,6 @@ def modifPAGE():
 
 
 def index(request):
-    message1 = "test".encode()
-    message2 = "test".encode()
-    hashed_password = hashlib.sha256(message1).hexdigest()
-    hashed_password2 = hashlib.sha256(message2).hexdigest()
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
@@ -466,18 +462,6 @@ def matteo(request):
 
 
 def recommendation(request):
-    user = Adherant.objects.get(mail=request.session['mailUser'])
-    start = time.time()
-    ratings_data = pd.read_csv('./ratings.csv')
-    restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
-    reader = Reader(rating_scale=(1, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
-    trainset, testset = train_test_split(data, test_size=0.20)
-    svd = SVD(verbose=False, n_epochs=23, n_factors=7)
-    predictions = svd.fit(trainset).test(testset)
-    accuracy.rmse(predictions)
-    l = algoRecommandationIndividuelle(user.pk, svd, restaurant_metadata, 100)
-    print(time.time() - start)
     return HttpResponse('')
 
 
@@ -601,21 +585,6 @@ def setVille():
                 dico[str_ville] += 1
         max_elem = max(dico, key=dico.get)
         Adherant.objects.filter(pk=user.pk).update(ville=max_elem)
-
-
-# fonction a lancer
-
-def calculNb_reviewAdherent():
-    for adherent in Adherant.objects.all():
-        somme = Avis.objects.filter(adherant_fk=adherent.pk).count()
-        Adherant.objects.filter(pk=adherent.pk).update(nb_review=somme)
-
-
-def calculNb_reviewRestaurant():
-    for resto in Restaurant.objects.all():
-        somme = Avis.objects.filter(restaurant_fk=resto.pk).count()
-        Restaurant.objects.filter(pk=resto.pk).update(nb_review=somme)
-
 
 def create_password():
     for user in Adherant.objects.all():

@@ -2,9 +2,11 @@ import difflib
 import random
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import os
 import time
+from surprise import Reader, Dataset, SVD, accuracy
+from surprise.model_selection import train_test_split
+from surprise.model_selection import cross_validate
 from .models import *
 
 
@@ -108,9 +110,7 @@ def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
             liste.append((restaurant_name, rating))
             list_length+=1
             if (list_length == taille):
-                print(time.time() - st)
                 return liste
-    print(time.time() - st)
     return liste
 
 
@@ -128,13 +128,11 @@ def algoRecommandationIndividuelle(user_id, model, metadata,taille=10):
     if (min < 4.5):
         min = 4.5
 
-    st = time.time()
     for restaurant_name in restaurant_names[taille:]:
         rating = predict_review(user_id, restaurant_name, model, metadata)
         if rating > min:
             liste = ajoutList(liste,restaurant_name, rating, taille)
             min = liste[taille-1][1]
-    print(time.time() - st)
     return liste
 
 
@@ -178,69 +176,20 @@ def ajoutList(list, resto_name, prediction, taille=10):
     return list
 
 
-def testMatteoRecommandation(user_id, model, metadata):
-    """
-
-    @param user_id:
-    @param model:
-    @param metadata:
-    @return:
-    """
-    restaurant_names = list(metadata['nom'].values)
-
-    # Liste des avis triés par date
-    avis = Avis.objects.all().order_by("unix_date")
-    taille_totale = avis.count()
-    taille_soixante = round((taille_totale / 100) * 60)
-    taille_quatre_vingt = round((taille_totale / 100) * 80)
-    taille_vingt = round((taille_totale / 100) * 20)
-
-    liste_vingt = avis[taille_soixante:taille_quatre_vingt]
-    dico_all = {}
-    cpt = 0
-
-    for restaurant in liste_vingt:
-        note = restaurant.note
-        prediction = predict_review(user_id,restaurant.restaurant_fk.nom,model,metadata)
-        difference = abs(prediction - note)
-        print(difference)
-
-
-from surprise import SVD, Reader, Dataset
-from surprise.model_selection import GridSearchCV
-from .gestion_note import *
-
-def testSVD():
+def listeRecommandationIndividuelle(user_id, taille=10):
+    start = time.time()
     ratings_data = pd.read_csv('./ratings.csv')
-
     restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
-    restaurant_metadata.info()
-
-    reader = Reader(line_format='user item rating timestamp', sep=',', rating_scale=(0.5, 5.0), skip_lines=1)
-    ratings = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
-    trainset = ratings.build_full_trainset()
-
-    # Find the best hyperparameters for an SVD model via grid search cross-validation
-    param_grid = {
-        'n_factors': [10, 100, 500],
-        'n_epochs': [5, 20, 50],
-        'lr_all': [0.001, 0.005, 0.02],
-        'reg_all': [0.005, 0.02, 0.1]}
-
-    gs_model = GridSearchCV(
-        algo_class=SVD,
-        param_grid=param_grid,
-        n_jobs=-1,
-        joblib_verbose=5)
-
-    gs_model.fit(ratings)
-
-    # Train the SVD model with the parameters that minimise the root mean squared error
-    best_SVD = gs_model.best_estimator['rmse']
-    best_SVD.fit(trainset)
-
-    updateAvis(Adherant.objects.get(mail="titouan.jeantet@etu.univ-lyon1.fr"),
-               Restaurant.objects.get(nom="Bridesburg Pizza"), 5, "")
-    #print(predict_review(Adherant.objects.get(mail="joan.brassas@eatadvisor.com").pk, "Bridesburg Pizza", best_SVD,
-    #                     restaurant_metadata))
-    print(best_SVD.predict(uid=Adherant.objects.get(mail="joan.brassas@eatadvisor.com").pk,iid="Bridesburg Pizza"))
+    reader = Reader(rating_scale=(0, 5))
+    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
+    trainset, testset = train_test_split(data, test_size=0.20)
+    svd = SVD(verbose=False, n_epochs=23, n_factors=7)
+    predictions = svd.fit(trainset).test(testset)
+    accuracy.rmse(predictions)
+    #print(time.time() - start)
+    l = algoRecommandationIndividuelle(user_id, svd, restaurant_metadata, taille)
+    liste_complete = []
+    for elem in l:
+        liste_complete.append(get_restaurant_id(elem[0],restaurant_metadata))
+    return liste_complete
+    #print(time.time() - start)
