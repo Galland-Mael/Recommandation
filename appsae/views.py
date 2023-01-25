@@ -114,6 +114,38 @@ def search(request):
     return render(request, 'restaurants/searchRestaurants.html', context)
 
 
+
+
+
+def testNomUTF(nom):
+    """
+
+    @param nom:
+    @return:
+    """
+    list = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789&'-+/:,*#|!?°. "
+    nouveau_nom = ""
+    for lettre in nom:
+        if lettre in list:
+            nouveau_nom += lettre
+        elif lettre in 'éèê':
+            nouveau_nom += 'e'
+        elif lettre in 'ÉÈ':
+            nouveau_nom += 'E'
+    return nouveau_nom
+
+
+def supplettreUTF():
+    """
+
+    @return:
+    """
+    for resto in Restaurant.objects.all():
+        nouveau_nom = testNomUTF(resto.nom)
+        if (nouveau_nom != resto.nom):
+            Restaurant.objects.filter(id_yelp=resto.id_yelp).update(nom=nouveau_nom)
+
+
 def createGroupe(request):
     if 'nomGroupe' not in request.POST:
         context = {}
@@ -123,6 +155,7 @@ def createGroupe(request):
     user = Adherant.objects.get(mail=request.session['mailUser'])
     for user in Adherant.objects.filter(mail__in=request.session['groupe']):
         ajoutUtilisateurGroupe(user, groupe)
+    ajoutBDRecommandationGroupe(groupe)
     list = []
     for groupe in Groupe.objects.all():
         if user in groupe.liste_adherants.all():
