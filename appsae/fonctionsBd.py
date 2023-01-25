@@ -99,6 +99,24 @@ def inserttype():
                     else:
                         alias = liste[j]
 
+def insertuser():
+    url = "https://qghub.cloud/assets/yelp.json"
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    verif = 0
+
+    # read json from url in stream
+    for obj in StreamJson(req):
+        verif += 1
+        nb_review = obj.get('review_count')
+        if nb_review >= 20:
+            id_yelp = obj.get('user_id')
+            prenom = obj.get('name')
+            nb_review = obj.get('review_count')
+
+            user = Adherant(id_yelp=id_yelp, prenom=prenom, nom='',mail='',password='',pseudo='', nb_review=nb_review)
+            user.save()
+        print('iteration ' + str(verif))
+
 def insert_nom():
     list = getFirstElement()
     random.shuffle(list)
@@ -112,6 +130,32 @@ def insert_nom():
             mail=personne.prenom.lower() + "." + list[i].lower() + "@eatadvisor.com")
         i += 1
         print(i)
+
+def insertreview():
+    file = 18
+    url = "https://qghub.cloud/assets/review"+str(file)+".json"
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    verif = 0
+    # read json from url in stream
+    for obj in StreamJson(req):
+        verif += 1
+        user_id=obj.get('user_id')
+        resto_id = obj.get('business_id')
+        obj_re = Restaurant.objects.filter(id_yelp=resto_id)
+        if obj_re.count() != 0:
+            obj_ad = Adherant.objects.filter(id_yelp=user_id)
+            if obj_ad.count() != 0:
+                # test5=Avis.objects.filter(adherant_fk=obj_ad[0], restaurant_fk=obj_re[0]).count()
+                # if test5 == 0:
+                date = obj.get('date')
+                unix_dt = (time.mktime(datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S").timetuple()))
+                note=obj.get('stars')
+                text=obj.get('text')
+                fk_user=obj_ad[0]
+                fk_resto=obj_re[0]
+                avis = Avis(note=note, texte=text, unix_date=unix_dt,restaurant_fk=fk_resto, adherant_fk=fk_user)
+                avis.save()
+        print('fichier : ' + str(file) + ', iteration : ' + str(verif))
 
 def setVille():
     for user in Adherant.objects.all():
@@ -202,3 +246,30 @@ def setVille():
                 dico[str_ville] += 1
         print(dico)
         return
+
+def remove_doublon():
+    verif = 0
+    for avis in Avis.objects.all():
+        verif += 1
+        doublon = Avis.objects.filter(restaurant_fk=avis.restaurant_fk, adherant_fk=avis.adherant_fk).order_by("-unix_date")
+        tmp=doublon[0]
+        for lecture in doublon:
+            if lecture != tmp:
+                lecture.delete()
+        print(verif)
+
+def count_ville():
+    verif = 0
+    ville = {}
+    for resto in Restaurant.objects.all():
+        if resto.ville not in ville:
+            ville[resto.ville]=1
+        else:
+            ville[resto.ville] += 1
+    sorted_ville = sorted(ville.items(), key=lambda x: x[1], reverse=True)
+    print(sorted_ville)
+
+def verif():
+    for resto in Restaurant.objects.filter("St. Petersburg"):
+        if resto.ville == "St. Petersburg":
+            resto.ville = "Saint Petersburg"
