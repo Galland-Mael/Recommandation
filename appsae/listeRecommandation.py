@@ -28,7 +28,7 @@ def listeRecommandationIndividuelle(user_id, taille=10):
     start = time.time()
     ratings_data = pd.read_csv('./ratings.csv')
     user = Adherant.objects.get(pk=user_id)
-    restaurant_metadata = pd.read_csv('./restaurant_' + filterNomRestaurant(user.ville) +'csv', delimiter=';', engine='python')
+    restaurant_metadata = pd.read_csv('./restaurant_' + filterNomRestaurant(user.ville) +'.csv', delimiter=';', engine='python')
     reader = Reader(rating_scale=(0, 5))
     data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
     trainset, testset = train_test_split(data, test_size=0.20)

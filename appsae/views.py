@@ -14,6 +14,7 @@ from django.conf import settings
 from collections import defaultdict
 from operator import itemgetter
 import heapq
+import hashlib
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -44,6 +45,7 @@ from .gestion_groupes import *
 from .gestion_note import *
 from .svd import *
 from .models import *
+from django.conf import settings
 import datetime
 import time
 from django.contrib.auth.hashers import make_password
@@ -71,7 +73,6 @@ def index(request):
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
             context['recommandation'] = RecommandationUser.objects.get(
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
-    print(type(context['recommandation']))
     connect(request, context)
     return render(request, 'index/index.html', context)
 
@@ -87,9 +88,6 @@ def groupRecommandations(request, pk):
                 groupe_fk=groupe).count() != 0:
             context['recommandation'] = RecommandationGroupe.objects.get(
                 groupe_fk=Groupe.objects.get(pk=pk)).recommandation.all()
-            print(type(context['recommandation']))
-   # for element in gro:
-    #    print(element.pk)
     connect(request, context)
     return render(request, 'user/groupRecommandations.html', context)
 
@@ -135,7 +133,7 @@ def createGroupe(request):
         'listGroupe': list
     }
     connect(request, context)
-    return render(request, 'user/groupe.html', context)
+    return redirect('groupe')
 
 
 def groupe(request):
@@ -294,13 +292,15 @@ def register(request):
     if request.method == "POST":
         user = request.POST
         '''Remplissage de la base de données'''
+        password = user['password']
+        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
         obj = Adherant.objects.create(
             prenom=user['prenom'],
             nom=user['nom'],
             ville=user['ville'],
             mail=user['mail'],
             birthDate=user['birthDate'],
-            password=user['password']
+            password=hashed_password,
         )
         obj.save()
         return redirect('login')
@@ -320,7 +320,9 @@ def login(request):
         for adherant in info:
             '''Verification'''
             if (request.POST['mail'] == adherant.mail):
-                if (request.POST['password'] == adherant.password):
+                password = request.POST['password']
+                hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+                if (hashed_password == adherant.password):
                     contain = True
         if contain:
             user = Adherant.objects.get(mail=request.POST['mail'])
@@ -336,7 +338,6 @@ def login(request):
                 'pseudo': user.pseudo,
                 'photo': user.profile_picture.url,
                 'ville': user.ville,
-                'recommandation': listeAffichageCaroussel(),
                 'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
             }
             if 'mailUser' in request.session:
@@ -364,7 +365,6 @@ def modification(request):
         )
         img.save();
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
-        print(request.FILES)
     Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
     context = {
         'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
@@ -466,22 +466,28 @@ def recommendation(request):
 
 
 def export_restaurant(request):
-    file = str(settings.BASE_DIR) + '/' + "restaurant.csv"
-    f = open(file, "w")
-    f.writelines("id;nom;genre")
-    f.write('\n')
-    for restaurant in Restaurant.objects.filter(ville='Philadelphia'):
-        f.write(str(restaurant.pk))
-        f.write(";")
-        f.write(restaurant.nom)
-        f.write(";")
-        taille = restaurant.type.all().count()
-        for i in range(taille):
-            f.write(str(restaurant.type.all()[i]))
-            if i != taille - 1:
-                f.write(" ")
+    listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
+                  "Saint Louis", "Reno",
+                  "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
+                  "Franklin"]
+    # user = Adherant.objects.get(mail=request.session['mailUser'])
+    for villes in listVilles:
+        file = str(settings.BASEDIR) + '/' + "restaurant" + filterNomRestaurant(villes) + ".csv"
+        f = open(file, "w")
+        f.writelines("id;nom;genre")
         f.write('\n')
-    print(file)
+        for restaurant in Restaurant.objects.filter(ville=villes):
+            f.write(str(restaurant.pk))
+            f.write(";")
+            f.write(restaurant.nom)
+            f.write(";")
+            taille = restaurant.type.all().count()
+            for i in range(taille):
+                f.write(str(restaurant.type.all()[i]))
+                if i != taille - 1:
+                    f.write(" ")
+            f.write('\n')
+        print(file)
     return redirect('index')
 
 
@@ -585,6 +591,7 @@ def setVille():
                 dico[str_ville] += 1
         max_elem = max(dico, key=dico.get)
         Adherant.objects.filter(pk=user.pk).update(ville=max_elem)
+
 
 def create_password():
     for user in Adherant.objects.all():
