@@ -2,10 +2,6 @@
 <div class="comment margin-auto">
     {% for element in avis %}
 
-        {% if forloop.counter|modulo:'2' != 0 %}
-            <div class="flex margin-bottom">
-        {% endif %}
-
     <div class="avis-border flex column ">
         <div class="card-avis flex">
             <div class="card-user-container flex">
@@ -27,8 +23,5 @@
         </div>
         <span class="avis-text flex">{{ element.texte }}</span>
     </div>
-    {% if forloop.counter|modulo:'2' == 0 %}
-        </div>
-    {% endif %}
     {% endfor %}
 </div>
