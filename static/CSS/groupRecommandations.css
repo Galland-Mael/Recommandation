@@ -18,7 +18,7 @@ h1{
     width: 4em;
     border-radius: 50%;
     overflow: hidden;
-    margin: 1rem;
+    margin: 0.5rem;
 }
 .data-card {
     display: flex;

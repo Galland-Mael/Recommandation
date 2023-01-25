@@ -34,6 +34,8 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from .recommandation_groupe import recommandationGroupeAvisGroupeComplet
 from .recommendation import *
 from .gestion import *
 from .gestion_note import *
@@ -60,8 +62,6 @@ def index(request):
     message2 = "test".encode()
     hashed_password = hashlib.sha256(message1).hexdigest()
     hashed_password2 = hashlib.sha256(message2).hexdigest()
-    print(hashed_password)
-    print(hashed_password2)
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
@@ -77,7 +77,6 @@ def index(request):
 
 
 def groupRecommandations(request, pk):
-    print(pk)
     groupe = Groupe.objects.get(pk=pk)
     membres = groupe.liste_adherants.all()
     context = {
@@ -116,9 +115,9 @@ def createGroupe(request):
         connect(request, context)
         return render(request, 'user/groupe.html', context)
     groupe = creationGroupe(request.POST['nomGroupe'], Adherant.objects.get(mail=request.session['mailUser']))
+    user = Adherant.objects.get(mail=request.session['mailUser'])
     for user in Adherant.objects.filter(mail__in=request.session['groupe']):
         ajoutUtilisateurGroupe(user, groupe)
-    user = Adherant.objects.get(mail=request.session['mailUser'])
     list = []
     for groupe in Groupe.objects.all():
         if user in groupe.liste_adherants.all():
