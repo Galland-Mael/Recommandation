@@ -75,6 +75,7 @@ def index(request):
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
             context['recommandation'] = RecommandationUser.objects.get(
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
+    print(type(context['recommandation']))
     connect(request, context)
     return render(request, 'index/index.html', context)
 
@@ -83,9 +84,16 @@ def groupRecommandations(request, pk):
     groupe = Groupe.objects.get(pk=pk)
     membres = groupe.liste_adherants.all()
     context = {
-        'restaurants': listeAffichageCaroussel()[:9],
         'membres': membres,
     }
+    if 'mailUser' in request.session:
+        if RecommandationGroupe.objects.filter(
+                groupe_fk=groupe).count() != 0:
+            context['recommandation'] = RecommandationGroupe.objects.get(
+                groupe_fk=Groupe.objects.get(pk=pk)).recommandation.all()
+            print(type(context['recommandation']))
+   # for element in gro:
+    #    print(element.pk)
     connect(request, context)
     return render(request, 'user/groupRecommandations.html', context)
 
@@ -186,13 +194,13 @@ def nomGroup(request):
 
 
 def searchRestau(request):
-    if(request.POST["search"]==""):
+    if (request.POST["search"] == ""):
         return redirect('index')
-    context={
-        'list':  Restaurant.objects.filter(nom__icontains=request.POST["search"])
+    context = {
+        'list': Restaurant.objects.filter(nom__icontains=request.POST["search"])
     }
-    connect(request,context)
-    return render(request, 'restaurants/searchRestau.html',context)
+    connect(request, context)
+    return render(request, 'restaurants/searchRestau.html', context)
 
 
 def groupePage(request):
@@ -335,6 +343,11 @@ def login(request):
                 'recommandation': listeAffichageCaroussel(),
                 'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
             }
+            if 'mailUser' in request.session:
+                if RecommandationUser.objects.filter(
+                        adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
+                    context['recommandation'] = RecommandationUser.objects.get(
+                        adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
             return render(request, 'index/index.html', context)
         else:
             messages.success(request, '*Wrong mail or password')
@@ -358,7 +371,6 @@ def modification(request):
         print(request.FILES)
     Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
     context = {
-        'recommandation': listeAffichageCaroussel(),
         'meilleurRestaurants': Restaurant.objects.order_by('-note')[:20],
     }
     if 'mailUser' in request.session:

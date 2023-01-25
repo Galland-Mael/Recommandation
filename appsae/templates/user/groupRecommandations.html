@@ -26,8 +26,8 @@
         </aside>
 
         <div class="grid">
-            {% for element in restaurants %}
-                <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
+            {% for element in recommandation %}
+                <a href="{% url 'index' %}" class="data-card">
                     <div class="img-card">
                         <img src="{{ element.image_front.url }}" alt="image du restaurant">
                     </div>
