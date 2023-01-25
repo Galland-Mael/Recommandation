@@ -40,22 +40,6 @@ def predict_review(user_id, restaurant_name, model, metadata):
     return review_prediction.est
 
 
-def generate_recommendation(user_id, model, metadata, thresh=3.5):
-    """
-    Generates a book recommendation for a user based on a rating threshold. Only
-    books with a predicted rating at or above the threshold will be recommended
-    """
-
-    restaurant_names = list(metadata['nom'].values)
-    random.shuffle(restaurant_names)
-
-    for restaurant_name in restaurant_names:
-        rating = predict_review(user_id, restaurant_name, model, metadata)
-        if rating >= thresh:
-            restaurant_id = get_restaurant_id(restaurant_name, metadata)
-            return get_restaurant_info(restaurant_id, metadata)
-
-
 def algoRecommandationGroupe(groupe, model, metadata, taille=10):
     restaurant_names = list(metadata['nom'].values)
     liste_recommandations = []
@@ -73,29 +57,6 @@ def algoRecommandationGroupe(groupe, model, metadata, taille=10):
             if liste_length == taille:
                 return liste_recommandations
     return liste_recommandations
-
-
-def algoRecommandationIndividuelle_v3(user_id, model, metadata, taille=10):
-    restaurant_names = list(metadata['nom'].values)
-    liste = []
-
-    # Pour prendre les elements dans une liste de 10 max
-    for restaurant_name in restaurant_names[:taille]:
-        rating = predict_review(user_id, restaurant_name, model, metadata)
-        liste = ajoutDebutListe(liste,restaurant_name, rating,taille)
-    min = liste[taille-1][1]
-    # on fait commencer le min à minimum 4.5
-    if (min < 4.5):
-        min = 4.5
-
-    st = time.time()
-    for restaurant_name in restaurant_names[taille:]:
-        rating = predict_review(user_id, restaurant_name, model, metadata)
-        if rating > min:
-            liste = ajoutList(liste, restaurant_name, rating, taille)
-            min = liste[taille-1][1]
-    print(time.time() - st)
-    return liste[:taille]
 
 
 def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
@@ -174,22 +135,3 @@ def ajoutList(list, resto_name, prediction, taille=10):
                 tmp = next
             break
     return list
-
-
-def listeRecommandationIndividuelle(user_id, taille=10):
-    start = time.time()
-    ratings_data = pd.read_csv('./ratings.csv')
-    restaurant_metadata = pd.read_csv('./restaurant.csv', delimiter=';', engine='python')
-    reader = Reader(rating_scale=(0, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
-    trainset, testset = train_test_split(data, test_size=0.20)
-    svd = SVD(verbose=False, n_epochs=23, n_factors=7)
-    predictions = svd.fit(trainset).test(testset)
-    accuracy.rmse(predictions)
-    #print(time.time() - start)
-    l = algoRecommandationIndividuelle(user_id, svd, restaurant_metadata, taille)
-    liste_complete = []
-    for elem in l:
-        liste_complete.append(get_restaurant_id(elem[0],restaurant_metadata))
-    return liste_complete
-    #print(time.time() - start)

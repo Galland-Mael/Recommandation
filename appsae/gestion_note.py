@@ -2,7 +2,7 @@ from .models import *
 from django.db.models import Avg
 from django.conf import settings
 from csv import writer
-from .svd import *
+from .listeRecommandation import *
 from time import mktime
 
 
