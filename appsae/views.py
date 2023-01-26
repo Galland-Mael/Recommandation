@@ -376,12 +376,10 @@ def login(request):
             request.session['mailUser'] = user.mail
             sessionMailUser = request.session['mailUser'];
             context = {
-                'idUser': user.id,
                 'name': user.nom,
                 'prenom': user.prenom,
                 'mail': user.mail,
                 'birthDate': user.birthDate,
-                'pseudo': user.pseudo,
                 'photo': user.profile_picture.url,
                 'ville': user.ville,
                 'meilleurRestaurants': listeAffichageCarrouselVilles(user.ville),

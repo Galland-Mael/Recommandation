@@ -9,12 +9,10 @@ from unixtimestampfield.fields import UnixTimeStampField
 
 
 class Adherant(models.Model):
-    id_yelp = models.CharField(max_length=150, default='')
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     mail = models.EmailField(max_length=254)
     birthDate = models.DateField("Date", default=datetime.date.today())
-    pseudo = models.CharField(max_length=20)
     nb_review = models.IntegerField(default=0)
     password = models.CharField(max_length=255)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
@@ -25,7 +23,6 @@ class Adherant(models.Model):
 
 
 class Groupe(models.Model):
-    idGroupe = models.IntegerField(default=0, blank=False)
     nom_groupe = models.CharField(max_length=25)
     liste_adherants = models.ManyToManyField(Adherant)
     id_gerant = models.CharField(default="", max_length=250)
@@ -48,7 +45,6 @@ class ImageRestaurant(models.Model):
 
 
 class Restaurant(models.Model):
-    id_yelp = models.CharField(max_length=150, default='')
     nom = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
     ville = models.CharField(max_length=50, default='')
@@ -57,7 +53,6 @@ class Restaurant(models.Model):
     etat = models.CharField(max_length=50, default='')
     longitude = models.CharField(max_length=70, default='')
     latitude = models.CharField(max_length=70, default='')
-    telephone = models.CharField(max_length=10, default='')
     note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     nb_review = models.IntegerField(default=0)
     image_front = models.ImageField(upload_to='img_restaurant/', default='img_restaurant/avatar.jpeg')
