@@ -74,7 +74,7 @@ def majRecommandationsIndividuellesBD(user, recommandation_user):
     """
     date_bd = recommandation_user.date.replace(tzinfo=None).timetuple()
     date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
-    if mktime(date_bd) <= mktime(date_actuelle) - 200:
+    if mktime(date_bd) <= mktime(date_actuelle) - 0: # temps avant lancement de nouvelle recommendation
         # MAJ de la date de la recommandation
         RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
         liste = listeRecommandationIndividuelle(user.pk)  # Liste des restaurants à recommander
