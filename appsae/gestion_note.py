@@ -187,8 +187,9 @@ def listRecommandationGroupe(groupe):
     trainset, testset = train_test_split(data, test_size=0.20)
     svd = SVD(verbose=False, n_epochs=23, n_factors=7)
     predictions = svd.fit(trainset).test(testset)
-    accuracy.rmse(predictions)
+    # accuracy.rmse(predictions)
     l = algoRecommandationGroupe(groupe, svd, restaurant_metadata, 15)
+    print(l)
     liste_complete = []
     for elem in l:
         liste_complete.append(get_restaurant_id(elem[0], restaurant_metadata))

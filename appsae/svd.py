@@ -46,22 +46,34 @@ def predict_review(user_id, restaurant_name, model, metadata):
 
 
 def algoRecommandationGroupe(groupe, model, metadata, taille=10):
+    st = time.time()
     restaurant_names = list(metadata['nom'].values)
     liste_recommandations = []
-    liste_length = 0
+    liste_secondaires = []
+    liste_tertiaire = []
+    liste_length, liste_secondaires_length = 0, 0
 
     for restaurant_name in restaurant_names:
         moyenne = 0
         for people in groupe.liste_adherants.all():
             moyenne += predict_review(people.pk, restaurant_name, model, metadata)
 
-        moyenne = moyenne/(groupe.liste_adherants.all().count())
-        if moyenne > 4.5:
-            liste_recommandations.append((restaurant_name, moyenne))
+        moyenne = round(moyenne/(groupe.liste_adherants.all().count()),5)
+        if moyenne >= 4.35:
+            liste_recommandations.append((restaurant_name, round(moyenne,5)))
             liste_length+=1
             if liste_length == taille:
+                print(time.time() - st)
                 return liste_recommandations
-    return liste_recommandations
+        elif moyenne >= 4.05:
+            liste_secondaires_length+=1
+            liste_secondaires = ajoutValeur(liste_secondaires, restaurant_name, moyenne, taille - liste_length)
+        elif liste_secondaires_length + liste_length < taille and moyenne >= 3.5:
+            liste_tertiaire = ajoutDebutListe(liste_tertiaire, restaurant_name, round(moyenne,5), taille)[:taille - (liste_length + liste_secondaires_length)]
+            liste_tertiaire = ajoutValeur(liste_tertiaire, restaurant_name, moyenne, taille - liste_length - liste_secondaires_length)
+    print(time.time() - st)
+    liste_recommandations = liste_recommandations + liste_secondaires + liste_tertiaire
+    return liste_recommandations[:taille]
 
 
 def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
@@ -100,6 +112,28 @@ def algoRecommandationIndividuelle(user_id, model, metadata,taille=10):
             liste = ajoutList(liste,restaurant_name, rating, taille)
             min = liste[taille-1][1]
     return liste
+
+
+def ajoutValeur(list, resto_name, prediction, taille_max=15):
+    """ Ajout du tuple (resto_name, prediction) dans la liste list, triée dans l'odre croissant,
+    la taille de la liste retournée sera forcément inférieure à taille_max
+
+    @param list: la liste de départ
+    @param resto_name: le nom du restaurant
+    @param prediction: la note prédite
+    @param taille_max: la taille maximum à renvoyer
+    @return: une liste, triée par ordre croissant des prédictions sous la forme de tuple (resto_name, prediction)
+    """
+    taille = min(len(list), taille_max)
+    test = False
+    for i in range(taille):
+        if list[i][1] < prediction:
+            list.insert(i, (resto_name, prediction))
+            test = True
+            break
+    if not test:
+        list.insert(taille, (resto_name, prediction))
+    return list[:taille_max]
 
 
 def ajoutDebutListe(list,resto_name, prediction, taille_max=10):
