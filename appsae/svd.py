@@ -48,12 +48,12 @@ def predict_review(user_id, restaurant_name, model, metadata):
 def algoRecommandationGroupe(groupe, model, metadata, taille=10):
     st = time.time()
     restaurant_names = list(metadata['nom'].values)
-    liste_recommandations = []
-    liste_secondaires = []
-    liste_tertiaire = []
-    liste_length, liste_secondaires_length = 0, 0
+    liste_recommandations, liste_secondaires, liste_tertiaire, liste_last = [], [], [], []
+    liste_length, liste_secondaires_length, liste_tertiaire_length = 0, 0, 0
+    cpt = 0
 
     for restaurant_name in restaurant_names:
+        cpt+=1
         moyenne = 0
         for people in groupe.liste_adherants.all():
             moyenne += predict_review(people.pk, restaurant_name, model, metadata)
@@ -63,17 +63,61 @@ def algoRecommandationGroupe(groupe, model, metadata, taille=10):
             liste_recommandations.append((restaurant_name, round(moyenne,5)))
             liste_length+=1
             if liste_length == taille:
+                print(cpt)
                 print(time.time() - st)
                 return liste_recommandations
-        elif moyenne >= 4.05:
+        elif moyenne >= 4.25:
             liste_secondaires_length+=1
             liste_secondaires = ajoutValeur(liste_secondaires, restaurant_name, moyenne, taille - liste_length)
-        elif liste_secondaires_length + liste_length < taille and moyenne >= 3.5:
-            liste_tertiaire = ajoutDebutListe(liste_tertiaire, restaurant_name, round(moyenne,5), taille)[:taille - (liste_length + liste_secondaires_length)]
+        elif moyenne >= 4.05:
+            liste_tertiaire_length += 1
             liste_tertiaire = ajoutValeur(liste_tertiaire, restaurant_name, moyenne, taille - liste_length - liste_secondaires_length)
+        elif liste_secondaires_length + liste_length < taille and moyenne >= 3.5:
+            liste_last = ajoutValeur(liste_last, restaurant_name, moyenne, taille - liste_length - liste_secondaires_length)
+        if time.time() - st > 20 and liste_length + liste_secondaires_length >= taille//1.2 and liste_tertiaire_length >= taille//5:
+            break
     print(time.time() - st)
-    liste_recommandations = liste_recommandations + liste_secondaires + liste_tertiaire
+    print(cpt)
+    liste_recommandations = liste_recommandations + liste_secondaires + liste_tertiaire + liste_last
     return liste_recommandations[:taille]
+
+
+def testMatteo(groupe, model, metadata, taille=10):
+    restaurant_names = list(metadata['nom'].values)
+    cpt_total = 0
+    cpt_45, cpt_4,cpt_3, cpt_2, cpt_1, cpt_0 = 0, 0, 0, 0, 0, 0
+    for restaurant_name in restaurant_names:
+        cpt_total+=1
+        moyenne = 0
+        #for people in groupe.liste_adherants.all():
+            #moyenne += predict_review(people.pk, restaurant_name, model, metadata)
+
+        #moyenne = round(moyenne/(groupe.liste_adherants.all().count()),5)
+        moyenne = round(predict_review(groupe.liste_adherants.all()[0].pk, restaurant_name, model, metadata))
+        if moyenne > 4.5: cpt_45 += 1
+        elif moyenne > 4: cpt_4 += 1
+        elif moyenne > 3: cpt_3 += 1
+        elif moyenne > 2: cpt_2 += 1
+        elif moyenne > 1: cpt_1 += 1
+        elif moyenne > 0: cpt_0 += 1
+
+        if cpt_total%500 == 0:
+            print("total : " + str(cpt_total))
+            print("cpt 0 : "+ str(cpt_0))
+            print("cpt 1 : "+ str(cpt_1))
+            print("cpt 2 : "+ str(cpt_2))
+            print("cpt 3 : "+ str(cpt_3))
+            print("cpt 4 : "+ str(cpt_4))
+            print("cpt 4.5 : "+ str(cpt_45))
+            print("---------------------------")
+    print("total : " + str(cpt_total))
+    print("cpt 0 : " + str(cpt_0))
+    print("cpt 1 : " + str(cpt_1))
+    print("cpt 2 : " + str(cpt_2))
+    print("cpt 3 : " + str(cpt_3))
+    print("cpt 4 : " + str(cpt_4))
+    print("cpt 4.5 : " + str(cpt_45))
+    print("---------------------------")
 
 
 def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
