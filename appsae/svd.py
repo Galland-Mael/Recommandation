@@ -8,6 +8,8 @@ from surprise import Reader, Dataset, SVD, accuracy
 from surprise.model_selection import train_test_split
 from surprise.model_selection import cross_validate
 from .models import *
+from random import shuffle
+from math import ceil
 
 
 def get_restaurant_id(restaurant_name, metadata):
@@ -46,40 +48,76 @@ def predict_review(user_id, restaurant_name, model, metadata):
 
 
 def algoRecommandationGroupe(groupe, model, metadata, taille=10):
-    st = time.time()
+    """ Renvoie une liste avec entre 0 et taille restaurants recommandés
+    en fonction des adhérents présents dans le groupe
+
+    @param groupe: le groupe d'adhérents
+    @param model: le model de données (svd) pour faire des prédictions
+    @param metadata: le fichier contenant les restaurants de la ville du groupe
+    @param taille: la taille de la liste à renvoyer
+    @return:
+    """
+    # Initialisation du temps de départ au temps actuel, des différentes listes à [] et des tailles de listes à 0
+    start = time.time()
+    liste_one, liste_two, liste_three, liste_last = [], [], [], []
+    liste_1_len, liste_2_len, liste_3_len = 0, 0, 0
+
+    # Récupération de la liste des noms de restaurants mélangé au hasard et de la taille de cette liste
     restaurant_names = list(metadata['nom'].values)
-    liste_recommandations, liste_secondaires, liste_tertiaire, liste_last = [], [], [], []
-    liste_length, liste_secondaires_length, liste_tertiaire_length = 0, 0, 0
-    cpt = 0
+    shuffle(restaurant_names)
+    taille_liste_resto = len(restaurant_names)
 
+    # Initialisation de la variable de prise en compte des prédictions individuelles (de 2.5 à 3.75)
+    taille_ajout = min(2.5 + (ceil(taille_liste_resto / 1000) - 1) * 2.5 / 10, 3.75)
+    compteur = 0
+
+    # Parcours de chaque restaurant jusqu'à avoir assez de restaurants "intéressants" à retourner
     for restaurant_name in restaurant_names:
-        cpt+=1
+        compteur += 1
         moyenne = 0
-        for people in groupe.liste_adherants.all():
-            moyenne += predict_review(people.pk, restaurant_name, model, metadata)
+        ajouter = True
+        # Prédit les notes de chaque utilisateurs du groupe sur le restaurant
+        liste_adherents = groupe.liste_adherants.all()
+        for people in liste_adherents:
+            note = predict_review(people.pk, restaurant_name, model, metadata)
+            # Si la note de cet utilisateur n'est pas "bonne", on ne prend pas le restaurant
+            if note <= taille_ajout:
+                ajouter = False
+                break
+            moyenne += note # ajout de la prédiction de l'utilisateur à la moyenne
 
-        moyenne = round(moyenne/(groupe.liste_adherants.all().count()),5)
-        if moyenne >= 4.35:
-            liste_recommandations.append((restaurant_name, round(moyenne,5)))
-            liste_length+=1
-            if liste_length == taille:
-                print(cpt)
-                print(time.time() - st)
-                return liste_recommandations
-        elif moyenne >= 4.25:
-            liste_secondaires_length+=1
-            liste_secondaires = ajoutValeur(liste_secondaires, restaurant_name, moyenne, taille - liste_length)
-        elif moyenne >= 4.05:
-            liste_tertiaire_length += 1
-            liste_tertiaire = ajoutValeur(liste_tertiaire, restaurant_name, moyenne, taille - liste_length - liste_secondaires_length)
-        elif liste_secondaires_length + liste_length < taille and moyenne >= 3.5:
-            liste_last = ajoutValeur(liste_last, restaurant_name, moyenne, taille - liste_length - liste_secondaires_length)
-        if time.time() - st > 20 and liste_length + liste_secondaires_length >= taille//1.2 and liste_tertiaire_length >= taille//5:
-            break
-    print(time.time() - st)
-    print(cpt)
-    liste_recommandations = liste_recommandations + liste_secondaires + liste_tertiaire + liste_last
-    return liste_recommandations[:taille]
+        # Si les prédictions de chaque utilisateur sont au dessus du taux minimum
+        if ajouter:
+            moyenne = round(moyenne/(liste_adherents.count()),5)
+            if moyenne >= 3.5:
+                if moyenne >= 4.35:
+                    liste_1_len += 1
+                    liste_one.append((restaurant_name, moyenne))
+                    # Si la première liste fait la bonne taille, on arête l'algorithme
+                    if liste_1_len == taille:
+                        print("TEMPS ALGO : " + str(time.time() - start) + "   compteur :" + str(compteur))
+                        return liste_one
+                elif moyenne >= 4.25:
+                    liste_2_len += 1
+                    liste_two = ajoutValeur(liste_two, restaurant_name, moyenne, taille - liste_1_len)
+                elif liste_1_len < taille and moyenne >= 4.05:
+                    liste_3_len += 1
+                    liste_three = ajoutValeur(liste_three, restaurant_name, moyenne, taille - liste_1_len - liste_2_len)
+                elif liste_2_len + liste_1_len < taille:
+                    liste_last = ajoutValeur(liste_last, restaurant_name, moyenne, taille - liste_1_len - liste_2_len -
+                                             liste_3_len)
+
+            # Si l'algorithme est lancé depuis plus de 20 secondes
+            if time.time() - start > 20:
+                # S'il y a assez de restaurants avec une note supérieur à 4.25 ou si l'algo est lancé depuis plus
+                # de 30 secondes et qu'il y a assez de restaurants avec une note supérieur à 4.05, on arête l'algo
+                if liste_1_len + liste_2_len >= taille \
+                        or (time.time() - start > 30 and liste_1_len + liste_2_len + liste_3_len >= taille):
+                    break
+
+    print("TEMPS ALGO : " + str(time.time() - start) + "   compteur :" + str(compteur))
+    liste_one = liste_one + liste_two + liste_three + liste_last
+    return liste_one[:taille]
 
 
 def testMatteo(groupe, model, metadata, taille=10):
