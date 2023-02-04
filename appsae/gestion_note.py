@@ -77,7 +77,7 @@ def majRecommandationsIndividuellesBD(user, recommandation_user):
     if mktime(date_bd) <= mktime(date_actuelle) - 200:
         # MAJ de la date de la recommandation
         RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
-        liste = listeRecommandationIndividuelle(user.pk)  # Liste des restaurants à recommander
+        liste = listeRecommandationIndividuelle(user)  # Liste des restaurants à recommander
         reco = RecommandationUser.objects.get(adherant_fk=user.pk)
         liste_reco = reco.recommandation.all()
         # Supprime les recommandations existantes
@@ -112,7 +112,7 @@ def ajoutAvis(user, restaurant, note, avis):
             if recommandation_user.count() == 0: # si il n'a pas encore de recommandation
                 reco = RecommandationUser(adherant_fk=user)
                 reco.save()
-                liste = listeRecommandationIndividuelle(user.pk)
+                liste = listeRecommandationIndividuelle(user)
                 for elem in liste:
                     reco.recommandation.add(elem)
                 RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())

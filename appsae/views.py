@@ -511,8 +511,11 @@ def matteo(request):
 
 def recommendation(request):
     st = time.time()
-    groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
-    liste = listRecommandationGroupe(groupe)
+    # groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
+    # liste = listRecommandationGroupe(groupe)
+    person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
+    liste = listeRecommandationIndividuelle(person)
+    print(liste)
     print(time.time() - st)
     return HttpResponse('')
 
