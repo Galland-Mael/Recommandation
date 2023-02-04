@@ -34,8 +34,21 @@ def listeRecommandationIndividuelle(user, taille=10):
 
     @param user: l'utilisateur
     @param taille: la taille de la liste à renvoyer
-    @return: une liste d'id de restaurants pour l'utilisateur
+    @return: une liste d'id de restaurants
     """
     restaurant_metadata = pd.read_csv('./restaurant_' + suppEspace(user.ville) + '.csv', delimiter=';', engine='python')
-    liste = algoRecommandationIndividuelleV3(user.pk, svdAlgo(), restaurant_metadata, taille)
-    return tupleToList(liste, restaurant_metadata)
+    tuples = algoRecommandationIndividuelleV3(user.pk, svdAlgo(), restaurant_metadata, taille)
+    return tupleToList(tuples, restaurant_metadata)
+
+
+def listeRecommandationGroupe(groupe, taille=15):
+    """ Construit une liste de recommandations pour le groupe entré en paramètres
+
+    @param groupe: le groupe
+    @param taille: la taille de la liste à renvoyer
+    @return: une liste d'id de restaurants
+    """
+    user = Adherant.objects.get(pk=groupe.id_gerant)
+    restaurant_metadata = pd.read_csv('./restaurant_' + suppEspace(user.ville) + '.csv', delimiter=';', engine='python')
+    tuples = algoRecommandationGroupe(groupe, svdAlgo(), restaurant_metadata, taille)
+    return tupleToList(tuples, restaurant_metadata)
