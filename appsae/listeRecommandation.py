@@ -36,7 +36,8 @@ def listeRecommandationIndividuelle(user, taille=10):
     @param taille: la taille de la liste à renvoyer
     @return: une liste d'id de restaurants
     """
-    restaurant_metadata = pd.read_csv('./restaurant_' + suppEspace(user.ville) + '.csv', delimiter=';', engine='python')
+    chemin_accces = './csv/restaurant_' + suppEspace(user.ville) + '.csv'
+    restaurant_metadata = pd.read_csv(chemin_accces, delimiter=';', engine='python')
     tuples = algoRecommandationIndividuelleV3(user.pk, svdAlgo(), restaurant_metadata, taille)
     return tupleToList(tuples, restaurant_metadata)
 
@@ -49,6 +50,7 @@ def listeRecommandationGroupe(groupe, taille=15):
     @return: une liste d'id de restaurants
     """
     user = Adherant.objects.get(pk=groupe.id_gerant)
-    restaurant_metadata = pd.read_csv('./restaurant_' + suppEspace(user.ville) + '.csv', delimiter=';', engine='python')
+    chemin_accces = './csv/restaurant_' + suppEspace(user.ville) + '.csv'
+    restaurant_metadata = pd.read_csv(chemin_accces, delimiter=';', engine='python')
     tuples = algoRecommandationGroupe(groupe, svdAlgo(), restaurant_metadata, taille)
     return tupleToList(tuples, restaurant_metadata)
