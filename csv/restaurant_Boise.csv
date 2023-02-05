@@ -1,0 +1,843 @@
+id;nom;genre
+5920;Smoke & Thyme;burgers sandwiches salad american (new) barbeque
+5945;Brixx Craft House;pubs bars american (traditional) nightlife cocktail bars sports bars gastropubs beer bar
+5986;The Original Pancake House;breakfast & brunch
+6008;Capitol Cellars;coffee & tea bars american (traditional) nightlife breakfast & brunch wine bars steakhouses american (new) local flavor wineries
+6009;Petite 4;french beer wine & spirits
+6023;Taj Mahal Homestyle Indian & Pakistani Cuisine;vegan vegetarian pakistani indian
+6039;Quiznos;fast food sandwiches
+6107;MOD Pizza;pizza
+6146;Amigos Mexican Restaurant;mexican
+6355;Rolling Tacos;food trucks seafood mexican street vendors
+6465;Papa Murphy's;pizza
+6497;Romano's Macaroni Grill;italian
+6548;The Creperie Cafe;coffee & tea cafes french desserts creperies
+6574;Ishtar Market and Restaurant;middle eastern
+6581;Al-Sham Restaurant;mediterranean arabic
+6594;Cafe Zupas;sandwiches salad soup american (new) desserts
+6720;Gyro Shack;fast food sandwiches greek mediterranean
+6792;Boise Auto Repair Mobile Tech Auto Repair;hawaiian parking self storage
+6804;Jades Chopstick;chinese
+6818;Five Guys;burgers fast food specialty food american (new)
+6879;Baguette Deli;sandwiches vietnamese specialty food juice bars & smoothies ethnic food
+6970;Quinn's Restaurant & Lounge;sandwiches pubs bars american (traditional) nightlife diners breakfast & brunch steakhouses lounges
+7025;DK Donuts;bakeries donuts
+7135;Latin Twist;food trucks caribbean latin american
+7199;Siam Thai Restaurant;thai
+7294;Sarah's Bagel Cafe Idaho;cafes
+7537;3 Wood Pizza & Pub;sandwiches pizza salad gastropubs
+7674;Madre - Boutique Taqueria;breakfast & brunch mexican beer wine & spirits tacos
+7684;RamaPong;bars american (traditional) nightlife japanese ramen
+7703;Sonic Drive-In;burgers fast food ice cream & frozen yogurt
+7750;Papa Murphy's;pizza
+7843;Lulu's Pizza;italian pizza food delivery services
+7853;Jack in the Box;burgers fast food american (traditional) breakfast & brunch mexican tacos
+7854;Parrilla Grill;mexican tex-mex
+7924;Taqueria El Torito;mexican
+7998;Carl's Jr;burgers fast food american (new)
+8074;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+8101;The Gyro House;greek
+8136;Westside Pizza;pizza food delivery services
+8175;Kabob House;mediterranean indian middle eastern afghan
+8199;Halal Meat Market and Restaurant;greek specialty food halal middle eastern meat shops
+8227;Wasabi Sushi;bars nightlife sushi bars japanese
+8249;Kodiak Grill;american (new)
+8287;Kopper Kitchen;american (traditional)
+8498;Coa De Jima;bars nightlife breakfast & brunch seafood cocktail bars salad mexican
+8597;Blimpie;fast food sandwiches
+8624;Sockeye Brewing;sandwiches pubs bars american (traditional) nightlife salad breweries american (new) gastropubs
+8675;Carl's Jr;burgers fast food
+8965;Chicago Connection - Overland;sandwiches pizza salad
+9042;Rooster's Eatery and Catering;food trucks diners breakfast & brunch caterers
+9084;Richard's;italian bars nightlife breakfast & brunch american (new) mediterranean
+9202;Treasure Valley Coffee - Boise;coffee & tea
+9207;The Ranch Scottish Highland Burgers;burgers
+9214;Skippers Seafood & Chowder House;burgers seafood fish & chips
+9310;Boise Thai Noodle House;salad thai noodles
+9320;Timeout Sports Pub & Restaurant;pubs bars american (traditional) nightlife gluten-free
+9373;Pho 79;vietnamese
+9443;Moon's Kitchen Cafe;burgers breakfast & brunch cafes
+9494;Panera Bread;bakeries sandwiches salad soup
+9510;Joe's Crab Shack;american (traditional) seafood gluten-free
+9516;Boise Bistro Market;coffee & tea sandwiches specialty food caterers american (new) beer wine & spirits comfort food food delivery services desserts
+9561;Certified Kitchen + Bakery;coffee & tea bakeries breakfast & brunch american (new)
+9569;Happy Teriyaki - Broadway BSU;bubble tea asian fusion seafood
+9644;Port of Subs;sandwiches
+9702;Home Team Sports;american (new) beer wine & spirits
+9768;El Gallo Giro;bars nightlife seafood cocktail bars mexican beer wine & spirits tacos new mexican cuisine
+9880;Bad Boy Burgers 2;burgers fast food
+9959;Mongolian Bbq;chinese barbeque mongolian
+10011;AeroCaffe;coffee & tea sandwiches cafes
+10064;Nato's Mexican Food;mexican
+10217;Papa John's Pizza;pizza
+10225;Taco Time;mexican
+10347;Palm Arabic;mediterranean middle eastern arabic
+10369;A Taste of Thai;vietnamese asian fusion thai
+10423;Torch the-A Gentlemen's Club;nightlife
+10565;Arby's;fast food sandwiches
+10651;McDonald's;coffee & tea burgers fast food
+10723;Pair Restaurant;american (new)
+10764;Bacon Boise;bars nightlife breakfast & brunch
+10930;Pizzalchik;american (traditional) pizza chicken wings
+10988;Fresh Off The Hook;seafood
+10998;Cobby's Sandwich Shop;sandwiches
+11028;Fork;burgers breakfast & brunch american (new)
+11069;Modern Bar and Restaurant;bars nightlife breakfast & brunch wine bars cocktail bars american (new) beer wine & spirits hotels & travel wine tours
+11103;Solid Grill and Bar;bars american (traditional) nightlife barbeque
+11117;Chipotle Mexican Grill;fast food mexican
+11151;Country Pride Restaurant;american (traditional)
+11239;The Shak Hawaiian Cafe;beer wine & spirits barbeque hawaiian
+11473;Rockie's Diner;diners
+11537;El Tenampa;bars nightlife diners seafood cocktail bars mexican
+11566;Baja Fresh;fast food caterers mexican tex-mex
+11657;Trillium;american (new)
+11677;IOU Sushi;sushi bars
+11686;Papa Murphy's;pizza
+11756;Taco Time;mexican
+11870;Hawkins Pac-Out;coffee & tea burgers breakfast & brunch
+11879;Anthony's Boise;american (traditional) seafood
+11990;The Piper Pub & Grill;pubs bars american (traditional) nightlife
+11995;State & Lemp;burgers american (new)
+12090;Hilltop Station;burgers bars nightlife breakfast & brunch pizza beer bar barbeque desserts
+12182;Lock Stock & Barrel;steakhouses
+12307;Leaf Teahouse;vegan tea rooms
+12433;Mai Thai;sushi bars asian fusion thai
+12549;Firehouse Subs;fast food sandwiches
+12681;Applebee's Grill + Bar;burgers bars american (traditional) nightlife steakhouses sports bars
+12723;Cazba;greek mediterranean middle eastern
+12826;BBQ4LIFE;sandwiches bars nightlife beer bar barbeque hawaiian vegan gluten-free
+12860;Jimmy John's;fast food sandwiches food delivery services
+12968;Genki Takoyaki;japanese street vendors
+12975;Taco Del Mar;fast food mexican tex-mex
+13003;Ocho's Wine Bar;bars nightlife wine bars cocktail bars tapas/small plates dance clubs
+13104;Noodle Korea;korean asian fusion chinese mongolian
+13108;Ono Hawaiian Cafe;hawaiian
+13171;Domino's Pizza;sandwiches italian pizza chicken wings
+13281;#1 Mongolian BBQ - Best Stir Fried Noodles In Boise;asian fusion chinese barbeque noodles
+13325;Trolley House;american (traditional) diners breakfast & brunch
+13461;Das Alpenhaus Delikatessen;bars nightlife beer bar beer wine & spirits german
+13742;Thai Cuisine;thai
+13914;Java Coffee & Cafe;coffee & tea breakfast & brunch cafes
+14019;Merritt's Family Restaurant;bakeries american (traditional) diners breakfast & brunch
+14055;Matlacks;bars american (traditional) nightlife gastropubs beer bar desserts
+14200;Burger King;burgers fast food
+14327;The Old Spaghetti Factory;italian
+14457;Guido's Original New York Style Pizza Downtown;italian pizza salad
+14614;Fiesta Chicken;mexican
+14639;Osaka Japan;japanese
+14676;Sono Bana;sushi bars japanese
+14690;IHOP;burgers american (traditional) breakfast & brunch american (new)
+14756;Pho Bac;vietnamese
+14783;Tom Sweenys Dutch Oven Cafe;burgers american (traditional) diners breakfast & brunch specialty food meat shops german
+14902;Little Caesars Pizza;pizza
+14917;Boise Juice Company;juice bars & smoothies vegan acai bowls vegetarian
+15041;Casa Blanca Cuban Grill;food trucks caribbean latin american spanish cuban
+15190;El Habanero;food trucks mexican
+15222;Kind Cuisine Cafe;coffee & tea breakfast & brunch american (new) juice bars & smoothies vegan vegetarian
+15310;Thai Basil;thai
+15349;Red Lobster;american (traditional) seafood
+15370;Shige Japanese Cuisine;japanese asian fusion seafood
+15404;Bridge Cafe;breakfast & brunch cafes fish & chips
+15429;Caffe Capri;coffee & tea beer wine & spirits
+15448;Prost! Boise;pubs bars nightlife beer bar german
+15475;Diggs Pizza;pizza
+15551;13th Street Pub & Grill;pubs bars nightlife american (new)
+15567;Pat's Thai Kitchen;thai
+15636;Eddie's Diner;diners
+15658;Costa Vida Fresh Mexican Grill;fast food salad mexican
+15750;BACON;bars nightlife breakfast & brunch cocktail bars southern food delivery services
+16026;Wasabi;sushi bars japanese
+16226;K-Fusion Korean BBQ;korean barbeque
+16286;Big City Coffee;coffee & tea bakeries breakfast & brunch
+16354;Murphy's Seafood Bar & Grill;steakhouses seafood american (new)
+16370;Egg Mann and Earl;breakfast & brunch
+16390;B-Town Bistro;american (traditional) food trucks breakfast & brunch specialty food caterers
+16473;Chipotle Mexican Grill;fast food mexican
+16541;Fujiyama;japanese
+16599;Mr. Wok;sushi bars japanese korean asian fusion chinese
+16608;Sakana Japanese Sushi Bar & Grill;bars nightlife sushi bars japanese
+16613;Chiang Mai House Thai Restaurant;thai
+16624;Rumbi Island Grill;sandwiches salad hawaiian caribbean
+16694;Burger King;burgers fast food
+16719;Sakana Sushi Bar and Grill;sushi bars japanese soup
+16729;Jack in the Box;burgers fast food
+16851;Mister BBQ;american (traditional) american (new) barbeque
+17019;Flatbread Neapolitan Pizzeria;sandwiches italian pizza beer wine & spirits
+17137;T.G.I. Friday's;fast food
+17150;MFT BBQ & Vegan Food;barbeque vegan
+17276;Coffee Studio;coffee & tea american (new)
+17330;Ruth's Chris Steak House;steakhouses
+17372;The Kilted Kod;food trucks seafood street vendors
+17389;Chick-fil-A;fast food caterers chicken shop
+17433;Kilted Dragon Brewing;pubs bars nightlife breweries beer wine & spirits music venues
+17443;Westside Drive-in;burgers fast food american (traditional) caterers
+17456;The Gyro Shack;fast food sandwiches ice cream & frozen yogurt greek mediterranean middle eastern
+17559;Locavore;breakfast & brunch american (new) beer wine & spirits local flavor
+17664;Wendy's;burgers fast food
+17678;Tucanos Brazilian Grill;steakhouses seafood brazilian
+17770;Focaccias;american (traditional)
+17837;Subway;fast food sandwiches
+17841;Mazzah Mediterranean Grill;sandwiches greek mediterranean
+17993;China Grand Buffet;sushi bars japanese chinese
+18043;Jumpin Janet's;sandwiches pubs bars nightlife sports bars mexican tacos
+18070;Papa Murphy's;pizza
+18090;Kana Girl's Hawai'ian BBQ;asian fusion barbeque hawaiian
+18098;Tamales Nelly;mexican street vendors latin american
+18191;Ironwood Bar & Grill;coffee & tea burgers bars nightlife breakfast & brunch barbeque
+18261;Bad Boy Burgers;burgers fast food
+18335;Mongolian BBQ;specialty food chinese mongolian
+18341;Brother Brown's Underground;burgers sandwiches barbeque
+18391;The Drink Bar and Waterfront Grill;nightlife beer wine & spirits caribbean piano bars
+18440;Jalapeos Bar & Grill Broadway;bars nightlife seafood mexican
+18449;Double Tap Pub;pubs bars american (traditional) nightlife specialty food sports bars beer wine & spirits thai
+18457;Asian Cuisine Boise;vietnamese asian fusion thai
+18501;Boise Fry Company;burgers fast food american (new) gluten-free
+18518;Madhuban Indian Cuisine;indian
+18528;Main Street Deli;burgers sandwiches italian breakfast & brunch cafes salad
+18617;13th Street Pub & Grill;bars american (traditional) nightlife breweries american (new) beer wine & spirits
+18618;Golden Corral Buffet & Grill;american (traditional) buffets
+18738;Mongolian BBQ;barbeque mongolian
+18760;Mala Luna;bars nightlife cocktail bars specialty food latin american
+18995;Dutch Bros Coffee;coffee & tea cafes juice bars & smoothies
+19031;Casanova Pizzeria;sandwiches pizza salad
+19185;Pizza Hut;fast food italian pizza chicken wings
+19199;Bob's Sunrise Cafe;american (traditional)
+19251;The Lively;bars nightlife wine bars cocktail bars american (new)
+19318;Papa John's Pizza;pizza
+19403;Emerald Lanes;nightlife pizza bowling pool halls
+19423;Pho Tay;vietnamese soup
+19503;Wiseguy Pizza Pie;sandwiches bars nightlife pizza vegetarian
+19623;Fiesta Chicken;mexican
+19647;C4 Creamery;ice cream & frozen yogurt food stands
+19698;Subway;fast food sandwiches
+19724;Black Bear Diner;burgers american (traditional) diners breakfast & brunch
+19734;Applebee's Grill + Bar;burgers bars american (traditional) nightlife steakhouses american (new) sports bars
+19848;Elmer's Restaurant;american (traditional) diners breakfast & brunch
+19928;Fresh Off The Hook;seafood
+20092;Reel Foods Fish Market & Oyster Bar;seafood specialty food seafood markets
+20139;Cafe Rio Mexican Grill;mexican
+20258;Vons Chicken;korean chicken wings
+20272;Even Stevens Sandwiches;sandwiches breakfast & brunch salad american (new) gluten-free
+20276;Smoky Mountain Pizzeria Grill;burgers italian pizza
+20371;Zeppole Downtown Cafe;bakeries sandwiches
+20531;Island Sushi & Ramen;sushi bars japanese desserts ramen
+20553;Bad Boy Burgers Deluxe;burgers fast food american (traditional) breakfast & brunch
+20587;Coffee Mill;coffee & tea bakeries sandwiches bars nightlife breakfast & brunch cafes wine bars juice bars & smoothies
+20721;Panera Bread;sandwiches breakfast & brunch salad soup
+20776;Good Burger;burgers
+20880;North End Pizza;bars nightlife pizza beer bar
+20952;Gaucho's;argentine
+20988;Sunrise Cafe;american (traditional)
+21070;Dairy Queen;burgers fast food ice cream & frozen yogurt
+21110;Chapala Mexican Restaurant;mexican
+21122;36th Street Bistro;bars nightlife breakfast & brunch american (new) beer bar
+21149;Happy Teriyaki;bubble tea japanese asian fusion
+21159;Sushi Ya;sushi bars specialty food ethnic food
+21241;Rockin Q BBQ Company;food trucks caterers barbeque street vendors
+21252;Bardenay Restaurant & Distillery - Boise;burgers pubs bars american (traditional) nightlife wine bars cocktail bars american (new) gluten-free distilleries
+21259;Berryhill & Co;caterers american (new)
+21269;JBR's BBQ;barbeque
+21334;Lucky 13;pizza
+21362;Starbucks;coffee & tea
+21369;Boise Co-op North End;specialty food beer wine & spirits organic stores
+21469;Zen Bento;japanese asian fusion
+21504;The Egg Factory;breakfast & brunch
+21526;Flying M Coffeehouse;coffee & tea bakeries coffee roasteries
+21544;Papa John's Pizza;pizza
+21712;Azteca Taco Truck;mexican street vendors food stands
+21732;The Hyde House;bars nightlife breakfast & brunch wine bars american (new) beer wine & spirits
+21748;Pita Pit;fast food sandwiches american (traditional) mediterranean
+21761;Little Ceasars;pizza
+21853;Twisted Timber Tavern;pubs bars nightlife pizza mexican
+21959;Jack in the Box;burgers fast food breakfast & brunch mexican tacos
+22028;Broken Tap Tavern;pubs bars nightlife wine bars sports bars beer bar mexican
+22099;Jack in the Box;burgers fast food breakfast & brunch mexican tacos
+22172;Ha' Penny Bridge Pub;pubs bars nightlife irish irish pub british
+22177;Arby's;fast food sandwiches
+22193;Andrade's Restaurante Mexicano;steakhouses seafood mexican
+22209;Taco Veloz;food trucks mexican
+22249;Kindness;caterers american (new)
+22304;The Tortilla Factory Mexican Grill;mexican
+22374;Tap & Cask;pubs bars american (traditional) nightlife sports bars comfort food
+22514;Food Land Market;coffee & tea bakeries specialty food mediterranean middle eastern
+22550;Eddie's Restaurant;burgers american (traditional) diners breakfast & brunch
+22614;Dave & Buster's;burgers bars american (traditional) nightlife eatertainment american (new) sports bars
+22878;On the Border Mexican Grill & Cantina;mexican
+22974;Costa Vida Fresh Mexican Grill;salad mexican tex-mex
+22976;Wok King Chinese Resturant;asian fusion chinese
+23049;Sub Zero Nitrogen Ice Cream;ice cream & frozen yogurt american (new) desserts
+23105;Pie Hole Pizza;pizza
+23151;Chapala Mexican Restaurant;mexican
+23186;McDonald's;coffee & tea burgers fast food
+23337;Cobby's;sandwiches
+23427;Rolling in Dough;coffee & tea french
+23435;Yen Ching Bakery;bakeries chinese
+23441;A Tavola;breakfast & brunch cafes desserts
+23446;Chick-fil-A;fast food caterers chicken shop
+23456;MickeyRay's;sandwiches steakhouses barbeque southern
+23490;Playhouse Boise;party & event planning dinner theater
+23507;Buffalo Wild Wings;bars american (traditional) nightlife chicken wings sports bars beer bar desserts
+23512;Dong Khanh Vietnamese Restaurant;vietnamese korean
+23574;McDonald's;coffee & tea burgers fast food
+23576;Jerry's State Court Cafe;american (traditional)
+23821;Subway;fast food sandwiches
+23832;Village Coffee and Bistro;sandwiches bars nightlife breakfast & brunch salad beer bar
+23839;Magnificent Garden;korean barbeque
+23961;The Saladman;sandwiches american (new)
+24013;Zutto Japanese Restaurant;japanese
+24014;Tastings Wine Market & Wine Bar;bars nightlife wine bars tapas/small plates
+24044;Taqueria La Flama;caterers mexican
+24076;TableRock Brewpub;american (traditional) caterers
+24139;Bonefish Grill;bars nightlife seafood cocktail bars american (new)
+24171;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+24216;Yoi Tomo Sushi & Grill;sushi bars japanese
+24405;Shogun Sushi;sushi bars japanese korean
+24505;Papa Murphy's;pizza
+24771;Cosmic Pizza;pizza
+24792;Poke Vibes;sushi bars hawaiian poke
+24854;Burger King;burgers fast food
+24914;Nuestro Pueblo;specialty food mexican meat shops
+25075;Bleubird;sandwiches
+25105;Graveyard B&G;nightlife american (new) pop-up restaurants
+25115;State Street Kitchen & Drinkery;pubs bars nightlife american (new)
+25215;Good Burger;burgers american (traditional)
+25228;Saigon Grill;vietnamese
+25230;Chuck E. Cheese;pizza party & event planning indoor playcentre kids activities
+25239;Alchemist Coffee Roasting;coffee & tea sandwiches bars nightlife breakfast & brunch beer bar
+25246;Tin Roof Tacos;american (traditional) breakfast & brunch mexican tex-mex tacos
+25400;Oriental Express;chinese
+25495;Leku Ona;bars nightlife cocktail bars basque
+25505;Hotel 43;hotels & travel hotels
+25515;Eureka!;burgers bars american (traditional) nightlife american (new)
+25603;Raedeans Restaurant;burgers sandwiches salad
+25604;Season Wok;diners asian fusion salad chinese food delivery services
+25924;Sam's Place;bars nightlife karaoke pool halls
+25972;Tropical Smoothie Cafe;sandwiches juice bars & smoothies
+26001;Caffeina Roasting Company;coffee & tea bakeries breakfast & brunch cafes coffee roasteries
+26046;Bombay Grill;pakistani indian buffets
+26068;Sid's Garage;burgers bars american (traditional) nightlife american (new) beer bar
+26147;San Francisco Style Sourdough Eatery - Boise;sandwiches salad soup
+26264;Chandlers;bars nightlife wine bars steakhouses seafood cocktail bars lounges jazz & blues
+26288;Wendy's;burgers fast food
+26452;Mount Everest Momo Cafe;himalayan/nepalese
+26486;Zimms Burger Stache;burgers fast food
+26593;Amsterdam Lounge;coffee & tea bars nightlife cocktail bars lounges tapas/small plates dive bars
+26641;Barbacoa Grill;bars nightlife steakhouses seafood cocktail bars latin american brazilian
+26704;Pizza Hut;fast food italian pizza chicken wings
+26706;The Matador;bars nightlife cocktail bars mexican tex-mex
+26833;Great Wall Restaurant;sushi bars chinese buffets
+27011;The Tailgate Taphouse;bars american (traditional) nightlife breakfast & brunch sports bars
+27106;Cheerleaders Sports Grill;bars nightlife sports bars gastropubs
+27112;La Vie En Rose;bakeries french
+27122;Cinco De Mayo;mexican
+27153;Amir;mediterranean
+27369;Asian Wok;chinese food delivery services dim sum
+27395;Panda Express;fast food chinese
+27408;Clean Juice;cafes salad juice bars & smoothies acai bowls
+27437;The Cheesecake Factory;american (traditional) seafood salad american (new) desserts
+27477;Tiki Teriyaki Burger Time;burgers food trucks hawaiian
+27517;Tropical Smoothie Cafe;sandwiches breakfast & brunch juice bars & smoothies
+27711;Superb Sushi;sushi bars
+27813;Smashburger;burgers specialty food
+27855;The River Room;burgers pubs bars nightlife chicken wings beer bar
+27900;Naked Fins;sushi bars mexican tacos poke
+27942;Chicago Connection - Fairview;sandwiches pizza salad
+27944;Willi B's Saloon;sandwiches bars nightlife cocktail bars sports bars
+27976;Calle 75 Downtown;bars nightlife mexican tacos
+28013;Meraki-Greek Street Food;greek salad desserts
+28099;Zee's Rooftop;american (traditional) breakfast & brunch cafes soup american (new)
+28133;Tilted Kilt Pub & Eatery;pubs bars nightlife american (new)
+28227;Mad Mac;fast food food trucks juice bars & smoothies comfort food
+28292;Quik Wok;chinese
+28303;Diablo & Sons Saloon;bars american (traditional) nightlife breakfast & brunch cocktail bars american (new) beer bar mexican tacos whiskey bars
+28420;McDonald's;coffee & tea burgers fast food
+28503;Boise Pie Co;bakeries sandwiches cafes soup desserts
+28572;Jack in the Box;burgers fast food breakfast & brunch mexican tacos
+28579;Eddie's Wood-Fired Dogs;hot dogs
+28600;Bronco Tacos;food trucks mexican food stands tacos
+28626;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+28627;The Falcon Tavern;american (traditional)
+28629;Flying Pie Pizzaria;italian pizza salad beer wine & spirits desserts
+28804;McGrath's Fish House;american (traditional) seafood
+28832;Devils Den;bars nightlife japanese cocktail bars ramen
+28902;Del Taco;fast food mexican
+28921;McDonald's;coffee & tea burgers fast food
+28929;Taste Asian Fusion Bistro;bars nightlife asian fusion cocktail bars
+28941;Los Betos;mexican
+28990;Scotty's Hot Dogs;food trucks hot dogs food stands
+29033;Freddy's Frozen Custard & Steakburgers;burgers ice cream & frozen yogurt desserts
+29097;North End Chinese Rest;chinese
+29119;Modern Hotel;bars nightlife breakfast & brunch wine bars cocktail bars american (new) hotels & travel hotels local flavor
+29154;IOU Sushi;sushi bars specialty food ethnic food
+29188;Quik-Wok;chinese
+29192;Good Burger;burgers beer wine & spirits
+29209;Buzz Coffee & Cafe;coffee & tea breakfast & brunch beer wine & spirits
+29295;Popeyes Louisiana Kitchen;fast food american (traditional) chicken wings
+29318;Dutch Bros Coffee;coffee & tea cafes juice bars & smoothies
+29355;Guido's Original New York Style Pizza;pizza
+29382;Masala Bistro;asian fusion seafood beer wine & spirits pakistani indian halal desserts
+29500;208 Pho & Vegan;vietnamese
+29650;Q's Billiards & Eatery;burgers bars nightlife sports bars beer wine & spirits pool halls
+29724;Kyoto Japanese Steak House;japanese steakhouses specialty food ethnic food
+29769;Roast Coffee Bar & Roasting Facility;coffee & tea coffee roasteries
+29853;Bob's Texas BBQ;barbeque
+29965;Shangri-La Tea & Vegetarian Cafe;vegetarian tea rooms
+29980;il Sugo Italian Kitchen;burgers sandwiches italian bars nightlife breakfast & brunch wine bars
+30022;Triple B Boise's Best Burgers;burgers food trucks
+30028;Alpine Pizza;bars nightlife pizza sports bars beer bar food delivery services
+30038;Fuddruckers;burgers american (traditional)
+30062;Highlands Hollow Brewhouse;sandwiches american (traditional) brewpubs breweries american (new)
+30068;The Refuge;bars nightlife american (new) beer wine & spirits
+30225;Legends Pub & Grill;bars american (traditional) nightlife pizza sports bars
+30235;Arid Club;nightlife country clubs
+30279;Mandarin Palace;chinese
+30440;Shari's - Boise;american (traditional) diners breakfast & brunch
+30493;Edge Brewing Pub On 10th;american (traditional) nightlife breweries music venues
+30520;Sunrise Family Restaurant;american (traditional)
+30568;Urban Smoke;sandwiches food trucks barbeque
+30626;Idaho Pizza Company;sandwiches pizza buffets
+30750;Jimmy John's;fast food sandwiches food delivery services
+30793;Big Bun Drive In;burgers sandwiches ice cream & frozen yogurt american (new)
+30804;Tangos Empanadas;fast food sandwiches food trucks latin american empanadas desserts argentine
+30841;Old Chicago Pizza & Taproom;bars american (traditional) nightlife pizza sports bars
+30893;Fanci Freez;burgers fast food sandwiches ice cream & frozen yogurt american (traditional) food trucks desserts
+30990;Noodles & Company;italian japanese asian fusion chinese american (new) comfort food noodles
+30993;McDonald's;coffee & tea burgers fast food
+30994;Pizza Hut;italian pizza chicken wings
+30998;Bang On The Wall Burgers;burgers food trucks caterers american (new)
+31038;Namaste Markets and Restaurant;salad indian desserts
+31099;Gils K9 Bar;bars american (traditional) nightlife breakfast & brunch sports bars
+31156;MELT Food Truck;sandwiches food trucks soup caterers
+31162;Mb Sandwich House;sandwiches salad wraps
+31190;Baja Fresh;fast food mexican tex-mex
+31220;Goodwood Barbecue Restaurant;burgers bars american (traditional) nightlife cocktail bars salad barbeque
+31718;Domino's Pizza;sandwiches pizza chicken wings
+31783;KIN;bars nightlife cocktail bars chicken wings american (new) vegan
+31891;McDonald's;coffee & tea burgers fast food
+31954;Paddles Up Poke;sushi bars live/raw food poke
+31992;Smashburger;burgers
+32100;Moxie Java;coffee & tea
+32106;Eastside Tavern;bars nightlife american (new)
+32189;Del Taco;fast food mexican
+32245;IHOP;burgers american (traditional) breakfast & brunch american (new)
+32351;Poppy Seed Cafe;coffee & tea bakeries breakfast & brunch cafes
+32352;Outback Steakhouse;steakhouses
+32489;The Fixx;coffee & tea diners
+32500;Zip's Drive;fast food american (traditional) american (new)
+32526;The Front Door;sandwiches italian bars nightlife cocktail bars pizza beer bar
+32545;NY Giant Pizza;italian american (traditional) pizza
+32550;Moon's Kitchen Cafe;cafes
+32588;Bluwave Street Tacos;mexican tacos
+32630;Saint Lawrence Gridiron;bars nightlife food trucks cocktail bars american (new) barbeque southern street vendors
+32637;Amaru Confections;coffee & tea bakeries specialty food beer wine & spirits cupcakes gluten-free chocolatiers & shops
+32650;Willowcreek Grill & Raw Sushi Restaurant;coffee & tea bars american (traditional) nightlife sushi bars american (new) sports bars
+32812;Jimmy John's;fast food sandwiches
+32862;Lolitas Tacos;mexican tacos
+32924;Mongolian Grill & Bar;chinese mongolian
+32948;Dry Creek Mercantile;american (traditional)
+33022;Firenza Pizza;pizza
+33134;Burger King;burgers fast food
+33201;Jalapeo's Bar & Grill - Franklin;bars nightlife beer bar mexican
+33274;Chapala Mexican Restaurant;mexican
+33354;Harvest and Grounds;coffee & tea cafes
+33432;Addie's;coffee & tea burgers breakfast & brunch american (new)
+33518;Pizza Hut;fast food italian pizza chicken wings
+33630;Tony's Pizzeria Teatro;italian pizza
+33639;Wingstop;chicken wings
+33704;California Mexican Food;mexican
+33744;Proto's Pizza;pizza
+33750;Rush Bowls;breakfast & brunch juice bars & smoothies acai bowls
+33760;Yen Ching;chinese
+33896;McDonald's;coffee & tea burgers fast food
+33907;Guru Donuts;coffee & tea cafes beer wine & spirits vegan donuts desserts
+34006;Spring Creek Brewing;sandwiches pizza brewpubs breweries
+34057;Boise Juice Company;breakfast & brunch soup juice bars & smoothies vegan acai bowls vegetarian
+34141;The Egg Factory;breakfast & brunch
+34147;Red Robin Gourmet Burgers and Brews;burgers american (traditional)
+34182;R&R BBQ;barbeque smokehouse
+34228;Growler's Pizza Grill;burgers sandwiches pizza
+34271;Sandbar Patio Bar & Grill;american (traditional)
+34374;Chili's;bars american (traditional) nightlife chicken wings american (new) tex-mex
+34599;Los Betos;mexican
+34692;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+34694;Noodles & Company;italian asian fusion salad specialty food pasta shops american (new) comfort food noodles
+34707;Raw Sushi;sushi bars
+34723;Cafe'ole'restaurants;mexican
+34756;MickeyRay's;sandwiches barbeque
+34774;Guang Zhou;chinese
+34808;KFC;fast food chicken wings chicken shop
+34882;Fresh Healthy Cafe;coffee & tea wraps juice bars & smoothies
+34942;Casa Mexico;specialty food mexican ethnic food
+34943;Sweetwater's Tropic Zone;caribbean
+35009;Pita Pit;fast food sandwiches american (new) mediterranean
+35019;Tropical Smoothie Cafe;sandwiches wraps juice bars & smoothies
+35049;Pino's Fine Spirits and Grinders;sandwiches beer wine & spirits
+35069;Primos;pizza buffets
+35240;WilliB's Sandwich Saloon;american (traditional)
+35272; cafe;coffee & tea cafes
+35283;Bluwave Tacos;food trucks mexican tacos
+35309;Marie Callender's Restaurant & Bakery;bakeries american (traditional) breakfast & brunch
+35318;Bel Cibo;sandwiches italian food trucks street vendors
+35628;Jenny's Lunch Line;american (new) vegetarian
+35773;Aladdin Egyptian Cuisine;mediterranean halal desserts middle eastern falafel egyptian
+35959;Blue Sky Bagels;bagels
+36120;The Shed;burgers bars american (traditional) nightlife wraps comfort food
+36161;Native Taters Cafe;food stands
+36201;Subway;fast food sandwiches
+36227;Goldy's Breakfast Bistro;american (traditional) breakfast & brunch
+36255;Dairy Queen Grill & Chill;burgers fast food ice cream & frozen yogurt
+36268;Owyhee Plaza Hotel;hotels & travel hotels
+36368;Zeppole Cafe;bakeries sandwiches
+36445;Capri Restaurant;diners breakfast & brunch
+36454;Andy's Deli;sandwiches ice cream & frozen yogurt juice bars & smoothies
+36455;Pollo Rey Mexican Rotisserie;mexican latin american
+36492;Los Betos;mexican
+36668;Cross Grain On The Go;bars american (traditional) nightlife beer bar
+36782;Pesto's Pizza Shop;pizza chicken wings desserts
+36847;Riverside Grill;american (traditional) breakfast & brunch american (new) beer wine & spirits
+36853;Chuck-A-Rama Buffet;buffets
+36928;Mongolian BBQ & Grill;buffets
+37053;Louisiana's Soul Bayou;cajun/creole
+37155;Wendy's;burgers fast food
+37298;Extreme Pizza - Boise;sandwiches pizza salad
+37396;Cancun Mexican Restaurant;mexican
+37442;Maru Sushi;sushi bars japanese asian fusion
+37450;Neighbor Tim's BBQ;food trucks caterers barbeque southern
+37541;Corona Village;mexican
+37637;The Wylder;bars nightlife cocktail bars pizza salad
+37768;La Tapatia Restaurant;mexican
+37857;Baguette Deli;sandwiches vietnamese
+37882;Cafe Zupas;sandwiches salad soup american (new)
+38018;Rotary Sushi;sushi bars japanese
+38021;Idaho Pizza Company;pizza
+38096;Domino's Pizza;sandwiches pizza chicken wings
+38206;Tres Bonne Cuisine;coffee & tea bars nightlife breakfast & brunch american (new) wineries wine tasting room modern european
+38381;Grind Modern Burger;burgers breweries gastropubs beer wine & spirits
+38470;Taphouse;pubs bars nightlife sports bars gastropubs beer wine & spirits
+38478;Tavern At Bown Crossing;burgers sandwiches sushi bars steakhouses seafood salad
+38586;The Edge;coffee & tea
+38629;Lost Shack;sushi bars japanese breweries poke
+38648;Cloud 9 Brewery;burgers american (traditional) breweries gastropubs
+38687;Sockeye Brewing;pubs bars nightlife breweries american (new) gastropubs
+38814;Cupbop - Korean BBQ;korean barbeque
+38816;Java Downtown Boise;coffee & tea american (traditional)
+38828;Vietnamese Restaurant;vietnamese korean
+38857;Koco Bell;sandwiches sushi bars korean asian fusion barbeque
+38896;Old Chicago Pizza & Taproom;bars american (traditional) nightlife pizza sports bars
+38903;Sonic Drive-In;burgers fast food ice cream & frozen yogurt
+38937;Nam King Restaurant;chinese
+38940;The Local;pubs bars nightlife wine bars american (new) gastropubs mexican beer wine & spirits tapas/small plates tacos pretzels wineries
+39036;Pho Tam;vietnamese specialty food ethnic food
+39050;Red Feather Lounge;bars nightlife american (new) lounges local flavor
+39128;Golden Star Restaurant;chinese
+39217;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+39226;Sandbagger Grill Boise Ranch;bars american (traditional) nightlife beer bar barbeque
+39421;Rooster's Eatery;american (traditional)
+39476;Boise Fry Company;burgers fast food american (new) beer wine & spirits gluten-free
+39508;P.F. Chang's;asian fusion chinese gluten-free
+39608;Bier:Thirty Bottle & Bistro;sandwiches salad american (new) gastropubs beer wine & spirits
+39933;City Buffet;chinese buffets
+39979;Alyonka Russian Cuisine;russian
+40016;Nara Ramen & Izakaya - Boise;bubble tea japanese ramen izakaya
+40068;Boise Fry Company;burgers fast food american (new) gluten-free local flavor
+40112;Donut Daze;chicken shop donuts waffles
+40165;Smashburger;burgers sandwiches american (traditional) salad
+40309;Sushi Shack;food trucks sushi bars caterers
+40372;Flying Pie Pizzaria;pizza vegetarian
+40402;Falafel Hut;greek mediterranean falafel
+40437;Balcony Club;bars nightlife dance clubs gay bars
+40511;Angell's Bar and Grill;bars american (traditional) nightlife steakhouses seafood american (new)
+40643;Denny's;fast food american (traditional) diners breakfast & brunch
+40772;Bungalow;american (new)
+40904;ROMiS Greek and Italian Restaurant;italian greek pizza
+41051;The Olympic Venue;fast food bars nightlife music venues
+41083;Taco Del Mar;fast food salad mexican tex-mex
+41121;Emilio's;breakfast & brunch american (new)
+41300;Little Caesars Pizza;pizza
+41345;Pad Thai House;thai
+41403;Confucius Restaurant;chinese
+41477;USF Moving Company;pizza hotels & travel food delivery services home services self storage
+41511;Cross Grain Brewhouse;bars american (traditional) nightlife beer bar
+41515;Great Steak;sandwiches cheesesteaks
+41677;Jack in the Box;burgers fast food breakfast & brunch mexican tacos
+41774;Boise Ranch Golf Course;american (new) country clubs
+41784;Great Harvest Bread Co;bakeries sandwiches breakfast & brunch
+41982;Pantry Restaurant;sandwiches american (traditional)
+41999;The Rusty Dog;food trucks caterers street vendors food stands
+42010;Coned Pizza;pizza
+42015;Waffle Me Up;coffee & tea breakfast & brunch desserts waffles
+42110;MakyJames Grill ;food trucks breakfast & brunch
+42111;Wok-Inn Noodle;chinese noodles
+42271;Burger King;burgers fast food
+42352;Ram Restaurant & Brewery;burgers american (traditional) breweries american (new)
+42403;Juniper;bars nightlife breakfast & brunch cocktail bars salad american (new)
+42439;Burger Time;burgers
+42483;Fort Street Station;sandwiches pubs bars american (traditional) nightlife breakfast & brunch american (new) beer bar desserts wineries
+42552;Idaho Pizza Company;pizza
+42584;Rise & Grind;juice bars & smoothies
+42665;Jimmy John's;fast food sandwiches food delivery services
+42668;Carniceria Coalcoman;specialty food mexican meat shops home services
+42744;Pojos Family Fun Center;pizza
+42760;MOD Pizza;pizza
+42859;Freddy's Frozen Custard & Steakburgers;burgers sandwiches ice cream & frozen yogurt american (traditional)
+42938;CopenRoss Growlers;beer wine & spirits cideries
+43009;Yanaki Japanese Restaurant & Asian Cuisine;japanese korean asian fusion
+43027;Doc's Lodge;bars american (traditional) nightlife cocktail bars
+43029;Tiki's Shave Ice;ice cream & frozen yogurt food trucks hawaiian desserts shaved ice
+43046;Kibrom's Restaurant;vegan african ethiopian
+43062;Wild Root Cafe;sandwiches bars nightlife breakfast & brunch cafes cocktail bars salad american (new) comfort food
+43091;Dawson Taylor - Downtown;coffee & tea coffee roasteries
+43124;Toasted;sandwiches breakfast & brunch cafes vegan
+43172;Pho Nguyen;vietnamese
+43351;Beans & Brews Coffeehouse;coffee & tea sandwiches breakfast & brunch
+43516;Americana Pizza;pizza vegan
+43544;Jack in the Box;burgers fast food breakfast & brunch mexican tacos
+43545;Manfred's;caterers american (new) comfort food
+43554;Top Wok;chinese
+43572;KFC;fast food chicken wings caterers chicken shop
+43747;Idaho Pizza Company;pizza
+43751;Maui Tacos;mexican
+43788;QDOBA Mexican Eats;fast food caterers mexican
+43791;Dong Khanh Vietnamese Restaurant;vietnamese
+43810;Boobies;burgers
+43816;Tacos Mobile Primo;food trucks mexican
+43863;Big City Coffee;coffee & tea american (traditional)
+43941;Olive Garden Italian Restaurant;italian bars nightlife wine bars salad soup
+43992;Frog's Fix Coffee Parlor;coffee & tea bakeries cafes
+44028;Crisp Food Truck;sandwiches food trucks breakfast & brunch caterers juice bars & smoothies mexican food stands tacos
+44058;McDonald's;coffee & tea burgers fast food
+44121;LongHorn Steakhouse;american (traditional) steakhouses barbeque
+44149;Black Bear Diner;burgers american (traditional) diners breakfast & brunch american (new) comfort food
+44212;Cafe Rio Mexican Grill;mexican
+44291;KFC;fast food chicken wings chicken shop
+44352;Subway;fast food sandwiches
+44379;North Shore Hot Dog;hot dogs
+44466;The Sunrise Cafe Boise;breakfast & brunch cafes
+44480;Carl's Jr;burgers fast food
+44560;Gluten Free Galaxy;bakeries food trucks vegan gluten-free desserts
+44644;Jimmy John's;fast food sandwiches food delivery services
+44750;Full Steam Bistro;coffee & tea sandwiches bars nightlife breakfast & brunch cafes beer bar beer wine & spirits
+44849;Sushi Joy;sushi bars japanese chinese desserts
+44883;Charlie Brown's;bars american (traditional) nightlife sports bars karaoke
+44943;Hyde Park Pub & Grill;pubs bars american (traditional) nightlife
+44992;Cottonwood Grille;bars american (traditional) nightlife cocktail bars buffets
+44997;Idaho Pizza Company;pizza
+45026;Vincenzo Trattoria;italian
+45058;Panda Express;fast food chinese
+45101;Wetos Locos;caterers mexican food stands
+45171;Crescent Public House;gastropubs
+45178;Stella's Ice Cream;ice cream & frozen yogurt
+45219;Burger Express;burgers
+45222;Garbonzos Pizza;pizza
+45516;Rancheritos;mexican
+45522;Gaston's Bakery;bakeries french
+45586;Cafe Vicino;italian mediterranean
+45601;Delucas;burgers italian desserts
+45602;River City Coffee & Cafe;coffee & tea breakfast & brunch
+45625;The Huddle Sports Bar & Grill;bars american (traditional) nightlife sports bars
+45723;Yokozuna Teriyaki;sushi bars japanese asian fusion chinese
+45724;Superb Sushi;sushi bars
+45730;Wendy's;burgers fast food
+45758;Jamba;sandwiches juice bars & smoothies
+45868;Carl's Jr;burgers fast food mexican
+46025;Bru;bars nightlife pizza salad beer bar hotels & travel beer tours
+46124;Salt Tears Coffehouse and Noshery;coffee & tea american (new)
+46220;Bar Gernika;pubs bars nightlife spanish basque
+46285;Water Bear Bar;bars nightlife cocktail bars lounges tapas/small plates
+46292;Papa Murphy's;pizza
+46352;A&W Restaurant;burgers fast food hot dogs
+46363;Sizzler;american (traditional) steakhouses seafood
+46377;Sunrise Cafe;american (traditional)
+46495;Papa's Cup of Joe;coffee & tea italian pizza
+46525;Pho Nouveau;american (traditional) vietnamese beer wine & spirits
+46572;Subway;fast food sandwiches
+46656;Castle Ranch Steakhouse;steakhouses
+46697;Off the Grid Pizza;food trucks pizza caterers
+46771;Grape Escape;beer wine & spirits brasseries
+46843;Red Robin Gourmet Burgers and Brews;burgers american (traditional)
+46876;Lucky Palace Chinese Restaurant;chinese
+46878;Cafe Ole;cafes mexican spanish
+47169;McDonald's;coffee & tea burgers fast food
+47206;Pizza Pie Cafe;pizza gluten-free buffets
+47243;Asiago's;italian
+47289;Willowcreek Grill & Raw Sushi;burgers sushi bars live/raw food
+47304;Europe Delicious Bakery and Grocery;bakeries
+47367;New Garden Chinese Restaurant;sandwiches american (traditional) chinese noodles
+47384;Burger Belly;burgers
+47518;Ben's Crow Inn;burgers breakfast & brunch seafood american (new)
+47784;Burger N Brew;burgers american (traditional) chicken wings mediterranean
+47832;Han's Chimaek;bars nightlife korean chicken wings beer bar chicken shop
+47963;Zen Bento;japanese
+48087;Le Coq Rouge;french
+48141;Senor Fresh Mexican Eatery;mexican
+48144;Doubletree Club Hotel Boise;american (new) hotels & travel hotels
+48162;Papa Murphy's;pizza
+48231;Happy Fish Sushi;nightlife sushi bars japanese
+48256;SkyVue Grill;burgers chicken wings
+48334;Camel's Crossing;bars nightlife wine bars american (new) beer bar vegan tapas/small plates vegetarian desserts
+48366;Moxie Java and More;coffee & tea
+48380;Taste of Nigeria African Cuisine;food trucks african
+48436;Union Block Bar & Eatery;bars american (traditional) nightlife breakfast & brunch american (new) vegan desserts
+48445;Bistro Babe;sandwiches food trucks caterers
+48480;Busters Restaurant;bars nightlife american (new) sports bars
+48556;Form & Function;coffee & tea breakfast & brunch coffee roasteries
+48730;Saffron Indian Bar & Grill;indian
+48732;Einstein Bros Bagels;coffee & tea fast food sandwiches breakfast & brunch american (new) bagels
+48807;Tazah Kabob;mediterranean afghan
+48869;Indulge Boise Food Tours;specialty food hotels & travel food tours
+48909;Spitfire Pizza;sandwiches italian bars nightlife pizza sports bars beer bar
+48970;Pizza Twist;pizza chicken wings salad
+49218;Murph's Corner Brew;coffee & tea sandwiches american (traditional) breakfast & brunch
+49231;Chow Public Market and Eatery;bars nightlife american (new) mexican mediterranean shopping centers
+49280;Ono Bento Boise;food trucks japanese barbeque hawaiian poke
+49292;Bodovino;bars nightlife wine bars american (new) beer wine & spirits
+49320;Jack in the Box;burgers fast food breakfast & brunch mexican tacos
+49385;Lemon Tree;sandwiches salad soup vegan
+49389;Five Guys;burgers fast food american (new)
+49480;Cracker Barrel Old Country Store;american (traditional) breakfast & brunch caterers southern comfort food
+49545;High Note;sandwiches italian breakfast & brunch cafes salad vegan
+49562;Hello Dinner;food trucks specialty food gluten-free food delivery services
+49627;Panda Express;fast food chinese
+49682;Fiesta Guadalajara;mexican
+49951;Big Daddy's BBQ;caterers barbeque
+49985;Flying Pie Pizzaria;bars nightlife pizza salad beer bar vegetarian
+50112;208 Pho & Vegan;vietnamese vegan
+50257;Blimpie;fast food sandwiches salad
+50281;Tarbush Kitchen;mediterranean
+50339;Franco's NY Style Pizza;pizza
+50378;Jack in the Box;burgers fast food breakfast & brunch salad mexican tacos
+50402;Twin Peaks Boise;burgers bars american (traditional) nightlife american (new) sports bars
+50460;Mancino's Pizza And Grinders;italian pizza
+50651;Jimmy John's;fast food sandwiches food delivery services
+50911;Dairy Queen Grill & Chill;bakeries burgers fast food ice cream & frozen yogurt
+50918;Adelitas Food Truck;food trucks mexican food stands
+50952;Yokozuna Teriyaki;bubble tea japanese
+51032;Papa Joe's Italian Restaurant and Bar;sandwiches italian bars nightlife breakfast & brunch pizza
+51041;The Mode Lounge;coffee & tea bars nightlife cocktail bars lounges tapas/small plates
+51077;Western Proper;bars nightlife breakfast & brunch american (new)
+51083;Taco Bell;fast food mexican tex-mex
+51094;TA;american (new) gas stations convenience stores hotels & travel hotels rest stops
+51120;Johnny Carino's;italian
+51162;Sonic Drive-In;burgers fast food ice cream & frozen yogurt
+51178;Taco Time;mexican
+51266;Pho Le;sandwiches vietnamese soup noodles
+51406;Starbucks;coffee & tea breakfast & brunch coffee roasteries
+51445;Kiwi Shake and Bake;coffee & tea bakeries ice cream & frozen yogurt breakfast & brunch desserts
+51447;Popeyes Louisiana Kitchen;fast food american (traditional) chicken wings
+51512;Los Reyes De La Torta;food trucks mexican
+51647;Del Taco;fast food mexican
+51654;Twin Dragon;chinese
+51685;Cucina Di Paolo;italian caterers
+51789;LAVITA;italian gluten-free
+51920;Goldy's Corner;coffee & tea breakfast & brunch desserts internet cafes
+51963;Burger King;burgers fast food
+52057;Red Bench Pizza;italian bars nightlife wine bars pizza desserts
+52158;Mongolian Bistro;chinese mongolian
+52164;Kibrom's Restaurant;vegan african ethiopian
+52244;Lucky Fins Seafood Grill;seafood american (new) desserts
+52316;TradeViet Specialty Foods;vietnamese
+52465;Tupelo Honey;breakfast & brunch american (new) southern waffles
+52492;Native Grill & Wings;sandwiches bars american (traditional) nightlife chicken wings sports bars
+52506;Pizza Hut;fast food italian pizza chicken wings
+52516;Le Cafe De Paris;french
+52563;The Dish;burgers sandwiches american (new)
+52596;Baskin-Robbins;bakeries ice cream & frozen yogurt
+52698;Mongolian BBQ;mongolian
+52702;The Dutch Goose;bars american (traditional) nightlife sports bars
+52768;Bardenay;bars nightlife cocktail bars american (new) distilleries
+52799;The Green Chile;american (new) southern tex-mex
+52820;Jack in the Box;burgers fast food breakfast & brunch mexican tacos
+52905;Montego Bay;caribbean
+52989;Country Donuts;donuts
+52996;Franco's NY Style Pizza;italian pizza
+53002;Deli George;sandwiches italian
+53016;O'michael's Pub & Grill;pubs bars american (traditional) nightlife sports bars irish pub
+53138;Mad Mac;fast food food trucks comfort food food stands
+53195;Zen Bento;japanese
+53210;Gem Street Kitchen;american (new) street vendors local flavor
+53288;Casa Mexico;mexican
+53322;The Goodness Land;halal middle eastern arabic
+53361;Jimmy John's;fast food sandwiches food delivery services
+53395;Txikiteo;bars nightlife breakfast & brunch wine bars caterers beer bar tapas bars basque
+53426;Baskin-Robbins;bakeries ice cream & frozen yogurt
+53483;The Griddle;coffee & tea diners breakfast & brunch
+53606;Azteca Mexican Grill;mexican
+53727;Paddles Up Poke - 9th St;sushi bars seafood specialty food hawaiian poke
+53757;Wild Plum Luncheonette;sandwiches american (traditional) american (new) gluten-free
+53848;Gangnam;korean
+53867;Subway;fast food sandwiches
+53895;El Chavo Taqueria;food trucks american (new) mexican
+53925;Jersey Mike's Subs;fast food sandwiches wraps desserts
+53948;Allegrezza's Italian Cuisine;italian breakfast & brunch pizza
+53981;Reef;bars american (traditional) nightlife tiki bars
+53997;Flatbread Neapolitan Pizzeria;sandwiches pizza salad beer wine & spirits
+54224;The Melting Pot - Boise;bars nightlife wine bars gluten-free fondue
+54246;Jersey Mike's Subs;fast food sandwiches caterers desserts
+54285;Smoky Mountain Pizzeria Grill;burgers italian pizza
+54321;Mazzah Mediterranean Grill;greek salad mediterranean
+54328;Viking Drive In;burgers
+54349;Off Broadway Deli;sandwiches
+54360;Big Jud's;burgers sandwiches american (traditional) diners
+54440;Big Mike's Tids & Bits;food trucks mexican barbeque
+54455;Domino's Pizza;sandwiches pizza chicken wings
+54621;The Brickyard;sandwiches bars nightlife wine bars steakhouses cocktail bars beer wine & spirits
+54684;The Basque Market;bars nightlife wine bars specialty food caterers beer wine & spirits tapas bars basque
+54836;Luciano's;italian
+54907;Owyhee Tavern Steak & Sea;bars nightlife steakhouses seafood cocktail bars salad soup american (new) lounges beer wine & spirits
+54948;The Chef's Hut;burgers american (traditional) breakfast & brunch
+55129;Los Mariachis;mexican
+55250;Chicago Connection - Downtown;sandwiches pizza salad
+55255;Gyro Shack;fast food sandwiches greek specialty food mediterranean ethnic food
+55276;Broadway Deli;sandwiches
+55356;Dharma Sushi & Thai;sushi bars asian fusion thai
+55374;Roux'd;soup specialty food cajun/creole street vendors food delivery services pop-up restaurants
+55416;Taziki's Mediterranean Cafe - Downtown Boise;mediterranean
+55421;Golden Wheel Drive-In;fast food
+55441;Port of Subs;sandwiches caterers
+55597;Sunshine Spice Bakery & Cafe;coffee & tea bakeries desserts afghan
+55598;The Lift Bar & Grill;bars nightlife american (new)
+55618;The Flicks: Rick's Cafe Americain;bars nightlife cafes wine bars american (new) cinema books mags
+55635;Donnie Mac's Trailer Park Cuisine;american (traditional)
+55651;Chris The Saladman;burgers salad american (new) wraps
+55652;River City Coffee & Cafe;coffee & tea sandwiches breakfast & brunch
+55653;Mi Linda Michoacana;ice cream & frozen yogurt mexican
+55719;Tepanyaki Japanese Steak House;japanese teppanyaki
+55750;Base Camp Pong + Axe;bars american (traditional) nightlife cocktail bars axe throwing
+55763;Westward;coffee & tea breakfast & brunch
+55839;Panda Express;fast food chinese
+56001;Domino's Pizza;sandwiches pizza chicken wings food delivery services
+56009;Pie Hole;pizza
+56043;Great Harvest Bread Co Meridian;bakeries sandwiches breakfast & brunch cafes caterers
+56072;Bosnia Express Boex;sandwiches american (traditional) greek mediterranean food delivery services turkish wineries modern european
+56077;Archie's Place;american (new) food stands
+56138;Northern Lights Cafe;american (traditional) breakfast & brunch steakhouses
+56222;Seoul Korean Cuisine;korean
+56234;Caffe D'arte - Boise;coffee & tea cafes
+56238;Westside Drive-In;burgers diners american (new)
+56304;Ansots Basque Chorizos & Catering;specialty food caterers meat shops basque
+56344;Flying Pie Pizzaria;pizza
+56379;CK Hawaiian BBQ;asian fusion barbeque hawaiian
+56502;EDGE Brewing Co;american (traditional) nightlife breweries gastropubs beer wine & spirits music venues
+56595;Speedy Burger;burgers
+56654;Starbucks;coffee & tea
+56679;The Funky Taco;food trucks asian fusion american (new) mexican vegan vegetarian indian tacos
+56710;Sonic Drive-In;burgers fast food ice cream & frozen yogurt
+56733;The Sapphire Room At The Riverside Hotel;nightlife american (new) jazz & blues music venues
+56737;Chef Roland's Cajun Cuisine;cajun/creole
+56758;Siam Orchid Thai Restaurant & Sushi Bar;sushi bars thai
+56793;Chili's;bars american (traditional) nightlife tex-mex
+56806;Jim's Coffee Shop;american (traditional)
+56894;Brick Oven Bistro;american (traditional) pizza american (new)
+56906;McDonald's;coffee & tea burgers fast food
+56986;Good Burger;burgers american (traditional) salad
+57127;Brown Shuga Soul Food;soul food food stands
+57164;Panda Garden;japanese chinese
+57179;Casanova Pizzeria;sandwiches pizza
+57334;Chipotle Mexican Grill;fast food mexican
+57405;Hugo's Deli;sandwiches
+57477;Bangkok Thai Restaurant;thai
+57500;Papa Murphy's;pizza
+57559;Angell's Bar & Grill;nightlife steakhouses caterers beer wine & spirits
+57608;Crescent No Lawyers Bar-Grill;bars american (traditional) nightlife
+57616;Bittercreek Alehouse;sandwiches bars nightlife gastropubs
+57618;Dutch Bros Coffee;coffee & tea cafes juice bars & smoothies
