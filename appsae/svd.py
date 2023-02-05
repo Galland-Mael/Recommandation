@@ -9,8 +9,11 @@ from math import ceil
 
 
 def get_restaurant_id(restaurant_name, metadata):
-    """
-    Gets the book ID for a book title based on the closest match in the metadata dataframe.
+    """ Récupère l'id du restaurant à partir de son nom entré en paramètres
+
+    @param restaurant_name: le nom du restaurant
+    @param metadata: le fichier contenant les restaurants de la ville du groupe
+    @return: l'id du restaurant
     """
     existing_names = list(metadata['nom'].values)
     closest_names = difflib.get_close_matches(restaurant_name, existing_names)
@@ -19,8 +22,13 @@ def get_restaurant_id(restaurant_name, metadata):
 
 
 def predict_review(user_id, restaurant_name, model, metadata):
-    """
-    Predicts the review (on a scale of 1-5) that a user would assign to a specific book.
+    """ Prédit la note de l'utilisateur sur le restaurant entré en paramètres
+
+    @param user_id: l'id de l'utilisateur
+    @param restaurant_name: le nom du restaurant
+    @param model: le model de données (svd) pour faire des prédictions
+    @param metadata: le fichier contenant les restaurants de la ville du groupe
+    @return: la prédiction pour l'utilisateur sur le restaurant
     """
     restaurant_id = get_restaurant_id(restaurant_name, metadata)
     review_prediction = model.predict(uid=user_id, iid=restaurant_id)

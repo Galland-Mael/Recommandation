@@ -52,8 +52,7 @@ def updateNom(groupe, nom):
 def suppressionUtilisateur(user, groupe):
     """ Suppression d'un utilisateur au groupe
     Si il n'y a qu'un utilisateur dans le groupe, le groupe est supprimé,
-    Si le gérant est supprimé du groupe on donne l'id_gerant au premier utilisateur
-    dans la liste_adherants
+    Si le gérant est supprimé du groupe on donne l'id_gerant au premier utilisateur dans la liste_adherants
     Sinon on supprime l'utilisateur
 
     @param user: l'utilisateur à supprimer
@@ -72,8 +71,7 @@ def suppressionUtilisateur(user, groupe):
 
 
 def creationGroupe(nom, user):
-    """ Création d'un groupe à partir de l'utilisateur user, user sera le
-    gérant du groupe
+    """ Création d'un groupe à partir de l'utilisateur user, user sera le gérant du groupe
 
     @param nom: le nom du groupe
     @param user: le gérant du groupe

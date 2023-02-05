@@ -1,6 +1,6 @@
-import difflib
 import pandas as pd
-from .svd import *
+from .svd import*
+from .models import Adherant
 
 
 def suppEspace(mot):

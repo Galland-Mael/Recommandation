@@ -3,6 +3,7 @@ from django.db.models import Avg
 from django.conf import settings
 from .listeRecommandation import listeRecommandationGroupe, listeRecommandationIndividuelle
 from time import mktime
+from .ajoutRecoBd import ajoutRecommandationsIndividuellesBd
 
 
 def addavisCSV(avis):
@@ -43,32 +44,6 @@ def updateNoteMoyenneRestaurant(restaurant):
         Restaurant.objects.filter(nom=restaurant.nom).update(note=-1)
 
 
-def majRecommandationsIndividuellesBD(user, recommandation_user):
-    """ Appel de l'algorithme de recommandation individuelle pour l'utilisateur user
-
-    @param user: l'utilisateur
-    @param recommandation_user: la recommandation existante
-    @return: /
-    """
-    date_bd = recommandation_user.date.replace(tzinfo=None).timetuple()
-    date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
-    if mktime(date_bd) <= mktime(date_actuelle) - 200:
-        # MAJ de la date de la recommandation
-        RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
-        list_restaurants = listeRecommandationIndividuelle(user)  # Liste des restaurants à recommander
-        reco = RecommandationUser.objects.get(adherant_fk=user.pk)
-        liste_reco = reco.recommandation.all()
-        # Supprime les recommandations existantes
-        for elem in liste_reco:
-            reco.recommandation.remove(elem)
-        # Ajoute les nouvelles recommandations à la liste
-        reco = RecommandationUser.objects.get(adherant_fk=user.pk)
-        for elem in list_restaurants:
-            reco.recommandation.add(elem)
-        # MAJ du datetime
-        RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
-
-
 def ajoutAvis(user, restaurant, note, avis):
     """ Fonction permettant d'ajouter une note et un avis
 
@@ -87,16 +62,7 @@ def ajoutAvis(user, restaurant, note, avis):
         addavisCSV(ajout)
         updateNoteMoyenneRestaurant(restaurant)
         if nb_review_ad >= 5: # si l'adhérent à déjà posté 5 notes
-            recommandation_user = RecommandationUser.objects.filter(adherant_fk=user.pk)
-            if recommandation_user.count() == 0: # si il n'a pas encore de recommandation
-                reco = RecommandationUser(adherant_fk=user)
-                reco.save()
-                liste = listeRecommandationIndividuelle(user)
-                for elem in liste:
-                    reco.recommandation.add(elem)
-                RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
-            else:
-                majRecommandationsIndividuellesBD(user, recommandation_user[0])
+            ajoutRecommandationsIndividuellesBd(user)
 
 
 def updateAvis(user, restaurant, note, avis):
@@ -155,28 +121,3 @@ def afficherVoirPlus(restaurant, num, user=""):
     @return: booléen en fonction de s'il faut afficher ou non "Voir Plus"
     """
     return listeAffichageAvis(restaurant, num + 1, user).count() != 0
-
-
-def ajoutBDRecommandationGroupe(groupe):
-    reco_groupe= RecommandationGroupe.objects.filter(groupe_fk=groupe)
-    if reco_groupe.count() == 0:
-        reco = RecommandationGroupe(groupe_fk=groupe)
-        reco.save()
-        list = listeRecommandationGroupe(groupe)
-        for elem in list:
-            reco.recommandation.add(elem)
-        RecommandationGroupe.objects.filter(groupe_fk=groupe).update(date=datetime.datetime.now())
-    else:
-        date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
-        date_bd = reco_groupe[0].date.replace(tzinfo=None).timetuple()
-        if mktime(date_bd) <= mktime(date_actuelle)-200:
-            RecommandationGroupe.objects.filter(groupe_fk=groupe).update(date=datetime.datetime.now())
-            list = listeRecommandationGroupe(groupe)
-            reco = RecommandationGroupe.objects.get(groupe_fk=groupe)
-            list_reco = reco.recommandation.all()
-            for elem in list_reco:
-                reco.recommandation.remove(elem)
-            reco = RecommandationGroupe.objects.get(groupe_fk=groupe)
-            for elem in list:
-                reco.recommandation.add(elem)
-            RecommandationGroupe.objects.filter(groupe_fk=groupe).update(date=datetime.datetime.now())

@@ -46,6 +46,7 @@ from .gestion_groupes import *
 from .gestion_note import *
 from .svd import *
 from .models import *
+from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from django.conf import settings
 import datetime
 import time
