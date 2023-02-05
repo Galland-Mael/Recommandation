@@ -46,6 +46,7 @@ from .gestion_groupes import *
 from .gestion_note import *
 from .svd import *
 from .models import *
+from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from django.conf import settings
 import datetime
 import time
@@ -412,8 +413,8 @@ def modification(request):
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
     if (request.POST['ville'] != user.ville):
         Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
-        if (user.nb_review >= 5):
-            majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
+        #if (user.nb_review >= 5):
+            #majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
     context = {}
     if 'mailUser' in request.session:
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
@@ -510,6 +511,13 @@ def matteo(request):
 
 
 def recommendation(request):
+    st = time.time()
+    # groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
+    # liste = listRecommandationGroupe(groupe)
+    person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
+    liste = listeRecommandationIndividuelle(person)
+    print(liste)
+    print(time.time() - st)
     return HttpResponse('')
 
 

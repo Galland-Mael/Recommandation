@@ -1,42 +1,56 @@
-import difflib
-import random
-import numpy as np
 import pandas as pd
-import os
-import time
-from surprise import Reader, Dataset, SVD, accuracy
-from surprise.model_selection import train_test_split
-from surprise.model_selection import cross_validate
-from .models import *
-from .svd import *
+from .svd import*
+from .models import Adherant
 
-def filterNomRestaurant(nom):
+
+def suppEspace(mot):
+    """ Supprime les espaces dans le mot entré en paramètres
+
+    @param mot: le mot où il faut supprimer les espaces
+    @return: le mot entré en paramètres sans espaces
     """
+    nouveau_mot = ""
+    for lettre in mot:
+        if lettre in "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789":
+            nouveau_mot += lettre
+    return nouveau_mot
 
-    @param nom:
-    @return:
+
+def tupleToList(liste_algo, restaurant_metadata):
+    """ Renvoie la liste des id de chaques restaurants présents dans la liste de tuples donnés en paramètres
+
+    @param liste_algo: liste de tuples sous la forme (resto_name, prediction)
+    @param restaurant_metadata: les restaurants de la ville de l'utilisateur
+    @return: une liste d'id de restaurants
     """
-    list = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789"
-    nouveau_nom = ""
-    for lettre in nom:
-        if lettre in list:
-            nouveau_nom += lettre
-    return nouveau_nom
-
-
-def listeRecommandationIndividuelle(user_id, taille=10):
-    start = time.time()
-    ratings_data = pd.read_csv('./ratings.csv')
-    user = Adherant.objects.get(pk=user_id)
-    restaurant_metadata = pd.read_csv('./restaurant_' + filterNomRestaurant(user.ville) +'.csv', delimiter=';', engine='python')
-    reader = Reader(rating_scale=(0, 5))
-    data = Dataset.load_from_df(ratings_data[['user_id', 'restaurant_id', 'note']], reader)
-    trainset, testset = train_test_split(data, test_size=0.20)
-    svd = SVD(verbose=False, n_epochs=23, n_factors=7)
-    predictions = svd.fit(trainset).test(testset)
-    accuracy.rmse(predictions)
-    l = algoRecommandationIndividuelle(user_id, svd, restaurant_metadata, taille)
     liste_complete = []
-    for elem in l:
-        liste_complete.append(get_restaurant_id(elem[0],restaurant_metadata))
+    for element in liste_algo:
+        liste_complete.append(get_restaurant_id(element[0], restaurant_metadata))
     return liste_complete
+
+
+def listeRecommandationIndividuelle(user, taille=10):
+    """ Construit une liste de recommandations pour l'utilisateur entré en paramètres
+
+    @param user: l'utilisateur
+    @param taille: la taille de la liste à renvoyer
+    @return: une liste d'id de restaurants
+    """
+    chemin_accces = './csv/restaurant_' + suppEspace(user.ville) + '.csv'
+    restaurant_metadata = pd.read_csv(chemin_accces, delimiter=';', engine='python')
+    tuples = algoRecommandationIndividuelleV3(user.pk, svdAlgo(), restaurant_metadata, taille)
+    return tupleToList(tuples, restaurant_metadata)
+
+
+def listeRecommandationGroupe(groupe, taille=15):
+    """ Construit une liste de recommandations pour le groupe entré en paramètres
+
+    @param groupe: le groupe
+    @param taille: la taille de la liste à renvoyer
+    @return: une liste d'id de restaurants
+    """
+    user = Adherant.objects.get(pk=groupe.id_gerant)
+    chemin_accces = './csv/restaurant_' + suppEspace(user.ville) + '.csv'
+    restaurant_metadata = pd.read_csv(chemin_accces, delimiter=';', engine='python')
+    tuples = algoRecommandationGroupe(groupe, svdAlgo(), restaurant_metadata, taille)
+    return tupleToList(tuples, restaurant_metadata)
