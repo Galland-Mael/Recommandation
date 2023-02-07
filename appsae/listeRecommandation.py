@@ -57,6 +57,6 @@ def listeRecommandationGroupe(groupe, taille=15):
     user = Adherant.objects.get(pk=groupe.id_gerant)
     chemin_accces = './csv/restaurant_' + suppEspace(user.ville) + '.csv'
     restaurant_metadata = pd.read_csv(chemin_accces, delimiter=';', engine='python')
-    tuples = algoRecommandationGroupeRapide(groupe, svdAlgo(), restaurant_metadata, taille)
-    # tuples = algoRecommandationGroupeComplet(groupe, svdAlgo(), restaurant_metadata, taille)
+    tuples = algoRecommandationGroupeComplet(groupe, svdAlgo(), restaurant_metadata, taille)
+    # tuples = algoRecommandationGroupeRapide(groupe, svdAlgo(), restaurant_metadata, taille)
     return tupleToList(tuples, restaurant_metadata)
