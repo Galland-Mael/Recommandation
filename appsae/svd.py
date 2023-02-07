@@ -8,34 +8,14 @@ from random import shuffle
 from math import ceil
 
 
-def get_restaurant_id(restaurant_name, metadata):
-    """ Récupère l'id du restaurant à partir de son nom entré en paramètres
-
-    @param restaurant_name: le nom du restaurant
-    @param metadata: le fichier contenant les restaurants de la ville du groupe
-    @return: l'id du restaurant
-    """
-    existing_names = list(metadata['nom'].values)
-    closest_names = difflib.get_close_matches(restaurant_name, existing_names)
-    restaurant_id = metadata[metadata['nom'] == closest_names[0]]['id'].values[0]
-    return restaurant_id
-
-
-def predict_review(user_id, restaurant_name, model, metadata):
-    """ Prédit la note de l'utilisateur sur le restaurant entré en paramètres
+def predict_review_id(user_id, restaurant_id, model):
+    """ Prédit une note sur un restaurant pour un utilisateur à partir d'un modèle de données passé en paramètres
 
     @param user_id: l'id de l'utilisateur
-    @param restaurant_name: le nom du restaurant
-    @param model: le model de données (svd) pour faire des prédictions
-    @param metadata: le fichier contenant les restaurants de la ville du groupe
-    @return: la prédiction pour l'utilisateur sur le restaurant
+    @param restaurant_id: l'id du restaurant
+    @param model: le modèle de données (svd)
+    @return: une prédiction (entre 0 et 5) de la note de l'utilisateur sur le restaurant
     """
-    restaurant_id = get_restaurant_id(restaurant_name, metadata)
-    review_prediction = model.predict(uid=user_id, iid=restaurant_id)
-    return review_prediction.est
-
-
-def predict_review_id(user_id, restaurant_id, model):
     return model.predict(uid=user_id, iid=restaurant_id).est
 
 
@@ -54,6 +34,13 @@ def svdAlgo():
 
 
 def retirerRestaurantAvecNote(liste_user, metadata):
+    """ Renvoie la liste des id des restaurants de la ville en retirant les restaurants déjà visistés par les
+    utilisateurs présents dans la liste_user entrée en paramètres
+
+    @param liste_user: liste des utilisateurs
+    @param metadata: fichier avec les données
+    @return: liste d'id de restaurants
+    """
     restaurants_id = list(metadata['id'].values)
     restaurants_notes_id = Avis.objects.filter(adherant_fk__in=liste_user).values_list('restaurant_fk', flat=True)
     for elem in restaurants_notes_id:
@@ -63,6 +50,15 @@ def retirerRestaurantAvecNote(liste_user, metadata):
 
 
 def algoRecommandationGroupeComplet(groupe, model, metadata, taille=15):
+    """ Renvoie les 'taille' meilleurs restaurants pour le groupe à l'aide du modèle de données et du fichier
+    contenant les restaurants passés en paramètres
+
+    @param groupe: le groupe
+    @param model: le modèle de recommandations (svd)
+    @param metadata: le fichier contenant les restaurants et leurs informations
+    @param taille: le nombre de recommandations à faire
+    @return: une liste de 'taille' id de restaurants
+    """
     start = time.time()
     # Initialisation de la liste des restaurants
     liste_restaurants = []
@@ -96,6 +92,15 @@ def algoRecommandationGroupeComplet(groupe, model, metadata, taille=15):
 
 
 def algoRecommandationGroupeRapide(groupe, model, metadata, taille=15):
+    """ Renvoie des recommandations de restaurants pour le groupe à l'aide du modèle de données et du fichier
+    contenant les restaurants passés en paramètres
+
+    @param groupe:
+    @param model:
+    @param metadata:
+    @param taille:
+    @return:
+    """
     # Initialisation du temps de départ au temps actuel, des différentes listes à [] et des tailles de listes à 0
     start = time.time()
     liste_one, liste_two, liste_three, liste_last = [], [], [], []
@@ -162,6 +167,15 @@ def algoRecommandationGroupeRapide(groupe, model, metadata, taille=15):
 
 
 def algoRecommandationIndividuelleComplet(user_id, model, metadata, taille=10):
+    """ Renvoie les 'taille' meilleurs restaurants pour l'utilisateur à l'aide du modèle de données et du fichier
+    contenant les restaurants passés en paramètres
+
+    @param user_id: l'id de l'utilisateur
+    @param model: le modèle de recommandations (svd)
+    @param metadata: le fichier contenant les restaurants et leurs informations
+    @param taille: le nombre de recommandations à faire
+    @return: une liste de 'taille' id de restaurants
+    """
     start = time.time()
     # Initialisation de la liste des restaurants
     liste_restaurants = []
@@ -180,6 +194,15 @@ def algoRecommandationIndividuelleComplet(user_id, model, metadata, taille=10):
 
 
 def algoRecommandationIndividuelleRapide(user_id, model, metadata, taille=10):
+    """ Renvoie des recommandations de restaurants pour l'utilisateur à l'aide du modèle de données et du fichier
+    contenant les restaurants passés en paramètres
+
+    @param user_id: l'id de l'utilisateur
+    @param model: le modèle de recommandations (svd)
+    @param metadata: le fichier contenant les restaurants et leurs informations
+    @param taille: le nombre de recommandations à faire
+    @return: une liste de 'taille' id de restaurants
+    """
     # Initialisation du temps de départ au temps actuel, des différentes listes à [] et des tailles de listes à 0
     start = time.time()
     liste_one, liste_two, liste_three, liste_last = [], [], [], []

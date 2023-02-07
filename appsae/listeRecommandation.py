@@ -43,7 +43,6 @@ def listeRecommandationIndividuelle(user, taille=10):
     restaurant_metadata = pd.read_csv(chemin_accces, delimiter=';', engine='python')
     tuples = algoRecommandationIndividuelleComplet(user.pk, svdAlgo(), restaurant_metadata, taille)
     # tuples = algoRecommandationIndividuelleRapide(user.pk, svdAlgo(), restaurant_metadata, taille)
-    print("Temps d'éxécution de l'algorithme de recommandations individuelles: " + str(time.time() - st))
     return tupleToList(tuples, restaurant_metadata)
 
 
@@ -60,5 +59,4 @@ def listeRecommandationGroupe(groupe, taille=15):
     restaurant_metadata = pd.read_csv(chemin_accces, delimiter=';', engine='python')
     tuples = algoRecommandationGroupeRapide(groupe, svdAlgo(), restaurant_metadata, taille)
     # tuples = algoRecommandationGroupeComplet(groupe, svdAlgo(), restaurant_metadata, taille)
-    print("Temps d'éxécution de l'algorithme de recommandations de groupe: " + str(time.time() - st))
     return tupleToList(tuples, restaurant_metadata)
