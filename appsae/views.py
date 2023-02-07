@@ -492,30 +492,12 @@ def search(request):
     return HttpResponse('')
 
 
-def matteo(request):
-    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
-    resto = Restaurant.objects.filter(nom="Burger King")[0]
-    print(afficherAvis(adherant, resto))
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
-                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
-    modifPAGE()
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
-                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
-    modifPAGE()
-    print("------------------------------------------------")
-    return redirect('index')
-
-
 def recommendation(request):
     st = time.time()
-    # groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
-    # liste = listRecommandationGroupe(groupe)
-    person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
-    liste = listeRecommandationIndividuelle(person)
+    groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
+    liste = listeRecommandationGroupe(groupe)
+    # person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
+    #liste = listeRecommandationIndividuelle(person)
     print(liste)
     print(time.time() - st)
     return HttpResponse('')

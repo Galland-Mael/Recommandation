@@ -35,6 +35,10 @@ def predict_review(user_id, restaurant_name, model, metadata):
     return review_prediction.est
 
 
+def predict_review_id(user_id, restaurant_id, model):
+    return model.predict(uid=user_id, iid=restaurant_id).est
+
+
 def svdAlgo():
     """ Construction de l'algorithme de recommandation SVD
 
@@ -49,64 +53,99 @@ def svdAlgo():
     return svd
 
 
-def algoRecommandationGroupe(groupe, model, metadata, taille=10):
-    """ Renvoie une liste avec entre 0 et taille restaurants recommandés
-    en fonction des adhérents présents dans le groupe
+def retirerRestaurantAvecNote(liste_user, metadata):
+    restaurants_id = list(metadata['id'].values)
+    restaurants_notes_id = Avis.objects.filter(adherant_fk__in=liste_user).values_list('restaurant_fk', flat=True)
+    for elem in restaurants_notes_id:
+        if elem in restaurants_id:
+            restaurants_id.remove(elem)
+    return restaurants_id
 
-    @param groupe: le groupe d'adhérents
-    @param model: le model de données (svd) pour faire des prédictions
-    @param metadata: le fichier contenant les restaurants de la ville du groupe
-    @param taille: la taille de la liste à renvoyer
-    @return: Liste de tuples (resto_name, prediction)
-    """
+
+def algoRecommandationGroupeComplet(groupe, model, metadata, taille=15):
+    start = time.time()
+    # Initialisation de la liste des restaurants
+    liste_restaurants = []
+
+    # Initialisation de la liste des adherents du groupe
+    liste_adherents = groupe.liste_adherants.all()
+
+    # Récupération de la liste des noms de restaurants mélangé au hasard et de la taille de cette liste
+    restaurants_id = retirerRestaurantAvecNote(liste_adherents, metadata)
+    taille_liste_resto = len(restaurants_id)
+
+    # Initialisation de la variable de prise en compte des prédictions individuelles (de 2.5 à 3.75)
+    taille_ajout = min(2.5 + (ceil(taille_liste_resto / 1000) - 1) * 2.5 / 10, 3.75)
+
+    for restaurant_id in restaurants_id:
+        ajouter = True
+        moyenne = 0
+        for people in liste_adherents:
+            note = predict_review_id(people.pk, restaurant_id, model)
+            # Si la note de cet utilisateur n'est pas "bonne", on ne prend pas le restaurant
+            if note <= taille_ajout:
+                ajouter = False
+                break
+            moyenne += note  # ajout de la prédiction de l'utilisateur à la moyenne
+        moyenne = moyenne/(len(liste_adherents))
+        if ajouter:
+            liste_restaurants = ajoutValeur(liste_restaurants, restaurant_id, moyenne, taille)
+
+    print("TEMPS TRI : " + str(time.time() - start))
+    return liste_restaurants
+
+
+def algoRecommandationGroupeRapide(groupe, model, metadata, taille=15):
     # Initialisation du temps de départ au temps actuel, des différentes listes à [] et des tailles de listes à 0
     start = time.time()
     liste_one, liste_two, liste_three, liste_last = [], [], [], []
     liste_1_len, liste_2_len, liste_3_len = 0, 0, 0
 
+    # Initialisation de la liste des adherents du groupe
+    liste_adherents = groupe.liste_adherants.all()
+
     # Récupération de la liste des noms de restaurants mélangé au hasard et de la taille de cette liste
-    restaurant_names = list(metadata['nom'].values)
-    shuffle(restaurant_names)
-    taille_liste_resto = len(restaurant_names)
+    restaurants_id = retirerRestaurantAvecNote(liste_adherents, metadata)
+    shuffle(restaurants_id)
+    taille_liste_resto = len(restaurants_id)
 
     # Initialisation de la variable de prise en compte des prédictions individuelles (de 2.5 à 3.75)
     taille_ajout = min(2.5 + (ceil(taille_liste_resto / 1000) - 1) * 2.5 / 10, 3.75)
     compteur = 0
 
     # Parcours de chaque restaurant jusqu'à avoir assez de restaurants "intéressants" à retourner
-    for restaurant_name in restaurant_names:
+    for restaurant_id in restaurants_id:
         compteur += 1
         moyenne = 0
         ajouter = True
         # Prédit les notes de chaque utilisateurs du groupe sur le restaurant
-        liste_adherents = groupe.liste_adherants.all()
         for people in liste_adherents:
-            note = predict_review(people.pk, restaurant_name, model, metadata)
+            note = predict_review_id(people.pk, restaurant_id, model)
             # Si la note de cet utilisateur n'est pas "bonne", on ne prend pas le restaurant
             if note <= taille_ajout:
                 ajouter = False
                 break
-            moyenne += note # ajout de la prédiction de l'utilisateur à la moyenne
+            moyenne += note  # ajout de la prédiction de l'utilisateur à la moyenne
 
         # Si les prédictions de chaque utilisateur sont au dessus du taux minimum
         if ajouter:
-            moyenne = round(moyenne/(liste_adherents.count()),5)
+            moyenne = round(moyenne / (liste_adherents.count()), 5)
             if moyenne >= 3.5:
                 if moyenne >= 4.35:
                     liste_1_len += 1
-                    liste_one.append((restaurant_name, moyenne))
+                    liste_one.append((restaurant_id, moyenne))
                     # Si la première liste fait la bonne taille, on arête l'algorithme
                     if liste_1_len == taille:
-                        print("TEMPS ALGO : " + str(time.time() - start) + "   compteur :" + str(compteur))
+                        print("TEMPS TRI : " + str(time.time() - start))
                         return liste_one
                 elif moyenne >= 4.25:
                     liste_2_len += 1
-                    liste_two = ajoutValeur(liste_two, restaurant_name, moyenne, taille - liste_1_len)
+                    liste_two = ajoutValeur(liste_two, restaurant_id, moyenne, taille - liste_1_len)
                 elif liste_1_len + liste_2_len < taille and moyenne >= 4.05:
                     liste_3_len += 1
-                    liste_three = ajoutValeur(liste_three, restaurant_name, moyenne, taille - liste_1_len - liste_2_len)
+                    liste_three = ajoutValeur(liste_three, restaurant_id, moyenne, taille - liste_1_len - liste_2_len)
                 elif liste_2_len + liste_1_len + liste_3_len < taille:
-                    liste_last = ajoutValeur(liste_last, restaurant_name, moyenne, taille - liste_1_len - liste_2_len -
+                    liste_last = ajoutValeur(liste_last, restaurant_id, moyenne, taille - liste_1_len - liste_2_len -
                                              liste_3_len)
 
             # Si l'algorithme est lancé depuis plus de 20 secondes
@@ -117,49 +156,56 @@ def algoRecommandationGroupe(groupe, model, metadata, taille=10):
                         or (time.time() - start > 30 and liste_1_len + liste_2_len + liste_3_len >= taille):
                     break
 
-    print("TEMPS ALGO : " + str(time.time() - start) + "   compteur :" + str(compteur))
     liste_one = liste_one + liste_two + liste_three + liste_last
+    print("TEMPS TRI : " + str(time.time() - start))
     return liste_one[:taille]
 
 
-def algoRecommandationIndividuelleV3(user_id, model, metadata, taille=10):
-    """ Renvoie une liste entre 0 et taille restaurants recommandés en fonction de l'adhérent entré en paramètres
+def algoRecommandationIndividuelleComplet(user_id, model, metadata, taille=10):
+    start = time.time()
+    # Initialisation de la liste des restaurants
+    liste_restaurants = []
 
-    @param user_id: L'id de l'adhérent
-    @param model: Le modèle de données (svd) pour faire les recommandations
-    @param metadata: les restaurants de la ville de l'utilisateur
-    @param taille: la taille maximale de la liste à renvoyer
-    @return: Liste de tuples (resto_name, prediction)
-    """
+    # Récupération de la liste des id de restaurants et de la taille de cette liste
+    restaurants_id = retirerRestaurantAvecNote([user_id], metadata)
+    taille_liste_resto = len(restaurants_id)
+
+    for restaurant_id in restaurants_id:
+        note = predict_review_id(user_id, restaurant_id, model)
+        # Si la note de cet utilisateur n'est pas "bonne", on ne prend pas le restaurant
+        liste_restaurants = ajoutValeur(liste_restaurants, restaurant_id, note, taille)
+
+    print("TEMPS TRI : " + str(time.time() - start))
+    return liste_restaurants
+
+
+def algoRecommandationIndividuelleRapide(user_id, model, metadata, taille=10):
     # Initialisation du temps de départ au temps actuel, des différentes listes à [] et des tailles de listes à 0
     start = time.time()
     liste_one, liste_two, liste_three, liste_last = [], [], [], []
     liste_1_len, liste_2_len, liste_3_len = 0, 0, 0
 
     # Récupération de la liste des noms de restaurants mélangé au hasard et de la taille de cette liste
-    restaurant_names = list(metadata['nom'].values)
-    shuffle(restaurant_names)
-    taille_liste_resto = len(restaurant_names)
-    compteur = 0
+    restaurants_id = retirerRestaurantAvecNote([user_id], metadata)
+    shuffle(restaurants_id)
+    taille_liste_resto = len(restaurants_id)
 
-    for restaurant_name in restaurant_names:
-        compteur += 1
-        note = predict_review(user_id, restaurant_name, model, metadata)
+    for restaurant_id in restaurants_id:
+        note = predict_review_id(user_id, restaurant_id, model)
         if note >= 3.75:
             if note >= 4.55:
                 liste_1_len += 1
-                liste_one.append((restaurant_name, note))
+                liste_one.append((restaurant_id, note))
                 if liste_1_len == taille:
-                    print("TEMPS ALGO : " + str(time.time() - start) + "   compteur :" + str(compteur))
                     return liste_one
             elif note >= 4.45:
                 liste_2_len += 1
-                liste_two = ajoutValeur(liste_two, restaurant_name, note, taille - liste_1_len)
+                liste_two = ajoutValeur(liste_two, restaurant_id, note, taille - liste_1_len)
             elif liste_1_len + liste_2_len < taille and note >= 4.25:
                 liste_3_len += 1
-                liste_three = ajoutValeur(liste_three, restaurant_name, note, taille - liste_1_len - liste_2_len)
+                liste_three = ajoutValeur(liste_three, restaurant_id, note, taille - liste_1_len - liste_2_len)
             elif liste_1_len + liste_2_len + liste_3_len < taille:
-                liste_last = ajoutValeur(liste_last, restaurant_name, note, taille - liste_1_len - liste_2_len -
+                liste_last = ajoutValeur(liste_last, restaurant_id, note, taille - liste_1_len - liste_2_len -
                                          liste_3_len)
 
         # Si l'algorithme est lancé depuis plus de 20 secondes
@@ -170,47 +216,9 @@ def algoRecommandationIndividuelleV3(user_id, model, metadata, taille=10):
                     or (time.time() - start > 15 and liste_1_len + liste_2_len + liste_3_len >= taille):
                 break
 
-    print("TEMPS ALGO : " + str(time.time() - start) + "   compteur :" + str(compteur))
     liste_one = liste_one + liste_two + liste_three + liste_last
+    print("TEMPS TRI : " + str(time.time() - start))
     return liste_one[:taille]
-
-
-def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
-    restaurant_names = list(metadata['nom'].values)
-    liste = []
-    list_length = 0
-
-    st = time.time()
-    for restaurant_name in restaurant_names:
-        rating = predict_review(user_id, restaurant_name, model, metadata)
-        if rating > 4.5:
-            liste.append((restaurant_name, rating))
-            list_length+=1
-            if (list_length == taille):
-                return liste
-    return liste
-
-
-def algoRecommandationIndividuelle(user_id, model, metadata,taille=10):
-    restaurant_names = list(metadata['nom'].values)
-    liste = []
-    list_length = 0
-
-    # Pour prendre les elements dans une liste de 10 max
-    for restaurant_name in restaurant_names[:taille]:
-        rating = predict_review(user_id, restaurant_name, model, metadata)
-        liste = ajoutDebutListe(liste, restaurant_name, rating, taille)
-    min = liste[taille-1][1]
-    # on fait commencer le min à minimum 4.5
-    if (min < 4.5):
-        min = 4.5
-
-    for restaurant_name in restaurant_names[taille:]:
-        rating = predict_review(user_id, restaurant_name, model, metadata)
-        if rating > min:
-            liste = ajoutList(liste,restaurant_name, rating, taille)
-            min = liste[taille-1][1]
-    return liste
 
 
 def ajoutValeur(list, resto_name, prediction, taille_max=15):
@@ -240,42 +248,3 @@ def ajoutValeur(list, resto_name, prediction, taille_max=15):
         list.insert(taille, (resto_name, prediction))
 
     return list[:taille_max] # On ne retourne que taille_max tuples de (restaurant, note)
-
-
-def ajoutDebutListe(list,resto_name, prediction, taille_max=10):
-    taille = len(list)
-    return_list = []
-    if taille == 0:
-        return_list.append((resto_name, prediction))
-    else:
-        i = 0
-        while list[i][1] > prediction and i != taille - 1:
-            return_list.append(list[i])
-            i += 1
-        return_list.append((resto_name, prediction))
-        if i <= taille - 1:
-            while i != taille:
-                return_list.append(list[i])
-                i += 1
-    return return_list
-
-
-def ajoutList(list, resto_name, prediction, taille=10):
-    """ Ajoute le tuple (resto_name, prediction) dans la liste (de taille maximale 10), à l'endroit où la prédiction
-    est inférieur au deuxieme élement du tuple
-
-    @param list: la liste de tuples
-    @param resto_name: le nom du restaurant à ajouter
-    @param prediction: la prediction sur le restaurant à ajouter
-    @return: la liste mise à jour
-    """
-    for i in range(taille):
-        if list[i][1] < prediction:
-            tmp = list[i]
-            list[i] = (resto_name, prediction)
-            for j in range(i + 1, taille):
-                next = list[j]
-                list[j] = tmp
-                tmp = next
-            break
-    return list

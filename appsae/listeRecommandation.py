@@ -1,3 +1,5 @@
+import time
+
 import pandas as pd
 from .svd import*
 from .models import Adherant
@@ -25,7 +27,7 @@ def tupleToList(liste_algo, restaurant_metadata):
     """
     liste_complete = []
     for element in liste_algo:
-        liste_complete.append(get_restaurant_id(element[0], restaurant_metadata))
+        liste_complete.append(element[0])
     return liste_complete
 
 
@@ -36,9 +38,12 @@ def listeRecommandationIndividuelle(user, taille=10):
     @param taille: la taille de la liste à renvoyer
     @return: une liste d'id de restaurants
     """
+    st = time.time()
     chemin_accces = './csv/restaurant_' + suppEspace(user.ville) + '.csv'
     restaurant_metadata = pd.read_csv(chemin_accces, delimiter=';', engine='python')
-    tuples = algoRecommandationIndividuelleV3(user.pk, svdAlgo(), restaurant_metadata, taille)
+    tuples = algoRecommandationIndividuelleComplet(user.pk, svdAlgo(), restaurant_metadata, taille)
+    # tuples = algoRecommandationIndividuelleRapide(user.pk, svdAlgo(), restaurant_metadata, taille)
+    print("Temps d'éxécution de l'algorithme de recommandations individuelles: " + str(time.time() - st))
     return tupleToList(tuples, restaurant_metadata)
 
 
@@ -49,8 +54,11 @@ def listeRecommandationGroupe(groupe, taille=15):
     @param taille: la taille de la liste à renvoyer
     @return: une liste d'id de restaurants
     """
+    st = time.time()
     user = Adherant.objects.get(pk=groupe.id_gerant)
     chemin_accces = './csv/restaurant_' + suppEspace(user.ville) + '.csv'
     restaurant_metadata = pd.read_csv(chemin_accces, delimiter=';', engine='python')
-    tuples = algoRecommandationGroupe(groupe, svdAlgo(), restaurant_metadata, taille)
+    tuples = algoRecommandationGroupeRapide(groupe, svdAlgo(), restaurant_metadata, taille)
+    # tuples = algoRecommandationGroupeComplet(groupe, svdAlgo(), restaurant_metadata, taille)
+    print("Temps d'éxécution de l'algorithme de recommandations de groupe: " + str(time.time() - st))
     return tupleToList(tuples, restaurant_metadata)
