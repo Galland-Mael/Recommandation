@@ -104,7 +104,7 @@ class Avis(models.Model):
 
 
 class RecommandationUser(models.Model):
-    adherant_fk = models.ForeignKey(Adherant, on_delete=models.CASCADE,unique=True)
+    adherant_fk = models.OneToOneField(Adherant, on_delete=models.CASCADE)
     date = models.DateTimeField(default=datetime.datetime.now)
     recommandation = models.ManyToManyField(Restaurant)
 
