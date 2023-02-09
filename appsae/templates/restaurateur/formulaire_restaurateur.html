@@ -1,0 +1,65 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/formulaire_restaurateur.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/creationGroup.css' %}"/>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+{% endblock %}
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+{% block main %}
+    <div class="body flex vertical-center justify-center">
+    <div class="container">
+        <form action="" method="POST" class="post-form form">
+            {% csrf_token %}
+            <div class="title-setting">Inscrire votre restaurant</div>
+            <div class="field left">
+                <label class="label" for="nom">Nom du restaurant * :</label>
+                <input class="input_large" type="text" name="nom" class="input">
+            </div>
+            <div class="field left">
+                <label class="label" for="adresse">Adresse du restaurant * :</label>
+                <input class="input_large" type="text" name="adresse" class="input">
+            </div>
+            <div class="double left">
+                <div class="field-double right">
+                    <label class="label" for="ville">Ville * :</label>
+                    <input class="input_large" type="text" name="ville" class="input">
+                </div>
+                <div class="field-double left">
+                    <label class="label" for="postal">Code Postal * :</label>
+                    <input class="input_large" type="text" name="postal" class="input">
+                </div>
+            </div>
+            <div class="double left">
+                <div class="field-double right">
+                    <label class="label" for="pays">Pays * :</label>
+                    <input class="input_large" type="text" name="pays" class="input">
+                </div>
+                <div class="field-double left">
+                    <label class="label" for="etat">Etat :</label>
+                    <input class="input_large" type="text" name="etat" class="input">
+                </div>
+            </div>
+            <div class="double left">
+                <div class="field-double right">
+                    <label class="label" for="longitude">Longitude * :</label>
+                    <input class="input_large" type="text" name="longitude" class="input">
+                </div>
+                <div class="field-double left">
+                    <label class="label" for="latitude">Latitude * :</label>
+                    <input class="input_large" type="text" name="latitude" class="input">
+                </div>
+            </div>
+            <div class="btn">
+                <button class="bouton">Envoyer la demande</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    {% include "source/footer.html" %}
+{% endblock %}

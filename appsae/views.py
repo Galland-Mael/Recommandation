@@ -419,6 +419,9 @@ def login_restaurateur(request):
     return render(request, 'restaurateur/login_restaurateur.html')
 
 
+def formulaire_demande_restaurateur(request):
+    return render(request, 'restaurateur/formulaire_restaurateur.html')
+
 def modification(request):
     user = Adherant.objects.get(mail=request.session['mailUser'])
     if request.POST['nom'] != '' and request.POST['nom'] != user.nom:
