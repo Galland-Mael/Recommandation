@@ -46,6 +46,8 @@ from .gestion_groupes import *
 from .gestion_note import *
 from .svd import *
 from .models import *
+from .generateDoc import *
+from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from django.conf import settings
 import datetime
 import time
@@ -435,8 +437,8 @@ def modifUser(request):
 
 
 def verificationEmail(request):
-    print("apeler")
     ''' Fonction qui permet l'envoi d'un mail à un utilisateur depuis l'adresse mail du site web '''
+    print("apeler")
     try:
         send_mail("Vérification de votre compte - Ne pas répondre",
                   "Code de vérification :\n"
@@ -473,8 +475,6 @@ def recommandation():
     return list
 
 
-'''Fonction qui detruit la session et redirige sur la page index'''
-
 
 def logoutUser(request):
     try:
@@ -510,10 +510,27 @@ def matteo(request):
 
 
 def recommendation(request):
+    """
+    crée une liste de recommandations individuelles
+    @param request:
+    @return:
+    """
+    st = time.time()
+    # groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
+    # liste = listRecommandationGroupe(groupe)
+    person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
+    liste = listeRecommandationIndividuelle(person)
+    print(liste)
+    print(time.time() - st)
     return HttpResponse('')
 
 
 def export_restaurant(request):
+    '''
+    exporte l'ensemble des restaurants dans des fichiers csv séparés en fonction de leur ville
+    @param request:
+    @return:
+    '''
     listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
                   "Saint Louis", "Reno",
                   "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
@@ -540,6 +557,11 @@ def export_restaurant(request):
 
 
 def export_ratings(request):
+    """
+    Exporte l'ensemble des ratings dans un fichier csv ratings.csv
+    @param request:
+    @return:
+    """
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
     f.writelines("user_id,restaurant_id,note")
@@ -551,6 +573,11 @@ def export_ratings(request):
 
 
 def setImg(request):
+    """
+    Met des photos pour chaque restaurant avec des img set
+    @param request:
+    @return:
+    """
     i = 0
     y = 0
     for restaurant in Restaurant.objects.all():
@@ -603,3 +630,14 @@ def addAvis(request, pk):
     }
     connect(request, context)
     return render(request, 'avis/moreAvis.html', context)
+
+
+def exportHTML():
+    """
+    Crée un ensemble de fichier html qui correspondent à la doc
+    @return:
+    """
+    generate_html_docs("C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\appsae",
+                       "C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\pydoc")
+
+
