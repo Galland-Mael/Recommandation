@@ -8,6 +8,14 @@ import datetime
 from unixtimestampfield.fields import UnixTimeStampField
 
 
+class Restaurateur(models.Model):
+    mail = models.EmailField(max_length=254)
+    password = models.CharField(max_length=255)
+    profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
+
+    def __str(self):
+        return self.mail
+
 class Adherant(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
@@ -37,11 +45,26 @@ class RestaurantType(models.Model):
     def __str__(self):
         return self.nom
 
+
 class ImageRestaurant(models.Model):
     image = models.ImageField(upload_to='liste_images')
 
     def __str__(self):
         return str(self.id)
+
+
+class DemandeCreationRestaurant(models.Model):
+    nom = models.CharField(max_length=50)
+    adresse = models.CharField(max_length=50)
+    ville = models.CharField(max_length=50, default='')
+    zip_code = models.CharField(max_length=50, default='')
+    pays = models.CharField(max_length=50)
+    etat = models.CharField(max_length=50, default='')
+    longitude = models.CharField(max_length=70, default='')
+    latitude = models.CharField(max_length=70, default='')
+    image_front = models.ImageField(upload_to='img_demande/', default='img_restaurant/avatar.jpeg')
+    type = models.ManyToManyField(RestaurantType)
+    img = models.ManyToManyField(ImageRestaurant)
 
 
 class Restaurant(models.Model):

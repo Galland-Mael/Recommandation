@@ -25,16 +25,18 @@ urlpatterns = [
     path('voirPlus/(<pk>)', voirPlus, name='voirPlus'),
     path('groupe/', groupe, name='groupe'),
     path('creationGroup/', creationGroup, name='creationGroup'),
-    path('groupRecommandations/(<pk>)',groupRecommandations,name='groupRecommandations'),
+    path('groupRecommandations/(<pk>)', groupRecommandations, name='groupRecommandations'),
     path('groupePage/', groupePage, name='groupePage'),
-    path('searchRestau/',searchRestau,name='searchRestau'),
+    path('searchRestau/', searchRestau, name='searchRestau'),
     path('nomGroup/', nomGroup, name='nomGroup'),
     path('createGroupe/', createGroupe, name='createGroupe'),
-    path('modification/',modification,name='modification'),
+    path('modification/', modification, name='modification'),
     path('recommandation/', recommandation, name='recommandation'),
     path('setImg/', setImg, name='setImg'),
-    path('deleteGroup/(<pk>)',deleteGroup,name='deleteGroup'),
-    path('recommendation', recommendation,name='recommendation'),
+    path('deleteGroup/(<pk>)', deleteGroup, name='deleteGroup'),
+    path('recommendation', recommendation, name='recommendation'),
+    path('restaurateur/login', login_restaurateur, name='login_restaurateur'),
+    path('restaurateur/register', register_restaurateur, name='register_restaurateur'),
 ]
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

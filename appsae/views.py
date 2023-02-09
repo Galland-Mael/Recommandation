@@ -399,6 +399,26 @@ def login(request):
         return render(request, 'user/login.html')
 
 
+def register_restaurateur(request):
+    if request.method == "POST":
+        info = request.POST
+        print(info)
+        if info['password_verif'] == info['password']:
+            print("C'est bon")
+            if info['mail'] != '' and info['password'] != '':
+                restaurateur = Restaurateur(
+                    mail= info['mail'],
+                    password=hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
+                )
+                restaurateur.save()
+                return redirect('restaurateur/login_restaurateur')
+    return render(request, 'restaurateur/register_restaurateur.html')
+
+
+def login_restaurateur(request):
+    return render(request, 'restaurateur/login_restaurateur.html')
+
+
 def modification(request):
     user = Adherant.objects.get(mail=request.session['mailUser'])
     if request.POST['nom'] != '' and request.POST['nom'] != user.nom:

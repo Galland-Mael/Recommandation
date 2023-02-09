@@ -1,0 +1,40 @@
+{% extends 'source/base.html' %}
+{% load static %}
+{% block main %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="backward">
+    <a href="{% url 'index' %}">
+        <div class="home-login fa fa-home"></div>
+    </a>
+</div>
+<div class="body flex vertical-center justify-center">
+    <div class="container">
+        <form action="" method="POST" class="post-form form">
+            {% csrf_token %}
+            <div class="title-setting">Connexion</div>
+            <div class="field">
+                <div class="label">
+                    Mail
+                </div>
+                <input type="text" name="mail" class="input">
+                {% for msg in messages %}
+                <div class="failInfo">{{msg}}</div>
+                {% endfor %}
+            </div>
+            <div class="field">
+                <div class="label">
+                    Mot de passe
+                </div>
+                <input type="password" name="password" class="input">
+            </div>
+            <div class="field">
+                <button class="next-1">connexion</button>
+            </div>
+        </form>
+            <a href="{% url 'register_restaurateur' %}"><span class="new-account">je n'ai pas de compte</span></a>
+    </div>
+</div>
+{% endblock %}
