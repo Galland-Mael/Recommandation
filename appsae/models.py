@@ -69,7 +69,6 @@ class DemandeCreationRestaurant(models.Model):
     restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE, default=None)
 
 
-
 class Restaurant(models.Model):
     nom = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)

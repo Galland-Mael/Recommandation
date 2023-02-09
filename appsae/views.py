@@ -402,9 +402,7 @@ def login(request):
 def register_restaurateur(request):
     if request.method == "POST":
         info = request.POST
-        print(info)
         if info['password_verif'] == info['password']:
-            print("C'est bon")
             if info['mail'] != '' and info['password'] != '':
                 restaurateur = Restaurateur(
                     mail= info['mail'],
@@ -416,10 +414,31 @@ def register_restaurateur(request):
 
 
 def login_restaurateur(request):
+    if request.method == "POST":
+        info = request.POST
+        adherants = Adherant.objects.filter(mail=info['mail'])
+        if adherants.count() == 1:
+            hashed_password = hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
+            if hashed_password == adherants[0].password:
+                return redirect('formulaire_demande_restaurateur')
     return render(request, 'restaurateur/login_restaurateur.html')
 
 
 def formulaire_demande_restaurateur(request):
+    if request.method == "POST":
+        info = request.POST
+        demande = DemandeCreationRestaurant(
+            nom=info['nom'],
+            adresse=info['adresse'],
+            ville=info['ville'],
+            zip_code=info['postal'],
+            pays=info['pays'],
+            etat=info['etat'],
+            longitude=info['longitude'],
+            latitude=info['latitude'],
+        )
+        demande.save()
+        return render(request, 'restaurateur/formulaire_restaurateur.html')
     return render(request, 'restaurateur/formulaire_restaurateur.html')
 
 def modification(request):
