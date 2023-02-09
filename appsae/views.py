@@ -46,6 +46,7 @@ from .gestion_groupes import *
 from .gestion_note import *
 from .svd import *
 from .models import *
+from .generateDoc import *
 from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from django.conf import settings
 import datetime
@@ -522,6 +523,11 @@ def recommendation(request):
 
 
 def export_restaurant(request):
+    '''
+    exporte l'ensemble des restaurants dans des fichiers csv séparés en fonction de leur ville
+    @param request:
+    @return:
+    '''
     listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
                   "Saint Louis", "Reno",
                   "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
@@ -548,6 +554,11 @@ def export_restaurant(request):
 
 
 def export_ratings(request):
+    """
+    exporte l'ensemble des ratings dans un fichier csv ratings.csv
+    @param request:
+    @return:
+    """
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
     f.writelines("user_id,restaurant_id,note")
@@ -559,6 +570,11 @@ def export_ratings(request):
 
 
 def setImg(request):
+    """
+    met des photos pour chaque restaurant
+    @param request:
+    @return:
+    """
     i = 0
     y = 0
     for restaurant in Restaurant.objects.all():
@@ -611,3 +627,10 @@ def addAvis(request, pk):
     }
     connect(request, context)
     return render(request, 'avis/moreAvis.html', context)
+
+
+def exportHTML():
+    generate_html_docs("C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\appsae",
+                       "C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\pydoc")
+
+

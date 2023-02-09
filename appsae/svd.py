@@ -6,6 +6,11 @@ from surprise.model_selection import train_test_split
 from .models import *
 from random import shuffle
 from math import ceil
+import os
+import django
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "<your_project_name>.settings")
+
 
 
 def get_restaurant_id(restaurant_name, metadata):
@@ -123,13 +128,8 @@ def algoRecommandationGroupe(groupe, model, metadata, taille=10):
 
 
 def algoRecommandationIndividuelleV3(user_id, model, metadata, taille=10):
-    """ Renvoie une liste entre 0 et taille restaurants recommandés en fonction de l'adhérent entré en paramètres
-
-    @param user_id: L'id de l'adhérent
-    @param model: Le modèle de données (svd) pour faire les recommandations
-    @param metadata: les restaurants de la ville de l'utilisateur
-    @param taille: la taille maximale de la liste à renvoyer
-    @return: Liste de tuples (resto_name, prediction)
+    """
+    Renvoie une liste entre 0 et taille restaurants recommandés en fonction de l'adhérent entré en paramètres
     """
     # Initialisation du temps de départ au temps actuel, des différentes listes à [] et des tailles de listes à 0
     start = time.time()
