@@ -631,13 +631,13 @@ def addAvis(request, pk):
     connect(request, context)
     return render(request, 'avis/moreAvis.html', context)
 
-
-def exportHTML():
-    """
-    Crée un ensemble de fichier html qui correspondent à la doc
-    @return:
-    """
-    generate_html_docs("C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\appsae",
-                       "C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\pydoc")
-
+#
+# def exportHTML():
+#     """
+#     Crée un ensemble de fichier html qui correspondent à la doc
+#     @return:
+#     """
+#     generate_html_docs("C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\appsae",
+#                        "C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\pydoc")
+#
 

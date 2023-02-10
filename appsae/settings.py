@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'appsae.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'bdBien4.sqlite3',
+        'NAME': BASE_DIR / 'bdBien5.sqlite3',
     }
 }
 
