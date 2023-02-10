@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrateur</title>
+    <link rel="stylesheet" type="text/css" href="static/CSS/page_admin.css"/>
+</head>
+<body>
+    {% for element in demandes %}
+        <div class="demande">
+            {{ element.nom }}
+            <a href="{% url 'validation_admin' element.pk %}"> Consulter </a>
+        </div>
+    {% endfor %}
+</body>
+</html>

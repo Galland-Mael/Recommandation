@@ -84,6 +84,22 @@ def index(request):
     return render(request, 'index/index.html', context)
 
 
+def validation_admin(request, pk):
+    demande = DemandeCreationRestaurant.objects.get(pk=pk)
+    context = {}
+    context['demande'] = demande
+    connect(request, context)
+    return render(request, 'administrateur/validation.html', context)
+
+
+def administrateur_page(request):
+    context = {}
+    context['demandes'] = DemandeCreationRestaurant.objects.all()
+    print(DemandeCreationRestaurant.objects.all())
+    connect(request, context)
+    return render(request, 'administrateur/index.html', context)
+
+
 def deleteGroup(request, pk):
     groupe = Groupe.objects.get(pk=pk)
     suppressionGroupe(groupe)
@@ -409,23 +425,30 @@ def register_restaurateur(request):
                     password=hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
                 )
                 restaurateur.save()
-                return redirect('restaurateur/login_restaurateur')
+                return redirect('../restaurateur/login')
     return render(request, 'restaurateur/register_restaurateur.html')
 
 
 def login_restaurateur(request):
     if request.method == "POST":
         info = request.POST
-        adherants = Adherant.objects.filter(mail=info['mail'])
-        if adherants.count() == 1:
+        restaurateur = Restaurateur.objects.filter(mail=info['mail'])
+        print(restaurateur)
+        if restaurateur.count() == 1:
             hashed_password = hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
-            if hashed_password == adherants[0].password:
+            print("PASSWORD TEST")
+            if hashed_password == restaurateur[0].password:
+                user = Restaurateur.objects.get(mail=info['mail'])
+
+                request.session['mailRestaurateur'] = user.mail
+                sessionMailUser = request.session['mailRestaurateur']
+
                 return redirect('formulaire_demande_restaurateur')
     return render(request, 'restaurateur/login_restaurateur.html')
 
 
 def formulaire_demande_restaurateur(request):
-    if request.method == "POST":
+    if request.method == "POST" and 'mailRestaurateur' in request.session:
         info = request.POST
         demande = DemandeCreationRestaurant(
             nom=info['nom'],
@@ -436,10 +459,12 @@ def formulaire_demande_restaurateur(request):
             etat=info['etat'],
             longitude=info['longitude'],
             latitude=info['latitude'],
+            restaurateur_fk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']),
         )
         demande.save()
         return render(request, 'restaurateur/formulaire_restaurateur.html')
     return render(request, 'restaurateur/formulaire_restaurateur.html')
+
 
 def modification(request):
     user = Adherant.objects.get(mail=request.session['mailUser'])
@@ -522,6 +547,7 @@ def recommandation():
 def logoutUser(request):
     try:
         del request.session['mailUser']
+        del request.session['mailRestaurateur']
     except KeyError:
         pass
     return redirect('index')

@@ -8,15 +8,6 @@ import datetime
 from unixtimestampfield.fields import UnixTimeStampField
 
 
-class Restaurateur(models.Model):
-    mail = models.EmailField(max_length=254)
-    password = models.CharField(max_length=255)
-    profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
-
-    def __str__(self):
-        return self.mail
-
-
 class Administrateur(models.Model):
     mail = models.EmailField(max_length=254)
     password = models.CharField(max_length=255)
@@ -62,21 +53,6 @@ class ImageRestaurant(models.Model):
         return str(self.id)
 
 
-class DemandeCreationRestaurant(models.Model):
-    nom = models.CharField(max_length=50)
-    adresse = models.CharField(max_length=50)
-    ville = models.CharField(max_length=50, default='')
-    zip_code = models.CharField(max_length=50, default='')
-    pays = models.CharField(max_length=50)
-    etat = models.CharField(max_length=50, default='')
-    longitude = models.CharField(max_length=70, default='')
-    latitude = models.CharField(max_length=70, default='')
-    image_front = models.ImageField(upload_to='img_demande/', default='img_restaurant/avatar.jpeg')
-    type = models.ManyToManyField(RestaurantType)
-    img = models.ManyToManyField(ImageRestaurant)
-    restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE, default=None)
-
-
 class Restaurant(models.Model):
     nom = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
@@ -94,6 +70,31 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return str(self.nom)
+
+
+class Restaurateur(models.Model):
+    mail = models.EmailField(max_length=254)
+    password = models.CharField(max_length=255)
+    profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
+    restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.CASCADE, default=None)
+
+    def __str__(self):
+        return self.mail
+
+
+class DemandeCreationRestaurant(models.Model):
+    nom = models.CharField(max_length=50)
+    adresse = models.CharField(max_length=50)
+    ville = models.CharField(max_length=50, default='')
+    zip_code = models.CharField(max_length=50, default='')
+    pays = models.CharField(max_length=50)
+    etat = models.CharField(max_length=50, default='')
+    longitude = models.CharField(max_length=70, default='')
+    latitude = models.CharField(max_length=70, default='')
+    image_front = models.ImageField(upload_to='img_demande/', default='img_restaurant/avatar.jpeg')
+    type = models.ManyToManyField(RestaurantType)
+    img = models.ManyToManyField(ImageRestaurant)
+    restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE, default=None)
 
 
 class ImageUser(models.Model):
