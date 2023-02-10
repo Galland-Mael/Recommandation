@@ -37,6 +37,7 @@ urlpatterns = [
     path('recommendation', recommendation, name='recommendation'),
     path('restaurateur/login', login_restaurateur, name='login_restaurateur'),
     path('restaurateur/register', register_restaurateur, name='register_restaurateur'),
+    path('restaurateur/formulaire', formulaire_demande_restaurateur, name='formulaire_demande_restaurateur'),
 ]
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

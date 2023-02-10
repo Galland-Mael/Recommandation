@@ -16,6 +16,7 @@ class Restaurateur(models.Model):
     def __str(self):
         return self.mail
 
+
 class Adherant(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
@@ -65,6 +66,7 @@ class DemandeCreationRestaurant(models.Model):
     image_front = models.ImageField(upload_to='img_demande/', default='img_restaurant/avatar.jpeg')
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)
+    restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE, default=None)
 
 
 class Restaurant(models.Model):
