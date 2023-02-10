@@ -22,6 +22,10 @@ TEMPLATES_DIRS = os.path.join(BASE_DIR,'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-*d*p9av7cwez3^i87($=1-v=9qo^u=0lsd&32j6ru*n6_#$2k='
 
+RECAPTCHA_PUBLIC_KEY = '6LfCDW0kAAAAAD9ujkaPcwWEG6HTE0z9hoyq88fx'
+
+RECAPTCHA_PRIVATE_KEY = '6LfCDW0kAAAAAOUZzei-U_vFLwx8kZSDsUjk9o9g'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
 ]
 
 MIDDLEWARE = [

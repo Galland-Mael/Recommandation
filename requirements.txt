@@ -26,3 +26,4 @@ cycler
 packaging
 kiwisolver
 retrying
+django-recaptcha

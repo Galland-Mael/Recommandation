@@ -46,14 +46,15 @@ from .gestion_groupes import *
 from .gestion_note import *
 from .svd import *
 from .models import *
-from .generateDoc import *
-from .ajoutRecoBd import ajoutBDRecommandationGroupe
+# from .generateDoc import *
+# from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from django.conf import settings
 import datetime
 import time
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 import hashlib
+import requests
 
 PAGE = 0
 
@@ -342,15 +343,36 @@ def register(request):
         '''Remplissage de la base de données'''
         password = user['password']
         hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-        obj = Adherant.objects.create(
-            prenom=user['prenom'],
-            nom=user['nom'],
-            ville=user['ville'],
-            mail=user['mail'],
-            birthDate=user['birthDate'],
-            password=hashed_password,
-        )
-        obj.save()
+        form = AdherantForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            obj = Adherant.objects.create(
+            prenom = data['prenom'],
+            nom = data['nom'],
+            mail = data['mail'],
+            birthDate = data['birthDate'],
+            password = hashed_password,
+            )
+            recaptcha_response = data['captcha']
+            obj.save()
+            url = "https://www.google.com/recaptcha/api/siteverify"
+            payload = {
+                'secret': settings.RECAPTCHA_PRIVATE_KEY,
+                'response': recaptcha_response
+            }
+            response = requests.post(url, data=payload)
+            result = response.json()
+            if result['success']:
+                # Continue with processing the form data
+                # ...
+                return redirect('login')
+            else:
+                form.add_error(None, 'Invalid reCAPTCHA. Please try again.')
+            return redirect('login')
+    else:
+        form = AdherantForm()
+    return render(request, 'user/register.html', {'form': form})
+"""
         return redirect('login')
     form = AdherantForm()
     context = {
@@ -359,6 +381,7 @@ def register(request):
     }
     return render(request, 'user/register.html', context)
     # return JsonResponse({"form": list(form.values) })
+"""
 
 
 def login(request):
@@ -473,7 +496,6 @@ def recommandation():
     for i in range(3):
         list.append(restaurant[i]);
     return list
-
 
 
 def logoutUser(request):
@@ -640,4 +662,3 @@ def addAvis(request, pk):
 #     generate_html_docs("C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\appsae",
 #                        "C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\pydoc")
 #
-
