@@ -36,7 +36,7 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from django.utils.translation import gettext as _
 from .recommandation_groupe import recommandationGroupeAvisGroupeComplet
 from .recommendation import *
 from .gestion import *
@@ -62,7 +62,21 @@ def modifPAGE():
     PAGE += 1
 
 
+def pageVerifMail(request):
+    return render(request, 'user/pageVerifMail.html')
+
+
+def verifMail(request):
+    if(request.session['code']==request.POST['code']):
+        return redirect('index')
+    else:
+        messages.success(request, _('Mot de passe ou mail incorrect'))
+        return redirect('pageVerifMail')
+
 def index(request):
+    tab = {};
+    list = ["bars", "american (traditional)", "pizza", "fast food", "breakfast & brunch", "american (new)", "burgers",
+            "mexican", "italian", "coffee & tea"]
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
@@ -80,17 +94,22 @@ def index(request):
     else:
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles()
         context['italian'] = listeAffichageCaroussel("Italian")
+    context['list'] = list
     connect(request, context)
     return render(request, 'index/index.html', context)
 
 
 def deleteGroup(request, pk):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     groupe = Groupe.objects.get(pk=pk)
     suppressionGroupe(groupe)
     return redirect('groupe')
 
 
 def groupRecommandations(request, pk):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     user = Adherant.objects.get(mail=request.session['mailUser'])
     groupe = Groupe.objects.get(pk=pk)
     membres = groupe.liste_adherants.all()
@@ -110,6 +129,8 @@ def groupRecommandations(request, pk):
 
 
 def creationGroup(request):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
@@ -161,6 +182,8 @@ def supplettreUTF():
 
 
 def createGroupe(request):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     if 'nomGroupe' not in request.POST:
         context = {}
         connect(request, context)
@@ -184,6 +207,8 @@ def createGroupe(request):
 
 
 def groupe(request):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     user = Adherant.objects.get(mail=request.session['mailUser'])
     list = []
     for groupe in Groupe.objects.all():
@@ -197,6 +222,8 @@ def groupe(request):
 
 
 def removeUser(request, user):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     list = request.session['groupe']
     if user in list:
         list.remove(user)
@@ -209,6 +236,8 @@ def removeUser(request, user):
 
 
 def addUser(request, user):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     currentUser = Adherant.objects.get(mail=request.session['mailUser'])
     if 'groupe' in request.session:
         list = request.session['groupe']
@@ -225,6 +254,8 @@ def addUser(request, user):
 
 
 def nomGroup(request):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     if 'groupe' not in request.session:
         return redirect('groupe')
     context = {
@@ -235,16 +266,26 @@ def nomGroup(request):
 
 
 def searchRestau(request):
-    if (request.POST["search"] == ""):
+    type = RestaurantType.objects.filter(nom=request.POST["type"])
+    search = request.POST["search"]
+    if 'mailUser' not in request.session:
         return redirect('index')
-    context = {
-        'list': Restaurant.objects.filter(nom__icontains=request.POST["search"])
-    }
+    if type == "" and search == "":
+        return redirect(index)
+    user = Adherant.objects.get(mail=request.session['mailUser'])
+    context = {}
+    if request.POST["type"] == "":
+        type = RestaurantType.objects.all()
+    if search == "":
+        search = ""
+    context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type, ville=user.ville)
     connect(request, context)
     return render(request, 'restaurants/searchRestau.html', context)
 
 
 def groupePage(request):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     if 'groupe' in request.session:
         del request.session['groupe']
     context = {}
@@ -253,6 +294,8 @@ def groupePage(request):
 
 
 def searchUser(request):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     if request.GET["search"] != "":
         context = {
             'user': Adherant.objects.filter(mail__icontains=request.GET["search"]).exclude(
@@ -321,7 +364,7 @@ def addCommentaires(request, pk):
             updateAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),
                        request.POST['title-rating'], request.POST['comm'])
     else:
-        messages.success(request, 'Les deux champs doivent être remplis.')
+        messages.success(request, _('Les deux champs doivent être remplis.'))
     connect(request, context)
     return render(request, 'restaurants/vueRestaurant.html', context)
 
@@ -350,7 +393,8 @@ def register(request):
             password=hashed_password,
         )
         obj.save()
-        return redirect('login')
+        request.session['code'] = verificationEmail(user["mail"])
+        return redirect('pageVerifMail')
     form = AdherantForm()
     context = {
         'form': form,
@@ -393,13 +437,15 @@ def login(request):
                         adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
             return render(request, 'index/index.html', context)
         else:
-            messages.success(request, '*Wrong mail or password')
+            messages.success(request, _('Mot de passe ou mail incorrect'))
             return redirect('login')
     else:
         return render(request, 'user/login.html')
 
 
 def modification(request):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     user = Adherant.objects.get(mail=request.session['mailUser'])
     if request.POST['nom'] != '' and request.POST['nom'] != user.nom:
         updateNomUser(user.mail, request.POST['nom'])
@@ -413,8 +459,8 @@ def modification(request):
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
     if (request.POST['ville'] != user.ville):
         Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
-        #if (user.nb_review >= 5):
-            #majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
+        # if (user.nb_review >= 5):
+        # majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
     context = {}
     if 'mailUser' in request.session:
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
@@ -428,6 +474,8 @@ def modification(request):
 
 
 def modifUser(request):
+    if 'mailUser' not in request.session:
+        return redirect('index')
     context = {
         'user': Adherant.objects.get(mail=request.session['mailUser']),
     }
@@ -435,21 +483,30 @@ def modifUser(request):
     return render(request, 'user/modifUser.html', context)
 
 
-def verificationEmail(request):
-    print("apeler")
+def random_value():
+    ''' Fonction qui renvoie une chaîne composée de 6 caractères entre 0 et 9 '''
+    value_random = ""
+    for i in range(6):
+        value_random += str(random.randint(0, 9))
+    return value_random
+
+
+def verificationEmail(mail):
+    random = random_value()
+    print('appeler')
     ''' Fonction qui permet l'envoi d'un mail à un utilisateur depuis l'adresse mail du site web '''
     try:
         send_mail("Vérification de votre compte - Ne pas répondre",
                   "Code de vérification :\n"
-                  + "         " + randomValue()
+                  + "         " + random
                   + "\n\nL'équipe EatAdvisor",
                   "eat_advisor2@outlook.fr",
-                  ["maelgalland.71@gail.com"],
+                  [mail],
                   fail_silently=False);
-        print("reussi")
+        print('reussi')
+        return random
     except:
-        print("fail")
-        return HttpResponse("<p>Next</p>")
+        return HttpResponse("le mail na pas pu estre envoyerx")
 
 
 def meilleurs_resto(request):

@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+ {% load i18n %}
 {% load static %}
 {% block head %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,11 +16,11 @@
     </div>
     <div class="body flex vertical-center justify-center">
         <div class="container form">
-            <div class="title-setting">Enregistrement</div>
+            <div class="title-setting">{% trans 'Enregistrement' %}</div>
             <div class="progress-bar flex">
                 <div class="step">
                     <p class="name-step">
-                        Info
+                        {% trans 'Info' %}
                     </p>
                     <div class="circle-container">
                         <div class="circle">
@@ -33,7 +34,7 @@
                 </div>
                 <div class="step">
                     <p class="name-step">
-                        Perso
+                        {% trans 'Perso' %}
                     </p>
                     <div class="circle-container">
                         <div class="circle">
@@ -46,7 +47,7 @@
                 </div>
                 <div class="step">
                     <p class="name-step">
-                        Date
+                        {% trans 'Date' %}
                     </p>
                     <div class="circle-container">
                         <div class="circle">
@@ -59,7 +60,7 @@
                 </div>
                 <div class="step">
                     <p class="name-step">
-                        Confirmation
+                        {% trans 'Confirmation' %}
                     </p>
                     <div class="circle-container">
                         <div class="circle">
@@ -72,29 +73,29 @@
                 </div>
             </div>
             <div class="form-outer">
-                <form action="#" method="POST" class="post-form ">
+                <form action="{% url 'register' %}" method="POST" class="post-form ">
                     {% csrf_token %}
                     <div class="page slide-page">
                         <div class="title">
-                            Informations:
+                            {% trans 'Informations' %}:
                         </div>
                         <div class="field">
                             <div class="label">
-                                Prénom
+                                {% trans 'Prénom' %}
                             </div>
                             <input type="text" name="prenom" class="input firstName">
-                            <div class="failInfo none">*Ce champs ne peut être vide</div>
+                            <div class="failInfo none">*{% trans 'Ce champ ne peut être vide' %}</div>
                         </div>
                         <div class="field">
                             <div class="label">
-                                Nom de Famille
+                                {% trans 'Nom de famille' %}
                             </div>
                             <input type="text" name="nom" class="input lastName">
-                            <div class="failInfo none">*Ce champs ne peut être vide</div>
+                            <div class="failInfo none">*{% trans 'Ce champ ne peut être vide' %}</div>
                         </div>
                         <div class="field">
                             <div class="label">
-                                Ville
+                                {% trans 'Ville' %}
                             </div>
                             <select name="ville" class="input ville">
                                 <option type="submit" class="btn-ville-ref">Philadelphia</option>
@@ -116,64 +117,64 @@
                             </select>
                         </div>
                         <div class="field">
-                            <div class="next-1 btn"><p>Suivant</p></div>
+                            <div class="next-1 btn"><p>{% trans 'Suivant' %}</p></div>
                         </div>
-                        <a href="{% url 'login' %}"><span class="new-account">je possède déjà un compte</span></a>
+                        <a href="{% url 'login' %}"><span class="new-account">{% trans "Je possède déjà un compte" %}</span></a>
                     </div>
                     <div class="page slide-page">
                         <div class="title">
-                            Personnel
+                            {% trans 'Personnel' %}
                         </div>
                         <div class="field">
                             <div class="label">
-                                Mail
+                                {% trans 'Mail' %}
                             </div>
                             <input type="mail" name="mail" class="input mail">
-                            <div class="failInfo none">*Ce champs ne peut être vide</div>
+                            <div class="failInfo none">*{% trans 'Ce champ ne peut être vide' %}</div>
                         </div>
                         <div class="field">
                             <div class="label">
-                                Mot de passe
+                              {% trans 'Mot de passe' %}
                             </div>
                             <input type="password" name="password" class="input pwd1">
-                            <div class="failInfo">*Le mot de passe doit contenir entre 8 et 15 caractères</div>
+                            <div class="failInfo">*{% trans 'Le mot de passe doit contenir entre 8 et 15 caractères' %}</div>
                         </div>
                         <div class="field">
                             <div class="label">
-                                Comfirmation du mot de passe
+                                {% trans 'Comfirmation du mot de passe' %}
                             </div>
                             <input class="input pwd2" type="password">
-                            <div class="failInfo none">*Veuillez entrer le meme mot de passe</div>
+                            <div class="failInfo none">*{% trans 'Veuillez entrer le même mot de passe' %}</div>
                         </div>
                         <div class="button-field flex">
-                            <div class="split-button prev prev-2 btn"><p>Précédent</p></div>
+                            <div class="split-button prev prev-2 btn"><p>{% trans 'Précédent' %}</p></div>
                             <div class="split-button prev next-2 btn"
-                            ><p>Suivant</p></div>
+                            ><p>{% trans 'Suivant' %}</p></div>
                         </div>
                     </div>
                     <div class="page slide-page">
                         <div class="title">
-                            Date:
+                            {% trans 'Date' %}:
                         </div>
                         <div class="field">
                             <div class="label">
-                                Date de naissance
+                               {% trans 'Date de naissance' %}
                             </div>
                             <input type="date" name="birthDate" class="input birthDate">
-                            <div class="failInfo none">*Ce champs est incorrect</div>
+                            <div class="failInfo none">*{% trans 'Champ incorrect' %}</div>
                         </div>
                         <div class="button-field flex">
-                            <div class="split-button prev-3 prev btn"><p>Précédent</p></div>
-                            <div class="split-button next-3 next btn"><p>Suivant</p></div>
+                            <div class="split-button prev-3 prev btn"><p>{% trans 'Précédent' %}</p></div>
+                            <div class="split-button next-3 next btn"><p>{% trans 'Suivant' %}</p></div>
                         </div>
                     </div>
                     <div class="page slide-page">
                         <div class="title">
-                            Confirmation
+                            {% trans 'Confirmation' %}
                         </div>
                         <div class="button-field flex">
-                            <div class="split-button prev-4 prev btn"><p>Précédent</p></div>
-                            <button type="submit" class="split-button next-4 next save btn" value="type">Suivant
+                            <div class="split-button prev-4 prev btn"><p>{% trans 'Précédent' %}</p></div>
+                            <button type="submit" class="split-button next-4 next save btn" value="type">{% trans 'Suivant' %}
                             </button>
                         </div>
                     </div>

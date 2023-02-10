@@ -6,7 +6,7 @@ from datetime import datetime
 import time
 import datetime
 from unixtimestampfield.fields import UnixTimeStampField
-
+from django.utils.translation import gettext_lazy as _
 
 class Adherant(models.Model):
     nom = models.CharField(max_length=50)

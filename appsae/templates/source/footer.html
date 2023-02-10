@@ -1,4 +1,19 @@
 <footer>
-    <p id="copyright">© 2022 Eat Advisor LLC Tous droits réservés.</p>
-    <a href="" class="lienfooter">Contactez-nous</a> <!-- Penser a assigner href pour le bouton connexion -->
+    {% load i18n %}
+<div class="flex column">
+        <p id="copyright">{% trans '© 2022 Eat Advisor LLC Tous droits réservés.' %}</p>
+        <a href="" class="lienfooter">{% trans 'Contactez-nous' %}</a>
+</div>
+    <div class="flex dropdown">
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        <div class="nav-item dropdown">
+            <select  class="selelct-footer" onchange="window.location.href=this.value;">
+                <option value="{% trans 'Langues' %}">{% trans 'Langues' %}</option>
+                {% for language in languages %}
+                    <option value="/{{ language.code }}">{{ language.name_local }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
 </footer>

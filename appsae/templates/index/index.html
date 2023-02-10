@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+{% load i18n %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -15,11 +16,19 @@
         <form action="{% url 'searchRestau' %}" method="POST" class="post-form form">
             {% csrf_token %}
             <div class="search">
+                <div class="drop-down">
+                    <select class="select" name="type" id="lang">
+                        <option value="">Type</option>
+                        {% for type in list %}
+                            <option value="{{ type }}">{{ type }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 <input class="searchTerm" type="text" name="search"
                        hx-get="{% url 'search' %}"
                        hx-trigger="keyup changed delay:250ms"
                        hx-target="#search-results"
-                       placeholder="Search..."
+                       placeholder="{% trans 'Rechercher un restaurant' %}..."
                 >
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
@@ -36,7 +45,7 @@
     {% if recommandation %}
         <div class="glider-contain">
             <div class="best">
-                <p class="title-slider text">Vos recommandations</p>
+                <p class="title-slider text">{% trans 'Recommandation' %}</p>
             </div>
             <div class="glider">
                 {% for element in  recommandation %}
@@ -71,40 +80,40 @@
         </div>
     {% endif %}
     {% if italian|length > 7 %}
-    <div class="container">
-        <div class="best margin-top">
-            <p class="title text">Les meilleurs restaurants Italiens</p>
-        </div>
-        <div class="grid">
-            {% for element in italian %}
-                <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
-                    <div class="img-card">
-                        <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
-                    </div>
-                    <div class="info-card">
-                        <div class="name">
-                            <span class="text nom">{{ element.nom }}</span>
+        <div class="container">
+            <div class="best margin-top">
+                <p class="title text">{% trans 'Les meilleurs restaurants Italiens' %}</p>
+            </div>
+            <div class="grid">
+                {% for element in italian %}
+                    <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
+                        <div class="img-card">
+                            <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
                         </div>
-                        <div class="flex align">
-                            <span class="text">{{ element.note }}</span>
-                            <div class="star-icon">
-                                <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                        <div class="info-card">
+                            <div class="name">
+                                <span class="text nom">{{ element.nom }}</span>
                             </div>
+                            <div class="flex align">
+                                <span class="text">{{ element.note }}</span>
+                                <div class="star-icon">
+                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                                </div>
+                            </div>
+                            <div class="nav-localisation text">
+                                <div>{{ element.adresse }}</div>
+                                <div>{{ element.ville }}</div>
+                            </div>
+                            <div class="text">({{ element.zip_code }})</div>
                         </div>
-                        <div class="nav-localisation text">
-                            <div>{{ element.adresse }}</div>
-                            <div>{{ element.ville }}</div>
-                        </div>
-                        <div class="text">({{ element.zip_code }})</div>
-                    </div>
-                </a>
-            {% endfor %}
+                    </a>
+                {% endfor %}
+            </div>
         </div>
-    </div>
     {% endif %}
     <div class="container">
         <div class="best margin-top">
-            <p class="title text">Les meilleurs restaurants</p>
+            <p class="title text">{% trans 'Les meilleurs restaurants' %}</p>
         </div>
         <div class="grid">
             {% for element in meilleurRestaurants %}

@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+ {% load i18n %}
 {% load static %}
 {% block main %}
 <link rel="stylesheet" type="text/css" href="{% static 'CSS/register-login.css' %}"/>
@@ -14,10 +15,10 @@
     <div class="container">
         <form action="" method="POST" class="post-form form">
             {% csrf_token %}
-            <div class="title-setting">Connexion</div>
+            <div class="title-setting">{% trans 'Connexion' %}</div>
             <div class="field">
                 <div class="label">
-                    Mail
+                    {% trans 'Mail' %}
                 </div>
                 <input type="text" name="mail" class="input">
                 {% for msg in messages %}
@@ -26,15 +27,15 @@
             </div>
             <div class="field">
                 <div class="label">
-                    Mot de passe
+                    {% trans 'Mot de passe' %}
                 </div>
                 <input type="password" name="password" class="input">
             </div>
             <div class="field">
-                <button class="next-1">connexion</button>
+                <button class="next-1">{% trans 'Connexion' %}</button>
             </div>
         </form>
-            <a href="{% url 'register' %}"><span class="new-account">je n'ai pas de compte</span></a>
+            <a href="{% url 'register' %}"><span class="new-account">{% trans "Je n'ai pas de compte" %}</span></a>
     </div>
 </div>
 {% endblock %}

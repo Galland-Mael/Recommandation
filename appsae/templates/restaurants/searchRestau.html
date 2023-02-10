@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+ {% load i18n %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -10,9 +11,9 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container">
+    <di class="container">
         <div class="title">
-            <h3>liste des restaurants</h3>
+            <h3>{% trans 'liste des restaurants' %}</h3>
         </div>
         {% for element in list %}
             <a class="decoration-none hover" href="{% url 'vueRestaurant' element.pk %}">

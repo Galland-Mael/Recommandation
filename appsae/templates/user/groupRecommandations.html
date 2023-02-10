@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+ {% load i18n %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -11,7 +12,7 @@
     <div class="container">
         <aside>
             <div class="title">
-                <h1 class="text">Membres du groupe</h1>
+                <h1 class="text">{% trans 'Membres du groupe' %}</h1>
             </div>
             {% for user in membres %}
                 <div class="user">
@@ -25,13 +26,13 @@
             {% endfor %}
             {% if chef %}
                 <button class="btn-container">
-                    <a class="suivant" href="{% url 'deleteGroup' groupe.pk %}">Supprimer le groupe</a>
+                    <a class="suivant" href="{% url 'deleteGroup' groupe.pk %}">{% trans 'Supprimer le groupe' %}</a>
                 </button>
             {% endif %}
         </aside>
         <div class="column">
             <div class="title">
-                <h1 class="text">Vos Recommandation</h1>
+                <h1 class="text">{% trans 'Vos recommandations' %}</h1>
             </div>
             <div class="grid">
                 {% for element in recommandation %}

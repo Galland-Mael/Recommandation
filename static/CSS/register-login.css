@@ -368,3 +368,10 @@ a{
     margin: 0;
     width: 100%;
 }
+.code {
+    height: 30px;
+}
+
+.margin-top-form{
+    margin-top:100px ;
+}
