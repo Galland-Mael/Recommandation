@@ -96,6 +96,8 @@ class DemandeCreationRestaurant(models.Model):
     img = models.ManyToManyField(ImageRestaurant)
     restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE, default=None)
 
+    def __str__(self):
+        return self.restaurateur_fk
 
 class ImageUser(models.Model):
     img = models.ImageField(upload_to='img_user/')

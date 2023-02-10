@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Administrateur</title>
-    <link rel="stylesheet" type="text/css" href="static/CSS/page_admin.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/page_admin.css' %}"/>
 </head>
 <body>
     {% for element in demandes %}
         <div class="demande">
-            {{ element.nom }}
+            Nom du restaurant : {{ element.nom }}
             <a href="{% url 'validation_admin' element.pk %}"> Consulter </a>
         </div>
     {% endfor %}
