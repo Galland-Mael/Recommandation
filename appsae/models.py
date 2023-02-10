@@ -95,9 +95,11 @@ class DemandeCreationRestaurant(models.Model):
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)
     restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE, default=None)
+    date_creation = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):
-        return self.restaurateur_fk
+        return self.restaurateur_fk.mail
+
 
 class ImageUser(models.Model):
     img = models.ImageField(upload_to='img_user/')

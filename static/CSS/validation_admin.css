@@ -33,7 +33,6 @@ body {
     display: flex;
     position: relative;
     flex-direction: column;
-    padding-bottom: 0.5%;
 }
 
 .field-double{
@@ -79,11 +78,16 @@ body {
 
 .btn{
     text-align: center;
+    flex: 1;
+}
+
+.boutons{
+    display: flex;
+    flex-direction: row;
 }
 
 .bouton {
-    vertical-align: middle;
-    width: 40%;
+    width: 80%;
     border: none;
     margin-top: 2%;
     padding: 1% 0% 1% 0%;

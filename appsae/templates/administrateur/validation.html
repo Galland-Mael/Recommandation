@@ -9,61 +9,71 @@
 <body>
 {% block main %}
     <div class="body flex vertical-center justify-center">
-    <div class="container">
-        <form action="" method="POST" class="post-form form">
-            {% csrf_token %}
-            <div class="title-setting">Demande d'inscription</div>
-            <div class="field left">
-                <label class="label" for="nom">Email restaurateur :</label>
-                <input class="input_large" type="text" name="nom" class="input" value="{{ demande.restaurateur_fk }}" readonly>
-            </div>
-            <div class="field left">
-                <label class="label" for="nom">Nom du restaurant :</label>
-                <input class="input_large" type="text" name="nom" class="input" value="{{ demande.nom }}" readonly>
-            </div>
-            <div class="field left">
-                <label class="label" for="adresse">Adresse du restaurant :</label>
-                <input class="input_large" type="text" name="adresse" class="input" value="{{ demande.adresse }}" readonly>
-            </div>
-            <div class="double left">
-                <div class="field-double right">
-                    <label class="label" for="ville">Ville :</label>
-                    <input class="input_large" type="text" name="ville" class="input" value="{{ demande.ville }}" readonly>
+        <div class="container">
+            <form action="" method="POST" class="post-form form">
+                {% csrf_token %}
+                <div class="title-setting">Validation</div>
+                <div class="field left">
+                    <label class="label" for="nom">Restaurateur :</label>
+                    <input class="input_large" type="text" name="nom" class="input"
+                           value="{{ demande.restaurateur_fk }}" readonly>
                 </div>
-                <div class="field-double left">
-                    <label class="label" for="postal">Code Postal :</label>
-                    <input class="input_large" type="text" name="postal" class="input" value="{{ demande.zip_code }}" readonly>
+                <div class="field left">
+                    <label class="label" for="nom">Nom du restaurant :</label>
+                    <input class="input_large" type="text" name="nom" class="input" value="{{ demande.nom }}" readonly>
                 </div>
-            </div>
-            <div class="double left">
-                <div class="field-double right">
-                    <label class="label" for="pays">Pays :</label>
-                    <input class="input_large" type="text" name="pays" class="input" value="{{ demande.pays }}" readonly>
+                <div class="field left">
+                    <label class="label" for="adresse">Adresse du restaurant :</label>
+                    <input class="input_large" type="text" name="adresse" class="input" value="{{ demande.adresse }}"
+                           readonly>
                 </div>
-                <div class="field-double left">
-                    <label class="label" for="etat">Etat :</label>
-                    <input class="input_large" type="text" name="etat" class="input" value="{{ demande.etat }}" readonly>
+                <div class="double left">
+                    <div class="field-double right">
+                        <label class="label" for="ville">Ville :</label>
+                        <input class="input_large" type="text" name="ville" class="input" value="{{ demande.ville }}"
+                               readonly>
+                    </div>
+                    <div class="field-double left">
+                        <label class="label" for="postal">Code Postal :</label>
+                        <input class="input_large" type="text" name="postal" class="input"
+                               value="{{ demande.zip_code }}" readonly>
+                    </div>
                 </div>
-            </div>
-            <div class="double left">
-                <div class="field-double right">
-                    <label class="label" for="longitude">Longitude :</label>
-                    <input class="input_large" type="text" name="longitude" class="input" value="{{ demande.longitude }}" readonly>
+                <div class="double left">
+                    <div class="field-double right">
+                        <label class="label" for="pays">Pays :</label>
+                        <input class="input_large" type="text" name="pays" class="input" value="{{ demande.pays }}"
+                               readonly>
+                    </div>
+                    <div class="field-double left">
+                        <label class="label" for="etat">Etat :</label>
+                        <input class="input_large" type="text" name="etat" class="input" value="{{ demande.etat }}"
+                               readonly>
+                    </div>
                 </div>
-                <div class="field-double left">
-                    <label class="label" for="latitude">Latitude :</label>
-                    <input class="input_large" type="text" name="latitude" class="input" value="{{ demande.latitude }}" readonly>
+                <div class="double left">
+                    <div class="field-double right">
+                        <label class="label" for="longitude">Longitude :</label>
+                        <input class="input_large" type="text" name="longitude" class="input"
+                               value="{{ demande.longitude }}" readonly>
+                    </div>
+                    <div class="field-double left">
+                        <label class="label" for="latitude">Latitude :</label>
+                        <input class="input_large" type="text" name="latitude" class="input"
+                               value="{{ demande.latitude }}" readonly>
+                    </div>
                 </div>
-            </div>
-            <div class="btn">
-                <button class="bouton">Supprimer la demande</button>
-            </div>
-            <div class="btn">
-                <button class="bouton">Valider la demande</button>
-            </div>
-        </form>
+                <div class="boutons">
+                    <div class="btn">
+                        <button class="bouton">Supprimer la demande</button>
+                    </div>
+                    <div class="btn">
+                        <button class="bouton">Valider la demande</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}
 </body>
 </html>

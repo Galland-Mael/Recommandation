@@ -94,7 +94,7 @@ def validation_admin(request, pk):
 
 def administrateur_page(request):
     context = {}
-    context['demandes'] = DemandeCreationRestaurant.objects.all()
+    context['demandes'] = DemandeCreationRestaurant.objects.all().order_by("-date_creation")
     print(DemandeCreationRestaurant.objects.all())
     connect(request, context)
     return render(request, 'administrateur/index.html', context)

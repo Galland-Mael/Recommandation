@@ -1,12 +1,44 @@
 .demande{
+    display: flex;
+    flex-direction: row;
     margin: 1% 5%;
-    padding: 2%;
+    padding: 1%;
     border: 1px solid #111111;
     width: 90%;
-    font-size: 25px;
-    display: flex;
 }
 
-a{
-    float: left;
+.informations{
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    flex:  5;
+    align-items: center;
+}
+
+.informations img{
+    width: 25px;
+}
+
+.mail{
+    flex: 2;
+    padding-left: 3%;
+}
+
+.date{
+    text-align: center;
+    flex: 1;
+    padding-right: 5%;
+}
+
+.lien{
+    padding-right: 3%;
+    text-align: right;
+    display: flex;
+    align-items: center;
+}
+
+.lien img{
+    border: 1px solid #111111;
+    width: 100px;
+    vertical-align: middle;
 }
