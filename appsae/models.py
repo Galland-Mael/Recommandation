@@ -20,7 +20,7 @@ class Adherant(models.Model):
     nom = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     mail = models.EmailField(max_length=254)
-    birthDate = models.DateField("Date", default=datetime.date.today())
+    birthDate = models.DateField("Date", default=datetime.date.today)
     nb_review = models.IntegerField(default=0)
     password = models.CharField(max_length=255)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
