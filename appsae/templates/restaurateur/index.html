@@ -1,0 +1,21 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/index.css' %}"/>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
+{% block main %}
+    <div>
+        <a href="{% url 'formulaire_demande_restaurateur' %}">Créer mon formulaire</a>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    {% include "source/footer.html" %}
+{% endblock %}

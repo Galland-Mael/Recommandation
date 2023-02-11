@@ -2,13 +2,13 @@
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/formulaire_restaurateur.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/creationGroup.css' %}"/>
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/restaurateur/formulaire_restaurateur.css' %}"/>
 {% endblock %}
+
 {% block header %}
     {% include "source/header.html" %}
 {% endblock %}
+
 {% block main %}
     <div class="body flex vertical-center justify-center">
     <div class="container">
@@ -61,6 +61,7 @@
     </div>
 </div>
 {% endblock %}
+
 {% block footer %}
     {% include "source/footer.html" %}
 {% endblock %}

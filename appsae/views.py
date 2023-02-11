@@ -433,21 +433,28 @@ def login_restaurateur(request):
     if request.method == "POST":
         info = request.POST
         restaurateur = Restaurateur.objects.filter(mail=info['mail'])
-        print(restaurateur)
         if restaurateur.count() == 1:
             hashed_password = hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
-            print("PASSWORD TEST")
             if hashed_password == restaurateur[0].password:
                 user = Restaurateur.objects.get(mail=info['mail'])
 
                 request.session['mailRestaurateur'] = user.mail
-                sessionMailUser = request.session['mailRestaurateur']
+                restaurateur = Restaurateur.objects.get(mail=info['mail'])
 
-                return redirect('formulaire_demande_restaurateur')
-    return render(request, 'restaurateur/login_restaurateur.html')
+                context = {
+                    'mailR': restaurateur.mail,
+                    'profil_picture': restaurateur.profile_picture.url
+                }
+                print(restaurateur.profile_picture.url)
+
+                return render(request, 'restaurateur/index.html', context)
+    return redirect('login_restaurateur')
 
 
 def formulaire_demande_restaurateur(request):
+    context = {
+        'resto' : 'a'
+    }
     if request.method == "POST" and 'mailRestaurateur' in request.session:
         info = request.POST
         demande = DemandeCreationRestaurant(
@@ -462,8 +469,10 @@ def formulaire_demande_restaurateur(request):
             restaurateur_fk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']),
         )
         demande.save()
-        return render(request, 'restaurateur/formulaire_restaurateur.html')
-    return render(request, 'restaurateur/formulaire_restaurateur.html')
+        connect(request, context)
+        return render(request, 'restaurateur/index.html', context)
+    connect(request, context)
+    return render(request, 'restaurateur/createResto.html', context)
 
 
 def modification(request):
@@ -558,24 +567,6 @@ def search(request):
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
         return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
-
-
-def matteo(request):
-    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
-    resto = Restaurant.objects.filter(nom="Burger King")[0]
-    print(afficherAvis(adherant, resto))
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
-                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
-    modifPAGE()
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
-                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
-    modifPAGE()
-    print("------------------------------------------------")
-    return redirect('index')
 
 
 def recommendation(request):

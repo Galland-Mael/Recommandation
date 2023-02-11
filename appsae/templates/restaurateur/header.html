@@ -5,15 +5,9 @@
         <ul>
             {% if mail %}
                 <li><a href="{% url 'groupe' %}" class="btn-header">Groupe</a></li>
-                <li><a href="{% url 'creationGroup' %}"class="btn-header">Créer un Groupe</a></li>
                 <li><a href="{% url 'logout' %}" class="btn-header">Deconnexion</a></li>
                 <a class="img-container-user" href="{% url 'modifUser' %}">
-                    <img src="{{ photo }}" alt="marche pas" class="img-user">
-                </a>
-            {% elif mailR %}
-                <li><a href="{% url 'logout' %}" class="btn-header">Deconnexion</a></li>
-                <a class="img-container-user" href="">
-                    <img src="{{ profil_picture }}" alt="marche pas" class="img-user">
+                    <img src="{{ photo }}" alt="Photo de profil" class="img-user">
                 </a>
             {% else %}
                 <li><a href="{% url 'login' %}" class="btn-header">Connexion</a></li>

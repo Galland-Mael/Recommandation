@@ -1,30 +1,36 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Administrateur</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/page_admin.css' %}"/>
-</head>
-<body>
-{% for element in demandes %}
-    <div class="demande">
-        <div class="informations">
-            <div class="mail">
-                <img src="media/img_restaurateur/personne.png">
-                {{ element.restaurateur_fk.mail }}
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/administrateur/page_admin.css' %}"/>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
+{% block main %}
+    {% for element in demandes %}
+        <div class="demande">
+            <div class="informations">
+                <div class="mail">
+                    <img src="media/img_restaurateur/personne.png">
+                    {{ element.restaurateur_fk.mail }}
+                </div>
+                <div class="date">
+                    <img src="media/img_restaurateur/date_creation.png">
+                    {{ element.date_creation }}
+                </div>
             </div>
-            <div class="date">
-                <img src="media/img_restaurateur/date_creation.png">
-                {{ element.date_creation }}
+            <div class="lien">
+                <a href="{% url 'validation_admin' element.pk %}">
+                    <img src="media/img_restaurateur/oeil.png">
+                </a>
             </div>
         </div>
-        <div class="lien">
-            <a href="{% url 'validation_admin' element.pk %}">
-                <img src="media/img_restaurateur/oeil.png">
-            </a>
-        </div>
-    </div>
-{% endfor %}
-</body>
-</html>
+    {% endfor %}
+{% endblock %}
+
+{% block footer %}
+    {% include "source/footer.html" %}
+{% endblock %}
