@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Validation</title>
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/administrateur/validation_admin.css' %}"/>
-</head>
-<body>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
 {% block main %}
     <div class="body flex vertical-center justify-center">
         <div class="container">
@@ -75,5 +77,3 @@
         </div>
     </div>
 {% endblock %}
-</body>
-</html>

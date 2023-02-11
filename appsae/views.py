@@ -445,6 +445,8 @@ def register_restaurateur(request):
 
 
 def login_restaurateur(request):
+    if 'mailUser' in request.session or 'mailAdministrateur' in request.session or 'mailRestaurateur' in request.session:
+        return redirect('logout')
     if request.method == "POST":
         info = request.POST
 
