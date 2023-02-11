@@ -65,10 +65,10 @@
                 </div>
                 <div class="boutons">
                     <div class="btn">
-                        <button class="bouton">Supprimer la demande</button>
+                        <a class="bouton" href="{% url 'refuser_form' demande.pk %}">Refuser la demande </a>
                     </div>
                     <div class="btn">
-                        <button class="bouton">Valider la demande</button>
+                        <a class="bouton" href="{% url 'ajouter_resto' demande.pk %}">Valider la demande </a>
                     </div>
                 </div>
             </form>

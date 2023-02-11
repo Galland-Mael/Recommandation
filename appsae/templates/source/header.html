@@ -1,20 +1,31 @@
 {% load static %}
 <header>
     <nav>
-        <a class="img-logo-container" href="{% url 'index' %}"><img class="img-logo" src="{% static '/Image/logo.png' %}" alt="logo de l'utilisateur"></a>
+        {% if mailR %}
+            <a class="img-logo-container" href="{% url 'index_restaurateur' %}">
+                <img class="img-logo" src="{% static '/Image/logo.png' %}" alt="logo de l'utilisateur"></a>
+        {% elif mail %}
+            <a class="img-logo-container" href="{% url 'index' %}">
+                <img class="img-logo" src="{% static '/Image/logo.png' %}" alt="logo de l'utilisateur"></a>
+        {% else %}
+            <a class="img-logo-container" href="{% url 'administrateur_page' %}">
+                <img class="img-logo" src="{% static '/Image/logo.png' %}" alt="logo de l'utilisateur"></a>
+        {% endif %}
         <ul>
             {% if mail %}
                 <li><a href="{% url 'groupe' %}" class="btn-header">Groupe</a></li>
-                <li><a href="{% url 'creationGroup' %}"class="btn-header">Créer un Groupe</a></li>
+                <li><a href="{% url 'creationGroup' %}" class="btn-header">Créer un Groupe</a></li>
                 <li><a href="{% url 'logout' %}" class="btn-header">Deconnexion</a></li>
                 <a class="img-container-user" href="{% url 'modifUser' %}">
                     <img src="{{ photo }}" alt="marche pas" class="img-user">
                 </a>
             {% elif mailR %}
                 <li><a href="{% url 'logout' %}" class="btn-header">Deconnexion</a></li>
-                <a class="img-container-user" href="">
+                <a class="img-container-user" href="#">
                     <img src="{{ profil_picture }}" alt="marche pas" class="img-user">
                 </a>
+            {% elif mailA %}
+                <li><a href="{% url 'logout' %}" class="btn-header">Deconnexion</a></li>
             {% else %}
                 <li><a href="{% url 'login' %}" class="btn-header">Connexion</a></li>
             {% endif %}

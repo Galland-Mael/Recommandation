@@ -86,18 +86,33 @@ def index(request):
 
 def validation_admin(request, pk):
     demande = DemandeCreationRestaurant.objects.get(pk=pk)
-    context = {}
-    context['demande'] = demande
+    context = {
+        'demande': demande,
+        'pk' : demande.pk
+    }
     connect(request, context)
     return render(request, 'administrateur/validation.html', context)
 
 
 def administrateur_page(request):
-    context = {}
-    context['demandes'] = DemandeCreationRestaurant.objects.all().order_by("-date_creation")
-    print(DemandeCreationRestaurant.objects.all())
+    context = {
+        'demandes': DemandeCreationRestaurant.objects.filter(traite=False).order_by("-date_creation")
+    }
     connect(request, context)
     return render(request, 'administrateur/index.html', context)
+
+
+def refuser_form(request, pk):
+    if 'mailAdministrateur' in request.session:
+        DemandeCreationRestaurant.objects.filter(pk=pk).update(traite=True)
+    return redirect('administrateur_page')
+
+
+def ajouter_resto(request, pk):
+    if 'mailAdministrateur' in request.session:
+        demande = DemandeCreationRestaurant.objects.get(pk=pk)
+        demande.delete()
+    return redirect('administrateur_page')
 
 
 def deleteGroup(request, pk):
@@ -432,45 +447,84 @@ def register_restaurateur(request):
 def login_restaurateur(request):
     if request.method == "POST":
         info = request.POST
+
+        # Cas restaurateur
         restaurateur = Restaurateur.objects.filter(mail=info['mail'])
         if restaurateur.count() == 1:
             hashed_password = hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
             if hashed_password == restaurateur[0].password:
-                user = Restaurateur.objects.get(mail=info['mail'])
-
-                request.session['mailRestaurateur'] = user.mail
-                restaurateur = Restaurateur.objects.get(mail=info['mail'])
-
+                request.session['mailRestaurateur'] = restaurateur[0].mail
                 context = {
-                    'mailR': restaurateur.mail,
-                    'profil_picture': restaurateur.profile_picture.url
+                    'mailR': restaurateur[0].mail,
+                    'profil_picture': restaurateur[0].profile_picture.url,
                 }
-                print(restaurateur.profile_picture.url)
+                return redirect('index_restaurateur')
 
-                return render(request, 'restaurateur/index.html', context)
-    return redirect('login_restaurateur')
+        # Cas administrateur
+        administrateur = Administrateur.objects.filter(mail=info['mail'])
+        if administrateur.count() == 1:
+            hashed_password = hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
+            if hashed_password == administrateur[0].password:
+                request.session['mailAdministrateur'] = administrateur[0].mail
+                context = {
+                    'mailA': administrateur[0].mail,
+                }
+                return redirect('administrateur_page')
+
+    return render(request, 'restaurateur/login_restaurateur.html')
+
+
+def index_restaurateur(request):
+    if 'mailRestaurateur' in request.session:
+        restaurateur = Restaurateur.objects.get(mail=request.session['mailRestaurateur'])
+        demande = DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk)
+        context = {
+            'nombre': demande.count(),
+        }
+        if demande.count() == 1:
+            if demande[0].traite:
+                date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
+                date_bd = demande[0].date_creation.replace(tzinfo=None).timetuple()
+                if mktime(date_bd) + 20 < mktime(date_actuelle):
+                    DemandeCreationRestaurant.objects.filter(pk=demande[0].pk).update(traite=False)
+                    context['demande'] = demande[0]
+            else:
+                context['demande'] = demande[0]
+        if restaurateur.restaurant_fk_id is not None :
+            print(restaurateur.restaurant_fk)
+            context['restaurant_exist'] = True
+            context['restaurant'] = restaurateur.restaurant_fk
+        else:
+            context['restaurant_exist'] = False
+        connect(request, context)
+        return render(request, 'restaurateur/index.html', context)
+    context = {}
+    connect(request, context)
+    return redirect('index')
 
 
 def formulaire_demande_restaurateur(request):
-    context = {
-        'resto' : 'a'
-    }
+    context = {}
     if request.method == "POST" and 'mailRestaurateur' in request.session:
-        info = request.POST
-        demande = DemandeCreationRestaurant(
-            nom=info['nom'],
-            adresse=info['adresse'],
-            ville=info['ville'],
-            zip_code=info['postal'],
-            pays=info['pays'],
-            etat=info['etat'],
-            longitude=info['longitude'],
-            latitude=info['latitude'],
-            restaurateur_fk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']),
-        )
-        demande.save()
-        connect(request, context)
-        return render(request, 'restaurateur/index.html', context)
+        restaurateur = Restaurateur.objects.get(mail=request.session['mailRestaurateur'])
+        if DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk).count() == 0:
+            info = request.POST
+            if info['nom'] != '' and info['adresse'] != '' and info['ville'] != '' and info['postal'] and info['pays'] != '' and info['longitude'] and info['latitude'] != '':
+                demande = DemandeCreationRestaurant(
+                    nom=info['nom'],
+                    adresse=info['adresse'],
+                    ville=info['ville'],
+                    zip_code=info['postal'],
+                    pays=info['pays'],
+                    etat=info['etat'],
+                    longitude=info['longitude'],
+                    latitude=info['latitude'],
+                    restaurateur_fk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']),
+                )
+                demande.save()
+                connect(request, context)
+                return redirect('index_restaurateur')
+                #return render(request, 'restaurateur/index.html', context)
     connect(request, context)
     return render(request, 'restaurateur/createResto.html', context)
 
@@ -556,7 +610,14 @@ def recommandation():
 def logoutUser(request):
     try:
         del request.session['mailUser']
+    except KeyError:
+        pass
+    try:
         del request.session['mailRestaurateur']
+    except KeyError:
+        pass
+    try:
+        del request.session['mailAdministrateur']
     except KeyError:
         pass
     return redirect('index')
@@ -573,9 +634,14 @@ def recommendation(request):
     st = time.time()
     # groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
     # liste = listRecommandationGroupe(groupe)
-    person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
-    liste = listeRecommandationIndividuelle(person)
-    print(liste)
+    #person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
+    #liste = listeRecommandationIndividuelle(person)
+    #print(liste)
+    administrateur = Administrateur(
+        mail='admin_Miguelez@eatadvisor.com',
+        password=hashlib.sha256(str('adminMiguelez').encode('utf-8')).hexdigest(),
+    )
+    administrateur.save()
     print(time.time() - st)
     return HttpResponse('')
 

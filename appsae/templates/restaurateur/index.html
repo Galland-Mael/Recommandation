@@ -11,7 +11,20 @@
 
 {% block main %}
     <div>
-        <a href="{% url 'formulaire_demande_restaurateur' %}">Créer mon formulaire</a>
+        {% if restaurant_exist %}
+            <h1> Votre restaurant est inscrit : </h1>
+            <h2> {{ restaurant.nom }}</h2>
+        {% else %}
+            {% if nombre == 0 %}
+                <a href="{% url 'formulaire_demande_restaurateur' %}">Créer mon formulaire</a>
+            {% elif nombre == 1 and demande.traite %}
+                <h1> Vous avez une demande en cours </h1>
+                <p> {{ demande.date_creation }} </p>
+                <p> {{ demande.nom }} </p>
+            {% else %}
+                <p> Votre demande a été refusée, vous pouvez la modifier </p>
+            {% endif %}
+        {% endif %}
     </div>
 
 {% endblock %}

@@ -37,9 +37,13 @@ urlpatterns = [
     path('recommendation', recommendation, name='recommendation'),
     path('restaurateur/login', login_restaurateur, name='login_restaurateur'),
     path('restaurateur/register', register_restaurateur, name='register_restaurateur'),
+    path('restaurateur', index_restaurateur, name='index_restaurateur'),
     path('restaurateur/formulaire', formulaire_demande_restaurateur, name='formulaire_demande_restaurateur'),
     path('administrateur', administrateur_page, name="administrateur_page"),
-    path('administrateur/demande/(<pk>)', validation_admin, name="validation_admin")
+    path('administrateur/demande/(<pk>)', validation_admin, name="validation_admin"),
+
+    path('administrateur/suppression/(<pk>)', refuser_form, name="refuser_form"),
+    path('administrateur/ajout/(<pk>)', ajouter_resto, name="ajouter_resto")
 ]
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

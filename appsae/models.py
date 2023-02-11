@@ -96,10 +96,19 @@ class DemandeCreationRestaurant(models.Model):
     img = models.ManyToManyField(ImageRestaurant)
     restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE, default=None)
     date_creation = models.DateTimeField(default=datetime.datetime.now)
+    traite = models.BooleanField(default=False)
 
     def __str__(self):
         return self.restaurateur_fk.mail
 
+
+class RefusDemandeRestaurant(models.Model):
+    titre = models.CharField(max_length=100, default='')
+    message = models.CharField(max_length=255, default='')
+    restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.restaurateur_fk.mail + self.titre
 
 class ImageUser(models.Model):
     img = models.ImageField(upload_to='img_user/')
