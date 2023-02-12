@@ -1,8 +1,15 @@
+h1{
+    padding-top: 3%;
+    padding-bottom: 1%;
+    text-align: center;
+}
+
 .demande{
     display: flex;
     flex-direction: row;
-    margin: 1% 5%;
+    margin: 2% 5%;
     padding: 1%;
+    border-radius: 1rem;
     border: 1px solid #111111;
     width: 90%;
 }
@@ -17,16 +24,18 @@
 
 .informations img{
     width: 25px;
+    margin: auto;
+    vertical-align: middle;
 }
 
 .mail{
-    flex: 2;
+    flex: 3;
     padding-left: 3%;
 }
 
 .date{
     text-align: center;
-    flex: 1;
+    flex: 2;
     padding-right: 5%;
 }
 

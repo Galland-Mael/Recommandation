@@ -111,6 +111,18 @@ def refuser_form(request, pk):
 def ajouter_resto(request, pk):
     if 'mailAdministrateur' in request.session:
         demande = DemandeCreationRestaurant.objects.get(pk=pk)
+        restaurant = Restaurant(
+            nom=demande.nom,
+            adresse=demande.adresse,
+            ville=demande.ville,
+            zip_code=demande.zip_code,
+            pays=demande.pays,
+            etat=demande.etat,
+            longitude=demande.longitude,
+            latitude=demande.latitude,
+        )
+        restaurant.save()
+        Restaurateur.objects.filter(pk=demande.restaurateur_fk_id).update(restaurant_fk=restaurant)
         demande.delete()
     return redirect('administrateur_page')
 
@@ -445,8 +457,10 @@ def register_restaurateur(request):
 
 
 def login_restaurateur(request):
+    # Déconnexion
     if 'mailUser' in request.session or 'mailAdministrateur' in request.session or 'mailRestaurateur' in request.session:
         return redirect('logout')
+
     if request.method == "POST":
         info = request.POST
 
@@ -456,10 +470,6 @@ def login_restaurateur(request):
             hashed_password = hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
             if hashed_password == restaurateur[0].password:
                 request.session['mailRestaurateur'] = restaurateur[0].mail
-                context = {
-                    'mailR': restaurateur[0].mail,
-                    'profil_picture': restaurateur[0].profile_picture.url,
-                }
                 return redirect('index_restaurateur')
 
         # Cas administrateur
@@ -468,9 +478,6 @@ def login_restaurateur(request):
             hashed_password = hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
             if hashed_password == administrateur[0].password:
                 request.session['mailAdministrateur'] = administrateur[0].mail
-                context = {
-                    'mailA': administrateur[0].mail,
-                }
                 return redirect('administrateur_page')
 
     return render(request, 'restaurateur/login_restaurateur.html')
@@ -482,26 +489,20 @@ def index_restaurateur(request):
         demande = DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk)
         context = {
             'nombre': demande.count(),
+            'restaurant_exist' : (restaurateur.restaurant_fk_id is not None)
         }
-        if demande.count() == 1:
+        if restaurateur.restaurant_fk_id is not None:
+            context['restaurant'] = restaurateur.restaurant_fk
+            return redirect('vueRestaurant', pk=restaurateur.restaurant_fk.pk)
+        elif demande.count() == 1:
             if demande[0].traite == 1:
                 date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
                 date_bd = demande[0].date_creation.replace(tzinfo=None).timetuple()
-                print(mktime(date_bd) + 400)
-                print(mktime(date_actuelle))
-                if mktime(date_bd) + 400 < mktime(date_actuelle):
+                if mktime(date_bd) + 400 < mktime(date_actuelle): # replace with 259200
                     DemandeCreationRestaurant.objects.filter(pk=demande[0].pk).update(traite=2)
             context['demande'] = demande[0]
-        if restaurateur.restaurant_fk_id is not None:
-            print(restaurateur.restaurant_fk)
-            context['restaurant_exist'] = True
-            context['restaurant'] = restaurateur.restaurant_fk
-        else:
-            context['restaurant_exist'] = False
         connect(request, context)
         return render(request, 'restaurateur/index.html', context)
-    context = {}
-    connect(request, context)
     return redirect('index')
 
 
@@ -542,10 +543,11 @@ def formulaire_demande_restaurateur(request):
                 DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk).delete()
                 create_DemandeCreationRestaurant(info, request)
                 return redirect('index_restaurateur')
-        if demande.count() == 1:
+        elif demande.count() == 1:
             context['demande'] = demande[0]
-    connect(request, context)
-    return render(request, 'restaurateur/createResto.html', context)
+        connect(request, context)
+        return render(request, 'restaurateur/createResto.html', context)
+    return redirect('index_restaurateur')
 
 
 def modification(request):

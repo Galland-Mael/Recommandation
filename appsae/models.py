@@ -65,6 +65,7 @@ class Restaurant(models.Model):
     note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     nb_review = models.IntegerField(default=0)
     image_front = models.ImageField(upload_to='img_restaurant/', default='img_restaurant/avatar.jpeg')
+    telephone = models.CharField(max_length=15,default="000000000")
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)
 

@@ -19,9 +19,8 @@
                 <a href="{% url 'formulaire_demande_restaurateur' %}">Créer mon formulaire</a>
             {% elif nombre == 1 %}
                 {% if demande.traite == 0 %}
-                    <h1> Vous avez une demande en cours </h1>
+                    <h1> Votre demande pour le restaurant "{{ demande.nom }}" est en cours de traitement </h1>
                     <p> {{ demande.date_creation }} </p>
-                    <p> {{ demande.nom }} </p>
                 {% elif demande.traite == 1 %}
                     <p> Votre demande a été refusée, vous pourrez bientôt la modifier </p>
                 {% elif demande.traite == 2 %}
