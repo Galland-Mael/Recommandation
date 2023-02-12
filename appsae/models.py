@@ -96,7 +96,7 @@ class DemandeCreationRestaurant(models.Model):
     img = models.ManyToManyField(ImageRestaurant)
     restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE, default=None)
     date_creation = models.DateTimeField(default=datetime.datetime.now)
-    traite = models.BooleanField(default=False)
+    traite = models.IntegerField(default=0)
 
     def __str__(self):
         return self.restaurateur_fk.mail

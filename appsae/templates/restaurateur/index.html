@@ -17,12 +17,17 @@
         {% else %}
             {% if nombre == 0 %}
                 <a href="{% url 'formulaire_demande_restaurateur' %}">Créer mon formulaire</a>
-            {% elif nombre == 1 and demande.traite %}
-                <h1> Vous avez une demande en cours </h1>
-                <p> {{ demande.date_creation }} </p>
-                <p> {{ demande.nom }} </p>
-            {% else %}
-                <p> Votre demande a été refusée, vous pouvez la modifier </p>
+            {% elif nombre == 1 %}
+                {% if demande.traite == 0 %}
+                    <h1> Vous avez une demande en cours </h1>
+                    <p> {{ demande.date_creation }} </p>
+                    <p> {{ demande.nom }} </p>
+                {% elif demande.traite == 1 %}
+                    <p> Votre demande a été refusée, vous pourrez bientôt la modifier </p>
+                {% elif demande.traite == 2 %}
+                    <p> vous pouvez modifier votre demande </p>
+                    <a href="{% url 'formulaire_demande_restaurateur' %}">Créer mon formulaire</a>
+                {% endif %}
             {% endif %}
         {% endif %}
     </div>

@@ -104,7 +104,7 @@ def administrateur_page(request):
 
 def refuser_form(request, pk):
     if 'mailAdministrateur' in request.session:
-        DemandeCreationRestaurant.objects.filter(pk=pk).update(traite=True)
+        DemandeCreationRestaurant.objects.filter(pk=pk).update(traite=1)
     return redirect('administrateur_page')
 
 
@@ -484,14 +484,14 @@ def index_restaurateur(request):
             'nombre': demande.count(),
         }
         if demande.count() == 1:
-            if demande[0].traite:
+            if demande[0].traite == 1:
                 date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
                 date_bd = demande[0].date_creation.replace(tzinfo=None).timetuple()
-                if mktime(date_bd) + 20 < mktime(date_actuelle):
-                    DemandeCreationRestaurant.objects.filter(pk=demande[0].pk).update(traite=False)
-                    context['demande'] = demande[0]
-            else:
-                context['demande'] = demande[0]
+                print(mktime(date_bd) + 400)
+                print(mktime(date_actuelle))
+                if mktime(date_bd) + 400 < mktime(date_actuelle):
+                    DemandeCreationRestaurant.objects.filter(pk=demande[0].pk).update(traite=2)
+            context['demande'] = demande[0]
         if restaurateur.restaurant_fk_id is not None :
             print(restaurateur.restaurant_fk)
             context['restaurant_exist'] = True
