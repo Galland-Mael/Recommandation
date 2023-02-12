@@ -88,7 +88,7 @@ def validation_admin(request, pk):
     demande = DemandeCreationRestaurant.objects.get(pk=pk)
     context = {
         'demande': demande,
-        'pk' : demande.pk
+        'pk': demande.pk
     }
     connect(request, context)
     return render(request, 'administrateur/validation.html', context)
@@ -436,7 +436,7 @@ def register_restaurateur(request):
         if info['password_verif'] == info['password']:
             if info['mail'] != '' and info['password'] != '':
                 restaurateur = Restaurateur(
-                    mail= info['mail'],
+                    mail=info['mail'],
                     password=hashlib.sha256(info['password'].encode('utf-8')).hexdigest()
                 )
                 restaurateur.save()
@@ -492,7 +492,7 @@ def index_restaurateur(request):
                 if mktime(date_bd) + 400 < mktime(date_actuelle):
                     DemandeCreationRestaurant.objects.filter(pk=demande[0].pk).update(traite=2)
             context['demande'] = demande[0]
-        if restaurateur.restaurant_fk_id is not None :
+        if restaurateur.restaurant_fk_id is not None:
             print(restaurateur.restaurant_fk)
             context['restaurant_exist'] = True
             context['restaurant'] = restaurateur.restaurant_fk
@@ -505,28 +505,45 @@ def index_restaurateur(request):
     return redirect('index')
 
 
+def create_DemandeCreationRestaurant(info, request):
+    """ Crée une DemandeCreationRestaurant dans la base de données avec les infos données en paramètres
+
+    @param info: les informations du formulaire
+    @param request: informations utilisateurs
+    @return: /
+    """
+    if info['nom'] != '' and info['adresse'] != '' and info['ville'] != '' and info['postal'] and info['pays'] != '' \
+            and info['longitude'] and info['latitude'] != '':
+        demande_creation = DemandeCreationRestaurant(
+            nom=info['nom'],
+            adresse=info['adresse'],
+            ville=info['ville'],
+            zip_code=info['postal'],
+            pays=info['pays'],
+            etat=info['etat'],
+            longitude=info['longitude'],
+            latitude=info['latitude'],
+            restaurateur_fk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']),
+        )
+        demande_creation.save()
+
+
 def formulaire_demande_restaurateur(request):
     context = {}
-    if request.method == "POST" and 'mailRestaurateur' in request.session:
+    if 'mailRestaurateur' in request.session:
         restaurateur = Restaurateur.objects.get(mail=request.session['mailRestaurateur'])
-        if DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk).count() == 0:
+        demande = DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk)
+        if request.method == "POST":
             info = request.POST
-            if info['nom'] != '' and info['adresse'] != '' and info['ville'] != '' and info['postal'] and info['pays'] != '' and info['longitude'] and info['latitude'] != '':
-                demande = DemandeCreationRestaurant(
-                    nom=info['nom'],
-                    adresse=info['adresse'],
-                    ville=info['ville'],
-                    zip_code=info['postal'],
-                    pays=info['pays'],
-                    etat=info['etat'],
-                    longitude=info['longitude'],
-                    latitude=info['latitude'],
-                    restaurateur_fk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']),
-                )
-                demande.save()
-                connect(request, context)
+            if demande.count() == 0:
+                create_DemandeCreationRestaurant(info, request)
                 return redirect('index_restaurateur')
-                #return render(request, 'restaurateur/index.html', context)
+            elif demande.count() == 1 and demande[0].traite == 2:
+                DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk).delete()
+                create_DemandeCreationRestaurant(info, request)
+                return redirect('index_restaurateur')
+        if demande.count() == 1:
+            context['demande'] = demande[0]
     connect(request, context)
     return render(request, 'restaurateur/createResto.html', context)
 
@@ -545,8 +562,8 @@ def modification(request):
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
     if (request.POST['ville'] != user.ville):
         Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
-        #if (user.nb_review >= 5):
-            #majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
+        # if (user.nb_review >= 5):
+        # majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
     context = {}
     if 'mailUser' in request.session:
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
@@ -636,9 +653,9 @@ def recommendation(request):
     st = time.time()
     # groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
     # liste = listRecommandationGroupe(groupe)
-    #person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
-    #liste = listeRecommandationIndividuelle(person)
-    #print(liste)
+    # person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
+    # liste = listeRecommandationIndividuelle(person)
+    # print(liste)
     administrateur = Administrateur(
         mail='admin_Miguelez@eatadvisor.com',
         password=hashlib.sha256(str('adminMiguelez').encode('utf-8')).hexdigest(),
