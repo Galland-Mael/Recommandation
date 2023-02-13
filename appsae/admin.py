@@ -16,4 +16,5 @@ admin.site.register(ImageUser)
 admin.site.register(Restaurateur)
 admin.site.register(DemandeCreationRestaurant)
 admin.site.register(Administrateur)
+admin.site.register(RefusDemandeRestaurant)
 

@@ -57,11 +57,6 @@ import hashlib
 PAGE = 0
 
 
-def modifPAGE():
-    global PAGE
-    PAGE += 1
-
-
 def index(request):
     if 'groupe' in request.session:
         del request.session['groupe']
@@ -103,9 +98,19 @@ def administrateur_page(request):
 
 
 def refuser_form(request, pk):
+    context = {}
     if 'mailAdministrateur' in request.session:
-        DemandeCreationRestaurant.objects.filter(pk=pk).update(traite=1)
-    return redirect('administrateur_page')
+        if request.method == "POST":
+            refus = RefusDemandeRestaurant(
+                titre=request.POST['title'],
+                message=request.POST['description'],
+                restaurateur_fk=DemandeCreationRestaurant.objects.get(pk=pk).restaurateur_fk
+            )
+            refus.save()
+            DemandeCreationRestaurant.objects.filter(pk=pk).update(traite=1)
+            return redirect('administrateur_page')
+    connect(request, context)
+    return render(request, 'administrateur/form_refus.html', context)
 
 
 def ajouter_resto(request, pk):
@@ -495,10 +500,17 @@ def index_restaurateur(request):
             context['restaurant'] = restaurateur.restaurant_fk
             return redirect('vueRestaurant', pk=restaurateur.restaurant_fk.pk)
         elif demande.count() == 1:
+            refus =RefusDemandeRestaurant.objects.filter(restaurateur_fk=restaurateur.pk)
+            if refus.count() != 0:
+                context['refus'] = RefusDemandeRestaurant.objects.filter(restaurateur_fk=restaurateur.pk)[0]
+            date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
+            date_bd = demande[0].date_creation.replace(tzinfo=None).timetuple()
+            temps_entre_demande = 400 # replace with 259200
+            temps = (int)(mktime(date_bd) + temps_entre_demande - mktime(date_actuelle))
+            context['minutes'] = temps//60
+            context['secondes'] = temps%60
             if demande[0].traite == 1:
-                date_actuelle = datetime.datetime.today().replace(tzinfo=None).timetuple()
-                date_bd = demande[0].date_creation.replace(tzinfo=None).timetuple()
-                if mktime(date_bd) + 400 < mktime(date_actuelle): # replace with 259200
+                if mktime(date_bd) + temps_entre_demande < mktime(date_actuelle):
                     DemandeCreationRestaurant.objects.filter(pk=demande[0].pk).update(traite=2)
             context['demande'] = demande[0]
         connect(request, context)
@@ -515,6 +527,7 @@ def create_DemandeCreationRestaurant(info, request):
     """
     if info['nom'] != '' and info['adresse'] != '' and info['ville'] != '' and info['postal'] and info['pays'] != '' \
             and info['longitude'] and info['latitude'] != '':
+        restaurateur = Restaurateur.objects.get(mail=request.session['mailRestaurateur'])
         demande_creation = DemandeCreationRestaurant(
             nom=info['nom'],
             adresse=info['adresse'],
@@ -524,9 +537,12 @@ def create_DemandeCreationRestaurant(info, request):
             etat=info['etat'],
             longitude=info['longitude'],
             latitude=info['latitude'],
-            restaurateur_fk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']),
+            restaurateur_fk=restaurateur,
         )
         demande_creation.save()
+        RefusDemandeRestaurant.objects.filter(restaurateur_fk=restaurateur.pk).delete()
+        return True
+    return False
 
 
 def formulaire_demande_restaurateur(request):
@@ -536,12 +552,13 @@ def formulaire_demande_restaurateur(request):
         demande = DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk)
         if request.method == "POST":
             info = request.POST
+            test = False
             if demande.count() == 0:
-                create_DemandeCreationRestaurant(info, request)
-                return redirect('index_restaurateur')
+                test = create_DemandeCreationRestaurant(info, request)
             elif demande.count() == 1 and demande[0].traite == 2:
                 DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk).delete()
-                create_DemandeCreationRestaurant(info, request)
+                test = create_DemandeCreationRestaurant(info, request)
+            if test:
                 return redirect('index_restaurateur')
         elif demande.count() == 1:
             context['demande'] = demande[0]

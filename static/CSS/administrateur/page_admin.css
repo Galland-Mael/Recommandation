@@ -48,6 +48,7 @@ h1{
 
 .lien img{
     border: 1px solid #111111;
+    border-radius: 15rem;
     width: 100px;
     vertical-align: middle;
 }

@@ -14,6 +14,22 @@ body {
     min-height: 100vh;
 }
 
+.flex{
+    display: flex;
+}
+
+.vertical-center {
+    vertical-align: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.text-align{
+    text-align: center;
+}
+
 .container {
     padding: 2% 20%;
     width: 60%;
@@ -33,6 +49,7 @@ body {
     display: flex;
     position: relative;
     flex-direction: column;
+    padding-bottom: 2%;
 }
 
 .field-double{
@@ -41,26 +58,6 @@ body {
     display: flex;
     position: relative;
     flex-direction: column;
-}
-
-a{
-    text-decoration: none;
-}
-
-.vertical-center {
-    vertical-align: center;
-}
-
-.justify-center {
-    justify-content: center;
-}
-
-.text-align{
-    text-align: center;
-}
-
-.flex{
-    display: flex;
 }
 
 .left{
@@ -78,7 +75,7 @@ a{
     position: relative;
     flex-direction: row;
     justify-content: space-between;
-    padding-bottom: 0.5%;
+    padding-bottom: 2%;
 }
 
 .label {
@@ -88,16 +85,39 @@ a{
     width: 100%;
 }
 
-.input_large{
-    height: 38px;
+input{
+    height: 45px;
     border: 1px solid ;
     border-radius: 5px;
     padding-left: 15px;
     font-size: 18px;
 }
 
-.bouton {
-    width: 80%;
+textarea{
+    padding-top: 1.5%;
+    resize: none;
+    border: 1px solid ;
+    border-radius: 5px;
+    padding-left: 15px;
+    font-size: 18px;
+}
+
+.area {
+    width: 92%;
+    height: 140px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding-bottom: 2%;
+}
+
+.btn{
+    text-align: center;
+}
+
+button {
+    vertical-align: middle;
+    width: 40%;
     border: none;
     margin-top: 2%;
     padding: 1% 0% 1% 0%;
@@ -105,20 +125,4 @@ a{
     background: var(--color);
     color: #fff;
     font-size: 24px;
-}
-
-.complet{
-    width: 100%;
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    padding-bottom: 0.5%;
-}
-
-.btn{
-    width: 85%;
-    padding-left: 2%;
-    display: flex;
-    position: relative;
-    flex-direction: column;
 }

@@ -65,12 +65,12 @@
                                value="{{ demande.latitude }}" readonly>
                     </div>
                 </div>
-                <div class="boutons">
-                    <div class="btn">
-                        <a class="bouton" href="{% url 'refuser_form' demande.pk %}">Refuser la demande </a>
+                <div class="complet left">
+                    <div class="flex vertical-center justify-center btn">
+                        <a class="flex bouton vertical-center justify-center" href="{% url 'refuser_form' demande.pk %}">Refuser la demande </a>
                     </div>
-                    <div class="btn">
-                        <a class="bouton" href="{% url 'ajouter_resto' demande.pk %}">Valider la demande </a>
+                    <div class="flex vertical-center justify-center btn">
+                        <a class="flex bouton vertical-center justify-center" href="{% url 'ajouter_resto' demande.pk %}">Valider la demande </a>
                     </div>
                 </div>
             </form>

@@ -111,6 +111,7 @@ class RefusDemandeRestaurant(models.Model):
     def __str__(self):
         return self.restaurateur_fk.mail + self.titre
 
+
 class ImageUser(models.Model):
     img = models.ImageField(upload_to='img_user/')
 
