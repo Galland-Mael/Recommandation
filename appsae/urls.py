@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from appsae.views import *
+from appsae.views_restaurateur_admin import *
 from django.conf import settings
 from .models import *
 from django.conf.urls.static import static
@@ -41,7 +42,6 @@ urlpatterns = [
     path('restaurateur/formulaire', formulaire_demande_restaurateur, name='formulaire_demande_restaurateur'),
     path('administrateur', administrateur_page, name="administrateur_page"),
     path('administrateur/demande/(<pk>)', validation_admin, name="validation_admin"),
-
     path('administrateur/suppression/(<pk>)', refuser_form, name="refuser_form"),
     path('administrateur/ajout/(<pk>)', ajouter_resto, name="ajouter_resto")
 ]
