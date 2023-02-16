@@ -68,6 +68,16 @@ def pageVerifMail(request):
 
 def verifMail(request):
     if(request.session['code']==request.POST['code']):
+        user = Adherant.objects.create(
+            prenom=request.session['registerPrenom'],
+            nom=request.session['registerNom'],
+            ville=request.session['registerVille'],
+            mail=request.session['registerMail'],
+            birthDate=request.session['registerBirthDate'],
+            password=request.session['registerPassword'],
+        )
+        user.save()
+        request.session['mailUser'] = user.mail
         return redirect('index')
     else:
         messages.success(request, _('Mot de passe ou mail incorrect'))
@@ -384,15 +394,12 @@ def register(request):
         '''Remplissage de la base de données'''
         password = user['password']
         hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-        obj = Adherant.objects.create(
-            prenom=user['prenom'],
-            nom=user['nom'],
-            ville=user['ville'],
-            mail=user['mail'],
-            birthDate=user['birthDate'],
-            password=hashed_password,
-        )
-        obj.save()
+        request.session['registerPrenom']=user['prenom']
+        request.session['registerNom']=user['nom']
+        request.session['registerVille']=user['ville']
+        request.session['registerMail']=user['mail']
+        request.session['registerBirthDate']=user['birthDate']
+        request.session['registerPassword']=hashed_password
         request.session['code'] = verificationEmail(user["mail"])
         return redirect('pageVerifMail')
     form = AdherantForm()
