@@ -1,5 +1,4 @@
 from .models import *
-from .views import logoutUser
 from .gestion import connect
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -7,30 +6,33 @@ import hashlib
 import datetime
 import time
 from time import mktime
-from django.contrib.auth.decorators import login_required
 
 
 def validation_admin(request, pk):
-    demande = DemandeCreationRestaurant.objects.get(pk=pk)
-    context = {
-        'demande': demande,
-        'pk': demande.pk
-    }
-    connect(request, context)
-    return render(request, 'administrateur/validation.html', context)
+    if 'mailAdministrateur' in request.session:
+        demande = DemandeCreationRestaurant.objects.get(pk=pk)
+        context = {
+            'demande': demande,
+            'pk': demande.pk
+        }
+        connect(request, context)
+        return render(request, 'administrateur/validation.html', context)
+    return redirect('index')
 
 
 def administrateur_page(request):
-    context = {
-        'demandes': DemandeCreationRestaurant.objects.filter(traite=False).order_by("-date_creation")
-    }
-    connect(request, context)
-    return render(request, 'administrateur/index.html', context)
+    if 'mailAdministrateur' in request.session:
+        context = {
+            'demandes': DemandeCreationRestaurant.objects.filter(traite=False).order_by("-date_creation")
+        }
+        connect(request, context)
+        return render(request, 'administrateur/index.html', context)
+    return redirect('index')
 
 
 def refuser_form(request, pk):
-    context = {}
     if 'mailAdministrateur' in request.session:
+        context = {}
         if request.method == "POST":
             refus = RefusDemandeRestaurant(
                 titre=request.POST['title'],
@@ -40,8 +42,9 @@ def refuser_form(request, pk):
             refus.save()
             DemandeCreationRestaurant.objects.filter(pk=pk).update(traite=1)
             return redirect('administrateur_page')
-    connect(request, context)
-    return render(request, 'administrateur/form_refus.html', context)
+        connect(request, context)
+        return render(request, 'administrateur/form_refus.html', context)
+    return redirect('index')
 
 
 def ajouter_resto(request, pk):
@@ -60,7 +63,8 @@ def ajouter_resto(request, pk):
         restaurant.save()
         Restaurateur.objects.filter(pk=demande.restaurateur_fk_id).update(restaurant_fk=restaurant)
         demande.delete()
-    return redirect('administrateur_page')
+        return redirect('administrateur_page')
+    return redirect('index')
 
 
 def register_restaurateur(request):

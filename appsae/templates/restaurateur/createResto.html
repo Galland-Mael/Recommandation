@@ -2,7 +2,7 @@
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/restaurateur/formulaire_restaurateur.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/restaurateur.css' %}"/>
 {% endblock %}
 
 {% block header %}
@@ -10,50 +10,52 @@
 {% endblock %}
 
 {% block main %}
-    <div class="body flex vertical-center justify-center">
+    <div class="body flex justify-center padding-t-5 padding-b-5">
     <div class="container">
-        <form action="" method="POST" class="post-form form">
+        <form action="" method="POST">
             {% csrf_token %}
-            <div class="title-setting">Inscrire votre restaurant</div>
-            <div class="field left">
+            <div class="font-35 text-align padding-b-5">
+                Inscrire votre restaurant
+            </div>
+            <div class="field left-4 padding-b-1">
                 <label class="label" for="nom">Nom du restaurant * :</label>
-                <input class="input_large" type="text" name="nom" class="input" value="{{ demande.nom }}">
+                <input class="input" type="text" name="nom" value="{{ demande.nom }}">
             </div>
-            <div class="field left">
+            <div class="field left-4 padding-b-1">
                 <label class="label" for="adresse">Adresse du restaurant * :</label>
-                <input class="input_large" type="text" name="adresse" class="input" value="{{ demande.adresse }}">
+                <input class="input" type="text" name="adresse" value="{{ demande.adresse }}">
             </div>
-            <div class="double left">
-                <div class="field-double right">
+            <div class="double left-4 padding-b-1">
+                <div class="field right-4">
                     <label class="label" for="ville">Ville * :</label>
-                    <input class="input_large" type="text" name="ville" class="input" value="{{ demande.ville }}">
+                    <input class="input" type="text" name="ville" value="{{ demande.ville }}">
                 </div>
-                <div class="field-double left">
+                <div class="field left-4 padding-b-1">
                     <label class="label" for="postal">Code Postal * :</label>
-                    <input class="input_large" type="text" name="postal" class="input" value="{{ demande.zip_code }}">
+                    <input class="input" type="text" name="postal" value="{{ demande.zip_code }}">
                 </div>
             </div>
-            <div class="double left">
-                <div class="field-double right">
+            <div class="double left-4 padding-b-1">
+                <div class="field right-4">
                     <label class="label" for="pays">Pays * :</label>
-                    <input class="input_large" type="text" name="pays" class="input" value="{{ demande.pays }}">
+                    <input class="input" type="text" name="pays" value="{{ demande.pays }}">
                 </div>
-                <div class="field-double left">
+                <div class="field left-4">
                     <label class="label" for="etat">Etat :</label>
-                    <input class="input_large" type="text" name="etat" class="input" value="{{ demande.etat }}">
+                    <input class="input" type="text" name="etat" value="{{ demande.etat }}">
                 </div>
             </div>
-            <div class="double left">
-                <div class="field-double right">
+            <div class="double left-4 padding-b-1">
+                <div class="field right-4">
                     <label class="label" for="longitude">Longitude * :</label>
-                    <input class="input_large" type="text" name="longitude" class="input" value="{{ demande.longitude }}">
+                    <input class="input" type="text" name="longitude" value="{{ demande.longitude }}">
                 </div>
-                <div class="field-double left">
+                <div class="field left-4">
                     <label class="label" for="latitude">Latitude * :</label>
-                    <input class="input_large" type="text" name="latitude" class="input" value="{{ demande.latitude }}">
+                    <input class="input" type="text" name="latitude" value="{{ demande.latitude }}">
                 </div>
             </div>
-            <div class="btn">
+            <div class="text-align padding-b-1 padding-t-1">
                 <button class="bouton">Envoyer la demande</button>
             </div>
         </form>

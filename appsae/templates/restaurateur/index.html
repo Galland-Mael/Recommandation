@@ -2,8 +2,7 @@
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/general.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'CSS/restaurateur/index_restaurateur.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/restaurateur.css' %}"/>
 {% endblock %}
 
 {% block header %}
@@ -42,11 +41,11 @@
                     <div class="text-align font-22 padding-b-5">
                         Déposée le {{ demande.date_creation }}
                     </div>
-                    <div class="field left right padding-b-2">
-                        <div class="label">Restaurant :</div>
+                    <div class="field left-4 right-4 padding-b-2">
+                        <div class="label font-">Restaurant :</div>
                         <div class="input">{{ demande.nom }}</div>
                     </div>
-                    <div class="field left right padding-b-5">
+                    <div class="field left-4 right-4 padding-b-5">
                         <div class="label">Adresse :</div>
                         <div class="input">{{ demande.adresse }}</div>
                     </div>
@@ -54,12 +53,14 @@
                         Votre demande sera traitée dans les plus brefs délais
                     </div>
                 {% elif demande.traite == 2 or demande.traite == 1 %}
-                    <div class="font-30">Votre demande a été refusée</div>
-                    <div class="field left right padding-b-2">
+                    <div class="text-align font-30 padding-b-5">
+                        Votre demande a été refusée
+                    </div>
+                    <div class="field left-4 right-4 padding-b-2">
                         <div class="label">Motif du refus :</div>
                         <div class="input">{{ refus.titre }}</div>
                     </div>
-                    <div class="field-area left right padding-b-2">
+                    <div class="field hauteur-area left-4 right-4 padding-b-2">
                         <div class="label">Description :</div>
                         <div class="area">{{ refus.message }}</div>
                     </div>

@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path
 from appsae.views import *
-from appsae.views_restaurateur_admin import *
 from django.conf import settings
 from .models import *
 from django.conf.urls.static import static

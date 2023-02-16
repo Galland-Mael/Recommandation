@@ -53,11 +53,14 @@ import time
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 import hashlib
-
-PAGE = 0
+from .views_restaurateur_admin import register_restaurateur,login_restaurateur, index_restaurateur, administrateur_page, validation_admin,formulaire_demande_restaurateur, ajouter_resto, refuser_form
 
 
 def index(request):
+    if 'mailRestaurateur' in request.session:
+        return redirect('index_restaurateur')
+    elif 'mailAdministrateur' in request.session:
+        return redirect('administrateur_page')
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
