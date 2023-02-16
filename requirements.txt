@@ -28,3 +28,5 @@ kiwisolver
 retrying
 django-recaptcha
 django-unixtimestampfield
+surprise
+chart_studio
