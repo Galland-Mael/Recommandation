@@ -1,11 +1,8 @@
-import datetime
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.timezone import now
-from datetime import datetime
 import time
 import datetime
-from unixtimestampfield.fields import UnixTimeStampField
 
 
 class Administrateur(models.Model):

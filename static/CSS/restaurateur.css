@@ -104,6 +104,14 @@ a{
     width: 60%;
 }
 
+@media (min-width: 750px){
+    .container{
+        padding-right: 3%;
+        padding-left: 3%;
+        width: 94%;
+    }
+}
+
 /* Ensembles de champs */
 .field {
     width: 92%;
