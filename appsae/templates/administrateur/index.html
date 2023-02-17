@@ -3,6 +3,7 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/administrateur/page_admin.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/administrateur.css' %}"/>
 {% endblock %}
 
 {% block header %}
@@ -10,7 +11,9 @@
 {% endblock %}
 
 {% block main %}
-    <h1> Demandes d'inscription de restaurants: </h1>
+    <div class="font-30 text-align padding-t-3 padding-b-1">
+        Demandes d'inscription de restaurants:
+    </div>
     {% for element in demandes %}
         <div class="demande">
             <div class="informations">

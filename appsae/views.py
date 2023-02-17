@@ -8,33 +8,18 @@ import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
 from django.conf import settings
 from django.utils.dateformat import format
-from surprise import KNNBasic
-from surprise import Dataset
-from surprise import Reader
 from django.conf import settings
 from collections import defaultdict
 from operator import itemgetter
 import heapq
 import hashlib
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import chart_studio.plotly as py
-from surprise import accuracy, SVD
-from surprise.model_selection import train_test_split
-from surprise.model_selection import cross_validate
-import chart_studio
 import os
 import csv
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, render, redirect
-from django.utils.encoding import smart_str
-
-from appsae.models import *
 from .formulaire import *
 from django.core.mail import send_mail
 import random
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from .recommandation_groupe import recommandationGroupeAvisGroupeComplet
@@ -53,20 +38,20 @@ import time
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 import hashlib
-from .views_restaurateur_admin import register_restaurateur,login_restaurateur, index_restaurateur, administrateur_page, validation_admin,formulaire_demande_restaurateur, ajouter_resto, refuser_form
+from .views_restaurateur_admin import register_restaurateur, login_restaurateur, index_restaurateur, \
+    index_administrateur, validation_admin, formulaire_demande_restaurateur, ajouter_resto, refuser_form
 
 
 def index(request):
     if 'mailRestaurateur' in request.session:
         return redirect('index_restaurateur')
     elif 'mailAdministrateur' in request.session:
-        return redirect('administrateur_page')
+        return redirect('index_administrateur')
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
-    context = {
-    }
+    context = {}
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
@@ -454,14 +439,6 @@ def meilleurs_resto(request):
     ''' Renvoie les restaurants les mieux notés '''
     liste = listeAffichageCaroussel();
     return render(request, 'testMatteo.html', {'list': liste});
-
-
-def carrousel():
-    restaurant = Restaurant.objects.order_by('-note');
-    list = [];
-    for i in range(10):
-        list.append(restaurant[i]);
-    return list
 
 
 def recommandation():

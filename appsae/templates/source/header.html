@@ -8,7 +8,7 @@
             <a class="img-logo-container" href="{% url 'index' %}">
                 <img class="img-logo" src="{% static '/Image/logo.png' %}" alt="logo de l'utilisateur"></a>
         {% else %}
-            <a class="img-logo-container" href="{% url 'administrateur_page' %}">
+            <a class="img-logo-container" href="{% url 'index_administrateur' %}">
                 <img class="img-logo" src="{% static '/Image/logo.png' %}" alt="logo de l'utilisateur"></a>
         {% endif %}
         <ul>

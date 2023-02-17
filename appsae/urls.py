@@ -2,16 +2,15 @@ from django.contrib import admin
 from django.urls import path
 from appsae.views import *
 from django.conf import settings
-from .models import *
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index, name='index'),
     path('user/register/', register, name='register'),
     path('user/login/', login, name='login'),
     path('modifuser/', modifUser, name='modifUser'),
     path('verificationEmail/', verificationEmail, name='verificationEmail'),
-    path('', index, name='index'),
     path('carrousel/', meilleurs_resto, name='meilleurs_resto'),
     path('logout/', logoutUser, name='logout'),
     path('addCommentaires/(<pk>)', addCommentaires, name='addCommentaires'),
@@ -35,11 +34,13 @@ urlpatterns = [
     path('setImg/', setImg, name='setImg'),
     path('deleteGroup/(<pk>)', deleteGroup, name='deleteGroup'),
     path('recommendation', recommendation, name='recommendation'),
+
+    # Restaurateurs et administrateurs
     path('restaurateur/login', login_restaurateur, name='login_restaurateur'),
     path('restaurateur/register', register_restaurateur, name='register_restaurateur'),
     path('restaurateur', index_restaurateur, name='index_restaurateur'),
     path('restaurateur/formulaire', formulaire_demande_restaurateur, name='formulaire_demande_restaurateur'),
-    path('administrateur', administrateur_page, name="administrateur_page"),
+    path('administrateur', index_administrateur, name="index_administrateur"),
     path('administrateur/demande/(<pk>)', validation_admin, name="validation_admin"),
     path('administrateur/suppression/(<pk>)', refuser_form, name="refuser_form"),
     path('administrateur/ajout/(<pk>)', ajouter_resto, name="ajouter_resto")
