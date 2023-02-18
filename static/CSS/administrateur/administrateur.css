@@ -96,13 +96,6 @@ a{
     width: 60%;
 }
 
-@media (min-width: 750px){
-    .container{
-        padding: 2% 3%;
-        width: 94%;
-    }
-}
-
 /* Ensemble des champs */
 .field {
     width: 92%;
@@ -174,6 +167,7 @@ textarea{
 
 .bouton {
     width: 80%;
+    text-align: center;
     border: none;
     margin-top: 2%;
     padding: 1% 0% 1% 0%;
@@ -193,6 +187,7 @@ textarea{
 
 button {
     vertical-align: middle;
+    text-align: center;
     width: 40%;
     border: none;
     margin-top: 2%;
