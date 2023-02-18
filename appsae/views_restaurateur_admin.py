@@ -181,6 +181,7 @@ def formulaire_demande_restaurateur(request):
                 return redirect('index_restaurateur')
         elif demande.count() == 1:
             context['demande'] = demande[0]
+        context['types'] = RestaurantType.objects.all()
         connect(request, context)
         return render(request, 'restaurateur/createResto.html', context)
     return redirect('index_restaurateur')

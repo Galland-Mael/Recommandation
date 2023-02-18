@@ -11,25 +11,16 @@ function file_names() {
     many.innerHTML = '';
     nb_fichiers.innerHTML = '';
     const files = input_many.files;
-    const taille = files.length;
     const item = document.createElement('div');
-    item.textContent = taille;
+    item.textContent = files.length;
     nb_fichiers.appendChild(item);
 
-    const item2 = document.createElement('div');
-    item2.textContent = limitString(input_many.files[0].name);
-    many.appendChild(item2);
-    /*
-    for (let i = 0; i < Math.min(files.length, 1); i++) {
-        const file = files[i];
-        const fileName = file.name;
-        const item = document.createElement('div');
-        item.textContent = limitString(fileName);
-        many.appendChild(item);
-    }*/
+    const elem = document.createElement('div');
+    elem.textContent = limitString(input_many.files[0].name);
+    many.appendChild(elem);
     if (files.length > 1) {
         const item = document.createElement('div');
-        item.textContent = 'et ' + String(taille - 1) + ' autres';
+        item.textContent = 'et ' + String(files.length - 1) + ' autres';
         many.appendChild(item);
     }
 }

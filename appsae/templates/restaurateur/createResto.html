@@ -59,28 +59,41 @@
                     <div class="field hauteur-images right-4">
                         <div class="ligne">
                             <div class="label">
-                                Image de couverture :
+                                Image de couverture * :
                             </div>
                             <label for="cover-file" class="label-file-upload text-align">Ajouter</label>
-                            <input type="file" name="photo" id="cover-file" class="custom-file-upload">
+                            <input type="file" name="photo" id="cover-file">
                         </div>
                         <div id="alone" class="photos-container"></div>
                     </div>
                     <div class="field hauteur-images left-4">
                         <div class="ligne">
-                            <div class="label flex">Autres images (<div id="nb_fichiers"></div>):</div>
+                            <div class="label flex">Autres images ** (
+                                <div id="nb_fichiers"></div>
+                                ):
+                            </div>
                             <label for="file-upload" class="label-file-upload text-align">Ajouter</label>
-                            <input type="file" name="photo" id="file-upload" class="custom-file-upload" multiple>
+                            <input type="file" name="photo" id="file-upload" multiple>
                         </div>
                         <div id="many" class="photos-container">
                         </div>
                     </div>
+                </div>
+                <div class="field types left-4 padding-b-1">
+                    <div class="label">Types de votre restaurant *** : </div>
+                    <select name="type" class="input hauteur-list" multiple>
+                        {% for elem in types %}
+                            <option value="{{ elem.nom }}">{{ elem.nom }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="text-align padding-b-1 padding-t-1">
                     <button class="bouton">Envoyer la demande</button>
                 </div>
             </form>
             <p> * Champs obligatoires</p>
+            <p> ** Ajouter au moins 4 photos de votre établissement</p>
+            <p> *** Sélectionnez minimum un type</p>
         </div>
     </div>
 {% endblock %}
