@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 import hashlib
 import datetime
 from time import mktime
+from .ajoutCSV import add_restaurant_csv
 
 
 def validation_admin(request, pk):
@@ -59,6 +60,7 @@ def ajouter_resto(request, pk):
             latitude=demande.latitude,
         )
         restaurant.save()
+        add_restaurant_csv(restaurant)
         Restaurateur.objects.filter(pk=demande.restaurateur_fk_id).update(restaurant_fk=restaurant)
         demande.delete()
         return redirect('index_administrateur')

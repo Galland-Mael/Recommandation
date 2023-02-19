@@ -195,7 +195,6 @@ input[type="file"] {
     position: relative;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid;
     padding-left: 15px;
     padding-right: 15px;
     font-size: 18px;
