@@ -63,11 +63,14 @@ def modifPAGE():
 
 
 def pageVerifMail(request):
+    if Adherant.objects.get(mail=request.session['registerMail']):
+        messages.error(request, _('Il y a déjà un compte associé à cette adresse mail'))
+        return redirect('register')
     return render(request, 'user/pageVerifMail.html')
 
 
 def verifMail(request):
-    if(request.session['code']==request.POST['code']):
+    if (request.session['code'] == request.POST['code']):
         user = Adherant.objects.create(
             prenom=request.session['registerPrenom'],
             nom=request.session['registerNom'],
@@ -82,6 +85,7 @@ def verifMail(request):
     else:
         messages.success(request, _('Mot de passe ou mail incorrect'))
         return redirect('pageVerifMail')
+
 
 def index(request):
     tab = {};
@@ -394,12 +398,12 @@ def register(request):
         '''Remplissage de la base de données'''
         password = user['password']
         hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-        request.session['registerPrenom']=user['prenom']
-        request.session['registerNom']=user['nom']
-        request.session['registerVille']=user['ville']
-        request.session['registerMail']=user['mail']
-        request.session['registerBirthDate']=user['birthDate']
-        request.session['registerPassword']=hashed_password
+        request.session['registerPrenom'] = user['prenom']
+        request.session['registerNom'] = user['nom']
+        request.session['registerVille'] = user['ville']
+        request.session['registerMail'] = user['mail']
+        request.session['registerBirthDate'] = user['birthDate']
+        request.session['registerPassword'] = hashed_password
         request.session['code'] = verificationEmail(user["mail"])
         return redirect('pageVerifMail')
     form = AdherantForm()

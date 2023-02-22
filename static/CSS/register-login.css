@@ -375,3 +375,7 @@ a{
 .margin-top-form{
     margin-top:100px ;
 }
+.error{
+    color: #c51244;
+    text-align: center;
+}

@@ -8,7 +8,7 @@
         {% get_available_languages as LANGUAGES %}
         {% get_language_info_list for LANGUAGES as languages %}
         <div class="nav-item dropdown">
-            <select  class="selelct-footer" onchange="window.location.href=this.value;">
+            <select  class="select-footer" onchange="window.location.href=this.value;">
                 <option value="{% trans 'Langues' %}">{% trans 'Langues' %}</option>
                 {% for language in languages %}
                     <option value="/{{ language.code }}">{{ language.name_local }}</option>
