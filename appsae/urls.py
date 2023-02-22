@@ -4,6 +4,8 @@ from appsae.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
+from appsae.views_restaurateur_admin import modif_resto
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
@@ -40,6 +42,7 @@ urlpatterns = [
     path('restaurateur/register', register_restaurateur, name='register_restaurateur'),
     path('restaurateur', index_restaurateur, name='index_restaurateur'),
     path('restaurateur/formulaire', formulaire_demande_restaurateur, name='formulaire_demande_restaurateur'),
+    path('modifRestaurant', modif_resto, name="modif_resto"),
     path('administrateur', index_administrateur, name="index_administrateur"),
     path('administrateur/demande/(<pk>)', validation_admin, name="validation_admin"),
     path('administrateur/suppression/(<pk>)', refuser_form, name="refuser_form"),

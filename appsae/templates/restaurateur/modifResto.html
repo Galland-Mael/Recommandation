@@ -1,0 +1,42 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/modifResto.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/restaurateur.css' %}"/>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
+{% block main %}
+    <div class="left-4 flex padding-t-3">
+        <div class="left-4 border right-4 padding-t-3 padding-b-3">
+            {% for elem in listJours %}
+                <div class="padding-t-1">
+                    <p>{{ elem }}: </p>
+                    <div class="text-align flex top-4px">
+                        <input type="text" size="5" value="00:00">
+                        <div class="text_a"> à</div>
+                        <input type="text" size="5" value="00:00">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="left-4 right-4">
+            <div class="border margin-bottom-5 padding-t-3 padding-b-3 padding-l-3 taille_container" id="lastComment">
+                <div class=""> Dernier commentaire sur votre établissement: </div>
+                <div class="">Commentaire: {{ lastComment.texte }}</div>
+                <div class="">Date: {{ lastComment.unix_date }}</div>
+            </div>
+            <div class="border" id="galerie">
+                Galerie photo
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "source/footer.html" %}
+{% endblock %}

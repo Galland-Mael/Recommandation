@@ -29,6 +29,25 @@ def index_administrateur(request):
     return redirect('index')
 
 
+def modif_resto(request):
+    if 'mailRestaurateur' in request.session:
+        listeHeures = []
+        for i in range(24):
+            text = ""
+            if i < 10:
+                text = "0"
+            listeHeures.append(text + str(i))
+        last_avis = Avis.objects.filter(restaurant_fk=Restaurateur.objects.get(
+                mail=request.session['mailRestaurateur']).restaurant_fk).order_by('-unix_date')
+        context = {
+            'listJours': ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
+         }
+        if last_avis.count() != 0:
+            context['lastComment'] = last_avis[0]
+        return render(request, 'restaurateur/modifResto.html', connect(request, context))
+    return redirect('index')
+
+
 def refuser_form(request, pk):
     if 'mailAdministrateur' in request.session:
         context = {}
