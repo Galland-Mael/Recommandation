@@ -63,7 +63,7 @@ def modifPAGE():
 
 
 def pageVerifMail(request):
-    if Adherant.objects.get(mail=request.session['registerMail']):
+    if Adherant.objects.filter(mail=request.session['registerMail']).count() != 0:
         messages.error(request, _('Il y a déjà un compte associé à cette adresse mail'))
         return redirect('register')
     return render(request, 'user/pageVerifMail.html')
@@ -88,7 +88,6 @@ def verifMail(request):
 
 
 def index(request):
-    tab = {};
     list = ["bars", "american (traditional)", "pizza", "fast food", "breakfast & brunch", "american (new)", "burgers",
             "mexican", "italian", "coffee & tea"]
     if 'groupe' in request.session:
@@ -120,6 +119,14 @@ def deleteGroup(request, pk):
     suppressionGroupe(groupe)
     return redirect('groupe')
 
+def deleteUser(request, pk):
+    if 'mailUser' not in request.session:
+        return redirect('index')
+    groupe = Groupe.objects.get(pk=pk)
+    user = Adherant.objects.get(mail=request.session['mailUser'])
+    suppressionUtilisateur(user,groupe)
+    return redirect('groupe')
+
 
 def groupRecommandations(request, pk):
     if 'mailUser' not in request.session:
@@ -131,7 +138,7 @@ def groupRecommandations(request, pk):
         'membres': membres,
         'groupe': groupe,
     }
-    if groupe.id_gerant == user.pk:
+    if int(groupe.id_gerant) == user.pk:
         context['chef'] = True
     if 'mailUser' in request.session:
         if RecommandationGroupe.objects.filter(
@@ -282,17 +289,20 @@ def nomGroup(request):
 def searchRestau(request):
     type = RestaurantType.objects.filter(nom=request.POST["type"])
     search = request.POST["search"]
-    if 'mailUser' not in request.session:
-        return redirect('index')
     if type == "" and search == "":
         return redirect(index)
-    user = Adherant.objects.get(mail=request.session['mailUser'])
     context = {}
     if request.POST["type"] == "":
         type = RestaurantType.objects.all()
     if search == "":
         search = ""
-    context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type, ville=user.ville)
+    if 'mailUser' in request.session:
+        user = Adherant.objects.get(mail=request.session['mailUser'])
+        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type, ville=user.ville)
+    else:
+        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type)
+    if(context['list'].count()==0):
+        return redirect('index')
     connect(request, context)
     return render(request, 'restaurants/searchRestau.html', context)
 

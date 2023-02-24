@@ -1,5 +1,5 @@
 {% extends 'source/base.html' %}
- {% load i18n %}
+{% load i18n %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -27,6 +27,10 @@
             {% if chef %}
                 <button class="btn-container">
                     <a class="suivant" href="{% url 'deleteGroup' groupe.pk %}">{% trans 'Supprimer le groupe' %}</a>
+                </button>
+            {% else %}
+                 <button class="btn-container">
+                    <a class="suivant" href="{% url 'deleteUser' groupe.pk %}">{% trans 'Quitter le groupe' %}</a>
                 </button>
             {% endif %}
         </aside>

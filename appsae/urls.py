@@ -41,6 +41,7 @@ urlpatterns += i18n_patterns(
     path('recommendation', recommendation, name='recommendation'),
     path('pageVerifMail', pageVerifMail, name='pageVerifMail'),
     path('verifMail',verifMail,name='verifMail'),
+    path('deleteUser/(<pk>)',deleteUser,name='deleteUser'),
 )
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

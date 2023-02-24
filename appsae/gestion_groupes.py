@@ -59,13 +59,13 @@ def suppressionUtilisateur(user, groupe):
     @param groupe: le groupe dans lequel supprimer l'utilisateur
     @return:/
     """
-    if user.id_yelp == groupe.id_gerant:
+    if user.pk == groupe.id_gerant:
         if groupe.liste_adherants.count() == 1:
             groupe.delete()
         else:
             groupe.liste_adherants.remove(user)
             new_gerant = groupe.liste_adherants.all()[0]
-            updateId_gerant(groupe, new_gerant.id_yelp)
+            updateId_gerant(groupe, new_gerant.pk)
     else:
         groupe.liste_adherants.remove(user)
 

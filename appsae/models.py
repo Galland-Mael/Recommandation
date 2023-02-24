@@ -45,6 +45,7 @@ class ImageRestaurant(models.Model):
 
 
 class Restaurant(models.Model):
+    id_yelp = models.CharField(max_length=150, default='')
     nom = models.CharField(max_length=50)
     adresse = models.CharField(max_length=50)
     ville = models.CharField(max_length=50, default='')
