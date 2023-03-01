@@ -3,6 +3,12 @@ from .models import *
 NB_CARROUSEL = 8
 
 def connect(request,context):
+    """
+    Fonction qui pemet de mettre le mail et la photo de l'utilisateur connecté dnas le context
+    @param request: correspond a la view
+    @param context: correspond au paramètre passer au template
+    @return:
+    """
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
         context['mail'] = request.session['mailUser']
