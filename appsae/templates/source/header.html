@@ -20,6 +20,7 @@
                     <img src="{{ photo }}" alt="marche pas" class="img-user">
                 </a>
             {% elif mailR %}
+                <li><a href="{% url 'modif_resto' %}" class="btn-header">Mon restaurant</a></li>
                 <li><a href="{% url 'logout' %}" class="btn-header">Deconnexion</a></li>
                 <a class="img-container-user" href="#">
                     <img src="{{ profil_picture }}" alt="marche pas" class="img-user">

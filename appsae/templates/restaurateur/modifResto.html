@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/modifResto.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/restaurateur.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/vueRestaurant.css' %}"/>
 {% endblock %}
 
 {% block header %}
@@ -11,32 +12,124 @@
 {% endblock %}
 
 {% block main %}
-    <div class="left-4 flex padding-t-3">
-        <div class="left-4 border right-4 padding-t-3 padding-b-3">
-            {% for elem in listJours %}
-                <div class="padding-t-1">
-                    <p>{{ elem }}: </p>
-                    <div class="text-align flex top-4px">
-                        <input type="text" size="5" value="00:00">
-                        <div class="text_a"> à</div>
-                        <input type="text" size="5" value="00:00">
+    <div class="left-4 right-4 flex padding-t-3 padding-b-3">
+        <div class="taille_gauche flex flex-column margin-right-5">
+            <!-- Télephone -->
+            <div class="border margin-bottom-5 taille_horaires" id="telephone-height">
+                <div class="text-align title-restaurateur">Téléphone</div>
+                <form name="form1" method="POST" action="" class="flex flex-column left-4 right-4">
+                    {% csrf_token %}
+                    <input class="input margin-bottom-3" type="text" name="telephone">
+                    <div class="text-align padding-t-1">
+                        <button class="button">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Avis -->
+            <div class="border taille_horaires">
+                <div class="text-align title-restaurateur">Avis</div>
+                <div class="left-4 right-4">
+                    <div>Nombre d'avis: {{ restaurant.nb_review }}</div>
+                    <div class="flex">
+                        <div>Moyenne: {{ restaurant.note }}</div>
+                        <div class="star-icon">
+                            <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                        </div>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
-        <div class="left-4 right-4">
-            <div class="border margin-bottom-5 padding-t-3 padding-b-3 padding-l-3 taille_container" id="lastComment">
-                <div class=""> Dernier commentaire sur votre établissement: </div>
-                <div class="">Commentaire: {{ lastComment.texte }}</div>
-                <div class="">Date: {{ lastComment.unix_date }}</div>
+
+        <div class="taille_container margin-left-5">
+            <!-- Dernier commentaire -->
+            <div class="border margin-bottom-5" id="lastComment">
+                <div class="text-align title-restaurateur">Derniers avis</div>
+                {% for lastComment in lastComments %}
+                    <div class="flex row padding-b-3">
+                        <div class="card-avis flex right-4">
+                            <div class="card-user-container flex">
+                                <div class="card-img-container flex">
+                                    <img class="img" src="{{ lastComment.adherant_fk.profile_picture.url }}"
+                                         alt="Loading issue">
+                                </div>
+                            </div>
+                            <div class="flex column width-100p">
+                                <span class="user-name flex">{{ lastComment.adherant_fk.prenom }}</span>
+                                <div class="padding-t-5 flex row">
+                                    <span> Note : {{ lastComment.note }}</span>
+                                    <div class="star-icon">
+                                        <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex left-4 trait">{{ lastComment.texte }}</div>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="border" id="galerie">
-                Galerie photo
+        </div>
+    </div>
+    <div class="left-4 right-4">
+        <!-- Horaires -->
+        <div class="border flex column">
+            <div class="text-align title-restaurateur">Horaires</div>
+            <div class="flex m-auto">
+                <form>
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            {% for day in list %}
+                                <td><label for="{{ day.jour }}">{{ day.jour }}</label></td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            {% for day in list %}
+                                <td>
+                                    <div class="flex">
+                                        <input type="text" class="input_horaire text-align"
+                                               name="start_1_{{ day.jour }}"
+                                               value="{{ day.horaire1_deb }}">
+                                        <div class="tiret">-</div>
+                                        <input type="text" class="input_horaire text-align" name="end_1_{{ day.jour }}"
+                                               value="{{ day.horaire1_fin }}">
+                                    </div>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            {% for day in list %}
+                                <td>
+                                    <div class="flex">
+                                        <input type="text" class="input_horaire text-align"
+                                               name="start_2_{{ day.jour }}"
+                                               value="{{ day.horaire2_deb }}">
+                                        <div class="tiret">-</div>
+                                        <input type="text" class="input_horaire text-align" name="end_2_{{ day.jour }}"
+                                               value="{{ day.horaire2_fin }}">
+                                    </div>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                    <div class="text-align padding-t-1">
+                        <button class="button">Enregistrer</button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
+    <div class="right-4 left-4 flex row"></div>
+        <div class="flex vertical-center justify-center btn">
+            <a class="flex bouton vertical-center justify-center" href="{% url 'index_restaurateur' %}">Vue utilisateur</a>
         </div>
     </div>
 {% endblock %}
 
 {% block footer %}
     {% include "source/footer.html" %}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'JS/modif_resto.js' %}"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 {% endblock %}

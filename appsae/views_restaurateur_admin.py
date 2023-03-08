@@ -7,6 +7,15 @@ from time import mktime
 from .ajoutCSV import add_restaurant_csv
 
 
+class Horaire:
+    def __init__(self, jour, h1_d="00:00", h1_f="00:00", h2_d = "00:00", h2_f="00:00"):
+        self.jour = jour
+        self.horaire1_deb = h1_d
+        self.horaire2_deb = h2_d
+        self.horaire1_fin = h1_f
+        self.horaire2_fin = h2_f
+
+
 def validation_admin(request, pk):
     if 'mailAdministrateur' in request.session:
         demande = DemandeCreationRestaurant.objects.get(pk=pk)
@@ -31,19 +40,23 @@ def index_administrateur(request):
 
 def modif_resto(request):
     if 'mailRestaurateur' in request.session:
-        listeHeures = []
-        for i in range(24):
-            text = ""
-            if i < 10:
-                text = "0"
-            listeHeures.append(text + str(i))
+        if request.method == "POST":
+            info = request.POST
+            if 'telephone' in info and info['telephone'] != '':
+                print("Ajout du téléphone")
+            if 'test' in info:
+                print(info)
         last_avis = Avis.objects.filter(restaurant_fk=Restaurateur.objects.get(
                 mail=request.session['mailRestaurateur']).restaurant_fk).order_by('-unix_date')
         context = {
-            'listJours': ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
-         }
+            'list': [Horaire("Lundi", "05:00", "10:00"), Horaire("Mardi", "05:00", "10:00"),
+                      Horaire("Mercredi", "05:00", "10:00"),Horaire("Jeudi", "05:00", "10:00"),
+                      Horaire("Vendredi", "05:00", "10:00"), Horaire("Samedi", "05:00", "10:00"),
+                      Horaire("Dimanche", "05:00", "10:00")],
+            'restaurant': Restaurant.objects.get(pk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']).restaurant_fk.pk),
+        }
         if last_avis.count() != 0:
-            context['lastComment'] = last_avis[0]
+            context['lastComments'] = last_avis[:2]
         return render(request, 'restaurateur/modifResto.html', connect(request, context))
     return redirect('index')
 
