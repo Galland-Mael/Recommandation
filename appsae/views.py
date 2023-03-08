@@ -43,6 +43,7 @@ from .gestion import *
 from .gestion_note import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
+import re
 from .gestion_note import *
 from .svd import *
 from .models import *
@@ -339,39 +340,30 @@ def voirPlus(request, pk):
 
 def register(request):
     if request.method == "POST":
-        user = request.POST
-        '''Remplissage de la base de données'''
-        password = user['password']
-        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
         form = AdherantForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            obj = Adherant.objects.create(
-            prenom = data['prenom'],
-            nom = data['nom'],
-            mail = data['mail'],
-            birthDate = data['birthDate'],
-            password = hashed_password,
-            )
-            recaptcha_response = data['captcha']
-            obj.save()
-            url = "https://www.google.com/recaptcha/api/siteverify"
-            payload = {
-                'secret': settings.RECAPTCHA_PRIVATE_KEY,
-                'response': recaptcha_response
-            }
-            response = requests.post(url, data=payload)
-            result = response.json()
-            if result['success']:
-                # Continue with processing the form data
-                # ...
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        url = "https://www.google.com/recaptcha/api/siteverify"
+        payload = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': recaptcha_response
+        }
+        response = requests.post(url, data=payload)
+        result = response.json()
+        if result['success']:
+            if form.is_valid():
+                user = form.save(commit=False)
+                password = user.password
+                hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+                user.password = hashed_password
+                user.save()
                 return redirect('login')
-            else:
-                form.add_error(None, 'Invalid reCAPTCHA. Please try again.')
-            return redirect('login')
+        else:
+            form.add_error(None, 'Invalid reCAPTCHA. Please try again.')
     else:
         form = AdherantForm()
     return render(request, 'user/register.html', {'form': form})
+
+
 """
         return redirect('login')
     form = AdherantForm()
@@ -382,6 +374,27 @@ def register(request):
     return render(request, 'user/register.html', context)
     # return JsonResponse({"form": list(form.values) })
 """
+
+
+def validate_form(form):
+    name = form.get("name")
+    email = form.get("email")
+    message = form.get("message")
+    captcha = form.get("g-recaptcha-response")
+
+    # Check if captcha is checked
+    if not captcha:
+        return False, "Please complete the captcha"
+
+    # Check if name, email, and message are not empty
+    if not name or not email or not message:
+        return False, "Please fill in all fields"
+
+    # Check if email is valid
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        return False, "Please enter a valid email address"
+
+    return True, ""
 
 
 def login(request):

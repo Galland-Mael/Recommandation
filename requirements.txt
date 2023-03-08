@@ -30,3 +30,4 @@ django-recaptcha
 django-unixtimestampfield
 surprise
 chart_studio
+Celery
