@@ -117,22 +117,20 @@ class ImageUser(models.Model):
 
 
 class Horaire(models.Model):
-    class Nom_jour(models.IntegerChoices):
-        Lundi = 1
-        Mardi = 2
-        Mercredi = 3
-        Jeudi = 4
-        Vendredi = 5
-        Samedi = 6
-        Dimanche = 7
+    class Nom_jour(models.TextChoices):
+        Lundi = "Lundi"
+        Mardi = "Mardi"
+        Mercredi = "Mercredi"
+        Jeudi = "Jeudi"
+        Vendredi = "Vendredi"
+        Samedi = "Samedi"
+        Dimanche = "Dimanche"
 
-    Nom_jour = models.IntegerField(choices=Nom_jour.choices)
+    Nom_jour = models.CharField(max_length=15, choices=Nom_jour.choices)
     Debut_Horaire1 = models.TimeField(default='00:00')
     Fin_Horaire1 = models.TimeField(default='00:00')
     Debut_Horaire2 = models.TimeField(default='00:00')
     Fin_Horaire2 = models.TimeField(default='00:00')
-    Debut_Horaire3 = models.TimeField(default='00:00')
-    Fin_Horaire3 = models.TimeField(default='00:00')
 
     def __str__(self):
         return self.Nom_jour

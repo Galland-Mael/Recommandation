@@ -8,12 +8,12 @@ from .ajoutCSV import add_restaurant_csv
 
 
 class Horaire:
-    def __init__(self, jour, h1_d="00:00", h1_f="00:00", h2_d = "00:00", h2_f="00:00"):
+    def __init__(self, jour, horaire1_deb="00:00", horaire1_fin="00:00", horaire2_deb = "00:00", horaire2_fin="00:00"):
         self.jour = jour
-        self.horaire1_deb = h1_d
-        self.horaire2_deb = h2_d
-        self.horaire1_fin = h1_f
-        self.horaire2_fin = h2_f
+        self.horaire1_deb = horaire1_deb
+        self.horaire2_deb = horaire2_deb
+        self.horaire1_fin = horaire1_fin
+        self.horaire2_fin = horaire2_fin
 
 
 def validation_admin(request, pk):
@@ -49,10 +49,10 @@ def modif_resto(request):
         last_avis = Avis.objects.filter(restaurant_fk=Restaurateur.objects.get(
                 mail=request.session['mailRestaurateur']).restaurant_fk).order_by('-unix_date')
         context = {
-            'list': [Horaire("Lundi", "05:00", "10:00"), Horaire("Mardi", "05:00", "10:00"),
-                      Horaire("Mercredi", "05:00", "10:00"),Horaire("Jeudi", "05:00", "10:00"),
-                      Horaire("Vendredi", "05:00", "10:00"), Horaire("Samedi", "05:00", "10:00"),
-                      Horaire("Dimanche", "05:00", "10:00")],
+            'list': [Horaire("Lundi", "11:00", "15:00"), Horaire("Mardi", "11:00", "15:00"),
+                      Horaire("Mercredi", "11:00", "15:00"),Horaire("Jeudi", "11:00", "15:00"),
+                      Horaire("Vendredi", "11:00", "15:00"), Horaire("Samedi", "11:00", "15:00"),
+                      Horaire("Dimanche", "11:00", "15:00")],
             'restaurant': Restaurant.objects.get(pk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']).restaurant_fk.pk),
         }
         if last_avis.count() != 0:
@@ -92,6 +92,9 @@ def ajouter_resto(request, pk):
             latitude=demande.latitude,
         )
         restaurant.save()
+        for type_name in demande.type.all():
+            type = RestaurantType.objects.get(nom=type_name)
+            restaurant.type.add(type)
         add_restaurant_csv(restaurant)
         Restaurateur.objects.filter(pk=demande.restaurateur_fk_id).update(restaurant_fk=restaurant)
         demande.delete()
@@ -147,7 +150,7 @@ def index_restaurateur(request):
         demande = DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk)
         context = {
             'nombre': demande.count(),
-            'restaurant_exist': (restaurateur.restaurant_fk_id is not None)
+            'restaurant_exist': (restaurateur.restaurant_fk_id is not None),
         }
         if restaurateur.restaurant_fk_id is not None:
             context['restaurant'] = restaurateur.restaurant_fk
@@ -193,6 +196,9 @@ def create_demandecreationrestaurant(info, request):
             restaurateur_fk=restaurateur,
         )
         demande_creation.save()
+        for type_name in info.getlist('type'):
+            type = RestaurantType.objects.get(nom=type_name)
+            demande_creation.type.add(type)
         RefusDemandeRestaurant.objects.filter(restaurateur_fk=restaurateur.pk).delete()
         return True
     return False
