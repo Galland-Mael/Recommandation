@@ -5,10 +5,11 @@ import hashlib
 import datetime
 from time import mktime
 from .ajoutCSV import add_restaurant_csv
+from random import randint
 
 
 class Horaire:
-    def __init__(self, jour, horaire1_deb="00:00", horaire1_fin="00:00", horaire2_deb = "00:00", horaire2_fin="00:00"):
+    def __init__(self, jour, horaire1_deb="00:00", horaire1_fin="00:00", horaire2_deb="00:00", horaire2_fin="00:00"):
         self.jour = jour
         self.horaire1_deb = horaire1_deb
         self.horaire2_deb = horaire2_deb
@@ -47,13 +48,14 @@ def modif_resto(request):
             if 'test' in info:
                 print(info)
         last_avis = Avis.objects.filter(restaurant_fk=Restaurateur.objects.get(
-                mail=request.session['mailRestaurateur']).restaurant_fk).order_by('-unix_date')
+            mail=request.session['mailRestaurateur']).restaurant_fk).order_by('-unix_date')
         context = {
             'list': [Horaire("Lundi", "11:00", "15:00"), Horaire("Mardi", "11:00", "15:00"),
-                      Horaire("Mercredi", "11:00", "15:00"),Horaire("Jeudi", "11:00", "15:00"),
-                      Horaire("Vendredi", "11:00", "15:00"), Horaire("Samedi", "11:00", "15:00"),
-                      Horaire("Dimanche", "11:00", "15:00")],
-            'restaurant': Restaurant.objects.get(pk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']).restaurant_fk.pk),
+                     Horaire("Mercredi", "11:00", "15:00"), Horaire("Jeudi", "11:00", "15:00"),
+                     Horaire("Vendredi", "11:00", "15:00"), Horaire("Samedi", "11:00", "15:00"),
+                     Horaire("Dimanche", "11:00", "15:00")],
+            'restaurant': Restaurant.objects.get(
+                pk=Restaurateur.objects.get(mail=request.session['mailRestaurateur']).restaurant_fk.pk),
         }
         if last_avis.count() != 0:
             context['lastComments'] = last_avis[:2]
@@ -225,3 +227,14 @@ def formulaire_demande_restaurateur(request):
         connect(request, context)
         return render(request, 'restaurateur/createResto.html', context)
     return redirect('index_restaurateur')
+
+
+def setImageAleatoireRestaurant(restaurant):
+    random_value = randint(0, 4)
+    restaurant.image_front = "/img_restaurant/imagefront" + str(random_value) + ".jpg"
+    restaurant.save()
+    indice_in_list = random_value * 4;
+
+    imgset = ImageRestaurant.objects.all()
+    for index in range(4):
+        restaurant.img.add(imgset[indice_in_list + index])
