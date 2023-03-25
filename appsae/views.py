@@ -482,6 +482,14 @@ def logoutUser(request):
         del request.session['mailUser']
     except KeyError:
         pass
+    try:
+        del request.session['mailRestaurateur']
+    except KeyError:
+        pass
+    try:
+        del request.session['mailAdministrateur']
+    except KeyError:
+        pass
     return redirect('index')
 
 

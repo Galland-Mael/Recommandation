@@ -4,7 +4,7 @@ from appsae.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
-from appsae.views_restaurateur_admin import modif_resto
+from appsae.views_restaurateur_admin import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
