@@ -98,6 +98,7 @@ def ajouter_resto(request, pk):
             type = RestaurantType.objects.get(nom=type_name)
             restaurant.type.add(type)
         add_restaurant_csv(restaurant)
+        setImageAleatoireRestaurant(restaurant)
         Restaurateur.objects.filter(pk=demande.restaurateur_fk_id).update(restaurant_fk=restaurant)
         demande.delete()
         return redirect('index_administrateur')
@@ -230,10 +231,11 @@ def formulaire_demande_restaurateur(request):
 
 
 def setImageAleatoireRestaurant(restaurant):
-    random_value = randint(0, 4)
+    random_value = randint(1, 4)
     restaurant.image_front = "/img_restaurant/imagefront" + str(random_value) + ".jpg"
+    '/img_restaurant/imagefront3.jpg'
     restaurant.save()
-    indice_in_list = random_value * 4;
+    indice_in_list = (random_value - 1) * 4 # Les images des sets sont stockées les unes après les autres et il y en a 4
 
     imgset = ImageRestaurant.objects.all()
     for index in range(4):
