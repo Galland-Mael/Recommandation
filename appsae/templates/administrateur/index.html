@@ -1,0 +1,36 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/administrateur/page_admin.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/administrateur/administrateur.css' %}"/>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
+{% block main %}
+    <div class="font-30 text-align padding-t-3 padding-b-1">
+        Demandes d'inscription de restaurants:
+    </div>
+    {% for element in demandes %}
+        <div class="demande">
+            <div class="informations">
+                <div class="mail">
+                    <img src="media/img_restaurateur/personne.png">
+                    {{ element.restaurateur_fk.mail }}
+                </div>
+                <div class="date">
+                    <img src="media/img_restaurateur/date_creation.png">
+                    {{ element.date_creation }}
+                </div>
+            </div>
+            <div class="lien">
+                <a href="{% url 'validation_admin' element.pk %}">
+                    <img src="media/img_restaurateur/oeil.png">
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

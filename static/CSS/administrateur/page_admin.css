@@ -1,0 +1,48 @@
+.demande{
+    display: flex;
+    flex-direction: row;
+    margin: 2% 5%;
+    padding: 1%;
+    border-radius: 1rem;
+    border: 1px solid #111111;
+    width: 90%;
+}
+
+.informations{
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    flex:  5;
+    align-items: center;
+}
+
+.informations img{
+    width: 25px;
+    margin: auto;
+    vertical-align: middle;
+}
+
+.mail{
+    flex: 3;
+    padding-left: 3%;
+}
+
+.date{
+    text-align: center;
+    flex: 2;
+    padding-right: 5%;
+}
+
+.lien{
+    padding-right: 3%;
+    text-align: right;
+    display: flex;
+    align-items: center;
+}
+
+.lien img{
+    border: 1px solid #111111;
+    border-radius: 15rem;
+    width: 100px;
+    vertical-align: middle;
+}

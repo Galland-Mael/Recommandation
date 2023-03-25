@@ -1,0 +1,36 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/administrateur/administrateur.css' %}"/>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
+{% block main %}
+    <div class="body flex vertical-center justify-center">
+        <div class="container">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="font-30 text-align padding-b-2">
+                    Motif de refus
+                </div>
+                <div class="field left-4">
+                    <label class="label" for="title">Titre du refus :</label>
+                    <input type="text" name="title" class="input">
+                </div>
+                <div class="area left-4">
+                    <label class="label" for="description">Description :</label>
+                    <textarea rows="40" type="text" name="description"></textarea>
+                </div>
+                <div class="boutons">
+                    <div class="text-align">
+                        <button>Valider le refus</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

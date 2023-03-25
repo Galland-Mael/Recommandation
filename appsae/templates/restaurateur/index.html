@@ -1,0 +1,85 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/restaurateur.css' %}"/>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
+{% block main %}
+    <div class="body flex justify-center padding-t-5 padding-b-5">
+        <div class="container">
+            {% if nombre == 0 %}
+                <div class="text-align font-30 padding-b-5">
+                    Vous êtes un restaurateur et vous souhaitez que votre restaurant soit inscrit
+                    sur le site EatAdvisor ?
+                </div>
+                <div class="text-align font-22 padding-b-3">
+                    Il vous suffit de remplir le formulaire suivant, les informations sur votre
+                    restaurant seront vérifiées puis validées ou refusées.
+                </div>
+                <div class="text-align font-22 padding-b-3">
+                    Si vos informations sont validées, votre restaurant sera ajouté sur EatAdvisor,
+                    vous pourrez ajouter des horaires, des images et des commentaires à la page contenant
+                    les informations de votre restaurant.
+                </div>
+                <div class="text-align font-22 padding-b-3">
+                    Sinon, vous pourrez refaire une demande au bout de 3 jours.
+                </div>
+                <div class="flex vertical-center justify-center">
+                    <a class="flex bouton vertical-center justify-center"
+                       href="{% url 'formulaire_demande_restaurateur' %}">Créer mon formulaire</a>
+                </div>
+            {% elif nombre == 1 %}
+                {% if demande.traite == 0 %}
+                    <div class="text-align font-30 padding-b-2">
+                        Demande en cours de traitement
+                    </div>
+                    <div class="text-align font-22 padding-b-5">
+                        Déposée le {{ demande.date_creation }}
+                    </div>
+                    <div class="field left-4 right-4 padding-b-2">
+                        <div class="label font-">Restaurant :</div>
+                        <div class="input">{{ demande.nom }}</div>
+                    </div>
+                    <div class="field left-4 right-4 padding-b-5">
+                        <div class="label">Adresse :</div>
+                        <div class="input">{{ demande.adresse }}</div>
+                    </div>
+                    <div class="text-align font-22 padding-b-2">
+                        Votre demande sera traitée dans les plus brefs délais
+                    </div>
+                {% elif demande.traite == 2 or demande.traite == 1 %}
+                    <div class="text-align font-30 padding-b-5">
+                        Votre demande a été refusée
+                    </div>
+                    <div class="field left-4 right-4 padding-b-2">
+                        <div class="label">Motif du refus :</div>
+                        <div class="input">{{ refus.titre }}</div>
+                    </div>
+                    <div class="field hauteur-area left-4 right-4 padding-b-2">
+                        <div class="label">Description :</div>
+                        <div class="area">{{ refus.message }}</div>
+                    </div>
+                    {% if demande.traite == 2 %}
+                        <div class="flex vertical-center justify-center">
+                            <a class="flex bouton vertical-center justify-center"
+                               href="{% url 'formulaire_demande_restaurateur' %}">Modifier ma demande</a>
+                        </div>
+                    {% else %}
+                        <div class="text-align font-22 padding-b-5">
+                            Vous pourrez modifier votre demande dans {{ minutes }} minutes {{ secondes }} secondes
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "source/footer.html" %}
+{% endblock %}

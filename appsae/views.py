@@ -8,33 +8,18 @@ import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
 from django.conf import settings
 from django.utils.dateformat import format
-from surprise import KNNBasic
-from surprise import Dataset
-from surprise import Reader
 from django.conf import settings
 from collections import defaultdict
 from operator import itemgetter
 import heapq
 import hashlib
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import chart_studio.plotly as py
-from surprise import accuracy, SVD
-from surprise.model_selection import train_test_split
-from surprise.model_selection import cross_validate
-import chart_studio
 import os
 import csv
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, render, redirect
-from django.utils.encoding import smart_str
-
-from appsae.models import *
 from .formulaire import *
 from django.core.mail import send_mail
 import random
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from .recommandation_groupe import recommandationGroupeAvisGroupeComplet
@@ -54,22 +39,20 @@ import time
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 import hashlib
-
-PAGE = 0
-
-
-def modifPAGE():
-    global PAGE
-    PAGE += 1
+from .views_restaurateur_admin import register_restaurateur, login_restaurateur, index_restaurateur, \
+    index_administrateur, validation_admin, formulaire_demande_restaurateur, ajouter_resto, refuser_form
 
 
 def index(request):
+    if 'mailRestaurateur' in request.session:
+        return redirect('index_restaurateur')
+    elif 'mailAdministrateur' in request.session:
+        return redirect('index_administrateur')
     if 'groupe' in request.session:
         del request.session['groupe']
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
-    context = {
-    }
+    context = {}
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
@@ -414,8 +397,8 @@ def modification(request):
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
     if (request.POST['ville'] != user.ville):
         Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
-        #if (user.nb_review >= 5):
-            #majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
+        # if (user.nb_review >= 5):
+        # majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
     context = {}
     if 'mailUser' in request.session:
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
@@ -459,14 +442,6 @@ def meilleurs_resto(request):
     return render(request, 'testMatteo.html', {'list': liste});
 
 
-def carrousel():
-    restaurant = Restaurant.objects.order_by('-note');
-    list = [];
-    for i in range(10):
-        list.append(restaurant[i]);
-    return list
-
-
 def recommandation():
     restaurant = Restaurant.objects.order_by('-note');
     list = [];
@@ -483,6 +458,14 @@ def logoutUser(request):
         del request.session['mailUser']
     except KeyError:
         pass
+    try:
+        del request.session['mailRestaurateur']
+    except KeyError:
+        pass
+    try:
+        del request.session['mailAdministrateur']
+    except KeyError:
+        pass
     return redirect('index')
 
 
@@ -493,31 +476,18 @@ def search(request):
     return HttpResponse('')
 
 
-def matteo(request):
-    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
-    resto = Restaurant.objects.filter(nom="Burger King")[0]
-    print(afficherAvis(adherant, resto))
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
-                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
-    modifPAGE()
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
-                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
-    modifPAGE()
-    print("------------------------------------------------")
-    return redirect('index')
-
-
 def recommendation(request):
     st = time.time()
     # groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
     # liste = listRecommandationGroupe(groupe)
-    person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
-    liste = listeRecommandationIndividuelle(person)
-    print(liste)
+    # person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
+    # liste = listeRecommandationIndividuelle(person)
+    # print(liste)
+    administrateur = Administrateur(
+        mail='admin_Miguelez@eatadvisor.com',
+        password=hashlib.sha256(str('adminMiguelez').encode('utf-8')).hexdigest(),
+    )
+    administrateur.save()
     print(time.time() - st)
     return HttpResponse('')
 

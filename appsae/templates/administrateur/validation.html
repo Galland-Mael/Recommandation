@@ -1,0 +1,73 @@
+{% extends 'source/base.html' %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/administrateur/administrateur.css' %}"/>
+{% endblock %}
+
+{% block header %}
+    {% include "source/header.html" %}
+{% endblock %}
+
+{% block main %}
+    <div class="body flex vertical-center justify-center">
+        <div class="container">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="font-30 text-align padding-b-2">
+                    Validation
+                </div>
+                <div class="field left-4">
+                    <label class="label" for="nom">Restaurateur :</label>
+                    <input class="input_bas" type="text" name="nom" class="input" value="{{ demande.restaurateur_fk }}" readonly>
+                </div>
+                <div class="field left-4">
+                    <label class="label" for="nom">Nom du restaurant :</label>
+                    <input class="input_bas" type="text" name="nom" class="input" value="{{ demande.nom }}">
+                </div>
+                <div class="field left-4">
+                    <label class="label" for="adresse">Adresse du restaurant :</label>
+                    <input class="input_bas" type="text" name="adresse" class="input" value="{{ demande.adresse }}">
+                </div>
+                <div class="double left-4">
+                    <div class="field right-4">
+                        <label class="label" for="ville">Ville :</label>
+                        <input class="input_bas" type="text" name="ville" class="input" value="{{ demande.ville }}">
+                    </div>
+                    <div class="field left-4">
+                        <label class="label" for="postal">Code Postal :</label>
+                        <input class="input_bas" type="text" name="postal" class="input" value="{{ demande.zip_code }}">
+                    </div>
+                </div>
+                <div class="double left-4">
+                    <div class="field right-4">
+                        <label class="label" for="pays">Pays :</label>
+                        <input class="input_bas" type="text" name="pays" class="input" value="{{ demande.pays }}">
+                    </div>
+                    <div class="field left-4">
+                        <label class="label" for="etat">Etat :</label>
+                        <input class="input_bas" type="text" name="etat" class="input" value="{{ demande.etat }}">
+                    </div>
+                </div>
+                <div class="double left-4">
+                    <div class="field right-4">
+                        <label class="label" for="longitude">Longitude :</label>
+                        <input class="input_bas" type="text" name="longitude" class="input" value="{{ demande.longitude }}">
+                    </div>
+                    <div class="field left-4">
+                        <label class="label" for="latitude">Latitude :</label>
+                        <input class="input_bas" type="text" name="latitude" class="input" value="{{ demande.latitude }}">
+                    </div>
+                </div>
+                <div class="double-btn left-4">
+                    <div class="flex vertical-center justify-center btn">
+                        <a class="flex bouton vertical-center justify-center" href="{% url 'refuser_form' demande.pk %}">Refuser la demande </a>
+                    </div>
+                    <div class="flex vertical-center justify-center btn">
+                        <a class="flex bouton vertical-center justify-center" href="{% url 'ajouter_resto' demande.pk %}">Valider la demande </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

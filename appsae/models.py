@@ -1,11 +1,16 @@
-import datetime
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.timezone import now
-from datetime import datetime
 import time
 import datetime
-from unixtimestampfield.fields import UnixTimeStampField
+
+
+class Administrateur(models.Model):
+    mail = models.EmailField(max_length=254)
+    password = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.mail
 
 
 class Adherant(models.Model):
@@ -37,6 +42,7 @@ class RestaurantType(models.Model):
     def __str__(self):
         return self.nom
 
+
 class ImageRestaurant(models.Model):
     image = models.ImageField(upload_to='liste_images')
 
@@ -56,11 +62,51 @@ class Restaurant(models.Model):
     note = models.FloatField(validators=[MaxValueValidator(5), MinValueValidator(0)], default=0)
     nb_review = models.IntegerField(default=0)
     image_front = models.ImageField(upload_to='img_restaurant/', default='img_restaurant/avatar.jpeg')
+    telephone = models.CharField(max_length=15,default="000000000")
     type = models.ManyToManyField(RestaurantType)
     img = models.ManyToManyField(ImageRestaurant)
 
     def __str__(self):
         return str(self.nom)
+
+
+class Restaurateur(models.Model):
+    mail = models.EmailField(max_length=254)
+    password = models.CharField(max_length=255)
+    profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
+    restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.SET(None), default=None)
+
+    def __str__(self):
+        return self.mail
+
+
+class DemandeCreationRestaurant(models.Model):
+    nom = models.CharField(max_length=50)
+    adresse = models.CharField(max_length=50)
+    ville = models.CharField(max_length=50, default='')
+    zip_code = models.CharField(max_length=50, default='')
+    pays = models.CharField(max_length=50)
+    etat = models.CharField(max_length=50, default='')
+    longitude = models.CharField(max_length=70, default='')
+    latitude = models.CharField(max_length=70, default='')
+    image_front = models.ImageField(upload_to='img_demande/', default='img_restaurant/avatar.jpeg')
+    type = models.ManyToManyField(RestaurantType)
+    img = models.ManyToManyField(ImageRestaurant)
+    restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE, default=None)
+    date_creation = models.DateTimeField(default=datetime.datetime.now)
+    traite = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.restaurateur_fk.mail
+
+
+class RefusDemandeRestaurant(models.Model):
+    titre = models.CharField(max_length=100, default='')
+    message = models.CharField(max_length=255, default='')
+    restaurateur_fk = models.ForeignKey(Restaurateur, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.restaurateur_fk.mail + self.titre
 
 
 class ImageUser(models.Model):
@@ -71,22 +117,20 @@ class ImageUser(models.Model):
 
 
 class Horaire(models.Model):
-    class Nom_jour(models.IntegerChoices):
-        Lundi = 1
-        Mardi = 2
-        Mercredi = 3
-        Jeudi = 4
-        Vendredi = 5
-        Samedi = 6
-        Dimanche = 7
+    class Nom_jour(models.TextChoices):
+        Lundi = "Lundi"
+        Mardi = "Mardi"
+        Mercredi = "Mercredi"
+        Jeudi = "Jeudi"
+        Vendredi = "Vendredi"
+        Samedi = "Samedi"
+        Dimanche = "Dimanche"
 
-    Nom_jour = models.IntegerField(choices=Nom_jour.choices)
+    Nom_jour = models.CharField(max_length=15, choices=Nom_jour.choices)
     Debut_Horaire1 = models.TimeField(default='00:00')
     Fin_Horaire1 = models.TimeField(default='00:00')
     Debut_Horaire2 = models.TimeField(default='00:00')
     Fin_Horaire2 = models.TimeField(default='00:00')
-    Debut_Horaire3 = models.TimeField(default='00:00')
-    Fin_Horaire3 = models.TimeField(default='00:00')
 
     def __str__(self):
         return self.Nom_jour
