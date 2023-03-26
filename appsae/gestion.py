@@ -24,11 +24,12 @@ def listeAffichageCaroussel(type=""):
     @param type: le type de restaurant recherché
     @return: les meilleurs restaurants selon le filtre
     """
+    NB_MINIMUM = 25
     if type != "":
         type_restaurant = RestaurantType.objects.filter(nom=type.lower())  # on stock le type de restaurant correspondant au filtre
         if type_restaurant.count() == 0: # si il n'y a pas de type avec ce nom on arête la fonction
-            return []
-        return Restaurant.objects.filter(type=type_restaurant[0]).order_by('-note')[:NB_CARROUSEL]
+            return
+        return meilleursRestoParType(type_restaurant[0], NB_MINIMUM)
     return Restaurant.objects.order_by('-note')[:NB_CARROUSEL]
 
 
@@ -47,18 +48,14 @@ def listeAffichageCarrouselVilles(ville="", type=""):
     if type != "":
         type_restaurant = RestaurantType.objects.filter(nom=type.lower())  # on stock le type de restaurant correspondant au filtre
         if type_restaurant.count() == 0: # si il n'y a pas de type avec ce nom on arête la fonction
-                return []
-
+                return
         if ville != "":
             meilleurs = Restaurant.objects.filter(ville=ville, type=type_restaurant[0], nb_review__gte=NB_MINIMUM).order_by('-note')
             if meilleurs.count() >= NB_CARROUSEL:
                 return meilleurs[:NB_CARROUSEL]
             return Restaurant.objects.filter(ville=ville, type=type_restaurant[0]).order_by('-note')[:NB_CARROUSEL]
         else:
-            meilleurs = Restaurant.objects.filter(type=type_restaurant[0], nb_review__gte=NB_MINIMUM).order_by('-note')
-            if meilleurs.count() >= NB_CARROUSEL:
-                return meilleurs[:NB_CARROUSEL]
-            return Restaurant.objects.filter(type=type_restaurant[0]).order_by('-note')[:NB_CARROUSEL]
+            meilleursRestoParType(type_restaurant[0], NB_MINIMUM)
     if ville != "" and type == "":
         meilleurs = Restaurant.objects.filter(ville=ville, nb_review__gte=NB_MINIMUM).order_by('-note')
         if meilleurs.count() >= NB_CARROUSEL:
@@ -68,6 +65,13 @@ def listeAffichageCarrouselVilles(ville="", type=""):
     if meilleurs.count() >= NB_CARROUSEL:
         return meilleurs[:NB_CARROUSEL]
     return Restaurant.objects.order_by('-note')[:NB_CARROUSEL]
+
+
+def meilleursRestoParType(type, nb_review_mini):
+    meilleurs = Restaurant.objects.filter(type=type, nb_review__gte=nb_review_mini).order_by('-note')
+    if meilleurs.count() >= NB_CARROUSEL:
+        return meilleurs[:NB_CARROUSEL]
+    return Restaurant.objects.filter(type=type).order_by('-note')[:NB_CARROUSEL]
 
 
 def listeAffichageDejaVisiter(user_id):
