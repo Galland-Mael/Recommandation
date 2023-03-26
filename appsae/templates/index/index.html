@@ -50,10 +50,22 @@
                                     <span class="text nom">{{ element.nom }}</span>
                                 </div>
                                 <div class="flex align">
-                                    <span class="text">{{ element.note }}</span>
-                                    <div class="star-icon">
-                                        <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                                    </div>
+                                    {% if element.note != -1 %}
+                                        {% for i in list_etoiles %}
+                                            {% if element.note > i %}
+                                                <div class="star-icon">
+                                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                                                </div>
+                                            {% else %}
+                                                <div class="star-icon-empty">
+                                                    <box-icon type='solid' color="#787878" ; name='star'></box-icon>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <div class="text">{{ element.note }}</div>
+                                    {% else %}
+                                        <div class="text">Pas de note</div>
+                                    {% endif %}
                                 </div>
                                 <div class="nav-localisation text">
                                     <div>{{ element.adresse }}</div>
@@ -152,6 +164,7 @@
             prev: '.glider-prev',
             next: '.glider-next'
         }
-    });</script>
+    });
+    </script>
 {% endblock %}
 

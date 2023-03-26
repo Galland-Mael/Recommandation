@@ -67,16 +67,16 @@ def index(request):
         del request.session['groupe']
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
-    context = {
-    }
+    context = {}
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
         context['italian'] = listeAffichageCarrouselVilles(user.ville, "Italian")
-        if RecommandationUser.objects.filter(
-                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
-            context['recommandation'] = RecommandationUser.objects.get(
-                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
+        reco = RecommandationUser.objects.filter(adherant_fk=Adherant.objects.get(mail=request.session['mailUser']))
+        if reco.count() != 0:
+            recommandations = reco[0].recommandation.all()
+            context['recommandation'] = recommandations
+            context['list_etoiles'] = [1,2,3,4,5]
     else:
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles()
         context['italian'] = listeAffichageCaroussel("Italian")
