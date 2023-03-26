@@ -102,9 +102,67 @@
             </div>
         </div>
     {% endif %}
+    {% if visites %}
+        <div class="container">
+            <div class="best margin-top">
+                <p class="title text">Vous avez apprécier lors de votre dernière visite</p>
+            </div>
+            <div class="grid">
+                {% for element in visites %}
+                    <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
+                        <div class="img-card">
+                            <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
+                        </div>
+                        <div class="info-card">
+                            <div class="name">
+                                <span class="text nom">{{ element.nom }}</span>
+                            </div>
+                            <div class="flex align">
+                                <span class="text">{{ element.note }}</span>
+                                <div class="star-icon">
+                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                                </div>
+                            </div>
+                            <div class="nav-localisation text">
+                                <div>{{ element.adresse }}</div>
+                                <div>{{ element.ville }}</div>
+                            </div>
+                            <div class="text">({{ element.zip_code }})</div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% if restaurants_sans_note %}
+        <div class="container">
+            <div class="best margin-top">
+                <p class="title text">Soyez le premier à noter ce restaurant</p>
+            </div>
+            <div class="grid">
+                {% for element in restaurants_sans_note %}
+                    <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
+                        <div class="img-card">
+                            <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
+                        </div>
+                        <div class="info-card">
+                            <div class="name">
+                                <span class="text nom">{{ element.nom }}</span>
+                            </div>
+                            <div class="nav-localisation text">
+                                <div>{{ element.adresse }}</div>
+                                <div>{{ element.ville }}</div>
+                            </div>
+                            <div class="text">({{ element.zip_code }})</div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
     <div class="container">
         <div class="best margin-top">
-            <p class="title text">Les meilleurs restaurants</p>
+            <p class="title text">Les restaurants les plus appréciés</p>
         </div>
         <div class="grid">
             {% for element in meilleurRestaurants %}

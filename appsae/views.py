@@ -53,6 +53,7 @@ import time
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 import hashlib
+from random import sample
 
 PAGE = 0
 
@@ -67,8 +68,7 @@ def index(request):
         del request.session['groupe']
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
-    context = {
-    }
+    context = {}
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
@@ -77,6 +77,15 @@ def index(request):
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
             context['recommandation'] = RecommandationUser.objects.get(
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
+        if user.nb_review >= NB_CARROUSEL:
+            context['visites'] = listeAffichageDejaVisiter(user.pk)
+        restaurants_sans_note = Restaurant.objects.filter(nb_review=0, ville=user.ville)
+        liste_restaurants_sans_note = []
+        if restaurants_sans_note.count() >= NB_CARROUSEL:
+            for restaurant in restaurants_sans_note:
+                liste_restaurants_sans_note.append(restaurant)
+            context['restaurants_sans_note'] = sample(liste_restaurants_sans_note, NB_CARROUSEL)
+
     else:
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles()
         context['italian'] = listeAffichageCaroussel("Italian")
