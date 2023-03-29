@@ -74,7 +74,7 @@ class Restaurateur(models.Model):
     mail = models.EmailField(max_length=254)
     password = models.CharField(max_length=255)
     profile_picture = models.ImageField(default='img_user/avatar.jpeg', upload_to='img_user/')
-    restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.SET(None), default=None)
+    restaurant_fk = models.ForeignKey(Restaurant, on_delete=models.SET(None), default=None, null=True)
 
     def __str__(self):
         return self.mail
