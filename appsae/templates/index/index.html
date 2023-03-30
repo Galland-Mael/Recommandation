@@ -70,11 +70,9 @@
                         <div class="img-card">
                             <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
                         </div>
-                        <div class="info-card">
-                            {% block restaurant_by_type %}
-                                {% include "index/restaurant_affichage.html" %}
-                            {% endblock %}
-                        </div>
+                        {% block restaurant_by_type %}
+                            {% include "index/restaurant_affichage.html" %}
+                        {% endblock %}
                     </a>
                 {% endfor %}
             </div>
@@ -91,22 +89,9 @@
                         <div class="img-card">
                             <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
                         </div>
-                        <div class="info-card">
-                            <div class="name">
-                                <span class="text nom">{{ element.nom }}</span>
-                            </div>
-                            <div class="flex align">
-                                <span class="text">{{ element.note }}</span>
-                                <div class="star-icon">
-                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                                </div>
-                            </div>
-                            <div class="nav-localisation text">
-                                <div>{{ element.adresse }}</div>
-                                <div>{{ element.ville }}</div>
-                            </div>
-                            <div class="text">({{ element.zip_code }})</div>
-                        </div>
+                        {% block restaurant_visites %}
+                            {% include "index/restaurant_affichage.html" %}
+                        {% endblock %}
                     </a>
                 {% endfor %}
             </div>
@@ -123,16 +108,9 @@
                         <div class="img-card">
                             <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
                         </div>
-                        <div class="info-card">
-                            <div class="name">
-                                <span class="text nom">{{ element.nom }}</span>
-                            </div>
-                            <div class="nav-localisation text">
-                                <div>{{ element.adresse }}</div>
-                                <div>{{ element.ville }}</div>
-                            </div>
-                            <div class="text">({{ element.zip_code }})</div>
-                        </div>
+                        {% block restaurant_without_note %}
+                            {% include "index/restaurant_affichage.html" %}
+                        {% endblock %}
                     </a>
                 {% endfor %}
             </div>

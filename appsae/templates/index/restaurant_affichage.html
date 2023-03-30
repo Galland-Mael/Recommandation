@@ -1,29 +1,31 @@
-<div class="name">
-    <span class="text nom_resto">{{ element.name }}</span>
-</div>
-<div class="flex align">
-    {% if element.restaurant.note != -1 %}
-        {% for i in list_etoiles_virgules %}
-            {% if element.note >= i.nombre %}
-                <div class="star-icon">
-                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                </div>
-            {% else %}
-                {% if element.note >= i.nombre_virgule %}
+<div class="padding-top-3">
+    <div class="name padding-left-2">
+        <span class="text nom_resto">{{ element.name }}</span>
+    </div>
+    <div class="flex align padding-left">
+        {% if element.restaurant.note != -1 %}
+            {% for i in list_etoiles_virgules %}
+                {% if element.note >= i.nombre %}
                     <div class="star-icon">
-                        <box-icon type='solid' color="#ffb503" name='star-half'></box-icon>
+                        <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
                     </div>
                 {% else %}
-                    <div class="star-icon">
-                        <box-icon color="#ffb503" name='star'></box-icon>
-                    </div>
+                    {% if element.note >= i.nombre_virgule %}
+                        <div class="star-icon">
+                            <box-icon type='solid' color="#ffb503" name='star-half'></box-icon>
+                        </div>
+                    {% else %}
+                        <div class="star-icon">
+                            <box-icon color="#ffb503" name='star'></box-icon>
+                        </div>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        <div class="text">Noter ce restaurant</div>
-    {% endif %}
-</div>
-<div class="nav-localisation text">
-    <div>{{ element.types }}</div>
+            {% endfor %}
+        {% else %}
+            <div class="text">Noter ce restaurant</div>
+        {% endif %}
+    </div>
+    <div class="nav-localisation text padding-left">
+        <div class="padding-top-1">{{ element.types }}</div>
+    </div>
 </div>

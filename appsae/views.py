@@ -107,12 +107,20 @@ def index(request):
         user = Adherant.objects.get(mail=request.session['mailUser'])
         context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles(user.ville)]
         context['italian'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles(user.ville, "Italian")]
-        reco = RecommandationUser.objects.filter(adherant_fk=Adherant.objects.get(mail=request.session['mailUser']))
+        reco = RecommandationUser.objects.filter(adherant_fk=user.pk)
         if reco.count() != 0:
             recommandations = reco[0].recommandation.all()
             context['recommandation'] = recommandations
             context['reco'] = [RestaurantInfo(elem) for elem in recommandations]
             context['list_etoiles_virgules'] = [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5), NumbersStars(3.5), NumbersStars(4.5)]
+        restaurants_sans_note = Restaurant.objects.filter(nb_review=0, ville=user.ville)
+        liste_restaurants_sans_note = []
+        if user.nb_review >= NB_CARROUSEL:
+            context['visites'] = [RestaurantInfo(elem) for elem in listeAffichageDejaVisiter(user.pk)]
+        if restaurants_sans_note.count() >= NB_CARROUSEL:
+            for restaurant in restaurants_sans_note:
+                liste_restaurants_sans_note.append(restaurant)
+            context['restaurants_sans_note'] = [RestaurantInfo(elem) for elem in random.sample(liste_restaurants_sans_note, NB_CARROUSEL)]
     else:
         context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles()]
         context['italian'] = [RestaurantInfo(elem) for elem in listeAffichageCaroussel("Italian")]
