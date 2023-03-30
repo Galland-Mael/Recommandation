@@ -39,39 +39,16 @@
                 <p class="title-slider text">Vos recommandations</p>
             </div>
             <div class="glider">
-                {% for element in  recommandation %}
+                {% for element in reco %}
                     <div class="card">
                         <a href="{% url 'vueRestaurant' element.pk %}">
                             <div class="img-card">
                                 <img src="{{ element.image_front.url }}" alt="image du restaurant">
                             </div>
                             <div class="info-card">
-                                <div class="name">
-                                    <span class="text nom">{{ element.nom }}</span>
-                                </div>
-                                <div class="flex align">
-                                    {% if element.note != -1 %}
-                                        {% for i in list_etoiles %}
-                                            {% if element.note > i %}
-                                                <div class="star-icon">
-                                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                                                </div>
-                                            {% else %}
-                                                <div class="star-icon-empty">
-                                                    <box-icon type='solid' color="#787878" ; name='star'></box-icon>
-                                                </div>
-                                            {% endif %}
-                                        {% endfor %}
-                                        <div class="text">{{ element.note }}</div>
-                                    {% else %}
-                                        <div class="text">Pas de note</div>
-                                    {% endif %}
-                                </div>
-                                <div class="nav-localisation text">
-                                    <div>{{ element.adresse }}</div>
-                                    <div>{{ element.ville }}</div>
-                                </div>
-                                <div class="text">({{ element.zip_code }})</div>
+                                {% block restaurant_reco %}
+                                    {% include "index/restaurant_affichage.html" %}
+                                {% endblock %}
                             </div>
                         </a>
                     </div>
@@ -94,20 +71,9 @@
                             <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
                         </div>
                         <div class="info-card">
-                            <div class="name">
-                                <span class="text nom">{{ element.nom }}</span>
-                            </div>
-                            <div class="flex align">
-                                <span class="text">{{ element.note }}</span>
-                                <div class="star-icon">
-                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                                </div>
-                            </div>
-                            <div class="nav-localisation text">
-                                <div>{{ element.adresse }}</div>
-                                <div>{{ element.ville }}</div>
-                            </div>
-                            <div class="text">({{ element.zip_code }})</div>
+                            {% block restaurant_by_type %}
+                                {% include "index/restaurant_affichage.html" %}
+                            {% endblock %}
                         </div>
                     </a>
                 {% endfor %}
@@ -125,20 +91,9 @@
                         <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
                     </div>
                     <div class="info-card">
-                        <div class="name">
-                            <span class="text nom">{{ element.nom }}</span>
-                        </div>
-                        <div class="flex align">
-                            <span class="text">{{ element.note }}</span>
-                            <div class="star-icon">
-                                <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                            </div>
-                        </div>
-                        <div class="nav-localisation text">
-                            <div>{{ element.adresse }}</div>
-                            <div>{{ element.ville }}</div>
-                        </div>
-                        <div class="text">({{ element.zip_code }})</div>
+                        {% block best_restaurants %}
+                            {% include "index/restaurant_affichage.html" %}
+                        {% endblock %}
                     </div>
                 </a>
             {% endfor %}
@@ -146,7 +101,6 @@
     </div>
 
 {% endblock %}
-
 
 {% block footer %}
     {% include "source/footer.html" %}

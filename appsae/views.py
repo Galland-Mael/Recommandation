@@ -61,6 +61,41 @@ def modifPAGE():
     global PAGE
     PAGE += 1
 
+class NumbersStars:
+    def __init__(self, nombre_virgule):
+        self.nombre = nombre_virgule + 0.5
+        self.nombre_virgule = nombre_virgule
+
+class RestaurantInfo:
+    def __init__(self, restaurant):
+        self.pk = restaurant.pk
+        self.note = restaurant.note
+        self.nb_review = restaurant.nb_review
+        self.name = setNomRestaurant(restaurant.nom)
+        self.image_front = restaurant.image_front
+        self.types = setTypesRestaurant(restaurant.type.all())
+
+
+def setNomRestaurant(nom):
+    if len(nom) > 24:
+        if len(nom) < 27:
+            return nom
+        else:
+            return nom[:24] + "..."
+    return nom
+
+
+def setTypesRestaurant(types):
+    print(types)
+    taille_actuelle = 0
+    return_types = "";
+    for indice, type in enumerate(types):
+        taille_actuelle += len(type.nom) + 3
+        if taille_actuelle < 26:
+            if indice != 0:
+                return_types +=  " | "
+            return_types += str(type.nom[0].upper()) + str(type.nom[1:])
+    return return_types
 
 def index(request):
     if 'groupe' in request.session:
@@ -70,16 +105,17 @@ def index(request):
     context = {}
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
-        context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
-        context['italian'] = listeAffichageCarrouselVilles(user.ville, "Italian")
+        context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles(user.ville)]
+        context['italian'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles(user.ville, "Italian")]
         reco = RecommandationUser.objects.filter(adherant_fk=Adherant.objects.get(mail=request.session['mailUser']))
         if reco.count() != 0:
             recommandations = reco[0].recommandation.all()
             context['recommandation'] = recommandations
-            context['list_etoiles'] = [1,2,3,4,5]
+            context['reco'] = [RestaurantInfo(elem) for elem in recommandations]
+            context['list_etoiles_virgules'] = [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5), NumbersStars(3.5), NumbersStars(4.5)]
     else:
-        context['meilleurRestaurants'] = listeAffichageCarrouselVilles()
-        context['italian'] = listeAffichageCaroussel("Italian")
+        context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles()]
+        context['italian'] = [RestaurantInfo(elem) for elem in listeAffichageCaroussel("Italian")]
     connect(request, context)
     return render(request, 'index/index.html', context)
 
