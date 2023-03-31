@@ -10,6 +10,7 @@ from surprise.model_selection import cross_validate
 from .models import *
 
 
+
 def get_restaurant_id(restaurant_name, metadata):
     """
     Gets the book ID for a book title based on the closest match in the metadata dataframe.
@@ -78,6 +79,7 @@ def algoRecommandationIndividuelle_v2(user_id, model, metadata,taille=10):
             if (list_length == taille):
                 return liste
     return liste
+
 
 
 def algoRecommandationIndividuelle(user_id, model, metadata,taille=10):

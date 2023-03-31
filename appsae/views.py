@@ -1,3 +1,4 @@
+import _thread
 import json
 import os.path
 import sqlite3
@@ -6,6 +7,8 @@ import hashlib
 from sqlite3 import OperationalError
 import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
+
+from celery.result import AsyncResult
 from django.conf import settings
 from django.utils.dateformat import format
 from surprise import KNNBasic
@@ -55,6 +58,7 @@ import time
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 import hashlib
+
 import requests
 
 PAGE = 0
@@ -341,24 +345,16 @@ def voirPlus(request, pk):
 def register(request):
     if request.method == "POST":
         form = AdherantForm(request.POST)
-        recaptcha_response = request.POST.get('g-recaptcha-response')
-        url = "https://www.google.com/recaptcha/api/siteverify"
-        payload = {
-            'secret': settings.RECAPTCHA_PRIVATE_KEY,
-            'response': recaptcha_response
-        }
-        response = requests.post(url, data=payload)
-        result = response.json()
-        if result['success']:
-            if form.is_valid():
-                user = form.save(commit=False)
-                password = user.password
-                hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-                user.password = hashed_password
-                user.save()
-                return redirect('login')
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = user.password
+            hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+            user.password = hashed_password
+            user.save()
+            messages.success(request, "Registration successful. Please log in.")
+            return redirect('login')
         else:
-            form.add_error(None, 'Invalid reCAPTCHA. Please try again.')
+            messages.error(request, "Invalid form. Please correct the errors below.")
     else:
         form = AdherantForm()
     return render(request, 'user/register.html', {'form': form})
@@ -544,6 +540,11 @@ def matteo(request):
     return redirect('index')
 
 
+def printeur(ddd):
+    for i in range(10):
+        print(ddd)
+
+
 def recommendation(request):
     """
     crée une liste de recommandations individuelles
@@ -553,11 +554,15 @@ def recommendation(request):
     st = time.time()
     # groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
     # liste = listRecommandationGroupe(groupe)
-    person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
-    liste = listeRecommandationIndividuelle(person)
-    print(liste)
-    print(time.time() - st)
-    return HttpResponse('')
+    person = Adherant.objects.get(mail="azer@gmail.com")
+    try:
+        _thread.start_new_thread(printeur,("felle",))
+    except:
+        print("Error: unable to start thread")
+
+    while 1:
+        pass
+
 
 
 def export_restaurant(request):

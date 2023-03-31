@@ -142,3 +142,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'eat_advisor2@outlook.fr'
 EMAIL_HOST_PASSWORD = 'mdpEat1526Advisor!'
 EMAIL_USE_TLS = True
+
+# Celery settings
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'

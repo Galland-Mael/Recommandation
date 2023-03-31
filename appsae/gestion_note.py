@@ -10,6 +10,7 @@ from django.conf import settings
 from csv import writer
 from .listeRecommandation import *
 from time import mktime
+from appsae.celery import app
 
 
 def addavisCSV(avis):
@@ -77,7 +78,7 @@ def majRecommandationsIndividuellesBD(user, recommandation_user):
     if mktime(date_bd) <= mktime(date_actuelle) - 0: # temps avant lancement de nouvelle recommendation
         # MAJ de la date de la recommandation
         RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
-        liste = listeRecommandationIndividuelle(user.pk)  # Liste des restaurants à recommander
+        liste = listeRecommandationIndividuelle.delay(user.pk)  # Liste des restaurants à recommander
         reco = RecommandationUser.objects.get(adherant_fk=user.pk)
         liste_reco = reco.recommandation.all()
         # Supprime les recommandations existantes
@@ -112,7 +113,7 @@ def ajoutAvis(user, restaurant, note, avis):
             if recommandation_user.count() == 0: # si il n'a pas encore de recommandation
                 reco = RecommandationUser(adherant_fk=user)
                 reco.save()
-                liste = listeRecommandationIndividuelle(user.pk)
+                liste = listeRecommandationIndividuelle.delay(user.pk)
                 for elem in liste:
                     reco.recommandation.add(elem)
                 RecommandationUser.objects.filter(adherant_fk=user.pk).update(date=datetime.datetime.now())
@@ -177,6 +178,7 @@ def afficherVoirPlus(restaurant, num, user=""):
     return listeAffichageAvis(restaurant, num + 1, user).count() != 0
 
 
+@app.task
 def listRecommandationGroupe(groupe):
     ratings_data = pd.read_csv('./ratings.csv')
     user_idgerant = Groupe.objects.get(pk=groupe.pk).id_gerant
@@ -200,7 +202,7 @@ def ajoutBDRecommandationGroupe(groupe):
     if reco_groupe.count() == 0:
         reco = RecommandationGroupe(groupe_fk=groupe)
         reco.save()
-        list = listRecommandationGroupe(groupe)
+        list = listRecommandationGroupe.delay(groupe)
         for elem in list:
             reco.recommandation.add(elem)
         RecommandationGroupe.objects.filter(groupe_fk=groupe).update(date=datetime.datetime.now())
