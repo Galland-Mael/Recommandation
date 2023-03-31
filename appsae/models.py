@@ -26,6 +26,16 @@ class Adherant(models.Model):
     def __str__(self):
         return self.mail
 
+    def to_dict(self):
+        return {
+            'nom': self.nom,
+            'prenom': self.prenom,
+            'mail': self.mail,
+            'birthDate': self.birthDate,
+            'nb_review': self.nb_review,
+            'profile_picture': self.profile_picture.url,
+            'ville': self.ville,
+        }
 
 class Groupe(models.Model):
     nom_groupe = models.CharField(max_length=25)

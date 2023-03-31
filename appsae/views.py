@@ -1,3 +1,4 @@
+import _thread
 import json
 import os.path
 import sqlite3
@@ -6,6 +7,8 @@ import hashlib
 from sqlite3 import OperationalError
 import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
+
+from celery.result import AsyncResult
 from django.conf import settings
 from django.utils.dateformat import format
 from surprise import KNNBasic
@@ -43,9 +46,12 @@ from .gestion import *
 from .gestion_note import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
+import re
 from .gestion_note import *
 from .svd import *
 from .models import *
+# from .generateDoc import *
+# from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from django.conf import settings
 import datetime
@@ -54,6 +60,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 import hashlib
 from random import sample
+
+import requests
 
 PAGE = 0
 
@@ -369,6 +377,27 @@ def register(request):
     # return JsonResponse({"form": list(form.values) })
 
 
+def validate_form(form):
+    name = form.get("name")
+    email = form.get("email")
+    message = form.get("message")
+    captcha = form.get("g-recaptcha-response")
+
+    # Check if captcha is checked
+    if not captcha:
+        return False, "Please complete the captcha"
+
+    # Check if name, email, and message are not empty
+    if not name or not email or not message:
+        return False, "Please fill in all fields"
+
+    # Check if email is valid
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        return False, "Please enter a valid email address"
+
+    return True, ""
+
+
 def login(request):
     if request.method == "POST":
         info = Adherant.objects.all()
@@ -445,8 +474,8 @@ def modifUser(request):
 
 
 def verificationEmail(request):
-    print("apeler")
     ''' Fonction qui permet l'envoi d'un mail à un utilisateur depuis l'adresse mail du site web '''
+    print("apeler")
     try:
         send_mail("Vérification de votre compte - Ne pas répondre",
                   "Code de vérification :\n"
@@ -509,6 +538,29 @@ def search(request):
     return HttpResponse('')
 
 
+def matteo(request):
+    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
+    resto = Restaurant.objects.filter(nom="Burger King")[0]
+    print(afficherAvis(adherant, resto))
+    print("------------------------------------------------")
+    print(listeAffichageAvis(resto, adherant, PAGE))
+    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
+                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    modifPAGE()
+    print("------------------------------------------------")
+    print(listeAffichageAvis(resto, adherant, PAGE))
+    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
+                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    modifPAGE()
+    print("------------------------------------------------")
+    return redirect('index')
+
+
+def printeur(ddd):
+    for i in range(10):
+        print(ddd)
+
+
 def recommendation(request):
     st = time.time()
     groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
@@ -521,6 +573,11 @@ def recommendation(request):
 
 
 def export_restaurant(request):
+    '''
+    exporte l'ensemble des restaurants dans des fichiers csv séparés en fonction de leur ville
+    @param request:
+    @return:
+    '''
     listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
                   "Saint Louis", "Reno",
                   "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
@@ -547,6 +604,11 @@ def export_restaurant(request):
 
 
 def export_ratings(request):
+    """
+    Exporte l'ensemble des ratings dans un fichier csv ratings.csv
+    @param request:
+    @return:
+    """
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
     f.writelines("user_id,restaurant_id,note")
@@ -558,6 +620,11 @@ def export_ratings(request):
 
 
 def setImg(request):
+    """
+    Met des photos pour chaque restaurant avec des img set
+    @param request:
+    @return:
+    """
     i = 0
     y = 0
     for restaurant in Restaurant.objects.all():
@@ -610,3 +677,13 @@ def addAvis(request, pk):
     }
     connect(request, context)
     return render(request, 'avis/moreAvis.html', context)
+
+#
+# def exportHTML():
+#     """
+#     Crée un ensemble de fichier html qui correspondent à la doc
+#     @return:
+#     """
+#     generate_html_docs("C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\appsae",
+#                        "C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\pydoc")
+#
