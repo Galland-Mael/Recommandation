@@ -61,10 +61,12 @@ def modifPAGE():
     global PAGE
     PAGE += 1
 
+
 class NumbersStars:
     def __init__(self, nombre_virgule):
         self.nombre = nombre_virgule + 0.5
         self.nombre_virgule = nombre_virgule
+
 
 class RestaurantInfo:
     def __init__(self, restaurant):
@@ -93,9 +95,10 @@ def setTypesRestaurant(types):
         taille_actuelle += len(type.nom) + 3
         if taille_actuelle < 26:
             if indice != 0:
-                return_types +=  " | "
+                return_types += " | "
             return_types += str(type.nom[0].upper()) + str(type.nom[1:])
     return return_types
+
 
 def index(request):
     if 'groupe' in request.session:
@@ -112,7 +115,8 @@ def index(request):
             recommandations = reco[0].recommandation.all()
             context['recommandation'] = recommandations
             context['reco'] = [RestaurantInfo(elem) for elem in recommandations]
-            context['list_etoiles_virgules'] = [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5), NumbersStars(3.5), NumbersStars(4.5)]
+            context['list_etoiles_virgules'] = [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
+                                                NumbersStars(3.5), NumbersStars(4.5)]
         restaurants_sans_note = Restaurant.objects.filter(nb_review=0, ville=user.ville)
         liste_restaurants_sans_note = []
         if user.nb_review >= NB_CARROUSEL:
@@ -120,7 +124,8 @@ def index(request):
         if restaurants_sans_note.count() >= NB_CARROUSEL:
             for restaurant in restaurants_sans_note:
                 liste_restaurants_sans_note.append(restaurant)
-            context['restaurants_sans_note'] = [RestaurantInfo(elem) for elem in random.sample(liste_restaurants_sans_note, NB_CARROUSEL)]
+            context['restaurants_sans_note'] = [RestaurantInfo(elem) for elem in
+                                                random.sample(liste_restaurants_sans_note, NB_CARROUSEL)]
     else:
         context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles()]
         context['italian'] = [RestaurantInfo(elem) for elem in listeAffichageCaroussel("Italian")]
@@ -310,29 +315,24 @@ def searchUser(request):
 
 
 def vueRestaurant(request, pk):
-    img = Restaurant.objects.get(pk=pk).img.all()
     restaurant = Restaurant.objects.get(pk=pk)
-    if 'mailUser' in request.session:
-        user = Adherant.objects.get(mail=request.session['mailUser'])
-        if (avisExist(user, restaurant)):
-            avisUser = Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
-            list = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
-        else:
-            list = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
-    else:
-        list = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
     context = {
-        'restaurant': Restaurant.objects.filter(pk=pk),
-        'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
-        'avis': list,
-        'nbAvis': Avis.objects.filter(restaurant_fk=restaurant),
+        'restaurant': restaurant,
+        'imgRestaurants': ImageRestaurant.objects.filter(pk__in=restaurant.img.all()),
     }
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
-        if Avis.objects.filter(adherant_fk=user, restaurant_fk=Restaurant.objects.get(pk=pk)):
+        if avisExist(user, restaurant):
+            avis_user = Avis.objects.get(restaurant_fk=restaurant, adherant_fk=user)
+            list_avis = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
+            context['avisUser'] = avis_user
             context['commentaire'] = True
-        if (avisExist(Adherant.objects.get(mail=request.session['mailUser']), restaurant)):
-            context['avisUser'] = avisUser
+        else:
+            list_avis = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
+    else:
+        list_avis = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
+    context["avis"] = list_avis
+
     connect(request, context)
     return render(request, 'restaurants/vueRestaurant.html', context)
 
@@ -348,15 +348,17 @@ def addCommentaires(request, pk):
     else:
         list = Avis.objects.filter(restaurant_fk=restaurants).all()[:10]
     context = {
-        'restaurant': restaurant,
+        'restaurant': restaurant[0],
         'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
         'avis': list,
         'nbAvis': Avis.objects.filter(restaurant_fk=restaurants),
+        'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5), NumbersStars(3.5),
+                                  NumbersStars(4.5)]
     }
     if 'mailUser' in request.session:
         context['commentaire'] = True
     if (avisExist(user, restaurant[0])):
-        context['avisUser'] = avisUser
+        context['avisUser'] = avisUser[0]
     if (request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST):
         ajoutAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),
                   request.POST['title-rating'], request.POST['comm'])
@@ -457,8 +459,8 @@ def modification(request):
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
     if (request.POST['ville'] != user.ville):
         Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
-        #if (user.nb_review >= 5):
-            #majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
+        # if (user.nb_review >= 5):
+        # majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
     context = {}
     if 'mailUser' in request.session:
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
@@ -549,7 +551,7 @@ def recommendation(request):
     groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
     liste = listeRecommandationGroupe(groupe)
     # person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
-    #liste = listeRecommandationIndividuelle(person)
+    # liste = listeRecommandationIndividuelle(person)
     print(liste)
     print(time.time() - st)
     return HttpResponse('')
