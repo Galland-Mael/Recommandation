@@ -173,40 +173,42 @@
 
     <!-- afficher les avis -->
     <div class="comment margin-auto">
-        <div class="flex margin-bottom">
-            <div class="avis-border flex column ">
-                <div class="card-avis flex">
-                    <div class="card-user-container flex">
-                        <div class="card-img-container flex ">
-                            <img class="img" src="{{ avisUser.adherant_fk.profile_picture.url }}" alt="marche pas">
+        {% if commentaire and avisUser != null %}
+            <div class="flex margin-bottom">
+                <div class="avis-border flex column ">
+                    <div class="card-avis flex">
+                        <div class="card-user-container flex">
+                            <div class="card-img-container flex ">
+                                <img class="img" src="{{ avisUser.adherant_fk.profile_picture.url }}" alt="marche pas">
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex column">
-                        <span class="avis-user-name flex">{{ avisUser.adherant_fk.prenom }}</span>
-                        <div class="note-restaurant flex">
-                            {% for i in list_etoiles_virgules %}
-                                {% if avisUser.note >= i.nombre %}
-                                    <div class="star-icon">
-                                        <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                                    </div>
-                                {% else %}
-                                    {% if avisUser.note >= i.nombre_virgule %}
+                        <div class="flex column">
+                            <span class="avis-user-name flex">{{ avisUser.adherant_fk.prenom }}</span>
+                            <div class="note-restaurant flex">
+                                {% for i in list_etoiles_virgules %}
+                                    {% if avisUser.note >= i.nombre %}
                                         <div class="star-icon">
-                                            <box-icon type='solid' color="#ffb503" name='star-half'></box-icon>
+                                            <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
                                         </div>
                                     {% else %}
-                                        <div class="star-icon">
-                                            <box-icon color="#ffb503" name='star'></box-icon>
-                                        </div>
+                                        {% if avisUser.note >= i.nombre_virgule %}
+                                            <div class="star-icon">
+                                                <box-icon type='solid' color="#ffb503" name='star-half'></box-icon>
+                                            </div>
+                                        {% else %}
+                                            <div class="star-icon">
+                                                <box-icon color="#ffb503" name='star'></box-icon>
+                                            </div>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
-                            {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
+                    <span class="avis-text flex">{{ avisUser.texte }}</span>
                 </div>
-                <span class="avis-text flex">{{ avisUser.texte }}</span>
             </div>
-        </div>
+        {% endif %}
         {% for element in avis %}
             <div class="flex margin-bottom">
                 <div class="avis-border flex column ">
@@ -254,6 +256,14 @@
             >voir plus
             </div>
         </div>
+    {% endif %}
+    <div id="items-container">
+        {% for item in page_obj %}
+            <p>{{ item.pk }}</p>
+        {% endfor %}
+    </div>
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Voir plus</a>
     {% endif %}
 
 {% endblock %}

@@ -88,7 +88,6 @@ def setNomRestaurant(nom):
 
 
 def setTypesRestaurant(types):
-    print(types)
     taille_actuelle = 0
     return_types = "";
     for indice, type in enumerate(types):
@@ -319,20 +318,26 @@ def vueRestaurant(request, pk):
     context = {
         'restaurant': restaurant,
         'imgRestaurants': ImageRestaurant.objects.filter(pk__in=restaurant.img.all()),
+        'nbAvis': Avis.objects.filter(restaurant_fk=restaurant),
+        'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
+                         NumbersStars(3.5), NumbersStars(4.5)]
     }
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
         if avisExist(user, restaurant):
-            avis_user = Avis.objects.get(restaurant_fk=restaurant, adherant_fk=user)
+            avisUser = Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
             list_avis = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
-            context['avisUser'] = avis_user
-            context['commentaire'] = True
         else:
             list_avis = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
     else:
         list_avis = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
     context["avis"] = list_avis
-
+    if 'mailUser' in request.session:
+        user = Adherant.objects.get(mail=request.session['mailUser'])
+        if Avis.objects.filter(adherant_fk=user, restaurant_fk=Restaurant.objects.get(pk=pk)):
+            context['commentaire'] = True
+        if avisExist(user, restaurant):
+            context['avisUser'] = avisUser[0]
     connect(request, context)
     return render(request, 'restaurants/vueRestaurant.html', context)
 
