@@ -74,10 +74,8 @@ header nav ul li{
 }
 
 footer{
-
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     background-color: var(--fond);
     border-top: 7px solid var(--bleu);
     row-gap: 1vh;
@@ -85,17 +83,22 @@ footer{
     width: 100%;
 }
 
-.lienfooter{
-    color: var(--gris);
-    margin: 1vh 0 3vh 1vw;
+.flex{
+    display: flex;
 }
 
-.lienfooter:hover{
-    color: var(--gris_clair);
+.flex-column{
+    flex-direction: column;
+}
+
+.justify-center{
+    justify-content: center;
 }
 
 #copyright{
-    margin: 1vh 0 1vh 1vw;
+    display: flex;
+    margin: 15px 0px 15px 0px;
+    text-align: center;
 }
 .img-logo-container{
     height: 100px;
