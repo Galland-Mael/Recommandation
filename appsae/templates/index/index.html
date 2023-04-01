@@ -27,7 +27,7 @@
                        hx-get="{% url 'search' %}"
                        hx-trigger="keyup changed delay:250ms"
                        hx-target="#search-results"
-                       placeholder="Search..."
+                       placeholder="{% trans 'Rechercher un restaurant' %}..."
                 >
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
@@ -44,7 +44,7 @@
     {% if recommandation %}
         <div class="glider-contain">
             <div class="best">
-                <p class="title-slider text">Vos recommandations</p>
+                <p class="title-slider text">{% trans 'Recommandation' %}</p>
             </div>
             <div class="glider">
                 {% for element in  recommandation %}
@@ -70,7 +70,7 @@
     {% if italian|length > 7 %}
     <div class="container">
         <div class="best margin-top">
-            <p class="title text">Les meilleurs restaurants Italiens</p>
+            <p class="title text">{% trans 'Les meilleurs restaurants Italiens' %}</p>
         </div>
         <div class="grid">
             {% for element in italian %}
