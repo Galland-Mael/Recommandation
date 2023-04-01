@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from appsae.models import RestaurantType
 from appsae.models import Adherant
 from django import forms
+from captcha.fields import ReCaptchaField
 
 
 class RestaurantTypeForm(ModelForm):
@@ -13,6 +14,7 @@ class RestaurantTypeForm(ModelForm):
 
 class AdherantForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
+    captcha = ReCaptchaField()
 
     class Meta:
         model = Adherant

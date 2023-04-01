@@ -14,6 +14,10 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "appsae.settings")
 
 
 def load_dataset():
+    """
+    Load le data set à utiliser pour les recommandations en chargeant les fichiers csv
+    @return:
+    """
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     reader = Reader(line_format='user item rating timestamp', sep=',', skip_lines=1)
     ratings_dataset = Dataset.load_from_file(file, reader=reader)

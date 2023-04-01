@@ -1,3 +1,4 @@
+import _thread
 import json
 import os.path
 import sqlite3
@@ -6,6 +7,8 @@ import hashlib
 from sqlite3 import OperationalError
 import os, tempfile, zipfile, mimetypes
 from wsgiref.util import FileWrapper
+
+from celery.result import AsyncResult
 from django.conf import settings
 from django.utils.dateformat import format
 from surprise import KNNBasic
@@ -36,16 +39,19 @@ from django.core.mail import send_mail
 import random
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.utils.translation import gettext as _
+
 from .recommandation_groupe import recommandationGroupeAvisGroupeComplet
 from .recommendation import *
 from .gestion import *
 from .gestion_note import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
+import re
 from .gestion_note import *
 from .svd import *
 from .models import *
+# from .generateDoc import *
+# from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from django.conf import settings
 import datetime
@@ -94,6 +100,43 @@ def verifMail(request):
         return redirect('pageVerifMail')
 
 
+class NumbersStars:
+    def __init__(self, nombre_virgule):
+        self.nombre = nombre_virgule + 0.5
+        self.nombre_virgule = nombre_virgule
+
+
+class RestaurantInfo:
+    def __init__(self, restaurant):
+        self.pk = restaurant.pk
+        self.note = restaurant.note
+        self.nb_review = restaurant.nb_review
+        self.name = setNomRestaurant(restaurant.nom)
+        self.image_front = restaurant.image_front
+        self.types = setTypesRestaurant(restaurant.type.all())
+
+
+def setNomRestaurant(nom):
+    if len(nom) > 24:
+        if len(nom) < 27:
+            return nom
+        else:
+            return nom[:24] + "..."
+    return nom
+
+
+def setTypesRestaurant(types):
+    taille_actuelle = 0
+    return_types = "";
+    for indice, type in enumerate(types):
+        taille_actuelle += len(type.nom) + 3
+        if taille_actuelle < 26:
+            if indice != 0:
+                return_types += " | "
+            return_types += str(type.nom[0].upper()) + str(type.nom[1:])
+    return return_types
+
+
 def index(request):
     """
     Fonction qui permet de faire le template de la page d'index
@@ -106,28 +149,31 @@ def index(request):
         del request.session['groupe']
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
-    context = {}
+    context = {
+        'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
+                                                NumbersStars(3.5), NumbersStars(4.5)]
+    }
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
-        context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
-        context['italian'] = listeAffichageCarrouselVilles(user.ville, "Italian")
-        if RecommandationUser.objects.filter(
-                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
-            context['recommandation'] = RecommandationUser.objects.get(
-                adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
-        if user.nb_review >= NB_CARROUSEL:
-            context['visites'] = listeAffichageDejaVisiter(user.pk)
+        context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles(user.ville)]
+        context['italian'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles(user.ville, "Italian")]
+        reco = RecommandationUser.objects.filter(adherant_fk=user.pk)
+        if reco.count() != 0:
+            recommandations = reco[0].recommandation.all()
+            context['recommandation'] = recommandations
+            context['reco'] = [RestaurantInfo(elem) for elem in recommandations]
         restaurants_sans_note = Restaurant.objects.filter(nb_review=0, ville=user.ville)
         liste_restaurants_sans_note = []
+        if user.nb_review >= NB_CARROUSEL:
+            context['visites'] = [RestaurantInfo(elem) for elem in listeAffichageDejaVisiter(user.pk)]
         if restaurants_sans_note.count() >= NB_CARROUSEL:
             for restaurant in restaurants_sans_note:
                 liste_restaurants_sans_note.append(restaurant)
-            context['restaurants_sans_note'] = sample(liste_restaurants_sans_note, NB_CARROUSEL)
-
+            context['restaurants_sans_note'] = [RestaurantInfo(elem) for elem in
+                                                random.sample(liste_restaurants_sans_note, NB_CARROUSEL)]
     else:
-        context['meilleurRestaurants'] = listeAffichageCarrouselVilles()
-        context['italian'] = listeAffichageCaroussel("Italian")
-    context['list'] = list
+        context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles()]
+        context['italian'] = [RestaurantInfo(elem) for elem in listeAffichageCaroussel("Italian")]
     connect(request, context)
     return render(request, 'index/index.html', context)
 
@@ -176,7 +222,7 @@ def groupRecommandations(request, pk):
         'membres': membres,
         'groupe': groupe,
     }
-    if int(groupe.id_gerant) == user.pk:
+    if groupe.id_gerant == user.pk:
         context['chef'] = True
     if 'mailUser' in request.session:
         if RecommandationGroupe.objects.filter(
@@ -383,6 +429,9 @@ def searchRestau(request):
         context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type)
     if(context['list'].count()==0):
         return redirect('index')
+    context = {
+        'list': Restaurant.objects.filter(nom__icontains=request.POST["search"])
+    }
     connect(request, context)
     return render(request, 'restaurants/searchRestau.html', context)
 
@@ -431,27 +480,29 @@ def vueRestaurant(request, pk):
     """
     img = Restaurant.objects.get(pk=pk).img.all()
     restaurant = Restaurant.objects.get(pk=pk)
+    context = {
+        'restaurant': restaurant,
+        'imgRestaurants': ImageRestaurant.objects.filter(pk__in=restaurant.img.all()),
+        'nbAvis': Avis.objects.filter(restaurant_fk=restaurant),
+        'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
+                         NumbersStars(3.5), NumbersStars(4.5)]
+    }
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
-        if (avisExist(user, restaurant)):
+        if avisExist(user, restaurant):
             avisUser = Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
-            list = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
+            list_avis = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
         else:
-            list = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
+            list_avis = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
     else:
-        list = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
-    context = {
-        'restaurant': Restaurant.objects.filter(pk=pk),
-        'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
-        'avis': list,
-        'nbAvis': Avis.objects.filter(restaurant_fk=restaurant),
-    }
+        list_avis = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
+    context["avis"] = list_avis
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
         if Avis.objects.filter(adherant_fk=user, restaurant_fk=Restaurant.objects.get(pk=pk)):
             context['commentaire'] = True
-        if (avisExist(Adherant.objects.get(mail=request.session['mailUser']), restaurant)):
-            context['avisUser'] = avisUser
+        if avisExist(user, restaurant):
+            context['avisUser'] = avisUser[0]
     connect(request, context)
     return render(request, 'restaurants/vueRestaurant.html', context)
 
@@ -473,10 +524,12 @@ def addCommentaires(request, pk):
     else:
         list = Avis.objects.filter(restaurant_fk=restaurants).all()[:10]
     context = {
-        'restaurant': restaurant,
+        'restaurant': restaurant[0],
         'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
         'avis': list,
         'nbAvis': Avis.objects.filter(restaurant_fk=restaurants),
+        'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5), NumbersStars(3.5),
+                                  NumbersStars(4.5)]
     }
     if 'mailUser' in request.session:
         context['commentaire'] = True
@@ -518,6 +571,7 @@ def register(request):
     """
     if request.method == "POST":
         user = request.POST
+        '''Remplissage de la base de données'''
         password = user['password']
         hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
         request.session['registerPrenom'] = user['prenom']
@@ -537,6 +591,27 @@ def register(request):
     # return JsonResponse({"form": list(form.values) })
 
 
+def validate_form(form):
+    name = form.get("name")
+    email = form.get("email")
+    message = form.get("message")
+    captcha = form.get("g-recaptcha-response")
+
+    # Check if captcha is checked
+    if not captcha:
+        return False, "Please complete the captcha"
+
+    # Check if name, email, and message are not empty
+    if not name or not email or not message:
+        return False, "Please fill in all fields"
+
+    # Check if email is valid
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        return False, "Please enter a valid email address"
+
+    return True, ""
+
+
 def login(request):
     """
     Fontion qui effectue les verifications lors du login
@@ -547,35 +622,19 @@ def login(request):
         info = Adherant.objects.all()
         contain = False
         for adherant in info:
-            '''Verification'''
-            if (request.POST['mail'] == adherant.mail):
+            # Verification
+            if request.POST['mail'] == adherant.mail:
                 password = request.POST['password']
                 hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-                if (hashed_password == adherant.password):
+                if hashed_password == adherant.password:
                     contain = True
         if contain:
             user = Adherant.objects.get(mail=request.POST['mail'])
-            '''Création de la session ou je récupère que le mail de l'utilisateur'''
+            # Création de la session ou je récupère que le mail de l'utilisateur
             request.session['mailUser'] = user.mail
-            sessionMailUser = request.session['mailUser'];
-            context = {
-                'name': user.nom,
-                'prenom': user.prenom,
-                'mail': user.mail,
-                'birthDate': user.birthDate,
-                'photo': user.profile_picture.url,
-                'ville': user.ville,
-                'meilleurRestaurants': listeAffichageCarrouselVilles(user.ville),
-                'italian': listeAffichageCarrouselVilles(user.ville, "Italian"),
-            }
-            if 'mailUser' in request.session:
-                if RecommandationUser.objects.filter(
-                        adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
-                    context['recommandation'] = RecommandationUser.objects.get(
-                        adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
-            return render(request, 'index/index.html', context)
+            return redirect('index')
         else:
-            messages.success(request, _('Mot de passe ou mail incorrect'))
+            messages.success(request, '*Wrong mail or password')
             return redirect('login')
     else:
         return render(request, 'user/login.html')
@@ -683,6 +742,7 @@ def logoutUser(request):
         pass
     return redirect('index')
 
+
 def search(request):
     """
     Fonction qui renvoie des restaurants avec un système de recherche
@@ -693,6 +753,29 @@ def search(request):
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
         return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
+
+
+def matteo(request):
+    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
+    resto = Restaurant.objects.filter(nom="Burger King")[0]
+    print(afficherAvis(adherant, resto))
+    print("------------------------------------------------")
+    print(listeAffichageAvis(resto, adherant, PAGE))
+    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
+                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    modifPAGE()
+    print("------------------------------------------------")
+    print(listeAffichageAvis(resto, adherant, PAGE))
+    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
+                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
+    modifPAGE()
+    print("------------------------------------------------")
+    return redirect('index')
+
+
+def printeur(ddd):
+    for i in range(10):
+        print(ddd)
 
 
 def recommendation(request):
@@ -707,6 +790,11 @@ def recommendation(request):
 
 
 def export_restaurant(request):
+    '''
+    exporte l'ensemble des restaurants dans des fichiers csv séparés en fonction de leur ville
+    @param request:
+    @return:
+    '''
     listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
                   "Saint Louis", "Reno",
                   "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
@@ -733,6 +821,11 @@ def export_restaurant(request):
 
 
 def export_ratings(request):
+    """
+    Exporte l'ensemble des ratings dans un fichier csv ratings.csv
+    @param request:
+    @return:
+    """
     file = str(settings.BASE_DIR) + '/' + "ratings.csv"
     f = open(file, "w")
     f.writelines("user_id,restaurant_id,note")
@@ -744,6 +837,11 @@ def export_ratings(request):
 
 
 def setImg(request):
+    """
+    Met des photos pour chaque restaurant avec des img set
+    @param request:
+    @return:
+    """
     i = 0
     y = 0
     for restaurant in Restaurant.objects.all():
@@ -796,3 +894,13 @@ def addAvis(request, pk):
     }
     connect(request, context)
     return render(request, 'avis/moreAvis.html', context)
+
+#
+# def exportHTML():
+#     """
+#     Crée un ensemble de fichier html qui correspondent à la doc
+#     @return:
+#     """
+#     generate_html_docs("C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\appsae",
+#                        "C:\\Users\\antoi\\PycharmProjects\\SAE-Recommandation\\pydoc")
+#
