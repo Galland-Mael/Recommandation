@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+ {% load i18n %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -16,7 +17,7 @@
                 <div class="nav-restaurants-container flex">
                     <div class="nav-restaurants flex">
                         <div class="note-restaurant flex">
-                            <span>Note : {{ element.note }}</span>
+                            <span>{% trans 'Note' %} : {{ element.note }}</span>
                             <div class="star-icon">
                                 <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
                             </div>
@@ -24,7 +25,7 @@
                         <a href="#t">
                             <div class="nav-commentaire flex">
                                 <div>{{ nbAvis|length }}</div>
-                                <div class="nav-commentaire-title margin-right">Commentaire{{ avis|pluralize }} </div>
+                                <div class="nav-commentaire-title margin-right">{% trans 'Commentaire' %}{{ avis|pluralize }} </div>
                             </div>
                         </a>
                         <div class="adress">{{ element.adresse }}</div>
@@ -98,14 +99,14 @@
         <div class="avis-container">
         {% if mail %}
             {% if commentaire %}
-                <div class="title2">Modifier votre avis</div>
+                <div class="title2">{% trans 'Modifier un avis' %}</div>
             {% else %}
-                <div class="title2">Ajouter un avis</div>
+                <div class="title2">{% trans 'Ajouter un avis' %}</div>
             {% endif %}
             <form action="{% url 'addCommentaires' element.pk %}" method="post">
                 {% csrf_token %}
                 <div class="note-container">
-                    <label for="rating">Note : </label>
+                    <label for="rating">{% trans 'Note' %} : </label>
                     <div class="radio-container">
                         <input type="radio" name="title-rating" id="rating10" value="5"><label for="rating10"
                                                                                                title="5"></label>
@@ -134,19 +135,19 @@
                                                                                                  class="half"></label>
                     </div>
                 </div>
-                <label for="comments">commentaire</label>
+                <label for="comments">{% trans 'Commentaire' %}</label>
                 <input type="text" name="comm">
                 {% if commentaire %}
-                    <button class="avis-btn" type="submit">Modifier</button>
+                    <button class="avis-btn" type="submit">{% trans 'Modifier' %}</button>
                 {% else %}
-                    <button class="avis-btn" type="submit">Ajouter</button>
+                    <button class="avis-btn" type="submit">{% trans 'Ajouter' %}</button>
                 {% endif %}
             </form>
             <div class="separator avis-separator"></div>
         {% endif %}
     {% endfor %}
 <div class="avis-title-container">
-    <div class="avis-title bottom-space title2" id="commentaires">Commentaire{{ avis|pluralize }} </div>
+    <div class="avis-title bottom-space title2" id="commentaires">{% trans 'Commentaire' %}{{ avis|pluralize }} </div>
     <div class="nb-commentaire title2">({{ nbAvis|length }})</div>
 </div>
 <div class="separator avis-separator"></div>
@@ -165,7 +166,7 @@
                         <div class="flex column">
                             <span class="avis-user-name flex">{{ element.adherant_fk.prenom }}</span>
                             <div class="note-restaurant flex">
-                                <span>Note : {{ element.note }}</span>
+                                <span>{% trans 'Note' %} : {{ element.note }}</span>
                                 <div class="star-icon">
                                     <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
                                 </div>
@@ -188,7 +189,7 @@
                         <div class="flex column">
                             <span class="avis-user-name flex">{{ element.adherant_fk.prenom }}</span>
                             <div class="note-restaurant flex">
-                                <span>Note : {{ element.note }}</span>
+                                <span>{% trans 'Note' %} : {{ element.note }}</span>
                                 <div class="star-icon">
                                     <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
                                 </div>
@@ -208,7 +209,7 @@
                      hx-get="{% url 'voirPlus' element.pk %}"
                      hx-trigger="click"
                      hx-target="#container-voir-plus-result"
-                >voir plus
+                >{% trans 'Voir plus' %}
                 </div>
             </div>
         {% endif %}

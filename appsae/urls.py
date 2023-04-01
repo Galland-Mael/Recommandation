@@ -2,11 +2,18 @@ from django.contrib import admin
 from django.urls import path
 from appsae.views import *
 from django.conf import settings
+from .models import *
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
 from appsae.views_restaurateur_admin import *
 
 urlpatterns = [
+
+]
+
+urlpatterns += i18n_patterns(
+    path('', index, name='index'),
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('user/register/', register, name='register'),
@@ -33,6 +40,7 @@ urlpatterns = [
     path('createGroupe/', createGroupe, name='createGroupe'),
     path('modification/', modification, name='modification'),
     path('recommandation/', recommandation, name='recommandation'),
+    path('modification/', modification, name='modification'),
     path('setImg/', setImg, name='setImg'),
     path('deleteGroup/(<pk>)', deleteGroup, name='deleteGroup'),
     path('recommendation', recommendation, name='recommendation'),
@@ -46,7 +54,12 @@ urlpatterns = [
     path('administrateur', index_administrateur, name="index_administrateur"),
     path('administrateur/demande/(<pk>)', validation_admin, name="validation_admin"),
     path('administrateur/suppression/(<pk>)', refuser_form, name="refuser_form"),
-    path('administrateur/ajout/(<pk>)', ajouter_resto, name="ajouter_resto")
-]
+    path('administrateur/ajout/(<pk>)', ajouter_resto, name="ajouter_resto"),
+    path('deleteGroup/(<pk>)', deleteGroup, name='deleteGroup'),
+    path('recommendation', recommendation, name='recommendation'),
+    path('pageVerifMail', pageVerifMail, name='pageVerifMail'),
+    path('verifMail',verifMail,name='verifMail'),
+    path('deleteUser/(<pk>)',deleteUser,name='deleteUser')
+)
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

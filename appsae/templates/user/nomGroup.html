@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+ {% load i18n %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -15,7 +16,7 @@
 
             {% csrf_token %}
             <div class="groupe">
-                <label for="nomGroupe" class="groupe-label">Nom du Groupe</label>
+                <label for="nomGroupe" class="groupe-label">{% trans 'Nom du groupe' %}</label>
                 <input name="nomGroupe" type="text" class="group-name">
             </div>
         </div>
@@ -34,7 +35,7 @@
             </section>
         {% endfor %}
         <button type="submit" class="btn-container-button">
-            <div class="suivant">suivant</div>
+            <div class="suivant">{% trans 'Suivant' %}</div>
         </button>
     </form>
 {% endblock %}
