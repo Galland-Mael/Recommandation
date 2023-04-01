@@ -36,7 +36,7 @@
                                 {% endfor %}
                                 <div class="padding-left-5 flex padding-top-3">{{ restaurant.note }}</div>
                             {% else %}
-                                <div class="text">Noter ce restaurant</div>
+                                <div class="text"></div>
                             {% endif %}
                         </div>
                     </div>
@@ -160,7 +160,9 @@
                 </div>
             {% endif %}
         </div>
-        <div class="separator avis-separator"></div>
+        {% if mail %}
+            <div class="separator avis-separator"></div>
+        {% endif %}
     </div>
 
     <div class="avis-container">

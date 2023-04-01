@@ -112,7 +112,10 @@ def index(request):
         del request.session['groupe']
     if 'nomGroupe' in request.session:
         del request.session['nomGroupe']
-    context = {}
+    context = {
+        'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
+                                                NumbersStars(3.5), NumbersStars(4.5)]
+    }
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
         context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles(user.ville)]
@@ -122,8 +125,6 @@ def index(request):
             recommandations = reco[0].recommandation.all()
             context['recommandation'] = recommandations
             context['reco'] = [RestaurantInfo(elem) for elem in recommandations]
-            context['list_etoiles_virgules'] = [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
-                                                NumbersStars(3.5), NumbersStars(4.5)]
         restaurants_sans_note = Restaurant.objects.filter(nb_review=0, ville=user.ville)
         liste_restaurants_sans_note = []
         if user.nb_review >= NB_CARROUSEL:
@@ -445,33 +446,17 @@ def login(request):
         info = Adherant.objects.all()
         contain = False
         for adherant in info:
-            '''Verification'''
-            if (request.POST['mail'] == adherant.mail):
+            # Verification
+            if request.POST['mail'] == adherant.mail:
                 password = request.POST['password']
                 hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-                if (hashed_password == adherant.password):
+                if hashed_password == adherant.password:
                     contain = True
         if contain:
             user = Adherant.objects.get(mail=request.POST['mail'])
-            '''Création de la session ou je récupère que le mail de l'utilisateur'''
+            # Création de la session ou je récupère que le mail de l'utilisateur
             request.session['mailUser'] = user.mail
-            sessionMailUser = request.session['mailUser'];
-            context = {
-                'name': user.nom,
-                'prenom': user.prenom,
-                'mail': user.mail,
-                'birthDate': user.birthDate,
-                'photo': user.profile_picture.url,
-                'ville': user.ville,
-                'meilleurRestaurants': listeAffichageCarrouselVilles(user.ville),
-                'italian': listeAffichageCarrouselVilles(user.ville, "Italian"),
-            }
-            if 'mailUser' in request.session:
-                if RecommandationUser.objects.filter(
-                        adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).count() != 0:
-                    context['recommandation'] = RecommandationUser.objects.get(
-                        adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
-            return render(request, 'index/index.html', context)
+            return redirect('index')
         else:
             messages.success(request, '*Wrong mail or password')
             return redirect('login')
