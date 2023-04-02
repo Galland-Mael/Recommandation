@@ -15,43 +15,43 @@
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="font-35 text-align padding-b-5">
-                    Inscrire votre restaurant
+                   {% trans 'Inscrire votre restaurant' %}
                 </div>
                 <div class="field left-4 padding-b-1">
-                    <label class="label" for="nom">Nom du restaurant * :</label>
+                    <label class="label" for="nom">{%  trans 'Nom du restaurant * :' %}</label>
                     <input class="input" type="text" name="nom" value="{{ demande.nom }}">
                 </div>
                 <div class="field left-4 padding-b-1">
-                    <label class="label" for="adresse">Adresse du restaurant * :</label>
+                    <label class="label" for="adresse">{% trans 'Adresse du restaurant * :' %}</label>
                     <input class="input" type="text" name="adresse" value="{{ demande.adresse }}">
                 </div>
                 <div class="double left-4 padding-b-1">
                     <div class="field right-4">
-                        <label class="label" for="ville">Ville * :</label>
+                        <label class="label" for="ville">{% trans 'Adresse du restaurant * :' %}</label>
                         <input class="input" type="text" name="ville" value="{{ demande.ville }}">
                     </div>
                     <div class="field left-4 padding-b-1">
-                        <label class="label" for="postal">Code Postal * :</label>
+                        <label class="label" for="postal">{% trans 'Code Postal * :' %}</label>
                         <input class="input" type="text" name="postal" value="{{ demande.zip_code }}">
                     </div>
                 </div>
                 <div class="double left-4 padding-b-1">
                     <div class="field right-4">
-                        <label class="label" for="pays">Pays * :</label>
+                        <label class="label" for="pays">{% trans 'Pays * :' %}</label>
                         <input class="input" type="text" name="pays" value="{{ demande.pays }}">
                     </div>
                     <div class="field left-4">
-                        <label class="label" for="etat">Etat :</label>
+                        <label class="label" for="etat">{% trans 'Etat :' %}</label>
                         <input class="input" type="text" name="etat" value="{{ demande.etat }}">
                     </div>
                 </div>
                 <div class="double left-4 padding-b-1">
                     <div class="field right-4">
-                        <label class="label" for="longitude">Longitude * :</label>
+                        <label class="label" for="longitude">{% trans 'Longitude * :' %}</label>
                         <input class="input" type="text" name="longitude" value="{{ demande.longitude }}">
                     </div>
                     <div class="field left-4">
-                        <label class="label" for="latitude">Latitude * :</label>
+                        <label class="label" for="latitude">{% trans 'Latitude * :' %}</label>
                         <input class="input" type="text" name="latitude" value="{{ demande.latitude }}">
                     </div>
                 </div>
@@ -59,20 +59,20 @@
                     <div class="field hauteur-images right-4">
                         <div class="ligne">
                             <div class="label">
-                                Image de couverture * :
+                               {% trans 'Image de couverture * :' %}
                             </div>
-                            <label for="cover-file" class="label-file-upload text-align">Ajouter</label>
+                            <label for="cover-file" class="label-file-upload text-align">{% trans 'Ajouter' %}</label>
                             <input type="file" name="photo" id="cover-file">
                         </div>
                         <div id="alone" class="photos-container"></div>
                     </div>
                     <div class="field hauteur-images left-4">
                         <div class="ligne">
-                            <div class="label flex">Autres images ** (
+                            <div class="label flex">{% trans 'Autres images ' %}** (
                                 <div id="nb_fichiers"></div>
                                 ):
                             </div>
-                            <label for="file-upload" class="label-file-upload text-align">Ajouter</label>
+                            <label for="file-upload" class="label-file-upload text-align">{% trans 'Ajouter' %}</label>
                             <input type="file" name="photo" id="file-upload" multiple>
                         </div>
                         <div id="many" class="photos-container">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="field types left-4 padding-b-1">
-                    <div class="label">Types de votre restaurant *** : </div>
+                    <div class="label">{% trans 'Types de votre restaurant' %} *** : </div>
                     <select name="type" class="input hauteur-list" multiple>
                         {% for elem in types %}
                             <option value="{{ elem.nom }}">{{ elem.nom }}</option>
@@ -88,12 +88,12 @@
                     </select>
                 </div>
                 <div class="text-align padding-b-1 padding-t-1">
-                    <button class="bouton">Envoyer la demande</button>
+                    <button class="bouton">{% trans 'Envoyer la demande' %}</button>
                 </div>
             </form>
-            <p> * Champs obligatoires</p>
-            <p> ** Ajouter au moins 4 photos de votre établissement</p>
-            <p> *** Sélectionnez minimum un type</p>
+            <p> * {% trans 'Champs obligatoires' %}</p>
+            <p> ** {% trans 'Ajouter au moins 4 photos de votre établissement' %}</p>
+            <p> *** {% trans 'Sélectionnez minimum un type' %}</p>
         </div>
     </div>
 {% endblock %}

@@ -1,0 +1,276 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-29 13:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: appsae/settings.py:117
+msgid "French"
+msgstr "Französisch"
+
+#: appsae/settings.py:118
+msgid "English"
+msgstr "Englisch"
+
+#: appsae/settings.py:119
+msgid "Deutch"
+msgstr "Deutsch"
+
+#: appsae/settings.py:120
+msgid "España"
+msgstr "Spanien"
+
+#: appsae/templates/avis/moreAvis.html:18
+#: appsae/templates/restaurants/vueRestaurant.html:20
+#: appsae/templates/restaurants/vueRestaurant.html:109
+#: appsae/templates/restaurants/vueRestaurant.html:169
+#: appsae/templates/restaurants/vueRestaurant.html:192
+msgid "Note"
+msgstr "Notiz"
+
+#: appsae/templates/index/index.html:31
+msgid "Rechercher un restaurant"
+msgstr "Finden Sie ein Restaurant"
+
+#: appsae/templates/index/index.html:48
+msgid "Recommandation"
+msgstr "Empfehlung"
+
+#: appsae/templates/index/index.html:85
+msgid "Les meilleurs restaurants Italiens"
+msgstr "Die besten italienischen Restaurants"
+
+#: appsae/templates/index/index.html:116
+msgid "Les meilleurs restaurants"
+msgstr "Die besten Restaurants"
+
+#: appsae/templates/restaurants/searchRestau.html:16
+msgid "liste des restaurants"
+msgstr "Liste der Restaurants"
+
+#: appsae/templates/restaurants/vueRestaurant.html:28
+#: appsae/templates/restaurants/vueRestaurant.html:138
+#: appsae/templates/restaurants/vueRestaurant.html:150
+msgid "Commentaire"
+msgstr "Kommentar"
+
+#: appsae/templates/restaurants/vueRestaurant.html:102
+msgid "Modifier un avis"
+msgstr "Bearbeiten Sie eine Rezension"
+
+#: appsae/templates/restaurants/vueRestaurant.html:104
+msgid "Ajouter un avis"
+msgstr "Bewertung hinzufügen"
+
+#: appsae/templates/restaurants/vueRestaurant.html:141
+msgid "Modifier"
+msgstr "Bearbeiten"
+
+#: appsae/templates/restaurants/vueRestaurant.html:143
+msgid "Ajouter"
+msgstr "Hinzufügen"
+
+#: appsae/templates/restaurants/vueRestaurant.html:212
+msgid "Voir plus"
+msgstr "Mehr sehen"
+
+#: appsae/templates/source/footer.html:4
+msgid "© 2022 Eat Advisor LLC Tous droits réservés."
+msgstr "© 2022 Eat Advisor LLC Alle Rechte vorbehalten."
+
+#: appsae/templates/source/footer.html:5
+msgid "Contactez-nous"
+msgstr "kontaktiere uns"
+
+#: appsae/templates/source/footer.html:12
+msgid "Langues"
+msgstr "SPRACHEN"
+
+#: appsae/templates/source/header.html:11
+msgid "Groupe"
+msgstr "Band"
+
+#: appsae/templates/source/header.html:12
+msgid "Créer un groupe"
+msgstr "Erstellen Sie eine Gruppe"
+
+#: appsae/templates/source/header.html:13
+msgid "Déconnexion"
+msgstr "Ausloggen"
+
+#: appsae/templates/source/header.html:18 appsae/templates/user/login.html:18
+#: appsae/templates/user/login.html:35
+msgid "Connexion"
+msgstr "Anmeldung"
+
+#: appsae/templates/user/creationGroup.html:22
+msgid "Rechercher un utilisateur"
+msgstr "Suchen Sie einen Benutzer"
+
+#: appsae/templates/user/creationGroup.html:51
+#: appsae/templates/user/nomGroup.html:38
+#: appsae/templates/user/pageVerifMail.html:32
+#: appsae/templates/user/register.html:127
+#: appsae/templates/user/register.html:160
+#: appsae/templates/user/register.html:176
+#: appsae/templates/user/register.html:186
+msgid "Suivant"
+msgstr "Folgend"
+
+#: appsae/templates/user/groupRecommandations.html:15
+msgid "Membres du groupe"
+msgstr "Gruppenmitglieder"
+
+#: appsae/templates/user/groupRecommandations.html:29
+msgid "Supprimer le groupe"
+msgstr "Gruppe löschen"
+
+#: appsae/templates/user/groupRecommandations.html:33
+msgid "Quitter le groupe"
+msgstr "Die Gruppe verlassen"
+
+#: appsae/templates/user/groupRecommandations.html:39
+msgid "Vos recommandations"
+msgstr "Ihre Empfehlungen"
+
+#: appsae/templates/user/groupe.html:25
+msgid "Voir les recommandations"
+msgstr "Siehe Empfehlungen"
+
+#: appsae/templates/user/login.html:21 appsae/templates/user/register.html:137
+msgid "Mail"
+msgstr "Email"
+
+#: appsae/templates/user/login.html:30 appsae/templates/user/register.html:144
+msgid "Mot de passe"
+msgstr "Passwort"
+
+#: appsae/templates/user/login.html:38
+msgid "Je n'ai pas de compte"
+msgstr "Ich habe keinen Account"
+
+#: appsae/templates/user/modifUser.html:32
+msgid "photo"
+msgstr "Foto"
+
+#: appsae/templates/user/modifUser.html:37
+#: appsae/templates/user/register.html:91
+msgid "Prénom"
+msgstr "Vorname"
+
+#: appsae/templates/user/modifUser.html:43
+msgid "Nom"
+msgstr "Name"
+
+#: appsae/templates/user/modifUser.html:49
+#: appsae/templates/user/register.html:105
+msgid "Ville"
+msgstr "Stadt"
+
+#: appsae/templates/user/modifUser.html:72
+msgid "Valider"
+msgstr "Bestätigen"
+
+#: appsae/templates/user/nomGroup.html:19
+msgid "Nom du groupe"
+msgstr "Name der Gruppe"
+
+#: appsae/templates/user/pageVerifMail.html:24
+msgid "Veuillez entrer le code reçu par mail"
+msgstr "Bitte geben Sie den per E-Mail erhaltenen Code ein"
+
+#: appsae/templates/user/pageVerifMail.html:31
+#: appsae/templates/user/register.html:158
+#: appsae/templates/user/register.html:175
+#: appsae/templates/user/register.html:184
+msgid "Précédent"
+msgstr "Vorherige"
+
+#: appsae/templates/user/register.html:26
+msgid "Enregistrement"
+msgstr "Enregistrement"
+
+#: appsae/templates/user/register.html:30
+msgid "Info"
+msgstr "Info"
+
+#: appsae/templates/user/register.html:44
+msgid "Perso"
+msgstr "Persö"
+
+#: appsae/templates/user/register.html:57
+#: appsae/templates/user/register.html:165
+msgid "Date"
+msgstr "Datum"
+
+#: appsae/templates/user/register.html:70
+#: appsae/templates/user/register.html:181
+msgid "Confirmation"
+msgstr "Bestätigung"
+
+#: appsae/templates/user/register.html:87
+msgid "Informations"
+msgstr "Information"
+
+#: appsae/templates/user/register.html:94
+#: appsae/templates/user/register.html:101
+#: appsae/templates/user/register.html:140
+msgid "Ce champ ne peut être vide"
+msgstr "Dieses Feld kann nicht leer sein"
+
+#: appsae/templates/user/register.html:98
+msgid "Nom de famille"
+msgstr "Nachname"
+
+#: appsae/templates/user/register.html:129
+msgid "Je possède déjà un compte"
+msgstr "Ich habe bereits einen Account"
+
+#: appsae/templates/user/register.html:133
+msgid "Personnel"
+msgstr "Mitarbeiter"
+
+#: appsae/templates/user/register.html:148
+msgid "Le mot de passe doit contenir entre 8 et 15 caractères"
+msgstr "Das Passwort muss zwischen 8 und 15 Zeichen enthalten"
+
+#: appsae/templates/user/register.html:152
+msgid "Comfirmation du mot de passe"
+msgstr "Passwort-Bestätigung"
+
+#: appsae/templates/user/register.html:155
+msgid "Veuillez entrer le même mot de passe"
+msgstr "Bitte geben Sie das gleiche Passwort ein"
+
+#: appsae/templates/user/register.html:169
+msgid "Date de naissance"
+msgstr "Geburtsdatum"
+
+#: appsae/templates/user/register.html:172
+msgid "Champ incorrect"
+msgstr "Ungültiges Feld"
+
+#: appsae/views.py:68
+msgid "Il y a déjà un compte associé à cette adresse mail"
+msgstr "Mit dieser E-Mail-Adresse ist bereits ein Konto verknüpft"
+
+#: appsae/views.py:92 appsae/views.py:569
+msgid "Mot de passe ou mail incorrect"
+msgstr "Falsches Passwort oder E-Mail"
+
+#: appsae/views.py:484
+msgid "Les deux champs doivent être remplis."
+msgstr "Beide Felder müssen ausgefüllt werden."

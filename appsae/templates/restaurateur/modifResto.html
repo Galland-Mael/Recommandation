@@ -16,22 +16,22 @@
         <div class="taille_gauche flex flex-column margin-right-5">
             <!-- Télephone -->
             <div class="border margin-bottom-5 taille_horaires" id="telephone-height">
-                <div class="text-align title-restaurateur">Téléphone</div>
+                <div class="text-align title-restaurateur">{% trans 'Téléphone' %}</div>
                 <form name="form1" method="POST" action="" class="flex flex-column left-4 right-4">
                     {% csrf_token %}
                     <input class="input margin-bottom-3" type="text" name="telephone">
                     <div class="text-align padding-t-1">
-                        <button class="button">Enregistrer</button>
+                        <button class="button">{% trans 'Enregistrer' %}</button>
                     </div>
                 </form>
             </div>
             <!-- Avis -->
             <div class="border taille_horaires">
-                <div class="text-align title-restaurateur">Avis</div>
+                <div class="text-align title-restaurateur">{% trans 'Avis' %}</div>
                 <div class="left-4 right-4">
-                    <div>Nombre d'avis: {{ restaurant.nb_review }}</div>
+                    <div>{% trans "Nombre d'avis" %}: {{ restaurant.nb_review }}</div>
                     <div class="flex">
-                        <div>Moyenne: {{ restaurant.note }}</div>
+                        <div>{% trans 'Moyenne' %}: {{ restaurant.note }}</div>
                         <div class="star-icon">
                             <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
                         </div>
@@ -43,7 +43,7 @@
         <div class="taille_container margin-left-5">
             <!-- Dernier commentaire -->
             <div class="border margin-bottom-5" id="lastComment">
-                <div class="text-align title-restaurateur">Derniers avis</div>
+                <div class="text-align title-restaurateur">{% trans 'Derniers avis' %}</div>
                 {% for lastComment in lastComments %}
                     <div class="flex row padding-b-3">
                         <div class="card-avis flex right-4">
@@ -56,7 +56,7 @@
                             <div class="flex column width-100p">
                                 <span class="user-name flex">{{ lastComment.adherant_fk.prenom }}</span>
                                 <div class="padding-t-5 flex row">
-                                    <span> Note : {{ lastComment.note }}</span>
+                                    <span> {% trans 'Note' %} : {{ lastComment.note }}</span>
                                     <div class="star-icon">
                                         <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
                                     </div>
@@ -72,7 +72,7 @@
     <div class="left-4 right-4">
         <!-- Horaires -->
         <div class="border flex column">
-            <div class="text-align title-restaurateur">Horaires</div>
+            <div class="text-align title-restaurateur">{% trans 'Horaires' %}</div>
             <div class="flex m-auto">
                 <form>
                     {% csrf_token %}
@@ -112,7 +112,7 @@
                         </tr>
                     </table>
                     <div class="text-align padding-t-1">
-                        <button class="button">Enregistrer</button>
+                        <button class="button">{% trans 'Enregistrer' %}</button>
                     </div>
                 </form>
             </div>
@@ -120,7 +120,7 @@
     </div>
     <div class="right-4 left-4 flex row"></div>
         <div class="flex vertical-center justify-center btn">
-            <a class="flex bouton vertical-center justify-center" href="{% url 'index_restaurateur' %}">Vue utilisateur</a>
+            <a class="flex bouton vertical-center justify-center" href="{% url 'index_restaurateur' %}">{% trans 'vue utilisateur' %}</a>
         </div>
     </div>
 {% endblock %}

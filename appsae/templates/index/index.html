@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+{% load i18n %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -15,10 +16,10 @@
         <form action="{% url 'searchRestau' %}" method="POST" class="post-form form">
             {% csrf_token %}
             <div class="search">
-                <div class="drop-down">
+                 <div class="drop-down">
                     <select class="select" name="type" id="lang">
                         <option value="">Type</option>
-                        {% for type in list %}
+                        {% for type in listType %}
                             <option value="{{ type }}">{{ type }}</option>
                         {% endfor %}
                     </select>
@@ -47,7 +48,7 @@
                 <p class="title-slider text">{% trans 'Recommandation' %}</p>
             </div>
             <div class="glider">
-                {% for element in  recommandation %}
+                {% for element in reco %}
                     <div class="card">
                         <a href="{% url 'vueRestaurant' element.pk %}">
                             <div class="img-card">
@@ -68,41 +69,47 @@
         </div>
     {% endif %}
     {% if italian|length > 7 %}
-    <div class="container">
-        <div class="best margin-top">
-            <p class="title text">{% trans 'Les meilleurs restaurants Italiens' %}</p>
+        <div class="container">
+            <div class="best margin-top">
+                <p class="title text">{% trans 'Les meilleurs restaurants Italiens' %}</p>
+            </div>
+            <div class="grid">
+                {% for element in italian %}
+                    <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
+                        <div class="img-card">
+                            <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
+                        </div>
+                        {% block restaurant_by_type %}
+                            {% include "index/restaurant_affichage.html" %}
+                        {% endblock %}
+                    </a>
+                {% endfor %}
+            </div>
         </div>
-        <div class="grid">
-            {% for element in italian %}
-                <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
-                    <div class="img-card">
-                        <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
-                    </div>
-                    <div class="info-card">
-                        <div class="name">
-                            <span class="text nom">{{ element.nom }}</span>
+    {% endif %}
+    {% if visites %}
+        <div class="container">
+            <div class="best margin-top">
+                <p class="title text">{% trans 'Vous avez apprécier lors de votre dernière visite' %}</p>
+            </div>
+            <div class="grid">
+                {% for element in visites %}
+                    <a href="{% url 'vueRestaurant' element.pk %}" class="data-card">
+                        <div class="img-card">
+                            <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
                         </div>
-                        <div class="flex align">
-                            <span class="text">{{ element.note }}</span>
-                            <div class="star-icon">
-                                <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                            </div>
-                        </div>
-                        <div class="nav-localisation text">
-                            <div>{{ element.adresse }}</div>
-                            <div>{{ element.ville }}</div>
-                        </div>
-                        <div class="text">({{ element.zip_code }})</div>
-                    </div>
-                </a>
-            {% endfor %}
+                        {% block restaurant_visites %}
+                            {% include "index/restaurant_affichage.html" %}
+                        {% endblock %}
+                    </a>
+                {% endfor %}
+            </div>
         </div>
-    </div>
     {% endif %}
     {% if restaurants_sans_note %}
         <div class="container">
             <div class="best margin-top">
-                <p class="title text">Soyez le premier à noter ce restaurant</p>
+                <p class="title text">{%  trans 'Soyez le premier à noter ce restaurant' %}</p>
             </div>
             <div class="grid">
                 {% for element in restaurants_sans_note %}
@@ -110,16 +117,9 @@
                         <div class="img-card">
                             <img class="img-best" src="{{ element.image_front.url }}" alt="Image du restaurant">
                         </div>
-                        <div class="info-card">
-                            <div class="name">
-                                <span class="text nom">{{ element.nom }}</span>
-                            </div>
-                            <div class="nav-localisation text">
-                                <div>{{ element.adresse }}</div>
-                                <div>{{ element.ville }}</div>
-                            </div>
-                            <div class="text">({{ element.zip_code }})</div>
-                        </div>
+                        {% block restaurant_without_note %}
+                            {% include "index/restaurant_affichage.html" %}
+                        {% endblock %}
                     </a>
                 {% endfor %}
             </div>
@@ -127,7 +127,7 @@
     {% endif %}
     <div class="container">
         <div class="best margin-top">
-            <p class="title text">Les restaurants les plus appréciés</p>
+            <p class="title text">{%  trans 'Les restaurants les plus appréciés'%}</p>
         </div>
         <div class="grid">
             {% for element in meilleurRestaurants %}
@@ -147,7 +147,6 @@
 
 {% endblock %}
 
-
 {% block footer %}
     {% include "source/footer.html" %}
 {% endblock %}
@@ -164,6 +163,7 @@
             prev: '.glider-prev',
             next: '.glider-next'
         }
-    });</script>
+    });
+    </script>
 {% endblock %}
 

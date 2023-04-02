@@ -42,7 +42,7 @@
                     </div>
                     <div class="nav-commentaire flex">
                         <div>{{ restaurant.nb_review }}</div>
-                        <div class="nav-commentaire-title margin-right">Commentaire{{ avis|pluralize }} </div>
+                        <div class="nav-commentaire-title margin-right">{% trans 'Commentaire' %}{{ avis|pluralize }} </div>
                     </div>
                     <div class="adress">{{ restaurant.adresse }}</div>
                     <div class="nav-localisation">
@@ -117,15 +117,15 @@
         <div class="padding-right-5">
             {% if mail %}
                 {% if commentaire %}
-                    <div class="title2 text-align padding-bottom">Modifier votre avis</div>
+                    <div class="title2 text-align padding-bottom">{% trans 'Modifier votre avis' %}</div>
                 {% else %}
-                    <div class="title2 text-align padding-bottom">Ajouter un avis</div>
+                    <div class="title2 text-align padding-bottom">{% trans 'Modifier votre avis' %}</div>
                 {% endif %}
                 <div class="center-form">
                     <form action="{% url 'addCommentaires' restaurant.pk %}" method="post">
                         {% csrf_token %}
                         <div class="note-container flex-column padding-bottom-5">
-                            <div>Ajouter une note :</div>
+                            <div>{% trans 'Modifier votre avis' %}</div>
                             <div class="radio-container">
                                 <input type="radio" name="title-rating" id="rating10" value="5">
                                 <label for="rating10" title="5"></label>
@@ -150,10 +150,10 @@
                             </div>
                         </div>
                         <div class="flex flex-column">
-                            <label class="text-align padding-bottom-5" for="comments">Commentaire (facultatif)</label>
+                            <label class="text-align padding-bottom-5" for="comments">{% trans 'Commentaire (facultatif)' %}</label>
                             <textarea class="textarea" type="text" name="comm" rows="5" cols="100"></textarea>
                             <div class="flex vertical-center justify-center text-align">
-                                <button class="bouton" type="submit">Enregistrer</button>
+                                <button class="bouton" type="submit">{% trans 'Enregistrer' %}</button>
                             </div>
                         </div>
                     </form>
@@ -167,7 +167,7 @@
 
     <div class="avis-container">
         <div class="avis-title-container">
-            <div class="avis-title bottom-space title2" id="commentaires">Commentaire{{ avis|pluralize }} </div>
+            <div class="avis-title bottom-space title2" id="commentaires">{% trans 'Commentaire' %}{{ avis|pluralize }} </div>
             <div class="nb-commentaire title2">({{ restaurant.nb_review }})</div>
         </div>
         <div class="separator avis-separator"></div>
@@ -265,7 +265,7 @@
         {% endfor %}
     </div>
     {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">Voir plus</a>
+        <a href="?page={{ page_obj.next_page_number }}">{% trans 'voir plus' %}</a>
     {% endif %}
 
 {% endblock %}

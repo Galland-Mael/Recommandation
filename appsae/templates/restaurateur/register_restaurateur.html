@@ -14,10 +14,10 @@
     <div class="container">
         <form action="" method="POST" class="post-form form">
             {% csrf_token %}
-            <div class="title-setting">Créer un compte restaurateur</div>
+            <div class="title-setting">{% trans 'Créer un compte restaurateur' %}</div>
             <div class="field">
                 <div class="label">
-                    Mail
+                   {% trans 'Mail' %}
                 </div>
                 <input type="text" name="mail" class="input">
                 {% for msg in messages %}
@@ -26,23 +26,23 @@
             </div>
             <div class="field">
                 <div class="label">
-                    Mot de passe
+                    {% trans 'Mot de passe' %}
                 </div>
                 <input type="password" name="password" class="input">
             </div>
             <div class="field">
                 <div class="label">
-                    Vérification mot de passe
+                   {% trans 'Vérification mot de passe' %}
                 </div>
                 <input type="password" name="password_verif" class="input">
             </div>
             <div class="field">
-                <button class="next-1">Valider</button>
+                <button class="next-1"> {% trans 'Valider' %}</button>
             </div>
         </form>
-            <a href="{% url 'login_restaurateur' %}"><span class="new-account">Je possède déjà un compte</span></a>
+            <a href="{% url 'login_restaurateur' %}"><span class="new-account"> {% trans 'Je possède déjà un compte' %}</span></a>
             <br>
-            <a href="{% url 'login' %}"><span class="new-account">Je ne suis pas un restaurateur</span></a>
+            <a href="{% url 'login' %}"><span class="new-account"> {% trans 'Je ne suis pas un restaurateur' %}</span></a>
     </div>
 </div>
 {% endblock %}

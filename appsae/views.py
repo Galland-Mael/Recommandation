@@ -151,7 +151,8 @@ def index(request):
         del request.session['nomGroupe']
     context = {
         'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
-                                                NumbersStars(3.5), NumbersStars(4.5)]
+                                                NumbersStars(3.5), NumbersStars(4.5)],
+        'listType':list
     }
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
@@ -424,13 +425,13 @@ def searchRestau(request):
         search = ""
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
-        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type, ville=user.ville)
+        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type, ville=user.ville)[:50]
     else:
-        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type)
+        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type)[:50]
     if(context['list'].count()==0):
         return redirect('index')
     context = {
-        'list': Restaurant.objects.filter(nom__icontains=request.POST["search"])
+        'list': Restaurant.objects.filter(nom__icontains=request.POST["search"])[:50]
     }
     connect(request, context)
     return render(request, 'restaurants/searchRestau.html', context)
