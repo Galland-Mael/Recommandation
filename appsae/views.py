@@ -151,8 +151,8 @@ def index(request):
         del request.session['nomGroupe']
     context = {
         'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
-                                                NumbersStars(3.5), NumbersStars(4.5)],
-        'listType':list
+                                  NumbersStars(3.5), NumbersStars(4.5)],
+        'listType': list
     }
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
@@ -192,6 +192,7 @@ def deleteGroup(request, pk):
     suppressionGroupe(groupe)
     return redirect('groupe')
 
+
 def deleteUser(request, pk):
     """
     fonction qui permet d'enlever un utilisateur d'un groupe
@@ -203,7 +204,7 @@ def deleteUser(request, pk):
         return redirect('index')
     groupe = Groupe.objects.get(pk=pk)
     user = Adherant.objects.get(mail=request.session['mailUser'])
-    suppressionUtilisateur(user,groupe)
+    suppressionUtilisateur(user, groupe)
     return redirect('groupe')
 
 
@@ -253,7 +254,7 @@ def creationGroup(request):
 
 def search(request):
     """
-    Fonciton qui permet de rechercher un utilisateur
+    Fonction qui permet de rechercher un utilisateur
     @param request:
     @return:
     """
@@ -425,14 +426,13 @@ def searchRestau(request):
         search = ""
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
-        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type, ville=user.ville)[:50]
+        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type, ville=user.ville).order_by('-note')[:50]
     else:
-        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type)[:50]
-    if(context['list'].count()==0):
+        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type).order_by('-note')[:50]
+    if context['list'].count() == 0:
         return redirect('index')
-    context = {
-        'list': Restaurant.objects.filter(nom__icontains=request.POST["search"])[:50]
-    }
+    context['list_etoiles_virgules'] = [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5), NumbersStars(3.5),
+                                        NumbersStars(4.5)]
     connect(request, context)
     return render(request, 'restaurants/searchRestau.html', context)
 
@@ -486,7 +486,7 @@ def vueRestaurant(request, pk):
         'imgRestaurants': ImageRestaurant.objects.filter(pk__in=restaurant.img.all()),
         'nbAvis': Avis.objects.filter(restaurant_fk=restaurant),
         'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
-                         NumbersStars(3.5), NumbersStars(4.5)]
+                                  NumbersStars(3.5), NumbersStars(4.5)]
     }
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
@@ -784,7 +784,7 @@ def recommendation(request):
     groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
     liste = listeRecommandationGroupe(groupe)
     # person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
-    #liste = listeRecommandationIndividuelle(person)
+    # liste = listeRecommandationIndividuelle(person)
     print(liste)
     print(time.time() - st)
     return HttpResponse('')

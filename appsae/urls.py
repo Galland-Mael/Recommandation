@@ -38,6 +38,7 @@ urlpatterns += i18n_patterns(
     path('nomGroup/', nomGroup, name='nomGroup'),
     path('createGroupe/', createGroupe, name='createGroupe'),
     path('modification/', modification, name='modification'),
+    #path('recommandation/', recommandation, name='recommandation'),
     path('modification/', modification, name='modification'),
     path('setImg/', setImg, name='setImg'),
     path('deleteGroup/(<pk>)', deleteGroup, name='deleteGroup'),
