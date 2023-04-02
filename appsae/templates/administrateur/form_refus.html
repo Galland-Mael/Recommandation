@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+{% load i18n %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -15,19 +16,19 @@
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="font-30 text-align padding-b-2">
-                    Motif de refus
+                    {% trans 'Motif de refus' %}
                 </div>
                 <div class="field left-4">
-                    <label class="label" for="title">Titre du refus :</label>
+                    <label class="label" for="title">{% trans 'Titre du refus :' %}</label>
                     <input type="text" name="title" class="input">
                 </div>
                 <div class="area left-4">
-                    <label class="label" for="description">Description :</label>
+                    <label class="label" for="description"> {% trans 'Description :' %}</label>
                     <textarea rows="40" type="text" name="description"></textarea>
                 </div>
                 <div class="boutons">
                     <div class="text-align">
-                        <button>Valider le refus</button>
+                        <button>{% trans 'Valider le refus' %}</button>
                     </div>
                 </div>
             </form>

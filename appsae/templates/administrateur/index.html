@@ -1,4 +1,5 @@
 {% extends 'source/base.html' %}
+{% load i18n %}
 {% block head %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
@@ -12,7 +13,7 @@
 
 {% block main %}
     <div class="font-30 text-align padding-t-3 padding-b-1">
-        Demandes d'inscription de restaurants:
+        {% trans "Demandes d'inscription de restaurants:" %}
     </div>
     {% for element in demandes %}
         <div class="demande">
