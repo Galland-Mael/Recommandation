@@ -25,8 +25,6 @@ urlpatterns += i18n_patterns(
     path('addUser/(<user>)', addUser, name='addUser'),
     path('removeUser/(<user>)', removeUser, name='removeUser'),
     path('searchUser/', searchUser, name='searchUser'),
-    path('export_restaurant/', export_restaurant, name='export'),
-    path('export_ratings/', export_ratings, name='export'),
     path('voirPlus/(<pk>)', voirPlus, name='voirPlus'),
     path('groupe/', groupe, name='groupe'),
     path('creationGroup/', creationGroup, name='creationGroup'),
@@ -36,8 +34,6 @@ urlpatterns += i18n_patterns(
     path('nomGroup/', nomGroup, name='nomGroup'),
     path('createGroupe/', createGroupe, name='createGroupe'),
     path('modification/', modification, name='modification'),
-    path('modification/', modification, name='modification'),
-    path('setImg/', setImg, name='setImg'),
     path('deleteGroup/(<pk>)', deleteGroup, name='deleteGroup'),
 
     # Restaurateurs et administrateurs
@@ -52,8 +48,12 @@ urlpatterns += i18n_patterns(
     path('administrateur/ajout/(<pk>)', ajouter_resto, name="ajouter_resto"),
     path('deleteGroup/(<pk>)', deleteGroup, name='deleteGroup'),
     path('pageVerifMail', pageVerifMail, name='pageVerifMail'),
-    path('verifMail',verifMail,name='verifMail'),
-    path('deleteUser/(<pk>)',deleteUser,name='deleteUser')
+    path('verifMail', verifMail, name='verifMail'),
+    path('deleteUser/(<pk>)', deleteUser, name='deleteUser'),
+
+    path('export_restaurant/', export_restaurant, name='export'),
+    path('export_ratings/', export_ratings, name='export'),
+    path('setImg/', setImg, name='setImg')
 )
 '''Utile pour afficher les images de la base de données'''
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

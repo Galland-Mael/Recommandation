@@ -4,7 +4,7 @@
         <span class="text nom_resto">{{ element.name }}</span>
     </div>
     <div class="flex align padding-left">
-        {% if element.restaurant.note != -1 %}
+        {% if element.note != -1 %}
             {% for i in list_etoiles_virgules %}
                 {% if element.note >= i.nombre %}
                     <div class="star-icon">
@@ -23,7 +23,7 @@
                 {% endif %}
             {% endfor %}
         {% else %}
-            <div class="text">{% trans 'Noter ce restaurant' %}</div>
+            <div class="text">{% trans 'Pas de note' %}</div>
         {% endif %}
     </div>
     <div class="nav-localisation text padding-left">

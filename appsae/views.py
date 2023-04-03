@@ -1,67 +1,30 @@
-import _thread
-import json
-import os.path
-import sqlite3
-import csv
 import hashlib
-from sqlite3 import OperationalError
-import os, tempfile, zipfile, mimetypes
-from wsgiref.util import FileWrapper
 
-from celery.result import AsyncResult
-from django.conf import settings
-from django.utils.dateformat import format
-from surprise import KNNBasic
-from surprise import Dataset
-from surprise import Reader
-from django.conf import settings
-from collections import defaultdict
-from operator import itemgetter
-import heapq
-import hashlib
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import chart_studio.plotly as py
-from surprise import accuracy, SVD
-from surprise.model_selection import train_test_split
-from surprise.model_selection import cross_validate
-import chart_studio
-import os
-import csv
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, render, redirect
-from django.utils.encoding import smart_str
-
-from appsae.models import *
-from .formulaire import *
 from django.core.mail import send_mail
-import random
-from django.shortcuts import render
+from django.conf import settings
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+
+from random import sample, randint
 
 from .recommandation_groupe import recommandationGroupeAvisGroupeComplet
 from .gestion import *
 from .gestion_note import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
-import re
 from .gestion_note import *
 from .svd import *
 from .models import *
 from .classes import RestaurantInfo, NumbersStars
 from .ajoutRecoBd import ajoutBDRecommandationGroupe
-from django.conf import settings
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
-import hashlib
-from random import sample
+from .formulaire import *
 
 
 def pageVerifMail(request):
     """
     Fonction qui permet de créer un formulaire pour verifier le mail
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if Adherant.objects.filter(mail=request.session['registerMail']).count() != 0:
@@ -73,10 +36,10 @@ def pageVerifMail(request):
 def verifMail(request):
     """
     Fonction qui créer un utilisateur après avoir validé son email
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
-    if (request.session['code'] == request.POST['code']):
+    if request.session['code'] == request.POST['code']:
         user = Adherant.objects.create(
             prenom=request.session['registerPrenom'],
             nom=request.session['registerNom'],
@@ -96,7 +59,7 @@ def verifMail(request):
 def index(request):
     """
     Fonction qui permet de faire le template de la page d'index
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     list = ["bars", "american (traditional)", "pizza", "fast food", "breakfast & brunch", "american (new)", "burgers",
@@ -127,7 +90,7 @@ def index(request):
             for restaurant in restaurants_sans_note:
                 liste_restaurants_sans_note.append(restaurant)
             context['restaurants_sans_note'] = [RestaurantInfo(elem) for elem in
-                                                random.sample(liste_restaurants_sans_note, NB_CARROUSEL)]
+                                                sample(liste_restaurants_sans_note, NB_CARROUSEL)]
     else:
         context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles()]
         context['italian'] = [RestaurantInfo(elem) for elem in listeAffichageCaroussel("Italian")]
@@ -138,8 +101,8 @@ def index(request):
 def deleteGroup(request, pk):
     """
     Fonction qui permet de supprimer un groupe
-    @param request:
-    @param pk pk du groupe:
+    @param request: L'objet HttpRequest qui est envoyé par le client
+    @param pk: pk du groupe
     @return:
     """
     if 'mailUser' not in request.session:
@@ -152,7 +115,7 @@ def deleteGroup(request, pk):
 def deleteUser(request, pk):
     """
     fonction qui permet d'enlever un utilisateur d'un groupe
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @param pk: pk du groupe
     @return:
     """
@@ -167,7 +130,7 @@ def deleteUser(request, pk):
 def groupRecommandations(request, pk):
     """
     Fonction qui renvoit une liste de recommandation de restaurant
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @param pk: pk du groupe
     @return:
     """
@@ -194,7 +157,7 @@ def groupRecommandations(request, pk):
 def creationGroup(request):
     """
     Fonction qui permet de valider la création d'un groupe
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if 'mailUser' not in request.session:
@@ -206,23 +169,6 @@ def creationGroup(request):
     context = {}
     connect(request, context)
     return render(request, 'user/creationGroup.html', context)
-
-
-def search(request):
-    """
-    Fonction qui permet de rechercher un utilisateur
-    @param request:
-    @return:
-    """
-    if request.GET["search"] != "":
-        context = {
-            'restaurants': Restaurant.objects.filter(nom__icontains=request.GET["search"]).order_by('-note')[:3]
-        }
-    elif request.GET["search"] == "":
-        context = {
-            'user': {}
-        }
-    return render(request, 'restaurants/searchRestaurants.html', context)
 
 
 def renameNomUTF(nom):
@@ -246,7 +192,7 @@ def renameNomUTF(nom):
 def createGroupe(request):
     """
     Fonction qui permet de créer un groupe
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if 'mailUser' not in request.session:
@@ -276,7 +222,7 @@ def createGroupe(request):
 def groupe(request):
     """
     Fonction qui permet d'afficher les donner d'un groupe
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if 'mailUser' not in request.session:
@@ -296,7 +242,7 @@ def groupe(request):
 def removeUser(request, user):
     """
     Fonction qui permet d'enlever un utilisateurs d'un groupe lors de la création
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @param user utilisateur a enlever:
     @return:
     """
@@ -316,7 +262,7 @@ def removeUser(request, user):
 def addUser(request, user):
     """
     Fonciton qui permet d'ajouter un utilisateur a un groupe"
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @param user utilisateur a ajouter aux groupes:
     @return:
     """
@@ -340,7 +286,7 @@ def addUser(request, user):
 def nomGroup(request):
     """
     Fonction qui permet de déterminer le noms du groupe
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if 'mailUser' not in request.session:
@@ -357,7 +303,7 @@ def nomGroup(request):
 def searchRestau(request):
     """
     fonction qui permet de rechercher un restaurant avec un le nom ou une filtres
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return renvoie la liste des restaurans qui remplissent les critères:
     """
     type = RestaurantType.objects.filter(nom=request.POST["type"])
@@ -386,7 +332,7 @@ def searchRestau(request):
 def groupePage(request):
     """
     Fonction qui affiche ous les groupes de l'utilisateur connecté
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if 'mailUser' not in request.session:
@@ -401,7 +347,7 @@ def groupePage(request):
 def searchUser(request):
     """
     Fonction qui permet de renvoyer 3 utilisateur avec un système de recherche avec le mail des utilisateurs
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return renvoie une list de trois utilisateur:
     """
     if 'mailUser' not in request.session:
@@ -421,8 +367,8 @@ def searchUser(request):
 def vueRestaurant(request, pk):
     """
     Fonction qui permet d'afficher toutes les informations sur un restaurant passer en paramètre
-    @param request:
-    @param pk pk du restaurant:
+    @param request: L'objet HttpRequest qui est envoyé par le client
+    @param pk: pk du restaurant
     @return:
     """
     restaurant = Restaurant.objects.get(pk=pk)
@@ -438,6 +384,7 @@ def vueRestaurant(request, pk):
         if avisExist(user, restaurant):
             avisUser = Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
             list_avis = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
+            context['avisUser'] = avisUser[0]
         else:
             list_avis = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
     else:
@@ -447,8 +394,6 @@ def vueRestaurant(request, pk):
         user = Adherant.objects.get(mail=request.session['mailUser'])
         if Avis.objects.filter(adherant_fk=user, restaurant_fk=Restaurant.objects.get(pk=pk)):
             context['commentaire'] = True
-        if avisExist(user, restaurant):
-            context['avisUser'] = avisUser[0]
     connect(request, context)
     return render(request, 'restaurants/vueRestaurant.html', context)
 
@@ -456,32 +401,30 @@ def vueRestaurant(request, pk):
 def addCommentaires(request, pk):
     """
     Fonctino qui permet à un utilisateur de mettre des avis sur des commentaires
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @param pk pk du restaurant:
     @return:
     """
     user = Adherant.objects.get(mail=request.session['mailUser'])
-    restaurant = Restaurant.objects.filter(pk=pk)
-    restaurants = Restaurant.objects.get(pk=pk)
-    img = Restaurant.objects.get(pk=pk).img.all()
-    if (avisExist(user, restaurant[0])):
-        avisUser = Avis.objects.filter(restaurant_fk=restaurant[0], adherant_fk=user)
-        list = Avis.objects.filter(restaurant_fk=restaurants).all().exclude(adherant_fk=user)[:9]
+    restaurant = Restaurant.objects.get(pk=pk)
+    if avisExist(user, restaurant):
+        avisUser = Avis.objects.filter(restaurant_fk=restaurant, adherant_fk=user)
+        list = Avis.objects.filter(restaurant_fk=restaurant).all().exclude(adherant_fk=user)[:9]
     else:
-        list = Avis.objects.filter(restaurant_fk=restaurants).all()[:10]
+        list = Avis.objects.filter(restaurant_fk=restaurant).all()[:10]
     context = {
-        'restaurant': restaurant[0],
-        'imgRestaurants': ImageRestaurant.objects.filter(pk__in=img),
+        'restaurant': restaurant,
+        'imgRestaurants': ImageRestaurant.objects.filter(pk__in=Restaurant.objects.get(pk=pk).img.all()),
         'avis': list,
-        'nbAvis': Avis.objects.filter(restaurant_fk=restaurants),
+        'nbAvis': Avis.objects.filter(restaurant_fk=restaurant),
         'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5), NumbersStars(3.5),
                                   NumbersStars(4.5)]
     }
     if 'mailUser' in request.session:
         context['commentaire'] = True
-    if (avisExist(user, restaurant[0])):
+    if avisExist(user, restaurant):
         context['avisUser'] = avisUser
-    if (request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST):
+    if request.method == 'POST' and 'title-rating' in request.POST and 'comm' in request.POST:
         ajoutAvis(Adherant.objects.get(mail=request.session['mailUser']), Restaurant.objects.get(pk=pk),
                   request.POST['title-rating'], request.POST['comm'])
         if Avis.objects.get(adherant_fk=Adherant.objects.get(mail=request.session['mailUser']),
@@ -497,12 +440,14 @@ def addCommentaires(request, pk):
 def voirPlus(request, pk):
     """
     Fontion qui permet d'afficher plus d'avis sur une restaurant
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @param pk pk du restaurant:
     @return:
     """
     context = {
         'avis': listeAffichageAvis(Restaurant.objects.get(pk=pk), 1),
+        'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
+                                  NumbersStars(3.5), NumbersStars(4.5)],
     }
     if (afficherVoirPlus(Restaurant.objects.get(pk=pk), 1)):
         context['endAvis'] = True
@@ -512,7 +457,7 @@ def voirPlus(request, pk):
 def register(request):
     """
     Fonction qui permet de créer un utilisateurs
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if request.method == "POST":
@@ -536,7 +481,6 @@ def register(request):
         'info': Adherant.objects.all
     }
     return render(request, 'user/register.html', context)
-    # return JsonResponse({"form": list(form.values) })
 
 
 def validate_form(form):
@@ -563,7 +507,7 @@ def validate_form(form):
 def login(request):
     """
     Fontion qui effectue les verifications lors du login
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if request.method == "POST":
@@ -591,7 +535,7 @@ def login(request):
 def modification(request):
     """
     Fonction qui recupère les données du form de modfiication de l'utilisateur et qui le modifie
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return retourne sur la page index:
     """
     if 'mailUser' not in request.session:
@@ -605,7 +549,7 @@ def modification(request):
         img = ImageUser.objects.create(
             img=request.FILES['photo']
         )
-        img.save();
+        img.save()
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
     if request.POST['ville'] != user.ville:
         Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
@@ -626,7 +570,7 @@ def modification(request):
 def modifUser(request):
     """
     Fonction qui permet de renvoyer le template pour modifier son profil
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if 'mailUser' not in request.session:
@@ -645,14 +589,14 @@ def random_value():
     """
     value_random = ""
     for i in range(6):
-        value_random += str(random.randint(0, 9))
+        value_random += str(randint(0, 9))
     return value_random
 
 
 def verificationEmail(mail):
     """
     Fonction qui envoie un mail avec un code
-    @param mail:
+    @param mail: l'email de l'utilisateur
     @return:
     """
     random = random_value()
@@ -664,7 +608,7 @@ def verificationEmail(mail):
                   + "\n\nL'équipe EatAdvisor",
                   "eat_advisor2@outlook.fr",
                   [mail],
-                  fail_silently=False);
+                  fail_silently=False)
         return random
     except:
         return HttpResponse("le mail na pas pu etre envoyer")
@@ -673,7 +617,7 @@ def verificationEmail(mail):
 def logoutUser(request):
     """
     Fonction qui deconnecte un utilisateur
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return redirect sur la view index:
     """
     try:
@@ -694,8 +638,8 @@ def logoutUser(request):
 def search(request):
     """
     Fonction qui renvoie des restaurants avec un système de recherche
-    @param request:
-    @return 3 restaurant:
+    @param request: L'objet HttpRequest qui est envoyé par le client
+    @return 3 restaurant
     """
     if request.GET["search"] != "":
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
@@ -703,57 +647,11 @@ def search(request):
     return HttpResponse('')
 
 
-def export_restaurant(request):
-    '''
-    exporte l'ensemble des restaurants dans des fichiers csv séparés en fonction de leur ville
-    @param request:
-    @return:
-    '''
-    listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
-                  "Saint Louis", "Reno",
-                  "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
-                  "Franklin"]
-    # user = Adherant.objects.get(mail=request.session['mailUser'])
-    for villes in listVilles:
-        file = str(settings.BASEDIR) + '/' + "restaurant" + filterNomRestaurant(villes) + ".csv"
-        f = open(file, "w")
-        f.writelines("id;nom;genre")
-        f.write('\n')
-        for restaurant in Restaurant.objects.filter(ville=villes):
-            f.write(str(restaurant.pk))
-            f.write(";")
-            f.write(restaurant.nom)
-            f.write(";")
-            taille = restaurant.type.all().count()
-            for i in range(taille):
-                f.write(str(restaurant.type.all()[i]))
-                if i != taille - 1:
-                    f.write(" ")
-            f.write('\n')
-        print(file)
-    return redirect('index')
-
-
-def export_ratings(request):
-    """
-    Exporte l'ensemble des ratings dans un fichier csv ratings.csv
-    @param request:
-    @return:
-    """
-    file = str(settings.BASE_DIR) + '/' + "ratings.csv"
-    f = open(file, "w")
-    f.writelines("user_id,restaurant_id,note")
-    for rating in Avis.objects.all().values_list('adherant_fk', 'restaurant_fk', 'note'):
-        f.write('\n')
-        f.write(str(rating)[1:-1])
-    print(file)
-    return redirect('index')
-
 
 def setImg(request):
     """
     Met des photos pour chaque restaurant avec des img set
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     i = 0
@@ -789,14 +687,6 @@ def setImg(request):
         restaurant.img.add(imgset[i])
         i += 1
     return redirect('index')
-
-
-def addAvis(request, pk):
-    context = {
-        'avis': liste_avis(Restaurant.objects.get(pk=pk), 1)
-    }
-    connect(request, context)
-    return render(request, 'avis/moreAvis.html', context)
 
 #
 # def exportHTML():
