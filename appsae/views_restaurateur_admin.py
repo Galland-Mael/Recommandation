@@ -111,15 +111,25 @@ def ajouter_resto(request, pk):
             pays=demande.pays,
             etat=demande.etat,
             longitude=demande.longitude,
-            latitude=demande.latitude,
+            latitude=demande.latitude
         )
         restaurant.save()
+        new_restaurant = Restaurant.objects.get(
+            nom=demande.nom,
+            adresse=demande.adresse,
+            ville=demande.ville,
+            zip_code=demande.zip_code,
+            pays=demande.pays,
+            etat=demande.etat,
+            longitude=demande.longitude,
+            latitude=demande.latitude
+        )
         for type_name in demande.type.all():
             type = RestaurantType.objects.get(nom=type_name)
             restaurant.type.add(type)
-        add_restaurant_csv(restaurant)
-        setImageAleatoireRestaurant(restaurant)
-        Restaurateur.objects.filter(pk=demande.restaurateur_fk_id).update(restaurant_fk=restaurant)
+        add_restaurant_csv(new_restaurant)
+        setImageAleatoireRestaurant(new_restaurant)
+        Restaurateur.objects.filter(pk=demande.restaurateur_fk_id).update(restaurant_fk=new_restaurant)
         demande.delete()
         return redirect('index_administrateur')
     return redirect('index')

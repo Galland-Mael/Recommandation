@@ -1,61 +1,24 @@
-import _thread
-import json
-import os.path
-import sqlite3
-import csv
 import hashlib
-from sqlite3 import OperationalError
-import os, tempfile, zipfile, mimetypes
-from wsgiref.util import FileWrapper
 
-from celery.result import AsyncResult
-from django.conf import settings
-from django.utils.dateformat import format
-from surprise import KNNBasic
-from surprise import Dataset
-from surprise import Reader
-from django.conf import settings
-from collections import defaultdict
-from operator import itemgetter
-import heapq
-import hashlib
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import chart_studio.plotly as py
-from surprise import accuracy, SVD
-from surprise.model_selection import train_test_split
-from surprise.model_selection import cross_validate
-import chart_studio
-import os
-import csv
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, render, redirect
-from django.utils.encoding import smart_str
-
-from appsae.models import *
-from .formulaire import *
 from django.core.mail import send_mail
-import random
-from django.shortcuts import render
+from django.conf import settings
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+
+from random import sample, randint
 
 from .recommandation_groupe import recommandationGroupeAvisGroupeComplet
 from .gestion import *
 from .gestion_note import *
 from .gestion_utilisateur import *
 from .gestion_groupes import *
-import re
 from .gestion_note import *
 from .svd import *
 from .models import *
 from .classes import RestaurantInfo, NumbersStars
 from .ajoutRecoBd import ajoutBDRecommandationGroupe
-from django.conf import settings
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import User
-import hashlib
-from random import sample
+from .formulaire import *
 
 
 def pageVerifMail(request):
@@ -127,7 +90,7 @@ def index(request):
             for restaurant in restaurants_sans_note:
                 liste_restaurants_sans_note.append(restaurant)
             context['restaurants_sans_note'] = [RestaurantInfo(elem) for elem in
-                                                random.sample(liste_restaurants_sans_note, NB_CARROUSEL)]
+                                                sample(liste_restaurants_sans_note, NB_CARROUSEL)]
     else:
         context['meilleurRestaurants'] = [RestaurantInfo(elem) for elem in listeAffichageCarrouselVilles()]
         context['italian'] = [RestaurantInfo(elem) for elem in listeAffichageCaroussel("Italian")]
@@ -214,14 +177,11 @@ def search(request):
     @param request:
     @return:
     """
+    context = {}
     if request.GET["search"] != "":
-        context = {
-            'restaurants': Restaurant.objects.filter(nom__icontains=request.GET["search"]).order_by('-note')[:3]
-        }
+        context['restaurants'] = Restaurant.objects.filter(nom__icontains=request.GET["search"]).order_by('-note')[:3]
     elif request.GET["search"] == "":
-        context = {
-            'user': {}
-        }
+        context['user'] = {}
     return render(request, 'restaurants/searchRestaurants.html', context)
 
 
@@ -422,7 +382,7 @@ def vueRestaurant(request, pk):
     """
     Fonction qui permet d'afficher toutes les informations sur un restaurant passer en paramètre
     @param request:
-    @param pk pk du restaurant:
+    @param pk: pk du restaurant
     @return:
     """
     restaurant = Restaurant.objects.get(pk=pk)
@@ -536,7 +496,6 @@ def register(request):
         'info': Adherant.objects.all
     }
     return render(request, 'user/register.html', context)
-    # return JsonResponse({"form": list(form.values) })
 
 
 def validate_form(form):
@@ -605,7 +564,7 @@ def modification(request):
         img = ImageUser.objects.create(
             img=request.FILES['photo']
         )
-        img.save();
+        img.save()
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
     if request.POST['ville'] != user.ville:
         Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
@@ -645,7 +604,7 @@ def random_value():
     """
     value_random = ""
     for i in range(6):
-        value_random += str(random.randint(0, 9))
+        value_random += str(randint(0, 9))
     return value_random
 
 
@@ -664,7 +623,7 @@ def verificationEmail(mail):
                   + "\n\nL'équipe EatAdvisor",
                   "eat_advisor2@outlook.fr",
                   [mail],
-                  fail_silently=False);
+                  fail_silently=False)
         return random
     except:
         return HttpResponse("le mail na pas pu etre envoyer")
