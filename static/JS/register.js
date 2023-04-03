@@ -22,6 +22,12 @@ const response = document.querySelector('.response');
 const code = document.querySelector('.lastName');
 let current = 1;
 
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter' && event.key === "Tab"){
+    event.preventDefault();
+  }
+});
+
 firstNext.addEventListener('click', () => {
     if (firstName.value != "") {
         failInfo[0].classList.add('none')

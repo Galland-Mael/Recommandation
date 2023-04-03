@@ -72,7 +72,7 @@ def modifPAGE():
 def pageVerifMail(request):
     """Fonction qui permet de créer un formulaire pour verifier le mail"""
     if Adherant.objects.filter(mail=request.session['registerMail']).count() != 0:
-        messages.error(request, _('Il y a déjà un compte associé à cette adresse mail'))
+        messages.error(request, 'Il y a déjà un compte associé à cette adresse mail')
         return redirect('register')
     return render(request, 'user/pageVerifMail.html')
 
@@ -582,7 +582,9 @@ def register(request):
         request.session['registerBirthDate'] = user['birthDate']
         request.session['registerPassword'] = hashed_password
         request.session['code'] = verificationEmail(user["mail"])
-        return redirect('pageVerifMail')
+        if user['prenom'] != "" and user['nom'] != "" and user['ville'] != "" and user['mail'] != "" and \
+                user['birthDate'] != "" and hashed_password != "":
+            return redirect('pageVerifMail')
     form = AdherantForm()
     context = {
         'form': form,
