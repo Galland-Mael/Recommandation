@@ -74,6 +74,12 @@ def listeAffichageCarrouselVilles(ville="", type=""):
 
 
 def meilleursRestoParType(type, nb_review_mini):
+    """
+    Recherches les meilleurs restaurants par type ayant nb_review_mini d'avis minimum
+    @param type: le type recherché
+    @param nb_review_mini: le nombre minimum d'avis
+    @return: une liste de restaurant
+    """
     meilleurs = Restaurant.objects.filter(type=type, nb_review__gte=nb_review_mini).order_by('-note')
     if meilleurs.count() >= NB_CARROUSEL:
         return meilleurs[:NB_CARROUSEL]

@@ -8,9 +8,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 from appsae.views_restaurateur_admin import *
 
-urlpatterns = [
-
-]
+urlpatterns = []
 
 urlpatterns += i18n_patterns(
     path('', index, name='index'),
@@ -38,11 +36,9 @@ urlpatterns += i18n_patterns(
     path('nomGroup/', nomGroup, name='nomGroup'),
     path('createGroupe/', createGroupe, name='createGroupe'),
     path('modification/', modification, name='modification'),
-    #path('recommandation/', recommandation, name='recommandation'),
     path('modification/', modification, name='modification'),
     path('setImg/', setImg, name='setImg'),
     path('deleteGroup/(<pk>)', deleteGroup, name='deleteGroup'),
-    path('recommendation', recommendation, name='recommendation'),
 
     # Restaurateurs et administrateurs
     path('restaurateur/login', login_restaurateur, name='login_restaurateur'),
@@ -55,7 +51,6 @@ urlpatterns += i18n_patterns(
     path('administrateur/suppression/(<pk>)', refuser_form, name="refuser_form"),
     path('administrateur/ajout/(<pk>)', ajouter_resto, name="ajouter_resto"),
     path('deleteGroup/(<pk>)', deleteGroup, name='deleteGroup'),
-    path('recommendation', recommendation, name='recommendation'),
     path('pageVerifMail', pageVerifMail, name='pageVerifMail'),
     path('verifMail',verifMail,name='verifMail'),
     path('deleteUser/(<pk>)',deleteUser,name='deleteUser')

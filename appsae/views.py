@@ -41,7 +41,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .recommandation_groupe import recommandationGroupeAvisGroupeComplet
-from .recommendation import *
 from .gestion import *
 from .gestion_note import *
 from .gestion_utilisateur import *
@@ -50,27 +49,21 @@ import re
 from .gestion_note import *
 from .svd import *
 from .models import *
-# from .generateDoc import *
-# from .ajoutRecoBd import ajoutBDRecommandationGroupe
+from .classes import RestaurantInfo, NumbersStars
 from .ajoutRecoBd import ajoutBDRecommandationGroupe
 from django.conf import settings
-import datetime
-import time
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 import hashlib
 from random import sample
 
-PAGE = 0
-
-
-def modifPAGE():
-    global PAGE
-    PAGE += 1
-
 
 def pageVerifMail(request):
-    """Fonction qui permet de créer un formulaire pour verifier le mail"""
+    """
+    Fonction qui permet de créer un formulaire pour verifier le mail
+    @param request:
+    @return:
+    """
     if Adherant.objects.filter(mail=request.session['registerMail']).count() != 0:
         messages.error(request, 'Il y a déjà un compte associé à cette adresse mail')
         return redirect('register')
@@ -98,43 +91,6 @@ def verifMail(request):
     else:
         messages.success(request, _('Mot de passe ou mail incorrect'))
         return redirect('pageVerifMail')
-
-
-class NumbersStars:
-    def __init__(self, nombre_virgule):
-        self.nombre = nombre_virgule + 0.5
-        self.nombre_virgule = nombre_virgule
-
-
-class RestaurantInfo:
-    def __init__(self, restaurant):
-        self.pk = restaurant.pk
-        self.note = restaurant.note
-        self.nb_review = restaurant.nb_review
-        self.name = setNomRestaurant(restaurant.nom)
-        self.image_front = restaurant.image_front
-        self.types = setTypesRestaurant(restaurant.type.all())
-
-
-def setNomRestaurant(nom):
-    if len(nom) > 24:
-        if len(nom) < 27:
-            return nom
-        else:
-            return nom[:24] + "..."
-    return nom
-
-
-def setTypesRestaurant(types):
-    taille_actuelle = 0
-    return_types = "";
-    for indice, type in enumerate(types):
-        taille_actuelle += len(type.nom) + 3
-        if taille_actuelle < 26:
-            if indice != 0:
-                return_types += " | "
-            return_types += str(type.nom[0].upper()) + str(type.nom[1:])
-    return return_types
 
 
 def index(request):
@@ -165,7 +121,7 @@ def index(request):
             context['reco'] = [RestaurantInfo(elem) for elem in recommandations]
         restaurants_sans_note = Restaurant.objects.filter(nb_review=0, ville=user.ville)
         liste_restaurants_sans_note = []
-        if user.nb_review >= NB_CARROUSEL:
+        if user.nb_review >= NB_CARROUSEL + 10:
             context['visites'] = [RestaurantInfo(elem) for elem in listeAffichageDejaVisiter(user.pk)]
         if restaurants_sans_note.count() >= NB_CARROUSEL:
             for restaurant in restaurants_sans_note:
@@ -197,7 +153,7 @@ def deleteUser(request, pk):
     """
     fonction qui permet d'enlever un utilisateur d'un groupe
     @param request:
-    @param pk pk du groupe:
+    @param pk: pk du groupe
     @return:
     """
     if 'mailUser' not in request.session:
@@ -212,7 +168,7 @@ def groupRecommandations(request, pk):
     """
     Fonction qui renvoit une liste de recommandation de restaurant
     @param request:
-    @param pk pk du groupe:
+    @param pk: pk du groupe
     @return:
     """
     if 'mailUser' not in request.session:
@@ -269,11 +225,11 @@ def search(request):
     return render(request, 'restaurants/searchRestaurants.html', context)
 
 
-def testNomUTF(nom):
+def renameNomUTF(nom):
     """
-
-    @param nom:
-    @return:
+    Supprime les caractères qui ne sont pas valides (dans la list)
+    @param nom: le nom originel
+    @return: une chaine de caractères sans les caractères invalides
     """
     list = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789&'-+/:,*#|!?°. "
     nouveau_nom = ""
@@ -285,17 +241,6 @@ def testNomUTF(nom):
         elif lettre in 'ÉÈ':
             nouveau_nom += 'E'
     return nouveau_nom
-
-
-def supplettreUTF():
-    """
-
-    @return:
-    """
-    for resto in Restaurant.objects.all():
-        nouveau_nom = testNomUTF(resto.nom)
-        if (nouveau_nom != resto.nom):
-            Restaurant.objects.filter(id_yelp=resto.id_yelp).update(nom=nouveau_nom)
 
 
 def createGroupe(request):
@@ -426,7 +371,8 @@ def searchRestau(request):
         search = ""
     if 'mailUser' in request.session:
         user = Adherant.objects.get(mail=request.session['mailUser'])
-        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type, ville=user.ville).order_by('-note')[:50]
+        context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type, ville=user.ville).order_by(
+            '-note')[:50]
     else:
         context['list'] = Restaurant.objects.filter(nom__icontains=search, type__in=type).order_by('-note')[:50]
     if context['list'].count() == 0:
@@ -479,7 +425,6 @@ def vueRestaurant(request, pk):
     @param pk pk du restaurant:
     @return:
     """
-    img = Restaurant.objects.get(pk=pk).img.all()
     restaurant = Restaurant.objects.get(pk=pk)
     context = {
         'restaurant': restaurant,
@@ -662,10 +607,10 @@ def modification(request):
         )
         img.save();
         updateProfilPick(user.mail, 'img_user/' + str(request.FILES['photo']))
-    if (request.POST['ville'] != user.ville):
+    if request.POST['ville'] != user.ville:
         Adherant.objects.filter(mail=user.mail).update(ville=request.POST['ville'])
-        # if (user.nb_review >= 5):
-        # majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
+        if user.nb_review >= 5:
+            majRecommandationsIndividuellesBD(user, RecommandationUser.objects.get(adherant_fk=user))
     context = {}
     if 'mailUser' in request.session:
         context['meilleurRestaurants'] = listeAffichageCarrouselVilles(user.ville)
@@ -758,40 +703,6 @@ def search(request):
     return HttpResponse('')
 
 
-def matteo(request):
-    adherant = Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0]
-    resto = Restaurant.objects.filter(nom="Burger King")[0]
-    print(afficherAvis(adherant, resto))
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
-                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
-    modifPAGE()
-    print("------------------------------------------------")
-    print(listeAffichageAvis(resto, adherant, PAGE))
-    print(afficherVoirPlus(Restaurant.objects.filter(nom="Burger King")[0],
-                           Adherant.objects.filter(mail="matteo.miguelez@gmail.com")[0], PAGE))
-    modifPAGE()
-    print("------------------------------------------------")
-    return redirect('index')
-
-
-def printeur(ddd):
-    for i in range(10):
-        print(ddd)
-
-
-def recommendation(request):
-    st = time.time()
-    groupe = Groupe.objects.get(nom_groupe="testAlgoGroupeMatteo2")
-    liste = listeRecommandationGroupe(groupe)
-    # person = Adherant.objects.get(mail="matteo.miguelez@gmail.com")
-    # liste = listeRecommandationIndividuelle(person)
-    print(liste)
-    print(time.time() - st)
-    return HttpResponse('')
-
-
 def export_restaurant(request):
     '''
     exporte l'ensemble des restaurants dans des fichiers csv séparés en fonction de leur ville
@@ -878,17 +789,6 @@ def setImg(request):
         restaurant.img.add(imgset[i])
         i += 1
     return redirect('index')
-
-
-def getFirstElement():
-    liste = []
-    fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", "r")
-    cr = csv.reader(fichier, delimiter=",")
-    for row in cr:
-        if " " not in str(row[0]):
-            liste.append(row[0])
-    fichier.close()
-    return liste
 
 
 def addAvis(request, pk):

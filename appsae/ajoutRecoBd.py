@@ -4,6 +4,11 @@ from time import mktime
 
 
 def ajoutBDRecommandationGroupe(groupe):
+    """
+    Calul et ajoute les recommandations de groupe dans la base de données
+    @param groupe:
+    @return:
+    """
     reco_groupe= RecommandationGroupe.objects.filter(groupe_fk=groupe)
     if reco_groupe.count() == 0:
         reco = RecommandationGroupe(groupe_fk=groupe)

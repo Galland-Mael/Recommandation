@@ -6,18 +6,16 @@ import datetime
 from time import mktime
 from .ajoutCSV import add_restaurant_csv
 from random import randint
-
-
-class Horaire:
-    def __init__(self, jour, horaire1_deb="00:00", horaire1_fin="00:00", horaire2_deb="00:00", horaire2_fin="00:00"):
-        self.jour = jour
-        self.horaire1_deb = horaire1_deb
-        self.horaire2_deb = horaire2_deb
-        self.horaire1_fin = horaire1_fin
-        self.horaire2_fin = horaire2_fin
+from .classes import Horaire
 
 
 def validation_admin(request, pk):
+    """
+    Vue d'une demande de création de restaurant pour un admin
+    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param pk: la clé primaire de la demande
+    @return:
+    """
     if 'mailAdministrateur' in request.session:
         demande = DemandeCreationRestaurant.objects.get(pk=pk)
         context = {
@@ -30,6 +28,11 @@ def validation_admin(request, pk):
 
 
 def index_administrateur(request):
+    """
+    Vue de l'index de l'administrateur avec toutes les demandes de création a valider ou refuser
+    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @return:
+    """
     if 'mailAdministrateur' in request.session:
         context = {
             'demandes': DemandeCreationRestaurant.objects.filter(traite=False).order_by("-date_creation")
@@ -40,6 +43,11 @@ def index_administrateur(request):
 
 
 def modif_resto(request):
+    """
+    Vue de la page de modifications et d'informations sur le restaurant.
+    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @return:
+    """
     if 'mailRestaurateur' in request.session:
         if request.method == "POST":
             info = request.POST
@@ -64,6 +72,12 @@ def modif_resto(request):
 
 
 def refuser_form(request, pk):
+    """
+    Vue permettant à l'administrateur de refuser une demande de création de restaurant
+    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param pk: la clé primaire de la demande
+    @return:
+    """
     if 'mailAdministrateur' in request.session:
         context = {}
         if request.method == "POST":
@@ -81,6 +95,12 @@ def refuser_form(request, pk):
 
 
 def ajouter_resto(request, pk):
+    """
+    Vue permettant de valider la demande de création de restaurant par un administrateur
+    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param pk: la clé primaire de la demande
+    @return:
+    """
     if 'mailAdministrateur' in request.session:
         demande = DemandeCreationRestaurant.objects.get(pk=pk)
         restaurant = Restaurant(
@@ -106,6 +126,11 @@ def ajouter_resto(request, pk):
 
 
 def register_restaurateur(request):
+    """
+    Vue permettant au restaurateur de se créer un compte
+    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @return:
+    """
     if request.method == "POST":
         info = request.POST
         if info['password_verif'] == info['password']:
@@ -120,6 +145,11 @@ def register_restaurateur(request):
 
 
 def login_restaurateur(request):
+    """
+    Vue permettant au restaurateur ou a un administrateur de se connecter
+    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @return:
+    """
     # Déconnexion
     if 'mailUser' in request.session or 'mailAdministrateur' in request.session or 'mailRestaurateur' \
             in request.session:
@@ -148,6 +178,11 @@ def login_restaurateur(request):
 
 
 def index_restaurateur(request):
+    """
+    Vue de l'index du restaurateur
+    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @return:
+    """
     if 'mailRestaurateur' in request.session:
         restaurateur = Restaurateur.objects.get(mail=request.session['mailRestaurateur'])
         demande = DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk)
@@ -178,8 +213,8 @@ def index_restaurateur(request):
 
 
 def create_demandecreationrestaurant(info, request):
-    """ Crée une DemandeCreationRestaurant dans la base de données avec les infos données en paramètres
-
+    """
+    Crée une DemandeCreationRestaurant dans la base de données avec les infos données en paramètres
     @param info: les informations du formulaire
     @param request: informations utilisateurs
     @return: /
@@ -208,6 +243,11 @@ def create_demandecreationrestaurant(info, request):
 
 
 def formulaire_demande_restaurateur(request):
+    """
+    Vue du formulaire de demande de création de restaurant pour le restaurateur
+    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @return:
+    """
     context = {}
     if 'mailRestaurateur' in request.session:
         restaurateur = Restaurateur.objects.get(mail=request.session['mailRestaurateur'])
@@ -231,6 +271,11 @@ def formulaire_demande_restaurateur(request):
 
 
 def setImageAleatoireRestaurant(restaurant):
+    """
+    Fonction pour mettre un set aléatoire d'image à un nouveau restaurant
+    @param restaurant: l'objet Restaurant dans le modèle de données à modifier
+    @return: /
+    """
     random_value = randint(1, 4)
     restaurant.image_front = "/img_restaurant/imagefront" + str(random_value) + ".jpg"
     '/img_restaurant/imagefront3.jpg'

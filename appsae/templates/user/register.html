@@ -129,6 +129,9 @@
                         </div>
                         <a href="{% url 'login' %}"><span
                                 class="new-account">{% trans "Je possède déjà un compte" %}</span></a>
+                        <div><a href="{% url 'login_restaurateur' %}"><span
+                                class="new-account">{% trans "Je suis un restaurateur" %}</span></a></div>
+
                     </div>
                     <div class="page slide-page">
                         <div class="title">
@@ -185,7 +188,8 @@
                         <div class="g-recaptcha" data-sitekey="6LfCDW0kAAAAAD9ujkaPcwWEG6HTE0z9hoyq88fx"></div>
                         <div class="button-field flex">
                             <div class="split-button prev-4 prev btn"><p>{% trans 'Précédent' %}</p></div>
-                            <button type="submit" class="split-button next-4 next save btn" value="type">{% trans 'Suivant' %}
+                            <button type="submit" class="split-button next-4 next save btn"
+                                    value="type">{% trans 'Suivant' %}
                             </button>
                         </div>
                     </div>

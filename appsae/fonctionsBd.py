@@ -273,3 +273,13 @@ def verif():
     for resto in Restaurant.objects.filter("St. Petersburg"):
         if resto.ville == "St. Petersburg":
             resto.ville = "Saint Petersburg"
+
+def getFirstElement():
+    liste = []
+    fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", "r")
+    cr = csv.reader(fichier, delimiter=",")
+    for row in cr:
+        if " " not in str(row[0]):
+            liste.append(row[0])
+    fichier.close()
+    return liste
