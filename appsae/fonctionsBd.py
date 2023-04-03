@@ -1,10 +1,22 @@
+
 def split_string(string):
-    # Split the string based on space delimiter
+    '''
+    Fonction qui permet de découper une chaine de caractère en fonction d'une virgule
+    @param string: chaîne de caractère à découper
+    @return: liste de chaîne de caractère découpée
+    '''
     list_string = string.split(',')
 
     return list_string
 
+
+
 def insertresto():
+    '''
+    Fonction qui permet d'insérer les restaurants dans la base de données à partir d'un fichier json contenant les données
+    le fichier json est récupéré à partir d'une url
+    @return:
+    '''
     url = "https://qghub.cloud/assets/yelp_business.json"
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     verif = 0
@@ -68,6 +80,11 @@ def insertresto():
         print(verif)
 
 def inserttype():
+    '''
+    Fonction qui permet d'insérer les types de restaurants dans la base de données à partir d'un fichier json contenant les données
+    le fichier json est récupéré à partir d'une url
+    @return:
+    '''
     url = "https://qghub.cloud/assets/yelp_business.json"
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     verif = 0
@@ -100,6 +117,11 @@ def inserttype():
                         alias = liste[j]
 
 def insertuser():
+    '''
+    Fonction qui permet d'insérer les utilisateurs dans la base de données à partir d'un fichier json contenant les données
+    le fichier json est récupéré à partir d'une url
+    @return:
+    '''
     url = "https://qghub.cloud/assets/yelp.json"
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     verif = 0
@@ -118,6 +140,10 @@ def insertuser():
         print('iteration ' + str(verif))
 
 def insert_nom():
+    '''
+    Fonction qui permet d'insérer des nom de famille dans la base de données à partir d'un fichier csv contenant les données
+    @return:
+    '''
     list = getFirstElement()
     random.shuffle(list)
     i = 0
@@ -132,6 +158,11 @@ def insert_nom():
         print(i)
 
 def insertreview():
+    '''
+    Fonction qui permet d'insérer les reviews dans la base de données à partir d'un fichier json contenant les données
+    le fichier json est récupéré à partir d'une url
+    @return:
+    '''
     file = 18
     url = "https://qghub.cloud/assets/review"+str(file)+".json"
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -157,19 +188,13 @@ def insertreview():
                 avis.save()
         print('fichier : ' + str(file) + ', iteration : ' + str(verif))
 
-def setVille():
-    for user in Adherant.objects.all():
-        dico = {"Philadelphia": 0, "Tampa": 0, "Indianapolis": 0, "Nashville": 0, "Tucson": 0, "New Orleans": 0,
-                "Saint Louis": 0, "Edmonton": 0, "Reno": 0, "Saint Petersburg": 0, "Boise": 0, "Santa Barbara": 0,
-                "Clearwater": 0, "Wilmington": 0, "Metairie": 0, "Franklin": 0}
-        for avis in Avis.objects.filter(adherant_fk=user):
-            str_ville = str(avis.restaurant_fk.ville)
-            if str_ville in dico.keys():
-                dico[str_ville] += 1
-        max_elem = max(dico, key=dico.get)
-        Adherant.objects.filter(pk=user.pk).update(ville=max_elem)
+
 
 def create_password():
+    '''
+    Fonction qui permet de créer des mots de passe pour les utilisateurs puis les hash et les insère dans la base de données
+    @return:
+    '''
     for user in Adherant.objects.all():
         mdp = user.prenom.lower() + user.nom.lower()
         hashed_password = hashlib.sha256(mdp.encode('utf-8')).hexdigest()
@@ -177,7 +202,7 @@ def create_password():
 
 def supplettreUTF():
     """
-
+    Fonction qui permet de supprimer les caractères spéciaux dans les noms des restaurants
     @return:
     """
     for resto in Restaurant.objects.all():
@@ -187,9 +212,9 @@ def supplettreUTF():
 
 def testNomUTF(nom):
     """
-
-    @param nom:
-    @return:
+    Méthode qui modifie le nom du restaurant qui contient des caractères spéciaux pour les remplacer par des caractères UTF 8
+    @param nom: nom du restaurant a tester
+    @return: nom du restaurant modifié
     """
     list = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789&'-_+/:,*²#|!?°. "
     nouveau_nom = ""
@@ -203,11 +228,19 @@ def testNomUTF(nom):
     return nouveau_nom
 
 def calculNb_reviewAdherent():
+    '''
+    Fonction qui permet de calculer le nombre de review par adherant
+    @return:
+    '''
     for adherent in Adherant.objects.all():
         somme = Avis.objects.filter(adherent_fk=adherent.pk).count()
         Adherant.objects.filter(pk=adherent.pk).update(nb_review=somme)
 
 def calculNb_reviewRestaurant():
+    '''
+    Fonction qui permet de calculer le nombre de review par restaurant
+    @return:
+    '''
     for resto in Restaurant.objects.all():
         somme = Avis.objects.filter(restaurant_fk=resto.pk).count()
         Restaurant.objects.filter(pk=resto.pk).update(nb_review=somme)
@@ -226,28 +259,19 @@ def suppressionAdherant(nb=20):
             print(compteur)
 
 def suppVille():
+    '''
+    Fonction qui permet de supprimer les villes qui ne sont pas dans la liste des villes de la base de données
+    @return:
+    '''
     listVilles = ["Philadelphia","Tampa","Indianapolis","Nashville","Tucson","New Orleans","Edmonton","Saint Louis","Reno",
                   "Saint Petersburg","Boise", "Santa Barbara","Clearwater","Wilmington","St. Louis","Metairie","Franklin"]
     Restaurant.objects.all().exclude(ville__in=listVilles).delete()
 
-def setVille():
-    listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
-                  "Saint Louis", "Reno",
-                  "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
-                  "Franklin"]
-    print("Arrivée dans la boucle")
-    for user in Adherant.objects.all():
-        dico = {"Philadelphia" : 0, "Tampa" : 0, "Indianapolis" : 0, "Nashville" : 0, "Tucson" : 0, "New Orleans" : 0,
-                "Edmonton" :0, "Saint Louis" : 0, "Reno" : 0, "Saint Petersburg" : 0, "Boise" : 0, "Santa Barbara" : 0,
-                "Clearwater" : 0, "Wilmington" : 0, "St. Louis" : 0, "Metairie" : 0, "Franklin" : 0}
-        for avis in Avis.objects.filter(adherant_fk=user):
-            str_ville = str(avis.restaurant_fk.ville)
-            if str_ville in dico.keys():
-                dico[str_ville] += 1
-        print(dico)
-        return
-
 def remove_doublon():
+    '''
+    Fonction qui permet de supprimer les avis en double dans la base de données
+    @return:
+    '''
     verif = 0
     for avis in Avis.objects.all():
         verif += 1
@@ -259,6 +283,10 @@ def remove_doublon():
         print(verif)
 
 def count_ville():
+    '''
+    Fonction qui permet de compter le nombre de restaurant par ville et qui les trie par ordre décroissant et les affiche
+    @return:
+    '''
     verif = 0
     ville = {}
     for resto in Restaurant.objects.all():
@@ -269,12 +297,12 @@ def count_ville():
     sorted_ville = sorted(ville.items(), key=lambda x: x[1], reverse=True)
     print(sorted_ville)
 
-def verif():
-    for resto in Restaurant.objects.filter("St. Petersburg"):
-        if resto.ville == "St. Petersburg":
-            resto.ville = "Saint Petersburg"
 
 def getFirstElement():
+    '''
+    Fonction qui permet de récupérer le premier élément de du fichier csv contenant des nom de famille
+    @return:
+    '''
     liste = []
     fichier = open("C:/Users/alhdv/Downloads/patronymes.csv", "r")
     cr = csv.reader(fichier, delimiter=",")
