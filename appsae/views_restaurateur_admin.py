@@ -1,5 +1,6 @@
 from .models import *
 from .gestion import connect
+from django.conf import settings
 from django.shortcuts import render, redirect
 import hashlib
 import datetime
@@ -7,12 +8,13 @@ from time import mktime
 from .ajoutCSV import add_restaurant_csv
 from random import randint
 from .classes import Horaire
+from .fonctionsBd import testNomUTF
 
 
 def validation_admin(request, pk):
     """
     Vue d'une demande de création de restaurant pour un admin
-    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @param pk: la clé primaire de la demande
     @return:
     """
@@ -30,7 +32,7 @@ def validation_admin(request, pk):
 def index_administrateur(request):
     """
     Vue de l'index de l'administrateur avec toutes les demandes de création a valider ou refuser
-    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if 'mailAdministrateur' in request.session:
@@ -45,7 +47,7 @@ def index_administrateur(request):
 def modif_resto(request):
     """
     Vue de la page de modifications et d'informations sur le restaurant.
-    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if 'mailRestaurateur' in request.session:
@@ -74,7 +76,7 @@ def modif_resto(request):
 def refuser_form(request, pk):
     """
     Vue permettant à l'administrateur de refuser une demande de création de restaurant
-    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @param pk: la clé primaire de la demande
     @return:
     """
@@ -97,7 +99,7 @@ def refuser_form(request, pk):
 def ajouter_resto(request, pk):
     """
     Vue permettant de valider la demande de création de restaurant par un administrateur
-    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @param pk: la clé primaire de la demande
     @return:
     """
@@ -138,7 +140,7 @@ def ajouter_resto(request, pk):
 def register_restaurateur(request):
     """
     Vue permettant au restaurateur de se créer un compte
-    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if request.method == "POST":
@@ -157,7 +159,7 @@ def register_restaurateur(request):
 def login_restaurateur(request):
     """
     Vue permettant au restaurateur ou a un administrateur de se connecter
-    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     # Déconnexion
@@ -190,7 +192,7 @@ def login_restaurateur(request):
 def index_restaurateur(request):
     """
     Vue de l'index du restaurateur
-    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if 'mailRestaurateur' in request.session:
@@ -226,7 +228,7 @@ def create_demandecreationrestaurant(info, request):
     """
     Crée une DemandeCreationRestaurant dans la base de données avec les infos données en paramètres
     @param info: les informations du formulaire
-    @param request: informations utilisateurs
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return: /
     """
     if info['nom'] != '' and info['adresse'] != '' and info['ville'] != '' and info['postal'] and info['pays'] != '' \
@@ -255,7 +257,7 @@ def create_demandecreationrestaurant(info, request):
 def formulaire_demande_restaurateur(request):
     """
     Vue du formulaire de demande de création de restaurant pour le restaurateur
-    @param request: L'objet HttpRequest qui est envoyé par le client.
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     context = {}
@@ -286,12 +288,81 @@ def setImageAleatoireRestaurant(restaurant):
     @param restaurant: l'objet Restaurant dans le modèle de données à modifier
     @return: /
     """
-    random_value = randint(1, 4)
-    restaurant.image_front = "/img_restaurant/imagefront" + str(random_value) + ".jpg"
-    '/img_restaurant/imagefront3.jpg'
-    restaurant.save()
-    indice_in_list = (random_value - 1) * 4 # Les images des sets sont stockées les unes après les autres et il y en a 4
+    if 'mailAdministrateur' in request.session:
+        random_value = randint(1, 4)
+        restaurant.image_front = "/img_restaurant/imagefront" + str(random_value) + ".jpg"
+        '/img_restaurant/imagefront3.jpg'
+        restaurant.save()
+        indice_in_list = (random_value - 1) * 4  # Les images des sets sont stockées les unes après les autres et il y en a 4
 
-    imgset = ImageRestaurant.objects.all()
-    for index in range(4):
-        restaurant.img.add(imgset[indice_in_list + index])
+        imgset = ImageRestaurant.objects.all()
+        for index in range(4):
+            restaurant.img.add(imgset[indice_in_list + index])
+    return redirect('index')
+
+
+def export_restaurant(request):
+    """
+    exporte l'ensemble des restaurants dans des fichiers csv séparés en fonction de leur ville
+    @param request: L'objet HttpRequest qui est envoyé par le client
+    @return:
+    """
+    if 'mailAdministrateur' in request.session:
+        listVilles = ["Philadelphia", "Tampa", "Indianapolis", "Nashville", "Tucson", "New Orleans", "Edmonton",
+                      "Saint Louis", "Reno",
+                      "Saint Petersburg", "Boise", "Santa Barbara", "Clearwater", "Wilmington", "St. Louis", "Metairie",
+                      "Franklin"]
+        for villes in listVilles:
+            file = str(settings.BASE_DIR) + '/csv/' + "restaurant_" + filterVilleResto(villes) + ".csv"
+            f = open(file, "w")
+            f.writelines("id;nom;genre")
+            f.write('\n')
+            for restaurant in Restaurant.objects.filter(ville=villes):
+                f.write(str(restaurant.pk))
+                f.write(";")
+                f.write(testNomUTF(restaurant.nom))
+                f.write(";")
+                taille = restaurant.type.all().count()
+                for i in range(taille):
+                    f.write(str(restaurant.type.all()[i]))
+                    if i != taille - 1:
+                        f.write(" ")
+                f.write('\n')
+            print(file)
+    return redirect('index')
+
+
+def export_ratings(request):
+    """
+    Exporte l'ensemble des ratings dans un fichier csv ratings.csv
+    @param request: L'objet HttpRequest qui est envoyé par le client
+    @return:
+    """
+    if 'mailAdministrateur' in request.session:
+        file = str(settings.BASE_DIR) + '/' + "ratings.csv"
+        f = open(file, "w")
+        f.writelines("user_id,restaurant_id,note")
+        for rating in Avis.objects.all().values_list('adherant_fk', 'restaurant_fk', 'note'):
+            f.write('\n')
+            f.write(str(rating)[1:-1])
+        print(file)
+    return redirect('index')
+
+def filterVilleResto(nom):
+    """
+
+    @param nom:
+    @return:
+    """
+    list = "azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789"
+    nouveau_nom = ""
+    for lettre in nom:
+        if lettre in list:
+            nouveau_nom += lettre
+        if lettre in ' ':
+            nouveau_nom += '_'
+        elif lettre in 'éèê':
+            nouveau_nom += 'e'
+        elif lettre in 'ÉÈ':
+            nouveau_nom += 'E'
+    return nouveau_nom

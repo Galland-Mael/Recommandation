@@ -3,26 +3,41 @@
 <div class="comment margin-auto">
     {% for element in avis %}
 
-    <div class="avis-border flex column ">
-        <div class="card-avis flex">
-            <div class="card-user-container flex">
-                <div class="card-img-container flex ">
-                    <img class="img" src="{{ element.adherant_fk.profile_picture.url }}" alt="marche pas">
+        <div class="avis-border flex column ">
+            <div class="card-avis flex">
+                <div class="card-user-container flex">
+                    <div class="card-img-container flex ">
+                        <img class="img" src="{{ element.adherant_fk.profile_picture.url }}" alt="marche pas">
+                    </div>
                 </div>
-            </div>
-            <div class="flex column">
-
-
-                <span class="avis-user-name flex">{{ element.adherant_fk.prenom }}</span>
-                <div class="note-restaurant flex">
-                    <span>{% trans 'Note' %} : {{ element.note }}</span>
-                    <div class="star-icon">
-                        <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                <div class="flex column">
+                    <span class="avis-user-name flex">{{ element.adherant_fk.prenom }}</span>
+                    <div class="note-restaurant flex">
+                        {% if element.note != -1 %}
+                            {% for i in list_etoiles_virgules %}
+                                {% if element.note >= i.nombre %}
+                                    <div class="star-icon">
+                                        <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                                    </div>
+                                {% else %}
+                                    {% if element.note >= i.nombre_virgule %}
+                                        <div class="star-icon">
+                                            <box-icon type='solid' color="#ffb503" name='star-half'></box-icon>
+                                        </div>
+                                    {% else %}
+                                        <div class="star-icon">
+                                            <box-icon color="#ffb503" name='star'></box-icon>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="text">{% trans 'Noter ce restaurant' %}</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
+            <span class="avis-text flex">{{ element.texte }}</span>
         </div>
-        <span class="avis-text flex">{{ element.texte }}</span>
-    </div>
     {% endfor %}
 </div>

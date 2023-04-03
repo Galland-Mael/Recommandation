@@ -104,7 +104,7 @@ def listeAffichageAvis(restaurant, num, user=""):
     @param num: le numéro de la page
     @return: une liste (QuerySet) d'avis
     """
-    taille_list = 2
+    taille_list = 25
     if user == "":
         avis = Avis.objects.filter(restaurant_fk=restaurant)
     else:

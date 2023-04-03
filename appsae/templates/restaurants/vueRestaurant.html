@@ -4,7 +4,6 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/header-footer.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'CSS/vueRestaurant.css' %}"/>
-
 {% endblock %}
 {% block header %}
     {% include "source/header.html" %}
@@ -43,7 +42,8 @@
                     </div>
                     <div class="nav-commentaire flex">
                         <div>{{ restaurant.nb_review }}</div>
-                        <div class="nav-commentaire-title margin-right">{% trans 'Commentaire' %}{{ avis|pluralize }} </div>
+                        <div class="nav-commentaire-title margin-right">
+                            {% trans 'Commentaire' %}{{ avis|pluralize }} </div>
                     </div>
                     <div class="adress">{{ restaurant.adresse }}</div>
                     <div class="nav-localisation">
@@ -120,7 +120,7 @@
                 {% if commentaire %}
                     <div class="title2 text-align padding-bottom">{% trans 'Modifier votre avis' %}</div>
                 {% else %}
-                    <div class="title2 text-align padding-bottom">{% trans 'Avis votre avis' %}</div>
+                    <div class="title2 text-align padding-bottom">{% trans 'Ajouter votre avis' %}</div>
                 {% endif %}
                 <div class="center-form">
                     <form action="{% url 'addCommentaires' restaurant.pk %}" method="post">
@@ -151,7 +151,8 @@
                             </div>
                         </div>
                         <div class="flex flex-column">
-                            <label class="text-align padding-bottom-5" for="comments">{% trans 'Commentaire (facultatif)' %}</label>
+                            <label class="text-align padding-bottom-5"
+                                   for="comments">{% trans 'Commentaire (facultatif)' %}</label>
                             <textarea class="textarea" type="text" name="comm" rows="5" cols="100"></textarea>
                             <div class="flex vertical-center justify-center text-align">
                                 <button class="bouton" type="submit">{% trans 'Enregistrer' %}</button>
@@ -168,7 +169,8 @@
 
     <div class="avis-container">
         <div class="avis-title-container">
-            <div class="avis-title bottom-space title2" id="commentaires">{% trans 'Commentaire' %}{{ avis|pluralize }} </div>
+            <div class="avis-title bottom-space title2" id="commentaires">
+                {% trans 'Commentaire' %}{{ avis|pluralize }} </div>
             <div class="nb-commentaire title2">({{ restaurant.nb_review }})</div>
         </div>
         <div class="separator avis-separator"></div>
@@ -255,8 +257,7 @@
             <div class="voir-plus-btn"
                  hx-get="{% url 'voirPlus' restaurant.pk %}"
                  hx-trigger="click"
-                 hx-target="#container-voir-plus-result"
-            >voir plus
+                 hx-target="#container-voir-plus-result">voir plus
             </div>
         </div>
     {% endif %}
