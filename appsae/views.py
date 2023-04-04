@@ -1,4 +1,5 @@
 import hashlib
+from typing import re
 
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -36,10 +37,10 @@ def pageVerifMail(request):
 def verifMail(request):
     """
     Fonction qui créer un utilisateur après avoir validé son email
-    @param request: L'objet HttpRequest qui est envoyé par le client
+    @param request:
     @return:
     """
-    if request.session['code'] == request.POST['code']:
+    if (request.session['code'] == request.POST['code']):
         user = Adherant.objects.create(
             prenom=request.session['registerPrenom'],
             nom=request.session['registerNom'],
@@ -459,12 +460,11 @@ def voirPlus(request, pk):
 def register(request):
     """
     Fonction qui permet de créer un utilisateurs
-    @param request: L'objet HttpRequest qui est envoyé par le client
+    @param request:
     @return:
     """
     if request.method == "POST":
         user = request.POST
-        '''Remplissage de la base de données'''
         password = user['password']
         hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
         request.session['registerPrenom'] = user['prenom']
@@ -474,15 +474,15 @@ def register(request):
         request.session['registerBirthDate'] = user['birthDate']
         request.session['registerPassword'] = hashed_password
         request.session['code'] = verificationEmail(user["mail"])
-        if user['prenom'] != "" and user['nom'] != "" and user['ville'] != "" and user['mail'] != "" and \
-                user['birthDate'] != "" and hashed_password != "":
-            return redirect('pageVerifMail')
+        return redirect('pageVerifMail')
     form = AdherantForm()
     context = {
         'form': form,
         'info': Adherant.objects.all
     }
     return render(request, 'user/register.html', context)
+    # return JsonResponse({"form": list(form.values) })
+
 
 
 def validate_form(form):
@@ -598,7 +598,7 @@ def random_value():
 def verificationEmail(mail):
     """
     Fonction qui envoie un mail avec un code
-    @param mail: l'email de l'utilisateur
+    @param mail:
     @return:
     """
     random = random_value()
@@ -610,10 +610,10 @@ def verificationEmail(mail):
                   + "\n\nL'équipe EatAdvisor",
                   "eat_advisor2@outlook.fr",
                   [mail],
-                  fail_silently=False)
+                  fail_silently=False);
         return random
     except:
-        return HttpResponse("le mail na pas pu etre envoyer")
+        return -1
 
 
 def logoutUser(request):
