@@ -29,7 +29,7 @@
                     <a class="suivant" href="{% url 'deleteGroup' groupe.pk %}">{% trans 'Supprimer le groupe' %}</a>
                 </button>
             {% else %}
-                 <button class="btn-container">
+                <button class="btn-container">
                     <a class="suivant" href="{% url 'deleteUser' groupe.pk %}">{% trans 'Quitter le groupe' %}</a>
                 </button>
             {% endif %}
@@ -49,10 +49,27 @@
                                 <span class="text nom">{{ element.nom }}</span>
                             </div>
                             <div class="flex align">
-                                <span class="text">{{ element.note }}</span>
-                                <div class="star-icon">
-                                    <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                                </div>
+                                {% if element.note != -1 %}
+                                    {% for i in list_etoiles_virgules %}
+                                        {% if element.note >= i.nombre %}
+                                            <div class="star-icon">
+                                                <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
+                                            </div>
+                                        {% else %}
+                                            {% if element.note >= i.nombre_virgule %}
+                                                <div class="star-icon">
+                                                    <box-icon type='solid' color="#ffb503" name='star-half'></box-icon>
+                                                </div>
+                                            {% else %}
+                                                <div class="star-icon">
+                                                    <box-icon color="#ffb503" name='star'></box-icon>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="text">{% trans 'Pas de note' %}</div>
+                                {% endif %}
                             </div>
                             <div class="nav-localisation text">
                                 <div>{{ element.adresse }}</div>

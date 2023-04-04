@@ -142,6 +142,8 @@ def groupRecommandations(request, pk):
     context = {
         'membres': membres,
         'groupe': groupe,
+        'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
+                                  NumbersStars(3.5), NumbersStars(4.5)],
     }
     if groupe.id_gerant == user.pk:
         context['chef'] = True
@@ -643,7 +645,11 @@ def search(request):
     """
     if request.GET["search"] != "":
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
-        return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
+        return render(request, 'restaurants/searchRestaurants.html', context={
+            'restaurants': restaurants,
+            'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
+                                      NumbersStars(3.5), NumbersStars(4.5)],
+        })
     return HttpResponse('')
 
 
