@@ -142,8 +142,6 @@ def groupRecommandations(request, pk):
     context = {
         'membres': membres,
         'groupe': groupe,
-        'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
-                                  NumbersStars(3.5), NumbersStars(4.5)],
     }
     if groupe.id_gerant == user.pk:
         context['chef'] = True
@@ -602,18 +600,17 @@ def verificationEmail(mail):
     @return:
     """
     random = random_value()
-    print('appeler')
     try:
         send_mail("Vérification de votre compte - Ne pas répondre",
                   "Code de vérification :\n"
                   + "         " + random
                   + "\n\nL'équipe EatAdvisor",
-                  "eat_advisor2@outlook.fr",
+                  "eat_advisor@outlook.fr",
                   [mail],
                   fail_silently=False)
         return random
     except:
-        return HttpResponse("le mail na pas pu etre envoyer")
+        return -1
 
 
 def logoutUser(request):
@@ -645,11 +642,7 @@ def search(request):
     """
     if request.GET["search"] != "":
         restaurants = Restaurant.objects.filter(nom__icontains=request.GET["search"])[:3]
-        return render(request, 'restaurants/searchRestaurants.html', context={
-            'restaurants': restaurants,
-            'list_etoiles_virgules': [NumbersStars(0.5), NumbersStars(1.5), NumbersStars(2.5),
-                                      NumbersStars(3.5), NumbersStars(4.5)],
-        })
+        return render(request, 'restaurants/searchRestaurants.html', context={'restaurants': restaurants})
     return HttpResponse('')
 
 
