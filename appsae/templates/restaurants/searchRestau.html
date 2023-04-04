@@ -11,62 +11,63 @@
 {% endblock %}
 
 {% block main %}
-    <di class="container">
-    <div class="title">
-        <h3>{% trans 'liste des restaurants' %}</h3>
-    </div>
-    {% for element in list %}
-        <a class="decoration-none hover" href="{% url 'vueRestaurant' element.pk %}">
-            <div class="cards ">
-                <div class="image-container-search-results">
-                    <img class="image-search-results" src="{{ element.image_front.url }}" alt="image Restaurant">
-                </div>
-                <div class="info-container">
-                    <div class="flex">
-                        <div class="column">
-                            <span class="field nom">{{ element.nom }},</span>
-                            <div class="row">
-                                <div class="padding-top-3">
-                                    <div class="name padding-left-2">
-                                        <span class="text nom_resto">{{ element.name }}</span>
-                                    </div>
-                                    <div class="flex align padding-left">
-                                        {% if element.restaurant.note != -1 %}
-                                            {% for i in list_etoiles_virgules %}
-                                                {% if element.note >= i.nombre %}
-                                                    <div class="star-icon">
-                                                        <box-icon type='solid' color="#ffb503" ; name='star'></box-icon>
-                                                    </div>
-                                                {% else %}
-                                                    {% if element.note >= i.nombre_virgule %}
+    <div class="container">
+        <div class="title">
+            <h3>{% trans 'liste des restaurants' %}</h3>
+        </div>
+        {% for element in list %}
+            <a class="decoration-none hover" href="{% url 'vueRestaurant' element.pk %}">
+                <div class="cards ">
+                    <div class="image-container-search-results">
+                        <img class="image-search-results" src="{{ element.image_front.url }}" alt="image Restaurant">
+                    </div>
+                    <div class="info-container">
+                        <div class="flex">
+                            <div class="column">
+                                <span class="field nom">{{ element.nom }},</span>
+                                <div class="row">
+                                    <div class="padding-top-3">
+                                        <div class="name padding-left-2">
+                                            <span class="text nom_resto">{{ element.name }}</span>
+                                        </div>
+                                        <div class="flex align padding-left">
+                                            {% if element.restaurant.note != -1 %}
+                                                {% for i in list_etoiles_virgules %}
+                                                    {% if element.note >= i.nombre %}
                                                         <div class="star-icon">
-                                                            <box-icon type='solid' color="#ffb503"
-                                                                      name='star-half'></box-icon>
+                                                            <box-icon type='solid' color="#ffb503" ;
+                                                                      name='star'></box-icon>
                                                         </div>
                                                     {% else %}
-                                                        <div class="star-icon">
-                                                            <box-icon color="#ffb503" name='star'></box-icon>
-                                                        </div>
+                                                        {% if element.note >= i.nombre_virgule %}
+                                                            <div class="star-icon">
+                                                                <box-icon type='solid' color="#ffb503"
+                                                                          name='star-half'></box-icon>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="star-icon">
+                                                                <box-icon color="#ffb503" name='star'></box-icon>
+                                                            </div>
+                                                        {% endif %}
                                                     {% endif %}
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% else %}
-                                            <div class="text">{% trans 'Noter ce restaurant' %}</div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="nav-localisation text padding-left">
-                                        <div class="padding-top-1">{{ element.types }}</div>
+                                                {% endfor %}
+                                            {% else %}
+                                                <div class="text">{% trans 'Noter ce restaurant' %}</div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="nav-localisation text padding-left">
+                                            <div class="padding-top-1">{{ element.types }}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <span class="field">{{ element.adresse }} {{ element.zip_code }},</span>
+                        <span class="field">{{ element.ville }}</span>
                     </div>
-                    <span class="field">{{ element.adresse }} {{ element.zip_code }},</span>
-                    <span class="field">{{ element.ville }}</span>
                 </div>
-            </div>
-        </a>
-    {% endfor %}
+            </a>
+        {% endfor %}
     </div>
 {% endblock %}
 

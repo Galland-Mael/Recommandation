@@ -113,7 +113,8 @@ def ajouter_resto(request, pk):
             pays=demande.pays,
             etat=demande.etat,
             longitude=demande.longitude,
-            latitude=demande.latitude
+            latitude=demande.latitude,
+            note = -1
         )
         restaurant.save()
         new_restaurant = Restaurant.objects.get(
@@ -130,7 +131,7 @@ def ajouter_resto(request, pk):
             type = RestaurantType.objects.get(nom=type_name)
             restaurant.type.add(type)
         add_restaurant_csv(new_restaurant)
-        setImageAleatoireRestaurant(new_restaurant)
+        setImageAleatoireRestaurant(new_restaurant, request)
         Restaurateur.objects.filter(pk=demande.restaurateur_fk_id).update(restaurant_fk=new_restaurant)
         demande.delete()
         return redirect('index_administrateur')
@@ -282,7 +283,7 @@ def formulaire_demande_restaurateur(request):
     return redirect('index_restaurateur')
 
 
-def setImageAleatoireRestaurant(restaurant):
+def setImageAleatoireRestaurant(restaurant, request):
     """
     Fonction pour mettre un set aléatoire d'image à un nouveau restaurant
     @param restaurant: l'objet Restaurant dans le modèle de données à modifier
