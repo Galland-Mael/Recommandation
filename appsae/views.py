@@ -18,7 +18,7 @@ from .gestion_note import *
 from .svd import *
 from .models import *
 from .classes import RestaurantInfo, NumbersStars
-from .ajoutRecoBd import ajoutBDRecommandationGroupe
+from .ajoutRecoBd import ajoutBDRecommandationGroupe, majRecommandationsIndividuellesBD
 from .formulaire import *
 
 
@@ -437,7 +437,7 @@ def addCommentaires(request, pk):
     else:
         messages.success(request, _('Les deux champs doivent être remplis.'))
     connect(request, context)
-    return render(request, 'restaurants/vueRestaurant.html', context)
+    return redirect('vueRestaurant',pk)
 
 
 def voirPlus(request, pk):
@@ -567,7 +567,7 @@ def modification(request):
             context['recommandation'] = RecommandationUser.objects.get(
                 adherant_fk=Adherant.objects.get(mail=request.session['mailUser'])).recommandation.all()
     connect(request, context)
-    return render(request, 'index/index.html', context)
+    return redirect('index')
 
 
 def modifUser(request):
