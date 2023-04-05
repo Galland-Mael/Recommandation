@@ -37,10 +37,10 @@ def pageVerifMail(request):
 def verifMail(request):
     """
     Fonction qui créer un utilisateur après avoir validé son email
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
-    if (request.session['code'] == request.POST['code']):
+    if request.session['code'] == request.POST['code']:
         user = Adherant.objects.create(
             prenom=request.session['registerPrenom'],
             nom=request.session['registerNom'],
@@ -460,11 +460,12 @@ def voirPlus(request, pk):
 def register(request):
     """
     Fonction qui permet de créer un utilisateurs
-    @param request:
+    @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
     if request.method == "POST":
         user = request.POST
+        '''Remplissage de la base de données'''
         password = user['password']
         hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
         request.session['registerPrenom'] = user['prenom']
@@ -474,15 +475,15 @@ def register(request):
         request.session['registerBirthDate'] = user['birthDate']
         request.session['registerPassword'] = hashed_password
         request.session['code'] = verificationEmail(user["mail"])
-        return redirect('pageVerifMail')
+        if user['prenom'] != "" and user['nom'] != "" and user['ville'] != "" and user['mail'] != "" and \
+                user['birthDate'] != "" and hashed_password != "":
+            return redirect('pageVerifMail')
     form = AdherantForm()
     context = {
         'form': form,
         'info': Adherant.objects.all
     }
     return render(request, 'user/register.html', context)
-    # return JsonResponse({"form": list(form.values) })
-
 
 
 def validate_form(form):
@@ -598,7 +599,7 @@ def random_value():
 def verificationEmail(mail):
     """
     Fonction qui envoie un mail avec un code
-    @param mail:
+    @param mail: l'email de l'utilisateur
     @return:
     """
     random = random_value()
@@ -608,13 +609,12 @@ def verificationEmail(mail):
                   "Code de vérification :\n"
                   + "         " + random
                   + "\n\nL'équipe EatAdvisor",
-                  "eat_advisor@outlook.fr",
+                  "eat_advisor2@outlook.fr",
                   [mail],
-                  fail_silently=False);
+                  fail_silently=False)
         return random
     except:
-        print('fail')
-        return -1
+        return HttpResponse("le mail na pas pu etre envoyer")
 
 
 def logoutUser(request):
