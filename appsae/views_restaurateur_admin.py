@@ -264,6 +264,7 @@ def formulaire_demande_restaurateur(request):
     context = {}
     if 'mailRestaurateur' in request.session:
         restaurateur = Restaurateur.objects.get(mail=request.session['mailRestaurateur'])
+        context['restaurant_exist'] = (restaurateur.restaurant_fk_id is not None)
         demande = DemandeCreationRestaurant.objects.filter(restaurateur_fk=restaurateur.pk)
         if request.method == "POST":
             info = request.POST
@@ -280,7 +281,7 @@ def formulaire_demande_restaurateur(request):
         context['types'] = RestaurantType.objects.all()
         connect(request, context)
         return render(request, 'restaurateur/createResto.html', context)
-    return redirect('index_restaurateur')
+    return redirect('index')
 
 
 def setImageAleatoireRestaurant(restaurant, request):
@@ -360,8 +361,6 @@ def filterVilleResto(nom):
     for lettre in nom:
         if lettre in list:
             nouveau_nom += lettre
-        if lettre in ' ':
-            nouveau_nom += '_'
         elif lettre in 'éèê':
             nouveau_nom += 'e'
         elif lettre in 'ÉÈ':

@@ -1,0 +1,888 @@
+id;nom;genre
+5790;Kinjo's Japanese Restaurant;sushi bars japanese
+5837;Williams Sub Shop;sandwiches
+5954;Casita Taqueria;mexican
+5966;China City Restaurant;chinese
+6060;Tsunami Japanese Steakhouse;sushi bars japanese steakhouses
+6162;Fray's Donut House;coffee & tea breakfast & brunch donuts
+6239;Ichicoro Ane;bars nightlife japanese cocktail bars tapas/small plates ramen
+6280;Kobe Japanese Steakhouse;sushi bars japanese steakhouses teppanyaki
+6506;Casita Taqueria;mexican
+6554;Dooners;fast food greek mediterranean turkish german
+6564;The Burg Diner;diners
+6582;Preachers BBQ;barbeque
+6628;Ray's Vegan Soul;caterers vegan soul food
+6700;China Star;chinese
+6784;4th Street Pizza;italian pizza food delivery services cheesesteaks
+6915;Ryan's Meat Market & Deli;specialty food meat shops
+6951;Annex;breakfast & brunch cafes convenience stores themed cafes
+7122;Darrell and Sharon's Park Street Diner;american (traditional) breakfast & brunch
+7149;Instead of Flowers;gluten-free vegetarian
+7212;Driftwood Cafe;sandwiches cafes pizza
+7340;StarLite Sapphire;american (new)
+7490;First Watch;american (traditional) breakfast & brunch cafes
+7507;Beantown Pub South;burgers bars nightlife sports bars beer wine & spirits
+7529;Pepo's Cuban Cafe;cuban
+7561;Brick & Mortar;bars nightlife wine bars american (new)
+7562;Mr. & Mrs. Crab;bars nightlife seafood cocktail bars cajun/creole
+7726;Grain and Berry;juice bars & smoothies vegan acai bowls
+7749;Room 901;pubs bars american (traditional) nightlife wine bars beer bar whiskey bars
+7834;Ratchada Thai Restaurant and Sushi Bar;sushi bars thai
+7888;Sushi Sho Rexley;sushi bars
+7928;Sushi Zen;sushi bars korean
+8007;The Duke Of Ribs;food trucks seafood caterers barbeque
+8051;Dick's BBQ;caterers barbeque soul food
+8072;Three Generations Food Truck;food trucks breakfast & brunch cajun/creole soul food
+8123;Quickie's Scratch BBQ;burgers sandwiches barbeque
+8135;Hungry Howie's Pizza & Subs;sandwiches italian pizza chicken wings
+8161;Estela's Mexican Restaurant;specialty food mexican ethnic food
+8184;Hooters;burgers bars american (traditional) nightlife chicken wings american (new) sports bars
+8240;Pacific Counter;sushi bars asian fusion hawaiian poke
+8283;Naan Boti & Chai Shai;vegan pakistani indian food delivery services
+8346;Stacie's Cottage Cafe;coffee & tea sandwiches breakfast & brunch cafes
+8367;Trophy Fish;bars nightlife seafood
+8448;Mazzaro's Italian Market;italian specialty food coffee roasteries meat shops
+8568;Cody's Original Roadhouse;pubs bars american (traditional) nightlife steakhouses
+8687;Fitlife Foods - St. Petersburg;specialty food
+8698;E and L Pizza;american (traditional) pizza
+8702;Crab House;seafood
+8812;Sunset Grille;burgers american (traditional)
+8813;Texas Roadhouse;american (traditional) steakhouses salad barbeque desserts
+8828;Bandit Coffee Co.;coffee & tea bakeries breakfast & brunch cafes
+8884;Berlins Doener;kebab german
+9043;Cask And Ale;bars nightlife lounges tapas/small plates
+9155;Brew D Licious;coffee & tea cafes local flavor
+9162;Simply Delicious - Country Market & Deli;sandwiches spanish cuban
+9248;Glory Days Grill;bars american (traditional) nightlife chicken wings sports bars
+9360;Manna From Heaven;soul food
+9365;Yeoman's Cask and Lion;burgers pubs bars nightlife breakfast & brunch cocktail bars british
+9376;Freshii;fast food ice cream & frozen yogurt breakfast & brunch cafes salad wraps juice bars & smoothies gluten-free vegetarian
+9401;1200 Chophouse;steakhouses american (new)
+9457;Diner 24 DTSP;diners breakfast & brunch
+9496;Dickey's Barbecue Pit;american (traditional) chicken wings barbeque southern
+9556;El Gallo Grande;bars nightlife specialty food sports bars mexican beer wine & spirits ethnic food
+9557;LongHorn Steakhouse;american (traditional) steakhouses barbeque
+9595;Pineapplez;coffee & tea sandwiches vietnamese breakfast & brunch cafes salad american (new) wraps juice bars & smoothies
+9607;Pizza Hut;italian pizza chicken wings
+9633;Gateway To India;specialty food ethnic food indian buffets imported food
+9639;Anju St. Pete;korean asian fusion hot dogs tapas/small plates
+9707;Jungle Prada Tavern;pubs bars nightlife pizza salad
+9744;The Spot Bar And Grill;burgers sandwiches bars nightlife breakfast & brunch beer wine & spirits internet cafes
+9798;Rollin' Oats Market;sandwiches specialty food organic stores farmers market
+9861;Limon Loco Fresh Mexican Grill;fast food pizza specialty food mexican tex-mex food delivery services new mexican cuisine
+9876;New York Bagel Shops;bagels
+9886;Nature's Table;sandwiches cafes juice bars & smoothies
+9922;Boardwalk Pasta & Seafood;bars american (traditional) nightlife seafood american (new) beer wine & spirits
+9924;Black Palm Restaurant;latin american tapas bars
+9970;Tropical Smoothie Cafe;sandwiches american (new) juice bars & smoothies
+9983;Captain Al's;american (traditional) seafood beer wine & spirits
+10063;K C's Korner Restaurant;american (traditional) breakfast & brunch
+10088;Big Tim's BBQ;barbeque
+10095;Westshore Pizza;pizza chicken wings salad cheesesteaks
+10143;Skyway Cafe;breakfast & brunch
+10153;Karma Juice Bar & Eatery - Saint Petersburg;breakfast & brunch juice bars & smoothies gluten-free acai bowls vegetarian
+10263;Doc Fords Rum Bar & Grille;bars american (traditional) nightlife seafood caribbean
+10268;Yard of Ale St Pete;pubs bars nightlife american (new) sports bars beer bar
+10334;Sundial St. Pete;shopping centers
+10335;Cafe Vienna;breakfast & brunch german austrian
+10462;Hoots;american (traditional)
+10511;Wawa;coffee & tea sandwiches gas stations convenience stores
+10530;Great Wall;seafood soup chinese
+10561;The Queen and I;thai
+10758;Pollo Tropical;fast food chicken shop latin american
+10830;The Blend;coffee & tea bars nightlife wine bars kombucha
+10849;St. Pete Bagel Co.;coffee & tea sandwiches bagels donuts
+10919;McDonald's;coffee & tea burgers fast food
+10990;Burrito Boarder;specialty food mexican
+11006;OGGI - St Petersburg;italian
+11214;Chipotle Mexican Grill;fast food mexican
+11217;Hiro's Tokyo Steakhouse & Sushi Bar;bars nightlife sushi bars steakhouses lounges
+11366;Salem's Fresh Eats;fast food sandwiches greek diners seafood chicken wings salad specialty food mediterranean ethnic food middle eastern
+11389;Britannia Arms;american (traditional) beer wine & spirits fish & chips british
+11490;Uptown Eats;american (traditional) cafes american (new) comfort food
+11494;Hawkers Asian Street Food;bars nightlife japanese asian fusion cocktail bars salad chinese filipino tapas/small plates ramen malaysian pan asian
+11575;Craftsman House Gallery & Cafe;cafes american (new)
+11759;Ikigai Sushi Bowls and Wraps;food trucks sushi bars japanese asian fusion poke
+11777;Good Fortune Buffet;chinese buffets
+11887;Crafty Squirrel;bars nightlife pizza chicken wings sports bars
+11910;Greenstock;salad vegan
+11927;Pizza Hut;fast food italian pizza chicken wings
+11994;Bacchus Wine Bistro;bars nightlife wine bars specialty food french beer wine & spirits
+12049;Bodega;coffee & tea cafes juice bars & smoothies latin american spanish cuban
+12210;Gatsby's Restaurant;sandwiches bars american (traditional) nightlife pizza lounges
+12231;Better Byrd;sandwiches american (traditional) breakfast & brunch chicken wings american (new) wraps mexican chicken shop southern donuts tacos
+12245;Yummy Thai;thai
+12255;Hawthorne Bottle Shoppe;bars nightlife breakfast & brunch wine bars beer bar
+12409;Westy Grille and Pub;pubs bars nightlife american (new) local flavor
+12521;Umami Sushi. Hibachi;bars nightlife sushi bars japanese asian fusion cocktail bars
+12726;Westshore Pizza Southside, Inc;pizza
+12778;No Vacancy;bars nightlife lounges bar crawl
+12825;Anytime Pizza;pizza
+12881;Hometown Crepes;desserts creperies pop-up restaurants
+12928;POW;pizza
+12991;Thai-Am Restaurant;thai
+13063;El Boricua Cafe;american (new) caribbean puerto rican
+13076;Doc's Louisiana Boil;seafood chicken wings cajun/creole
+13100;The Crumb Factory Bakery;bakeries sandwiches cafes
+13123;Starbucks;coffee & tea
+13228;Famous Jays;american (new) barbeque
+13254;Five Guys;burgers fast food american (new)
+13401;Souzou Asian Kitchen;bars nightlife sushi bars japanese asian fusion seafood
+13577;Cedars Grill;mediterranean
+13598;CA Cafe;sandwiches
+13694;Boss Ross BBQ;food trucks barbeque
+13707;The Surly Mermaid;burgers sandwiches american (traditional) food trucks seafood fish & chips
+13806;The Whiskey Exchange;bars nightlife
+13889;The Mill Restaurant;bars nightlife breakfast & brunch american (new) lounges
+13997;Central Perks Cafe;sandwiches american (traditional) breakfast & brunch mediterranean spanish
+14008;Jimmy John's;fast food sandwiches caterers wraps food delivery services
+14072;Latin Lunch Box;food trucks caribbean empanadas puerto rican
+14212;The Lure;bars nightlife sushi bars tapas bars pool halls
+14311;Chick-fil-A;fast food caterers american (new) chicken shop
+14373;Hong Kong Restaurant;chinese
+14454;Angie's Cafe;burgers american (new)
+14523;Oak & Stone - St. Petersburg;bars american (traditional) nightlife pizza beer bar
+14533;Elias Deli & Produce Market;specialty food fruits & veggies
+14591;Nola Cafe;cajun/creole
+14640;oh Greek;greek
+14641;The Cake Factory at Perc;cafes
+14873;Yaya's Flame Broiled Chicken;chicken wings
+15019;Special Pho;vietnamese soup noodles
+15026;Paradeco Coffee Roasters;coffee & tea breakfast & brunch juice bars & smoothies coffee roasteries
+15054;Dave's Restaurant;diners
+15080;PB & Jelly Deli;sandwiches food trucks caterers
+15168;Siciliano's;italian pizza food delivery services
+15207;The Point Pub and Grill;pubs bars american (traditional) nightlife american (new) sports bars beer wine & spirits
+15211;Paul's Landing;seafood mediterranean
+15277;A Fresh Connection Cafe and Bakery;coffee & tea bakeries cafes
+15316;China Wok;chinese
+15337;Pericos Restaurant;bars nightlife mexican
+15339;China Fun;chinese
+15406;Long John Silver's;fast food seafood
+15472;Kings Street Food  Counter;sandwiches american (traditional) hot dogs salad gastropubs local flavor desserts
+15485;Dairy Queen Grill & Chill;burgers fast food ice cream & frozen yogurt
+15533;Doe Doe's Diner;coffee & tea breakfast & brunch
+15569;Nash's Hot Chicken;food trucks barbeque chicken shop southern comfort food
+15675;Firehouse Subs;fast food sandwiches
+15753;Fred's Carolina BBQ;barbeque
+15774;D'Mexican;cafes mexican
+15849;McDonald's;coffee & tea burgers fast food
+15984;Dome Grill Inc;greek diners breakfast & brunch
+15998;Orlando Latin Market;specialty food ethnic food cuban
+16022;McArthurs Irish Pub;pubs bars nightlife chicken wings irish irish pub fish & chips
+16079;Marketplace Express;sandwiches specialty food convenience stores
+16081;Courtyard by Marriott St Petersburg Downtown;breakfast & brunch hotels & travel hotels bagels
+16160;V9 Eats;sandwiches american (traditional) hot dogs american (new)
+16213;Checkers;burgers fast food american (traditional)
+16228;Sake 23;bars nightlife sushi bars japanese asian fusion cocktail bars ramen
+16277;Pizza Tyrone Square;fast food pizza
+16287;St Petersburg Pier;american (traditional) hotels & travel local flavor
+16363;Bombay Grill;specialty food ethnic food indian imported food
+16401;Caddy's On Central;bars american (traditional) nightlife american (new) sports bars
+16413;Pitas On the Run;food trucks caterers mediterranean
+16430;Panera Bread;bakeries sandwiches breakfast & brunch salad soup bagels
+16534;Taco Bus;food trucks mexican
+16575;Biff Burger & Buffy's BBQ;burgers bars nightlife barbeque
+16730;Green Chili Bistro;indian
+16749;Noble Crust;italian bars american (traditional) nightlife breakfast & brunch pizza southern
+16800;Denny's;american (traditional) diners breakfast & brunch
+16804;swah-rey;coffee & tea bakeries bars nightlife cafes wine bars beer wine & spirits cupcakes desserts
+16914;China 1;chinese
+16937;Pincho Y Pincho;spanish tapas bars basque
+16957;The Parrot Cafe;american (traditional) cafes
+16977;Uncle Maddio's Pizza;italian pizza salad
+17074;The King & I Restaurant;thai
+17087;Tokyo Bay Mang' Sushi & Japanese Steakhouse;japanese steakhouses thai
+17154;Baum Ave Market;sandwiches bars nightlife juice bars & smoothies mediterranean acai bowls vegetarian food court
+17163;Del Mar Gastro Lounge;bars nightlife cafes gastropubs juice bars & smoothies mexican mediterranean beer wine & spirits gay bars
+17222;China Max;chinese
+17249;Fire Monkey Food Truck;food trucks street vendors caribbean
+17255;Sunshine Kitty Catfe;coffee & tea bakeries
+17310;Chick-fil-A;fast food chicken wings caterers chicken shop
+17311;Mario's NY Pizza;pizza
+17522;Smokin 19;bars nightlife barbeque music venues pool halls
+17602;Mekong Vietnamese Restaurant;vietnamese
+17708;Calypso Rum Bar & Island Grill;caribbean
+17789;Two Graces;seafood american (new)
+17803;Red Robin Gourmet Burgers and Brews;burgers american (traditional)
+17806;D'Cajun Blues Roadhouse;cajun/creole
+17991;McDonald's;coffee & tea burgers fast food
+18113;Pho Bar;vietnamese
+18260;Hops and Props;bars american (traditional) nightlife caterers american (new) beer bar
+18353;Lucky's Market;specialty food
+18430;Hardee's;burgers fast food american (traditional)
+18453;Checkers;burgers fast food american (traditional)
+18559;Pipo's The Original Cuban Cafe;spanish cuban
+18580;The Lemon Grass;sushi bars thai tapas/small plates
+18691;OEC Japanese Express;japanese
+18768;Cafe Bohemia;coffee & tea beer wine & spirits
+18800;Vintin Hotel;hotels & travel hotels pop-up restaurants
+18805;Smiley's Deli;sandwiches specialty food ethnic food latin american desserts
+18896;Paciugo Gelato & Caffe;coffee & tea ice cream & frozen yogurt cafes gelato
+18931;Everything Dolce;bars nightlife cafes wine bars american (new) desserts
+18959;Bayou Market and Cafe;american (traditional) seafood soup
+19001;The Moon Under Water;pubs bars nightlife indian british
+19033;TopThisPie;pizza breweries
+19053;Mi Carreta Restaurant and Bakery;bakeries breakfast & brunch latin american colombian
+19103;Nepa Hut Beach Bar;bars nightlife hotels & travel hotels
+19121;The Campus Grind;coffee & tea sandwiches breakfast & brunch gluten-free vegetarian
+19168;Sab Sushi;coffee & tea bars nightlife sushi bars wine bars
+19213;TOSS - Salads & Wraps;salad wraps
+19295;Bonefish Grill;bars nightlife seafood cocktail bars american (new)
+19342;Tiki Docks Skyway Bar + Grill;bars nightlife salad tiki bars
+19386;Vincenzo's Grill;italian
+19431;Athenian Garden;american (traditional) greek specialty food ethnic food imported food
+19505;E.B.I. Sushi;sushi bars japanese asian fusion soup chinese dim sum
+19514;Angie's Market Cafe;sandwiches breakfast & brunch cafes
+19743;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+20035;LUNA Restaurant & Lounge;sandwiches bars nightlife american (new) lounges tapas/small plates
+20041;Swingers Patio Bar & Grill;bars american (traditional) nightlife breakfast & brunch
+20110;Capital Tacos;mexican tex-mex tacos
+20136;Plant Love Ice Cream;ice cream & frozen yogurt vegan desserts
+20192;FarmTable Cucina;italian bars nightlife breakfast & brunch wine bars cocktail bars american (new) juice bars & smoothies local flavor
+20193;Burger 21 - St. Petersburg;burgers american (traditional)
+20287;Firehouse Subs;fast food sandwiches
+20291;Wild Child Restaurant & Cocktail Bar;sandwiches bars american (traditional) nightlife cocktail bars american (new)
+20343;Mini Doughnut Factory;coffee & tea cafes donuts desserts
+20446;Steak n Shake;burgers fast food american (traditional) diners breakfast & brunch steakhouses american (new) juice bars & smoothies
+20521;Gratzzi Italian Grille;italian
+20525;McDonald's;coffee & tea burgers fast food
+20547;The Crislip Cafe;coffee & tea bakeries bars nightlife cafes wine bars
+20640;Pita Pit;fast food sandwiches mediterranean
+20789;Caribbean Cafe;american (new)
+20823;Paisano's Pizza N Pasta;italian bars nightlife pizza
+20871;Donut Connection;donuts
+20906;Bacon Bitch;american (traditional) breakfast & brunch american (new) chicken shop
+20907;Sazon;caribbean puerto rican spanish
+21028;WEPA Cocina de Puerto Rico;caribbean latin american puerto rican
+21051;Casual Clam Restaurant;seafood
+21059;Valentinos Little Italy;sandwiches italian pizza
+21072;Serbian Mediteran Restaurant;fast food mediterranean
+21079;Hoppy's Corned Beef Corner;american (traditional) breakfast & brunch soup
+21080;Milano's Pizza & Central Deli;american (traditional) pizza
+21148;Dunkin';coffee & tea breakfast & brunch donuts
+21222;Saturday Morning Market;breakfast & brunch specialty food fruits & veggies festivals farmers market food court international
+21235;WingHouse Bar & Grill;bars american (traditional) nightlife chicken wings sports bars
+21275;Joey Brooklyn's Famous Pizza Kitchen;sandwiches pizza salad
+21309;Que Pasa Mexican Cantina;burgers seafood mexican
+21360;The Mango Tree Japanese Fusion Cuisine;sushi bars japanese asian fusion
+21363;The Avenue DTSP;burgers bars american (traditional) nightlife cocktail bars american (new) dive bars
+21367;Quick Q BBQ;fast food diners barbeque
+21392;Burger King;burgers fast food
+21443;PDQ St. Petersburg;fast food sandwiches american (traditional) chicken wings salad american (new) chicken shop
+21516;Patio 6 Prime Smokehouse Wing Bar and Grill;fast food bars nightlife chicken wings barbeque smokehouse
+21592;The bier boutique;burgers gastropubs beer wine & spirits
+21733;Fortunato's Italian Pizzeria;italian pizza
+21759;Corned Beef Corner;coffee & tea burgers american (traditional) diners
+21774;Pizza Hut;fast food italian pizza chicken wings
+21826;Cha Cha Coconuts Tropical Bar & Grill;caribbean
+21887;Twisted Cork Grille;american (new)
+21899;The Edge Lounge and Tapas;bars nightlife lounges tapas bars
+21936;Club 201;bars nightlife cocktail bars lounges music venues tapas bars
+21954;Westshore;italian breakfast & brunch pizza chicken wings
+21999;The Birch & Vine;bars nightlife wine bars specialty food american (new) hotels & travel hotels local flavor
+22100;Cicis;american (traditional) pizza
+22225;DalMoros Fresh Pasta To Go;fast food italian
+22405;Cobbster's Kitchen & Bar;burgers pizza dinner theater
+22522;El Tenampa Mexican Restaurant;mexican
+22548;Texas Cattle Co;steakhouses seafood salad
+22574;Taco Bell;fast food mexican tacos
+22626;Squeeze Juice Works;coffee & tea salad juice bars & smoothies
+22635;Local Pizza;american (traditional) pizza mediterranean
+22660;Alberico's Brick Oven Kitchen;pizza food delivery services
+22695;ti bamboo;caribbean
+22724;Thuy Cafe;bubble tea sandwiches vietnamese
+22849;McDonald's;coffee & tea burgers fast food
+22865;Flamingo Resort;bars nightlife hotels & travel hotels resorts gay bars hostels
+22930;Taco Bus;food trucks mexican street vendors
+22963;Smokin Native BBQ;barbeque food delivery services
+22970;Tikanis;pubs bars nightlife greek pizza chicken wings american (new) beer bar
+23053;The Hideaway Cafe and Recording Studio;nightlife cafes music venues local flavor
+23108;Buffalo City Bar & Grille;bars american (traditional) nightlife sports bars dive bars
+23112;Golden Krust Caribbean Restaurant;bakeries specialty food caribbean ethnic food
+23231;Flatbread & Butter;coffee & tea bakeries breakfast & brunch cafes
+23252;Clay Oven;mediterranean pakistani indian buffets
+23313;Social Roost;bars american (traditional) nightlife breakfast & brunch cocktail bars american (new) chicken shop
+23363;Jimbo's Joint;fast food american (new) comfort food
+23396;China Crossings;chinese
+23438;Donut Freak;coffee & tea bakeries breakfast & brunch donuts
+23726;Bun Cha Hanoi;vietnamese
+23739;Taps and Tequila II;bars nightlife american (new) sports bars local flavor
+23760;The Canopy;bars american (traditional) nightlife american (new) lounges beer wine & spirits local flavor
+23785;Little Caesars;pizza
+23895;Mullet's Fish Camp & Market;seafood
+23946;Station House;coffee & tea bars nightlife cocktail bars caterers american (new) hotels & travel hotels tapas/small plates home services
+23964;Pizza Box;pizza american (new) vegetarian local flavor
+24042;Anna Stella Cajun Bistro;breakfast & brunch cafes cajun/creole
+24211;Top Slice Pizzeria;pizza
+24302;Greek Salad Grill;american (traditional) greek salad
+24393;COPA;bars nightlife wine bars cocktail bars lounges hookah bars tapas/small plates latin american
+24439;Lorene's Fish & Crab House;seafood
+24484;Casita Taqueria;bars nightlife mexican
+24524;Rum Runners Bar and Grille;bars american (traditional) nightlife
+24624;Old Southeast Market;coffee & tea specialty food convenience stores poke
+24678;Culver's;burgers fast food ice cream & frozen yogurt
+24685;Tick Tock Restaurant;diners breakfast & brunch american (new)
+24763;The Big Catch at Salt Creek;bars nightlife seafood cocktail bars
+24808;Periscope Restaurant;bars nightlife diners seafood hotels & travel hotels
+24815;Empire Oyster Bar;bars nightlife seafood caterers party & event planning pop-up restaurants
+24817;Island Seafood Market & Bistro;seafood
+24884;Little Pepperoni;italian indian food delivery services
+24885;Joans Ann Bakery;bakeries
+24922;Hamburger Marys;burgers bars nightlife cabaret
+24937;Starbucks;coffee & tea
+24971;Goodfellas Pizzeria & Wings;sandwiches pizza
+25007;4th Street Tap & Tavern;sandwiches bars nightlife chicken wings sports bars musicians
+25086;Spring Garden Chinese;chinese
+25131;Pinoy;filipino
+25188;Tangerine Restaurant;american (new)
+25198;Community Cafe;sandwiches cafes vegan vegetarian
+25207;Sip St Pete Beach;bars nightlife wine bars beer bar beer wine & spirits tapas/small plates wine tasting classes
+25245;Schakolad Chocolate Factory;coffee & tea specialty food desserts chocolatiers & shops
+25263;Crab Shack Restaurant;seafood
+25363;Proper Smokehouse & Whiskey Bar;bars nightlife cocktail bars barbeque southern
+25705;Dooriban;korean
+25859;The Fig Cafe & Hookah Lounge;burgers bars nightlife greek cafes juice bars & smoothies mediterranean hookah bars
+25932;URBAN Deli and Drafts;sandwiches bars american (traditional) nightlife specialty food american (new) gastropubs beer bar beer wine & spirits cuban
+25944;Patanegra;tapas/small plates latin american spanish tapas bars basque
+25946;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+26039;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+26042;Black Forest Cottage Restaurant;bakeries ice cream & frozen yogurt german
+26052;Renzo's - Saint Petersburg;bars nightlife wine bars steakhouses argentine
+26113;Nick's Family Restaurant;american (new)
+26131;Spa Beach Bistro;pizza
+26232;Ruby Tuesday;burgers fast food american (traditional)
+26275;Krispy Krab;seafood
+26303;Sonny's BBQ;caterers american (new) barbeque
+26318;Mickey's Cafe & Organics;cafes salad vegetarian
+26357;Beau & Mo's Italian Eating House;italian steakhouses american (new)
+26404;Lucky Star Chinese;chinese
+26482;Callaloo;bars nightlife cocktail bars southern caribbean
+26493;Wawa;coffee & tea sandwiches gas stations convenience stores
+26584;Arigato Japanese Steak House;japanese steakhouses
+26659;Wood Fired Pizza & Nightlife;pizza
+26781;Tour De Pizza;italian breakfast & brunch pizza specialty food food delivery services
+26803;Crabby Bill's Fish Camp;seafood fish & chips
+26806;Zeko's Mediterranean Grill;greek seafood mediterranean middle eastern
+26868;Big Apple Buffet;sushi bars chinese buffets
+26887;Applebee's Grill + Bar;burgers bars american (traditional) nightlife steakhouses chicken wings sports bars
+26909;Nueva Cantina;bars nightlife breakfast & brunch cocktail bars lounges mexican latin american
+27016;IHOP;breakfast & brunch
+27117;Dead Bob's;bars american (traditional) nightlife sports bars
+27279;Jimmy John's;fast food sandwiches
+27334;German Knodle;burgers sandwiches cafes salad juice bars & smoothies german
+27385;St. Petersburg's Super Greek Festival;greek festivals
+27399;Church's Chicken;fast food breakfast & brunch hot dogs chicken wings chicken shop
+27454;Chef Ken's Smokehouse BBQ;sandwiches caterers barbeque desserts
+27475;Lucy's Vegan Corner;bakeries vegan food delivery services
+27589;Cafe Gala;tapas/small plates spanish
+27720;CD Roma's;italian pizza
+27815;St Petersburg Country Club;country clubs
+27913;Kings Fried Chicken;fast food american (traditional) seafood chicken shop
+27981;Kissin' Cuzzins;sandwiches diners breakfast & brunch wraps
+28183;Beachwood BBQ & Burger;burgers barbeque
+28268;Leafy Greens Cafe;breakfast & brunch soup vegan gluten-free vegetarian
+28319;Bula Kafe;coffee & tea bars nightlife cafes lounges
+28368;Craft Kafe;coffee & tea bakeries cafes
+28424;Sila Thai Restaurant;thai noodles
+28481;M & G Cuban Cafe;sandwiches cafes cuban beverage store
+28501;McDonald's;coffee & tea burgers fast food
+28532;Valhalla Bakery;bakeries sandwiches vegan desserts
+28540;Primi Urban Cafe;italian nightlife piano bars
+28603;Burger King;burgers fast food
+28624;Romano's Macaroni Grill;italian
+28632;The Boundary American Grille & Tavern;pubs bars american (traditional) nightlife american (new) music venues
+28679;India Grill;pakistani indian
+28689;Alto Mare Fish Bar;seafood
+28766;McDonald's;coffee & tea burgers fast food
+28927;St Pete Taco Lady;food trucks mexican tex-mex tacos
+29032;Nitallys ThaiMex;asian fusion mexican
+29099;The Job Site Burgers;burgers american (traditional)
+29134;Hooks Sushi Bar & Thai Food;sushi bars japanese chinese thai
+29181;Papa John's Pizza;pizza
+29237;Lonni's Sandwiches Etc;sandwiches food delivery services
+29387;Asian Wok;chinese
+29397;Got Sushi?- Japanese Steakhouse;sushi bars japanese steakhouses
+29442;Bici Trattoria;italian
+29472;Genaro Coffee Company;coffee & tea nightlife breakfast & brunch caterers american (new) music venues
+29487;Maximo Marina Seafood Shack;seafood specialty food seafood markets
+29506;4th Street Shrimp Store;burgers bars nightlife seafood beer bar
+29507;Central Coffee Shoppe;sandwiches american (traditional) breakfast & brunch
+29560;Chile Verde Authentic Mexican Food;mexican
+29587;Mangosteen;asian fusion
+29605;Grumpy Gringo;mexican
+29673;Dracula's Legacy Wine Bar;bars nightlife wine bars specialty food wineries wine tasting room modern european cheese shops
+29680;The Grateful Fed Pub;burgers pubs bars american (traditional) nightlife gastropubs wraps music venues food delivery services
+29714;ASIE Pan-Asian;bars nightlife sushi bars asian fusion cocktail bars pan asian
+29744;Pie Topia;italian pizza local flavor
+29774;Rib City;american (traditional) barbeque southern
+29784;Sophia's Cucina + Enoteca;italian
+29800;Fred Fleming's Famous Bar-B-Que;barbeque
+29856;Banyan Cafe And Catering;coffee & tea sandwiches breakfast & brunch cafes caterers
+29897;Crowley's Downtown;pubs bars american (traditional) nightlife irish irish pub
+29939;Toby's Original Little Italy Pizza;italian pizza
+30035;Sabor Mexicali;food trucks mexican tacos
+30165;Capriccio;italian pizza
+30257;Rain Japanese Sushi Bar & Thai;japanese asian fusion
+30265;Fresco's Waterfront Bistro;bars american (traditional) nightlife seafood bistros
+30323;Italian Touch;italian
+30491;Hook's on 4th;sushi bars korean thai
+30710;PIN Wok&Bowl;sushi bars asian fusion thai
+30762;Gateway Subs;sandwiches
+30911;China Dragon;chinese
+31020;Bavaro's Pizza Napoletana & Pastaria;italian pizza salad
+31068;Connie's Bar-B Q;barbeque
+31133;Carrabba's Italian Grill;italian seafood
+31267;Mori Sushi;sushi bars japanese steakhouses
+31352;Cafe Mozart;bakeries cafes
+31366;The Dude and His Food;burgers fast food sandwiches food trucks street vendors
+31376;Cheesesteak Company;cheesesteaks
+31412;Chicken Salad Chick;sandwiches salad soup chicken shop southern
+31458;Sneakers Lounge;bars american (traditional) nightlife sports bars music venues
+31544;Ryan's Meat Market & Deli;specialty food meat shops
+31550;The Chicken Spot;sandwiches breakfast & brunch american (new)
+31556;Maggie on the Move;food trucks mediterranean
+31755;Funnel Vision Food Truck;food trucks comfort food desserts
+31872;Mr Empanada;fast food specialty food ethnic food latin american empanadas spanish cuban
+31895;Jersey Mike's Subs;fast food sandwiches
+31915;Taco Dirty;caterers mexican desserts tacos beverage store
+32101;Wok Deli;american (new)
+32133;Trader Joe's;specialty food beer wine & spirits vegan kosher
+32195;Sab Cafe;vietnamese cafes asian fusion thai
+32249;Checkers;burgers fast food
+32257;Red Lobster;american (traditional) seafood
+32275;Taste of the Islands Restaurant;caribbean
+32308;St. Petersburg Yacht Club;american (traditional)
+32360;Sushi Rock Grill;sushi bars
+32394;The Urban Stillhouse;bars nightlife american (new) whiskey bars distilleries
+32565;Five Bucks Drinkery;bars american (traditional) nightlife
+32604;Chicago's Stuffed Pizza;italian pizza
+32648;Westshore Pizza;sandwiches pizza cheesesteaks
+32736;Jimmy John's;fast food sandwiches food delivery services
+32936;Big C's BBQ;sandwiches salad barbeque desserts
+32964;Tom + Chee;sandwiches soup american (new) gluten-free vegetarian
+32974;Portofino Italian Ristorante;italian breakfast & brunch pizza food delivery services
+33091;Alesia Restaurant;vietnamese chinese french
+33093;22 South Food Hall;southern caribbean food court
+33135;Mastry's;bars american (traditional) nightlife
+33208;Flip'n Tasty Filipino Food Truck;food trucks filipino street vendors
+33256;Three Birds Tavern;american (traditional) british
+33305;Midtown Sundries;american (traditional)
+33427;A Corner of England;coffee & tea tea rooms
+33512;Fado;portuguese
+33608;SOHO Juice Co.;salad juice bars & smoothies live/raw food vegan acai bowls vegetarian
+33623;Big Apple Buffet 2;buffets
+33667;Social;bars nightlife american (new)
+33675;Lucky Dill;sandwiches salad
+33782;Little Greek Restaurant;greek
+33784;Sammy + Pacos;cafes
+33801;Dairy Inn;burgers sandwiches ice cream & frozen yogurt hot dogs chicken wings comfort food
+33820;Teak;bars nightlife cocktail bars american (new) beer bar
+33887;JusThai;bars nightlife asian fusion breweries thai desserts
+33955;Old Northeast Pizza;sandwiches pizza
+34199;Central Pizza & Subs;pizza food delivery services
+34288;The Wheelhouse;pubs bars nightlife american (new) beer bar
+34454;Jubilee's BBQ;american (traditional) barbeque
+34493;Leverock's Great Seafood;burgers sandwiches seafood
+34519;Doormet Gourmet Cafe, Delivery & Catering;italian pizza food delivery services
+34538;Lee Roy Selmon's;barbeque
+34589;Casita Taqueria;bars nightlife mexican tacos
+34596;The Simple Greek;greek
+34606;Fez;moroccan
+34609;Blake's Crab Cakes;fast food sandwiches american (traditional) seafood chicken wings salad specialty food
+34631;Bayboro Cafe and Catering;sandwiches cafes caterers american (new)
+34644;Whiskey Wings Tyrone;bars american (traditional) nightlife chicken wings sports bars
+34661;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+34675;Hungry Howie's Pizza & Subs;sandwiches italian pizza chicken wings
+34828;Shep's Food Mart;beer wine & spirits
+34931;Thai Kitchen;thai
+35062;Papa John's Pizza;pizza
+35103;Vue;nightlife sushi bars specialty food dance clubs
+35137;Chick-fil-A;fast food chicken wings caterers chicken shop
+35222;Babalu;burgers bars american (traditional) nightlife
+35351;Tijuana Flats;mexican tex-mex
+35358;Pasadena Bar & Grill;sandwiches american (traditional) breakfast & brunch
+35360;Randy's West Indian Restaurant;caribbean trinidadian indian
+35411;NY Cafe;burgers cafes pizza specialty food meat shops
+35542;Blowfish Bar & Grill;bars american (traditional) nightlife seafood american (new) music venues
+35547;Salem's Fresh Eats;fast food sandwiches greek diners seafood chicken wings salad specialty food mediterranean ethnic food middle eastern
+35548;Pier Teaki;pubs bars nightlife tiki bars
+35615;Tijuana Flats;mexican tex-mex
+35639;Parkshore Grill;american (traditional) steakhouses seafood caterers american (new)
+35647;Arby's;burgers fast food sandwiches
+35768;Arby's;burgers fast food sandwiches
+35799;Hot N Juicy Crab;seafood
+35817;Neighborhood Joe;coffee & tea sandwiches breakfast & brunch vegan kombucha
+35888;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+36001;Crums Bar & Grill;burgers bars american (traditional) nightlife beer wine & spirits
+36006;Beaks Old Florida Tavern and Restaurant;pubs bars nightlife american (new) music venues caribbean local flavor
+36071;Pizza Hut;fast food italian pizza chicken wings
+36135;Meze 119;tapas/small plates vegetarian middle eastern
+36176;Love Food Central;vegan gluten-free comfort food vegetarian
+36216;Starlight Princess;american (traditional) desserts
+36217;Skyway Jack's;breakfast & brunch
+36276;Hitchcock's Market;specialty food fruits & veggies organic stores
+36357;Applebee's Grill + Bar;burgers bars american (traditional) nightlife steakhouses chicken wings sports bars
+36373;Pam's Roti Shop & Caribbean Market;specialty food vegan caribbean ethnic food indian meat shops
+36457;Grumpy Gringo;mexican
+36554;InVision Creative Cafe;coffee & tea nightlife cafes music venues home services
+36572;Hooters;bars american (traditional) nightlife chicken wings american (new) sports bars
+36577;House of Mama D's Barbecue And Seafood;seafood barbeque
+36579;Garden Restaurant;american (traditional) nightlife mediterranean jazz & blues food delivery services
+36582;Cuban Delight Cafe;cuban
+36756;Pipo's;cuban
+36875;Jersey Mike's Subs;fast food sandwiches
+36885;ABC Seafood Chinese Restaurant;seafood chinese cantonese
+36922;Maria Banana Cafe;coffee & tea bakeries breakfast & brunch brazilian
+36947;Bangkok Thai Restaurant;thai
+36952;Pizza Hut;fast food italian pizza chicken wings
+36989;Vinoy Salon & Day Spa;bars nightlife sports bars barbeque
+37061;Burger King;burgers fast food
+37175;Salem's Gyro & Subs;sandwiches greek chicken wings salad american (new) middle eastern
+37178;Tokyo Sushi Cafe in Baywalk;sushi bars
+37199;The Crafted Plate;american (new)
+37320;Blue Nile;burgers soul food
+37393;Kristina's Cafe;american (traditional) diners
+37410;Blush Tea and Coffee;coffee & tea breakfast & brunch comfort food
+37506;Pita's Republic;greek mediterranean
+37610;Chick-fil-A;fast food chicken wings caterers chicken shop
+37624;Hungry Howie's Pizza & Subs;sandwiches italian pizza chicken wings
+37669;DeSanto;bars nightlife cocktail bars lounges tapas/small plates
+37685;The Galley;pubs bars nightlife breakfast & brunch seafood cocktail bars gastropubs beer bar
+37695;KFC;fast food chicken wings chicken shop
+37712;Luckie B's;barbeque
+37721;Tony's Pizza;italian pizza food delivery services
+37850;The Outpost On Gandy;bars american (traditional) nightlife sports bars
+37865;Tokyo Bay Japanese Restaurant & Sushi;sushi bars japanese korean
+37874;Maple Street Biscuit Company - Downtown St. Pete;breakfast & brunch cafes southern comfort food vegetarian
+37934;Wawa;coffee & tea sandwiches gas stations convenience stores
+37957;Got Sushi?;sushi bars japanese steakhouses
+37958;Capital Tacos;mexican tex-mex tacos new mexican cuisine
+37994;Mr Sushi;sushi bars japanese asian fusion soup noodles teppanyaki
+38009;The Eagle Cafe;coffee & tea bakeries ice cream & frozen yogurt
+38013;Jo-Jo's In Citta;italian pizza
+38041;The Left Bank Bistro;coffee & tea bars nightlife breakfast & brunch french
+38116;St Pete Diner;diners seafood
+38146;The Melting Pot;salad american (new) gluten-free fondue
+38148;Rubio's Coastal Grill;seafood salad mexican
+38252;Savannah's Cafe;southern
+38302;Popeyes Fried Chicken;fast food chicken wings
+38320;Taste Of The Islands Restaurant;caribbean
+38339;Gyros & Seafood Express;greek seafood chicken wings
+38351;Ming Ming Tea Cafe;bubble tea coffee & tea sushi bars cafes specialty food desserts
+38357;Dunkin';coffee & tea donuts
+38376;Reading Room Restaurant;coffee & tea italian bars american (traditional) nightlife wine bars cocktail bars american (new) gluten-free vegetarian
+38425;Fo Cheezy Twisted Meltz;sandwiches american (traditional)
+38476;Carrabba's Italian Grill;italian seafood
+38477;Egg Haven Cafe;american (traditional) diners breakfast & brunch cafes
+38495;Trip's Diner;american (traditional) diners breakfast & brunch beer wine & spirits
+38556;Sam's Gyros and Seafood;sandwiches seafood cajun/creole mediterranean desserts
+38590;The Frog Pond;breakfast & brunch
+38636;Southside Coffee;coffee & tea cafes
+38709;La Deja Vu Bistro;coffee & tea sandwiches ice cream & frozen yogurt breakfast & brunch specialty food beer wine & spirits donuts desserts modern european
+38738;Old Earth Pure ORGANIC Food;salad specialty food juice bars & smoothies live/raw food vegan
+38775;Muddy Water Kava & Tea;coffee & tea bars nightlife cafes lounges tea rooms
+38788;Harold Seltzer's Steak House;american (traditional) steakhouses seafood
+38793;Rush Hour Chicken & Waffles;breakfast & brunch seafood chicken wings southern soul food waffles
+38870;Moscato's Bella Cucina;italian
+38884;Daiquiri Shak;seafood
+38913;Top China;seafood chinese
+38936;Harvey's 4th Street Grill;american (traditional)
+39135;Little Caesars;pizza
+39160;Charleys Philly Steaks;fast food sandwiches cheesesteaks
+39223;KFC;fast food chicken wings chicken shop
+39237;Thirsty First;bars american (traditional) nightlife breakfast & brunch gastropubs
+39348;11 Chicks;latin american venezuelan
+39363;Driftwood Kava & Roastery St. Pete;juice bars & smoothies vegan coffee roasteries
+39396;Fabrica Pizza;italian pizza salad
+39492;Moscato's Bella Cucina;italian
+39512;Stillwaters Tavern;bars american (traditional) nightlife seafood american (new)
+39577;Jimmy hula's;burgers bars nightlife beer wine & spirits hawaiian
+39631;Halelife Bakery;bakeries vegan cupcakes gluten-free donuts
+39691;Orange Belt Cafe;coffee & tea bakeries sandwiches cafes
+39707;Annata Wine;bars nightlife wine bars american (new)
+39791;Beacon Pool Bar & Lookout;burgers sandwiches bars american (traditional) nightlife cocktail bars wraps
+39983;The Queenshead Eurobar;pubs bars american (traditional) nightlife breakfast & brunch gastropubs british
+40008;The Twisted Indian;mexican vegan vegetarian indian
+40042;The Chattaway;burgers american (traditional)
+40053;KFC;fast food chicken wings chicken shop
+40163;Cafe Ten-O-One;burgers american (traditional) diners breakfast & brunch american (new)
+40174;Earl of Sandwich;sandwiches american (traditional) pizza salad caterers wraps food delivery services
+40203;Mios Grill & Cafe;bars american (traditional) nightlife greek american (new) beer bar mediterranean vegetarian turkish
+40290;Curious Cat Bakery;bakeries caterers vegan patisserie/cake shop
+40390;Derby Lane;steakhouses
+40450;Rollbotto Sushi;bars nightlife sushi bars japanese lounges
+40486;Natures Table of City Center;breakfast & brunch cafes soup wraps
+40495;Pineapple Espresso;coffee & tea fast food breakfast & brunch
+40723;Lime Fresh Mexican Grill;mexican tex-mex
+40760;Gianni's NY Pizza;sandwiches italian pizza chicken wings
+40877;Nah Dogs Vegan Hot Dog Cart;food trucks hot dogs street vendors vegan
+40898;Italian Bakery Cafe;coffee & tea bakeries italian desserts internet cafes
+41021;Athenian's Gyros & Chicken;greek mediterranean middle eastern
+41114;La Creperia Cafe;french desserts creperies
+41119;Jet's Pizza;sandwiches italian pizza salad food delivery services
+41168;Sea Salt;italian bars nightlife breakfast & brunch seafood beer wine & spirits
+41240;JinJu Korean Grill & Sushi;sushi bars korean seafood
+41241;La Sandwicherie;fast food sandwiches
+41246;Church's Chicken;fast food breakfast & brunch chicken wings specialty food chicken shop meat shops
+41353;Grand Hacienda;bars nightlife cocktail bars mexican desserts
+41428;Urban Comfort;breweries caterers southern comfort food
+41463;Rococo Steak;breakfast & brunch steakhouses
+41518;A Taste of Asia Restaurant;asian fusion
+41575;Outback Steakhouse;steakhouses
+41625;The Hangar Restaurant & Flight Lounge;burgers american (traditional) breakfast & brunch
+41632;Stone Soup Cafe;sandwiches pubs bars nightlife salad soup beer bar beer wine & spirits british
+41666;Jonny Reno's Waterfront Grille;american (traditional)
+41696;Five Guys;burgers fast food american (new)
+41704;28 Grams Pizza;pizza
+41874;Ha Long Bay;vietnamese asian fusion chinese dim sum cantonese
+41880;Burger King;burgers fast food
+41932;Rubio's Coastal Grill;seafood salad caterers mexican
+41996;GCD Eats;burgers american (traditional) american (new) comfort food food delivery services
+41998;Wok N Roll;seafood soup chinese
+42008;Meexita;bars nightlife food trucks sports bars mexican vegetarian tacos
+42048;China Pearl;fast food asian fusion chinese food delivery services
+42049;Metro Diner;american (traditional) diners breakfast & brunch
+42054;The Floribbean;asian fusion mexican caribbean puerto rican african cuban
+42077;Dr. BBQ;bars american (traditional) nightlife breakfast & brunch wine bars cocktail bars barbeque southern comfort food
+42105;Beef 'O' Brady's;pubs bars american (traditional) nightlife chicken wings sports bars
+42156;New China;chinese
+42205;Wendy's;burgers fast food
+42339;Courigan's Irish Pub;pubs bars nightlife sports bars irish irish pub
+42435;Ohio Pizza Parlor;pizza salad desserts
+42443;Earth Origins Market;specialty food organic stores vitamins & supplements
+42487;Lingr Restaurant;bars nightlife asian fusion cocktail bars desserts
+42506;Great Wall;chinese
+42625;The Hideaway Pizza Pub;pubs bars nightlife pizza
+42730;Gateway Pizza and Pasta;italian pizza
+42814;Lil Nets Home Style Cooking;american (traditional) soul food
+42821;Red Mesa Mercado;fast food bars nightlife breakfast & brunch cafes specialty food mexican ethnic food
+42846;Kahwa Coffee;coffee & tea sandwiches desserts
+42865;Rawk Star Cafe St. Pete;specialty food live/raw food vegan
+42934;Denny's;american (new)
+42940;Flippers Pizzeria;sandwiches italian pizza salad
+42974;McAuley's Pub;sandwiches pubs bars american (traditional) nightlife sports bars beer bar
+42997;Try Wine;bars nightlife wine bars beer wine & spirits tapas/small plates desserts wineries wine tasting room
+43159;Salty J's;bars american (traditional) nightlife
+43175;Berry Boss Acai;coffee & tea juice bars & smoothies vegan acai bowls
+43210;O' Bistro;american (new)
+43273;Skyway  Diner;diners
+43302;Spice Routes;sandwiches soup mediterranean middle eastern
+43331;Angelos;italian bars nightlife pizza
+43517;Sid's Caribbean Grill;caribbean
+43592;Zaytoon Grill;mediterranean
+43608;The Joint St. Pete;burgers bars nightlife sports bars dive bars
+43622;Paulo's Pizza;pizza
+43635;The Fantastic Crab Shack;seafood specialty food southern seafood markets
+43638;Iberian Rooster;portuguese
+43711;Rae Rae's Cafe;american (traditional) breakfast & brunch cafes
+43765;City's Bistro;sandwiches breakfast & brunch wraps
+43940;Wawa;coffee & tea sandwiches gas stations convenience stores
+43998;Kahuna's Bar And Grill;burgers bars nightlife sports bars mexican
+44307;The Sports Bar & Grill;bars american (traditional) nightlife sports bars
+44357;Teppanyaki Grill & Supreme Buffet;sushi bars asian fusion chinese buffets
+44382;Maki Of Japan;sushi bars japanese
+44556;Italy Bottega;italian bars nightlife wine bars specialty food beer bar desserts
+44656;Village Inn;american (traditional) breakfast & brunch
+44694;Cappy's Pizzeria;pizza
+44739;Panchero's Mexican Grill;mexican
+44752;Banana Leaf Thai & Sushi Bar;sushi bars thai
+44798;TNT Restaurant;seafood american (new) cajun/creole
+44799;Back Bar;pubs bars nightlife sports bars lounges local flavor
+44912;Mr  Empanada - Saint Petersburg;sandwiches specialty food mediterranean latin american empanadas spanish
+44933;Sly Bar;sandwiches pubs bars american (traditional) nightlife music venues
+45166;Wild Cajun Blue Crab & Shrimp;seafood cajun/creole food stands
+45305;GayStPete House;breakfast & brunch hotels & travel bed & breakfast
+45407;Mad Fish;american (traditional) steakhouses seafood
+45463;The Tavern at Bayboro;pubs bars american (traditional) nightlife beer wine & spirits
+45761;Culver's;burgers fast food ice cream & frozen yogurt
+45769;Toscana Pizza, Pasta & More;italian pizza
+45791;Wingstop;chicken wings
+45848;Burger King;burgers fast food
+45882;Brooklyn South;sandwiches specialty food cheese shops
+45913;The Nosh Pit;sandwiches
+45997;Tropez St. Pete;bars nightlife breakfast & brunch cocktail bars tapas/small plates
+46034;Georgie's Alibi;burgers bars american (traditional) nightlife cafes sports bars gastropubs dance clubs
+46040;Token Ramen;bubble tea japanese chicken wings ramen
+46141;Poppo's Taqueria;mexican new mexican cuisine
+46316;Tiparos Thai Restaurant;thai
+46317;Crafty Crab St. Pete;seafood cajun/creole comfort food
+46329;Paul's Chicago Pizza;italian pizza
+46543;Emilio's Bistro Bakery & Bar;bakeries bars nightlife beer wine & spirits local flavor brasseries
+46622;China King;chinese
+46630;Cafe Masala;specialty food indian
+46649;Chopstick Express;japanese soup chinese
+47024;Eastern Kitchen & Sushi;sushi bars japanese soup chinese thai pan asian
+47084;Cafe Alma;bars nightlife greek wine bars american (new) mediterranean tapas/small plates
+47146;Lukes Coney Island;american (traditional) hot dogs
+47229;Baytenders Oyster Bar & Steamer;bars nightlife seafood live/raw food
+47244;China One;chinese
+47535;ChicknCone;beer wine & spirits chicken shop
+47567;BurgerFi;burgers american (traditional) hot dogs american (new)
+47609;Brass Bowl Kitchen & Juicery;american (new) juice bars & smoothies gluten-free acai bowls
+47681;Cool Vibes Bar & Grill;bars nightlife sushi bars beer bar
+47689;Einstein Bros. Bagels;coffee & tea sandwiches breakfast & brunch bagels
+47761;Max & Sam's Bar and Grill;bars nightlife steakhouses
+47770;Blake Rice Massage;gluten-free
+47772;The Getaway Maximo Marina;bars american (traditional) nightlife cocktail bars
+47787;Pierogi Bar;ukrainian
+47805;the CAFE  ARTpool Gallery;cafes
+47811;JO-EL'S Kosher Deli, Market & Cafe;sandwiches food delivery services kosher
+47812;Kahwa Espresso Bar at Bayfront Hospital;cafes local flavor
+47913;Datz - St. Pete;american (traditional) breakfast & brunch gastropubs
+47989;Numex;bars nightlife wine bars salad soup desserts new mexican cuisine
+48020;Checkers;burgers fast food
+48021;Zapata's Restaurant and Tequila Bar;mexican
+48068;McDonald's;coffee & tea burgers fast food
+48179;Cafe Croissant;bakeries cafes french
+48207;Courtside Grille;italian bars american (traditional) nightlife seafood sports bars
+48290;Publix - Saint Petersburg;specialty food meat shops
+48355;BellaBrava;italian bars nightlife pizza
+48400;Mikes Tap and Tavern;bars nightlife american (new) beer wine & spirits
+48433;Ferg's Sports Bar & Grill;bars american (traditional) nightlife sports bars
+48509;Chuck E. Cheese;pizza party & event planning indoor playcentre kids activities books mags
+48513;Cracker Barrel Old Country Store;american (traditional) breakfast & brunch caterers southern comfort food
+48531;The Deck Bar & Grille;pubs bars american (traditional) nightlife american (new)
+48550;Dragon Phoenix Chinese;chinese
+48650;China Kitchen;chinese
+48671;Chili's;bars american (traditional) nightlife tex-mex
+48801;Spring Garden Family Restaurant;breakfast & brunch american (new) comfort food
+48833;McDonald's;coffee & tea burgers fast food
+48887;Bowled Restaurant;american (new)
+48941;Flute and Dram;bars nightlife whiskey bars russian champagne bars
+49051;Lolita's Wine Market;bars american (traditional) nightlife breakfast & brunch wine bars tapas/small plates
+49221;Wild Cajun Blue Crab & Shrimp;seafood cajun/creole
+49236;Johnny's Mediterranean Pizza & Restaurant;american (traditional) breakfast & brunch pizza gas stations
+49413;Cali - Saint Petersburg;breakfast & brunch pizza american (new) wraps juice bars & smoothies mediterranean gluten-free
+49449;The Getaway;burgers bars american (traditional) nightlife breakfast & brunch seafood cocktail bars beer wine & spirits local flavor tiki bars
+49455;Pom Poms Teahouse and Sandwicheria, St Pete;sandwiches pubs bars american (traditional) nightlife breakfast & brunch asian fusion salad soup gastropubs beer bar tapas/small plates tea rooms
+49486;IceBurg;ice cream & frozen yogurt cafes acai bowls desserts
+49678;Chipotle Mexican Grill;fast food mexican
+49775;Marchand's Bar & Grill;bars american (traditional) nightlife breakfast & brunch seafood american (new) lounges hotels & travel hotels local flavor
+49820;Village Inn;american (traditional) breakfast & brunch
+49855;Aroy Thai and Sushi;sushi bars asian fusion salad soup thai
+49922;Columbia Restaurant;spanish
+49929;Craft Kafe;coffee & tea bakeries gluten-free
+49970;McDonald's;coffee & tea burgers fast food
+49977;Jimmy John's;fast food sandwiches caterers food delivery services
+50062;Central Melt;sandwiches american (traditional) soup comfort food
+50066;Sangwich Block;sandwiches
+50132;Chipotle Mexican Grill;fast food mexican
+50146;MidiCi The Neapolitan Pizza;italian bars nightlife wine bars pizza
+50163;Siam Garden;thai
+50185;The Kitchen;sandwiches bars american (traditional) nightlife american (new) hookah bars
+50195;Playerz Taphouse & Grill;sandwiches bars american (traditional) nightlife sports bars
+50258;Steak n Shake;burgers fast food american (traditional) diners breakfast & brunch american (new)
+50322;China 1;chinese
+50344;Cakes by Carolynn A Special Touch;bakeries
+50394;Banyan Cafe & Catering;coffee & tea breakfast & brunch
+50414;Pei Wei;asian fusion chinese gluten-free
+50435;Pizza Hut;fast food italian pizza chicken wings
+50525;Engine Rose;burgers bars nightlife american (new) sports bars cajun/creole beer wine & spirits
+50560;Italia Mia;italian pizza
+50613;Mid Peninsula Seafood;seafood specialty food seafood markets local flavor
+50680;Crown Fried Chicken;burgers seafood chicken wings
+50727;Slizzy Mcgee's;pubs bars nightlife chicken wings sports bars barbeque
+50766;Deuces BBQ;sandwiches barbeque southern soul food
+50838;Baseline Bistro;sandwiches pizza american (new) mediterranean
+50846;Crabby Bill's;seafood
+51045;Highstone Cafe;american (traditional) diners breakfast & brunch cafes local flavor
+51049;Art of Sushi;sushi bars japanese steakhouses asian fusion
+51093;Green Light Bar;coffee & tea bars nightlife sushi bars
+51281;The Twisted Indian Food Truck;food trucks specialty food ethnic food indian imported food
+51324;Chiang Mai Thai Restaurant;thai
+51346;MNM BBQ;sandwiches bars nightlife food trucks salad caterers beer bar barbeque food delivery services
+51374;Athenian Garden;greek
+51387;Fresh Go Wild Market Grill;sandwiches american (traditional) seafood soup
+51487;Bowled Restaurant;coffee & tea breakfast & brunch american (new)
+51495;Main Street Boys;sandwiches hot dogs food stands empanadas
+51531;Thai Wok;thai
+51582;Ruth's Chris Steak House;bars american (traditional) nightlife wine bars steakhouses seafood
+51625;Munch's Sundries & Restaurant;sandwiches breakfast & brunch
+51716;Yacht Sales Cafe;sandwiches
+51717;Engine No 9;burgers pubs bars american (traditional) nightlife american (new) sports bars cajun/creole food delivery services
+51725;The Witches BBQ Den;american (new) barbeque
+51832;Acropolis Greek Taverna;bars nightlife greek mediterranean
+51875;Rattle N Hum;bars nightlife gastropubs
+51908;Urban Creamery;ice cream & frozen yogurt desserts waffles
+51915;Bayway Country Store and Butcher Shop;convenience stores beer wine & spirits
+52010;Reds BBQ Foodtruck;food trucks american (new) barbeque
+52096;Pipo's To Go;sandwiches breakfast & brunch cuban
+52113;Perry's Restaurant;italian greek pizza
+52167;Chief's Creole Cafe;seafood caterers cajun/creole barbeque comfort food
+52171;Square 1;burgers bars american (traditional) nightlife salad beer wine & spirits
+52220;Fortunato's Italian Market;italian pizza chicken wings
+52295;The Tap Room At The Hollander;pubs bars nightlife american (new)
+52331;Rays Vegan Soul;southern vegan soul food
+52356;Grand Hacienda;breakfast & brunch mexican desserts new mexican cuisine
+52437;Five Guys Burgers and Fries;burgers fast food
+52460;China Wok;chinese
+52744;Tijuana Flats;mexican tex-mex
+52779;Sunrise Lanes;bars american (traditional) nightlife lounges bowling
+52807;Central Cafe & Organics;fast food juice bars & smoothies gluten-free vegetarian
+52836;Waffle House;american (traditional) diners breakfast & brunch waffles
+52948;Ford's Garage;burgers bars nightlife breakfast & brunch american (new) comfort food
+52954;Burger King;burgers fast food hot dogs
+52998;Mini Restaurant;seafood chinese cajun/creole live/raw food
+53032;Infused Tea Company;coffee & tea cafes tea rooms
+53121;Island Flavors and Tings;specialty food caribbean ethnic food
+53129;Limey's Pub;pubs bars nightlife british
+53439;Starbucks;coffee & tea cafes
+53481;D'Mexican;mexican beer wine & spirits
+53742;PoFolks;american (traditional) american (new) southern
+53801;Zoes Kitchen;sandwiches greek mediterranean kebab
+53813;Koi Sushi and SteakHouse;steakhouses
+53857;Joli Pizzeria & Market;italian pizza local flavor farmers market
+53937;Jersey Mike's Subs;fast food sandwiches
+53964;Oishi;sushi bars japanese steakhouses
+54038;Sushi Inc;sushi bars japanese asian fusion
+54123;The Burg Bar & Grill;bars american (traditional) nightlife american (new) beer wine & spirits
+54134;Tyrone Restaurant;american (traditional) breakfast & brunch cafes american (new)
+54191;Champions BBQ;barbeque
+54203;Sauvignon Wine Locker American Trattoria;bars nightlife wine bars american (new) tapas bars
+54243;Harbor Master Tiki Grille;sandwiches american (traditional) seafood
+54329;Baba On Central;greek mediterranean middle eastern lebanese
+54386;Captain Crab;seafood cajun/creole southern
+54436;D'exclusive Flavor;sandwiches breakfast & brunch pizza mexican cuban
+54454;Papa John's Pizza;pizza
+54460;Tropical Smoothie Cafe;sandwiches breakfast & brunch cafes juice bars & smoothies
+54548;Ichiban Japanese Restaurant & Sushi Bar;sushi bars japanese thai
+54590;Wawa;coffee & tea sandwiches american (traditional) gas stations
+54624;Apropos;sandwiches american (traditional) breakfast & brunch american (new)
+54626;MUST Wine Loft;bars nightlife wine bars specialty food tapas/small plates cheese shops
+54640;Sloppy Pelican;american (traditional)
+54764;CIRO Italian Bakery Cafe, Pizzeria and Restaurant;bakeries italian pizza
+54840;Yaya's Flame Broiled Chicken;sandwiches salad chicken shop
+54847;Tropical Smoothie Cafe;sandwiches cafes juice bars & smoothies
+54876;Chi-Town Beefs and Dogs;sandwiches italian hot dogs
+54881;Hungry Howie's Pizza & Subs;sandwiches italian pizza chicken wings
+55104;Eat.Sip.Indulge;specialty food american (new) hotels & travel local flavor
+55152;Fray's Donut House;coffee & tea bakeries breakfast & brunch donuts
+55328;Avocado Valley;mediterranean vegetarian middle eastern lebanese
+55384;Taps & Tequila;pubs bars american (traditional) nightlife lounges tapas bars champagne bars
+55442;Whiskey Wings Sports Bar & Grill;bars american (traditional) nightlife chicken wings sports bars
+55477;La V Vietnamese Fusion;sandwiches vietnamese asian fusion juice bars & smoothies
+55675;Taste of Gourmet Cafe;food trucks seafood caterers soul food
+55685;Grand Hacienda;mexican
+55751;The Vinoy Renaissance St. Petersburg Resort & Golf Club;nightlife breakfast & brunch hotels & travel hotels resorts
+55773;Miller's Jamaican Spice Cuisine;caribbean
+56193;Kalina's Coffee & European Food;coffee & tea modern european
+56333;Matteo Trattoria & Pizzeria;italian pizza
+56390;Fish Tales;bars nightlife steakhouses seafood dive bars
+56414;Steel City Brewhouse;pubs bars nightlife wine bars breweries sports bars beer bar
+56425;IHOP;burgers american (traditional) breakfast & brunch american (new)
+56585;Athenian Garden;greek
+56682;Old Key West Bar & Grill;bars american (traditional) nightlife
+56687;Fresh Kitchen;fast food diners american (new) juice bars & smoothies gluten-free vegetarian
+56882;Lanna Thai and Sushi Restaurant;thai
+57001;Holiday Inn SunSpree Resort St. Petersburg-Marina Cove;hotels & travel hotels
+57027;Rowdies Den;burgers bars american (traditional) nightlife american (new) sports bars
+57070;Vashti West Indian Restaurant;caribbean trinidadian indian
+57119;McDonald's;coffee & tea burgers fast food
+57170;MFA Cafe;coffee & tea sandwiches american (traditional) breakfast & brunch american (new)
+57226;Ai Mei Thai Restaurant;thai
+57231;El Metate Mexican Grill;mexican
+57431;The Globe Coffee Lounge;coffee & tea internet cafes
+57586;First Watch;american (traditional) breakfast & brunch cafes
+57591;El Cap Restaurant;burgers american (traditional)
+57609;Colony Grill - St. Petersburg;bars nightlife wine bars pizza beer bar

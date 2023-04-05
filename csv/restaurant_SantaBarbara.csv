@@ -1,0 +1,753 @@
+id;nom;genre
+5762;Helena Avenue Bakery;coffee & tea bakeries sandwiches breakfast & brunch salad
+5780;Santa Barbara Shellfish Company;bars nightlife seafood beer bar live/raw food beer wine & spirits
+5879;Marty's Pizza;pizza
+6168;Cat Therapy;coffee & tea cafes themed cafes
+6208;Subway;fast food sandwiches
+6222;Bogo SB;burgers pizza caterers food delivery services
+6337;California Wine Festival;food stands festivals wineries
+6352;The Mill;breweries wineries food court shopping centers wine tasting room
+6586;Cafe Buenos Aires;argentine
+6588;Taqueria El Pastorcito;mexican
+6619;The Silver Bough;american (new)
+6685;China Bowl & State Street Cafe;american (traditional) chinese american (new)
+6734;Brummis - the German Taste;german
+6751;Plaza Deli;sandwiches hot dogs salad
+6775;Our Daily Bread;bakeries breakfast & brunch cafes
+7053;Presto Pasta;italian
+7082;Meun Fan Thai Cafe;salad soup thai
+7261;India House;indian home & garden
+7320;Wahoo's Fish Tacos;seafood mexican
+7372;Terraza Cafe;american (traditional) american (new) mexican
+7386;Islands Restaurant;burgers bars nightlife american (new) sports bars
+7418;Our Lady of Guadalupe Mercado;mexican festivals
+7426;Barbarians;bars nightlife pizza sports bars
+7803;The Project -- Corazn Cocina & Taproom;burgers bars nightlife breakfast & brunch cocktail bars breweries beer bar mexican tacos
+7840;Jack's Bistro & Bagels;sandwiches breakfast & brunch
+7931;Oliver's;american (traditional) vegan
+7943;Hob Nob;american (new)
+8049;Alitos;mexican new mexican cuisine
+8096;Intermezzo By Wine Cask;bars nightlife cafes wine bars cocktail bars pizza salad american (new) tapas bars
+8122;Daves Dogs - Cart;hot dogs street vendors food stands
+8134;Subway;fast food sandwiches
+8178;Bluewater Grill - Santa Barbara;bars american (traditional) nightlife breakfast & brunch seafood cocktail bars american (new)
+8202;Paradise Cafe;american (traditional) nightlife cafes seafood american (new)
+8273;Chipotle Mexican Grill;fast food mexican
+8331;Pizza Mizza;italian pizza food delivery services
+8344;The Cruisery;bars nightlife cocktail bars brewpubs breweries gastropubs
+8473;Sushi Tyme;sushi bars japanese asian fusion seafood
+8504;Cold Spring Tavern;bars american (traditional) nightlife
+8514;Taqueria Cuernavaca;mexican tacos
+8574;Due Lune Cucina;italian
+8587;Frog Bar & Grill;bars american (traditional) nightlife cocktail bars
+8611;State & A Bar and Grill;bars nightlife barbeque
+8668;Yoshinoya;fast food japanese asian fusion
+8742;Sakana Sushi Bar & Japanese;sushi bars japanese
+8810;Dawn Patrol;coffee & tea breakfast & brunch american (new)
+8811;Breakfast Culture Club;coffee & tea bakeries nightlife cafes bagels coffee roasteries coffeeshops
+8868;Taqueria Rincon Alteno;mexican
+8916;Backyard Bowls;coffee & tea ice cream & frozen yogurt breakfast & brunch specialty food american (new) juice bars & smoothies
+8928;Ichiban;sushi bars japanese
+8939;Tsukemono;sushi bars japanese
+8995;Chase Restaurant;italian bars nightlife caterers
+9210;IHOP;burgers american (traditional) breakfast & brunch american (new)
+9528;University Club of Santa Barbara;specialty food party & event planning
+9529;Palihouse Santa Barbara;cafes hotels & travel hotels
+9537;Epiphany Restaurant;burgers american (new)
+9578;Caffe Primo;coffee & tea pubs italian bars nightlife wine bars american (new) tapas/small plates
+9670;Farmer Boy;burgers american (traditional) breakfast & brunch american (new)
+9718;Yoichi's;bars nightlife japanese
+9797;Mad Dogs;hot dogs
+9851;TonyRay's Restaurant & Cantina;nightlife mexican dance clubs
+9920;Maggie's at State and A;american (new) french beer wine & spirits
+10277;Tuttini;breakfast & brunch american (new)
+10288;Zen Yai Thai Cuisine;asian fusion american (new) thai pop-up restaurants
+10687;Beans BBQ and Catering;caterers barbeque
+10884;Hibachi Steak House & Sushi Bar;sushi bars japanese steakhouses
+10906;East Beach Grill;american (traditional) breakfast & brunch
+11079;Judge For Yourself Cafe;breakfast & brunch
+11089;Paseo Nuevo Shopping Center;american (traditional) local flavor shopping centers
+11093;The Marquee;bars nightlife wine bars american (new)
+11323;Super Cuca's Taqueria;mexican
+11373;Villa Craft Beer, Wine & Kitchen;sandwiches bars nightlife wine bars american (new) tapas bars
+11542;Eureka!;burgers bars american (traditional) nightlife american (new) lounges
+11557;Valentino's Take N Bake Pizza;sandwiches pizza salad
+11736;Madam Lu;chinese
+11812;The Coffee Bean & Tea Leaf;coffee & tea
+11845;California Pizza Kitchen at Santa Barbara;american (traditional) pizza salad american (new) gluten-free
+11896;Q's Billiard Club & Sushi-a-go-go;sushi bars
+12069;Mac's Grog N Groc;mexican
+12107;Sam's To Go;sandwiches american (new)
+12133;Italian Grocery & Deli;sandwiches
+12204;Tepeyac Taquitos;mexican
+12226;Hana Kitchen;bubble tea asian fusion vegan acai bowls
+12275;McDonald's;coffee & tea burgers fast food
+12325;Venus in Furs;bars american (traditional) nightlife wine bars cocktail bars pizza vegan
+12420;Sun Sushi;sushi bars japanese
+12457;Chipotle Mexican Grill;fast food mexican
+12546;Belmond El Encanto;hotels & travel hotels
+12554;Marmalade Cafe;breakfast & brunch cafes american (new)
+12569;Bistro 1111;breakfast & brunch american (new)
+12636;Relais de Paris;french
+12708;Giovanni's of Santa Barbara;sandwiches pizza salad
+12731;Caje Coffee Roasters - Haley St;coffee & tea sandwiches cafes bagels coffee roasteries acai bowls
+12796;Adama Vegan Comfort Cuisine;vegan vegetarian
+12833;Bossie's Kitchen;american (traditional) american (new) farmers market
+12858;Gelson's;bakeries specialty food american (new) beer wine & spirits
+12864;Mac N Cheese After Dark;nightlife soul food comfort food local flavor
+12966;Chilangos;mexican
+12990;Tacos El Rey;mexican
+13238;Rusty's Pizza Parlor;sandwiches pizza salad
+13300;Sandbar;bars nightlife sports bars mexican music venues dance clubs
+13327;Big Eye Raw Bar;sushi bars japanese live/raw food poke
+13465;The Set;sandwiches bars american (traditional) nightlife cocktail bars american (new)
+13520;Recipes Bakery & Gifts: An Australian Coffee House;bakeries breakfast & brunch australian
+13622;Angel Oak;steakhouses seafood american (new)
+13642;Soul Cal Smokehouse;barbeque soul food
+13645;Gladden and Sons Produce;coffee & tea sandwiches specialty food fruits & veggies organic stores farmers market meat shops
+13700;Sugar Cat Studio;desserts
+13718;Tri-County Produce Co;coffee & tea specialty food fruits & veggies beer wine & spirits
+13741;Isabella Gourmet Foods;specialty food farmers market
+13773;Downey's;seafood american (new) french
+13779;Barbareo;sandwiches bars american (traditional) nightlife diners wine bars specialty food american (new) barbeque
+13866;Marbella;breakfast & brunch seafood american (new) tapas/small plates
+13972;Eladio's Restaurant;sandwiches breakfast & brunch seafood american (new)
+13994;AR Catering;food trucks caterers mexican barbeque food delivery services tacos
+14015;goa taco;fast food bars nightlife wine bars beer bar mexican indian desserts tacos
+14059;Super Cuca's Restaurant;mexican
+14082;South Coast Deli - Santa Barbara;sandwiches salad
+14094;O Street Truck;caterers french food delivery services food stands
+14127;The Natural Cafe;coffee & tea burgers sandwiches american (traditional) salad juice bars & smoothies mexican tex-mex vegetarian
+14199;Lighthouse Coffee;coffee & tea breakfast & brunch cafes
+14322;Kin Bakeshop;donuts pop-up restaurants
+14402;Flagstone Pantry;sandwiches salad soup specialty food
+14435;The Neighborhood Bar;burgers bars nightlife cocktail bars american (new) sports bars lounges
+14460;A Slice of Woodstock's;pizza caterers gluten-free
+14462;Buena Onda at Mosaic Locale;bakeries comfort food empanadas desserts argentine
+14492;La Super-Rica Taqueria;mexican
+14608;Teru Japanese Cuisine;sushi bars japanese beer wine & spirits
+14648;Peet's Coffee;coffee & tea
+14669;Enterprise Fish;bars american (traditional) nightlife seafood soup lounges
+15034;Blenders In the Grass;juice bars & smoothies
+15052;Domino's Pizza;sandwiches pizza chicken wings
+15063;Mr B Restaurant & Cafe;bakeries cafes middle eastern
+15130;Starbucks;coffee & tea
+15474;C'est Cheese;sandwiches bars nightlife breakfast & brunch cafes wine bars specialty food caterers cheese shops
+15559;Coral Tree Cafe;burgers sandwiches cafes
+15583;Foley Food and Wine Society Tasting Room;bars nightlife wine bars barbeque hotels & travel wineries wine tasting room wine tasting classes wine tours
+15602;Rose Cafe;diners cafes mexican
+15801;The Nugget Bar and Grill;sandwiches bars american (traditional) nightlife steakhouses salad
+15804;Rusty's Pizza Parlor;sandwiches pizza chicken wings salad
+15839;D'Vine;sandwiches
+15902;Merci To Go;bakeries cafes
+15936;Brasil Arts Cafe;breakfast & brunch salad juice bars & smoothies acai bowls brazilian
+16290;Momma Donna;burgers american (new)
+16318;Le Petit Bistro;breakfast & brunch french desserts
+16381;Delicious Expressions;bakeries caterers cupcakes gluten-free desserts
+16458;Little Kitchen;burgers nightlife diners breakfast & brunch salad american (new) comfort food
+16538;Sage & Onion;american (new)
+16549;Lito's Take  Out;seafood mexican desserts
+16578;Char West;coffee & tea fast food american (traditional) breakfast & brunch seafood fish & chips
+16650;Petros Restaurant;greek american (new) mediterranean beer wine & spirits
+16678;Olio E Limone Ristorante;italian
+16737;Hustle & Grind Coffee Company;coffee & tea ice cream & frozen yogurt cafes
+16772;Tacos Pipeye;mexican
+16812;Rusty's Pizza Parlor;pizza chicken wings salad
+16833;Bella Vista;italian breakfast & brunch seafood american (new)
+16842;Renaud's Patisserie & Bistro;coffee & tea bakeries sandwiches breakfast & brunch salad french desserts
+16882;Cajun Kitchen Cafe;breakfast & brunch cafes cajun/creole
+16942;Mundos;burgers asian fusion french soul food gluten-free latin american desserts
+16968;Peabody's;bars american (traditional) nightlife
+16995;Mandarin Palace;chinese
+17038;Milpas Taqueria;mexican
+17344;Louie's California Bistro;sandwiches american (new)
+17492;Blush Lounge;bars nightlife cocktail bars american (new) lounges hookah bars
+17494;La Salsa;salad mexican
+17517;Taqueria El Buen Gusto;mexican tacos
+17552;Hennings Cake Boutique;coffee & tea bakeries breakfast & brunch cafes
+17563;Coast Restaurant & Bar;american (traditional) american (new) party & event planning
+17667;Nardonne's La Famiglia Pizzeria;sandwiches italian pizza beer wine & spirits
+17670;Pace food+drink;american (new)
+17765;Broad Street Oyster Company;seafood fish & chips
+17793;Del Pueblo Cafe;mexican
+17848;Vons;bakeries
+17863;Sevtap Winery Tasting Room;bakeries bars nightlife wine bars jazz & blues music venues wineries tapas bars wine tasting room champagne bars
+17920;The Endless Summer Bar Cafe;burgers bars american (traditional) nightlife cafes seafood sports bars
+17928;Whitefoot Meat Market;specialty food meat shops
+17976;Gloria's Gourmet Kitchen;food trucks salad mexican tacos
+17996;Bar 29;bars american (traditional) nightlife cocktail bars american (new) gastropubs tapas/small plates
+17997;Santa Barbara Roasting Company;coffee & tea bakeries breakfast & brunch coffee roasteries
+18008;Piranha Restaurant & Sushi Bar;sushi bars
+18119;Kai Sushi Shabu-Shabu;sushi bars
+18151;MIZZA;sandwiches italian pizza salad
+18215;La Tapatia Bakery;bakeries mexican
+18291;Mexican Fresh;mexican
+18404;Nicky D's Wood fired Pizza;pizza
+18422;Jersey Mike's Subs;fast food sandwiches
+18563;Norton's Pastrami & Deli;sandwiches american (traditional) steakhouses salad american (new) gluten-free
+18579;The Monarch;bars nightlife breakfast & brunch wine bars cocktail bars american (new)
+18678;Tydes Restaurant;sandwiches seafood salad american (new)
+18717;Luna Grill;greek salad mediterranean
+18786;Spice Avenue;pakistani indian
+18888;Sam's to Go - Milpas;burgers sandwiches american (traditional) salad
+19016;Sachi Ramen And Robata Bar;sushi bars japanese vegetarian ramen
+19025;Lab Social;bars nightlife cocktail bars tapas bars
+19106;Miso Hungry;sushi bars japanese do-it-yourself food
+19146;Shoreline Beach Cafe;burgers american (traditional) cafes seafood mexican tacos
+19445;Blenders In The Grass;fast food juice bars & smoothies acai bowls
+19510;El Sitio;specialty food mexican ethnic food imported food
+19633;Maeda Restaurant;japanese
+19648;Derf's Cafe;american (traditional)
+19693;Stearns Wharf;seafood hotels & travel local flavor shopping centers
+19834;Revolver;pizza
+20090;Chuck's of Hawaii;nightlife steakhouses seafood salad
+20113;Satellite;bars nightlife cafes wine bars beer bar beer wine & spirits vegan tapas/small plates vegetarian farmers market
+20200;Brophy Bros - Santa Barbara;bars nightlife seafood cocktail bars fish & chips
+20234;Red Sand Market and Deli;convenience stores beer wine & spirits
+20293;Esau's Cafe;coffee & tea diners breakfast & brunch
+20346;Somerset;bars nightlife american (new) lounges
+20463;Secret Bao;korean asian fusion pop-up restaurants
+20672;Santo Mezcal;mexican latin american new mexican cuisine
+20673;Aldo's Italian Restaurant;italian
+20727;Lilly's Tacos;mexican
+20754;Las Aves Cafe;mexican
+20817;The Roundhouse;american (traditional) breakfast & brunch
+20835;Holdren's Steaks & Seafood;burgers bars nightlife steakhouses seafood cocktail bars
+20897;Cali-Forno Pizzeria;sandwiches italian pizza
+21096;Golden Line Coffee Bar;coffee & tea pop-up restaurants
+21170;Choppa Poke;ice cream & frozen yogurt asian fusion seafood live/raw food food delivery services poke
+21184;Winchell's Donuts;coffee & tea sandwiches donuts
+21288;Tamira;indian
+21296;South Coast Deli- Carrillo;sandwiches salad
+21310;Jeannine's American Bakery Restaurant;coffee & tea bakeries breakfast & brunch american (new)
+21376;Haggen Food & Pharmacy;bakeries beer wine & spirits
+21515;Ana's Taco Bar;burgers mexican
+21543;Cantwell's Market & Deli;sandwiches breakfast & brunch specialty food beer wine & spirits meat shops
+21656;Santa Barbara Fish Market;seafood specialty food seafood markets farmers market
+21667;Sublime;american (new) home services
+21679;Arigato Sushi;sushi bars japanese asian fusion
+21687;Petrini's Italian Restaurant - Santa Barbara;italian pizza
+21901;Sushi Cafe;sushi bars
+21961;Live Culture;coffee & tea ice cream & frozen yogurt bars nightlife wine bars
+22064;Snack Shack;american (traditional) beer wine & spirits
+22102;John Dunn Gourmet Dining Room;diners
+22132;Cliff's & Co Restaurant;american (traditional) caterers mexican party & event planning
+22214;Spudnuts & Bagels;bubble tea coffee & tea bagels donuts
+22435;Ca' Dario Pizzeria;pizza
+22455;Museum Cafe;cafes
+22484;Riviera Bar;bars nightlife wine bars cocktail bars beer bar
+22502;Blenders In the Grass;juice bars & smoothies vegetarian
+22628;Seven Bar & Kitchen;bars nightlife cocktail bars american (new) gastropubs lounges music venues
+22943;McDonald's;coffee & tea burgers fast food
+22948;Palazzio;italian pizza
+22958;Ruby's Cafe Santa Barbara;mexican
+22967;The Harbor Restaurant;american (traditional) seafood
+22984;Cafe 154;cafes cafeteria
+23080;Mama Lu;asian fusion chinese
+23095;The Honey B;coffee & tea cafes american (new) vegan gluten-free vegetarian
+23248;American Ale;burgers pubs bars american (traditional) nightlife beer wine & spirits
+23387;M Kitchen;american (traditional)
+23466;Mesa Cafe;bars american (traditional) nightlife breakfast & brunch
+23580;The Little Door - Santa Barbara;bars nightlife wine bars french mediterranean
+23639;PizzaRev;pizza salad
+23686;Subway;fast food sandwiches salad
+23709;Panda Express;fast food chinese
+23751;Stone Age Restaurant;chinese barbeque
+23766;Rose Cafe No 2;mexican
+24077;Basil's Italian;sandwiches italian pizza
+24172;Live Oak Cafe;fast food bars nightlife breakfast & brunch cafes wine bars american (new) farmers market
+24229;Sunnyside Market & Deli;coffee & tea delicatessen
+24310;McDonald's;coffee & tea burgers fast food
+24324;Santa Barbara Craft Ramen;japanese ramen
+24432;Elements Restaurant and Bar;bars nightlife american (new)
+24478;Sakura Express;japanese
+24520;Milk & Honey Tapas;bars nightlife cocktail bars food delivery services tapas bars
+24550;Bibi Ji;bars nightlife wine bars american (new) indian australian
+24605;Roy;american (new)
+24645;Chef Karim's Restaurant;moroccan
+24655;Carlitos Cafe Y Cantina;mexican
+24726;Plow & Angel;american (traditional) american (new)
+24740;The Habit Burger Grill;burgers
+24892;Apna Indian Kitchen;gastropubs vegan gluten-free indian
+25085;Ca' Dario;italian bars nightlife wine bars seafood tuscan
+25378;Northstar Coffee;coffee & tea sandwiches
+25387;Miro;american (new) mediterranean basque
+25389;Epic Bowl;breakfast & brunch specialty food juice bars & smoothies
+25728;IHOP;burgers american (traditional) breakfast & brunch
+25738;1114 Sports Bar & Games;pubs bars nightlife cocktail bars sports bars gastropubs beer bar tapas bars
+25782;Nuance;bars nightlife cocktail bars american (new)
+25887;Santa Barbara Brewing Co;bars american (traditional) nightlife breweries sports bars
+25962;Taffy's Pizza;pizza
+26044;Thai Kitchen;thai
+26127;Santa Barbara Organic Kitchen;american (new) vegetarian
+26205;Altamirano Mexican Restaurant;mexican
+26261;Le Crepe Shoppe;french creperies
+26325;Yume Sushi Japanese Restaurant;sushi bars japanese seafood desserts
+26364;Smithy Kitchen + Bar;american (new) mediterranean
+26388;Rodney's Grill;bars nightlife wine bars steakhouses seafood hotels & travel hotels
+26485;Aperitivo;coffee & tea bars nightlife wine bars tapas/small plates desserts
+26545;Arturo's Taqueria;mexican
+26613;Reds Bin 211;coffee & tea pubs bars nightlife wine bars tapas bars
+26638;Alchemy Cafe;live/raw food gluten-free vegetarian
+26693;Jack in the Box;burgers fast food breakfast & brunch mexican tacos
+26738;Norton's Pastrami and Deli;sandwiches
+26745;The Funk Zone;bars nightlife wine bars wineries
+26772;ASIE;sushi bars japanese asian fusion soup chinese american (new) wraps barbeque ramen noodles dim sum hot pot
+26863;Wingman Rodeo - Montecito Street;sandwiches chicken wings salad vegetarian
+26938;Arts & Letters Cafe;coffee & tea sandwiches breakfast & brunch cafes american (new) beer wine & spirits
+26989;Rosales Mexican Restaurant;breakfast & brunch seafood mexican
+27057;Challwa;peruvian pop-up restaurants
+27070;Giovanni's;pizza
+27073;Su Casa Fresh Mexican Grill;mexican
+27113;Taqueria El Pastorcito;mexican
+27240;Westmont Dining Commons;american (traditional) buffets food court
+27241;Carl's Jr.;fast food
+27320;Taqueria Altamirano;american (new) mexican
+27434;Benchmark Eatery;bars american (traditional) nightlife breakfast & brunch seafood american (new) vegetarian
+27445;Panda Express;fast food chinese
+27483;Kyle's Kitchen;burgers sandwiches breakfast & brunch cafes salad american (new) chicken shop
+27487;Rudy's Mexican Restaurant;salad mexican
+27494;Taqueria El Bajio;mexican
+27542;iGrill Korean BBQ;korean
+27591;Yankee Noodle;burgers pubs bars american (traditional) nightlife japanese asian fusion cocktail bars pizza chinese ramen dim sum
+27632;Cafe Luck;bars nightlife american (new) lounges modern european
+27670;Opal Restaurant & Bar;sandwiches bars nightlife steakhouses seafood american (new)
+27702;Java Station;coffee & tea bakeries sandwiches breakfast & brunch
+27713;Baja Sharkeez;bars nightlife sports bars mexican tex-mex dance clubs
+27747;Corazon Cocina;seafood mexican
+27749;Bay Roadhouse Bar and Grill;seafood american (new)
+27779;Taco Tuyo;food trucks caterers mexican vegan food delivery services tacos
+27781;Brass Bear Brewing & Bistro;pubs bars nightlife brewpubs breweries american (new) wineries champagne bars
+27805;Taqueria La Colmena;mexican
+27806;Xanadu Bakery;bakeries
+27819;Velvet Jones;bars nightlife pizza music venues
+27840;Santa Barbara Chicken Ranch;mexican barbeque
+27849;Cajun Kitchen Cafe;burgers breakfast & brunch caterers cajun/creole
+27851;Gino's Sicilian Express;sandwiches italian pizza salad
+27922;Rusty's Pizza Parlor;pizza
+28151;SB Sunshine Cafe;diners breakfast & brunch american (new)
+28164;Flor De Maiz;bars nightlife cocktail bars mexican
+28223;M. Special Brewing Company;nightlife brewpubs breweries american (new) music venues
+28346;Belmond El Encanto Dining Room;bars nightlife diners breakfast & brunch seafood american (new) hotels & travel hotels
+28517;Saigon In and Out;sandwiches vietnamese
+28560;Jeannine's American Bakery Restaurant;coffee & tea bakeries breakfast & brunch
+28581;Foxtail Kitchen & Bar;burgers bars nightlife cocktail bars gastropubs mediterranean whiskey bars
+28591;The Hungry Cat;bars nightlife wine bars seafood cocktail bars american (new)
+28635;Panera Bread;sandwiches salad soup
+28662;Wildwood Kitchen;sandwiches bars nightlife barbeque
+28688;Urkeb;sandwiches wraps kebab german
+28767;Bangkok Palace;thai
+28917;Roost;steakhouses seafood american (new) mexican tacos
+28959;Lazy Acres Market - Santa Barbara;specialty food juice bars & smoothies meat shops
+29031;The Zia Cafe;mexican tex-mex
+29243;Kimchi Korean BBQ;korean barbeque
+29426;The Patio Cafe Santa Barbara;breakfast & brunch cafes
+29437;Jane;bars nightlife wine bars american (new)
+29502;Oveja Blanca Restaurante;salad latin american desserts
+29684;Madison's Sports Grill;american (traditional)
+29751;Emilios Ristorante & Bar;italian
+29772;Sushi GoGo;sushi bars japanese
+30223;Trattoria Vittoria;italian
+30260;The Ritz-Carlton Bacara, Santa Barbara;american (new) hotels & travel hotels resorts
+30277;Jeannines American Bakery & Restaurant;coffee & tea bakeries cafes patisserie/cake shop
+30361;4 Eggs & Pizza;vietnamese breakfast & brunch pizza gluten-free
+30400;Mesa Pizza;sandwiches italian pizza vegan gluten-free
+30505;Los Arroyos Mexican Restaurant & Take Out;bars nightlife salad caterers mexican desserts
+30725;Costa Kitchen & Bar;italian american (new) mediterranean
+30772;Shalhoob's Funk Zone Patio;burgers american (new) tapas/small plates
+30788;El Paseo Mexican Restaurant;mexican
+30789;Paesano's Pizzeria;pizza
+30801;Shaker Mill;bars nightlife breakfast & brunch seafood cocktail bars cuban
+30868;Estilo Jalisco;mexican party & event planning
+30871;Killer B's BBQ Bar and Grill;bars nightlife sports bars barbeque
+31082;Feast and Fest Catering;caterers barbeque
+31233;The Taj Cafe;pakistani indian
+31289;Mulligan's Cafe & Bar;sandwiches american (traditional) breakfast & brunch cafes caterers american (new)
+31312;Santa Barbara FisHouse;breakfast & brunch seafood tapas/small plates desserts
+31378;Caffe;coffee & tea bakeries cafes juice bars & smoothies
+31420;Tino's Italian Grocery;sandwiches specialty food ethnic food
+31425;Nectar Eatery & Lounge;bars nightlife american (new) tapas bars
+31432;Steve's Patio Cafe;breakfast & brunch
+31515;AH Juice Organics;breakfast & brunch juice bars & smoothies live/raw food organic stores
+31591;Sushi Teri House;sushi bars japanese
+31645;Jack in the Box;burgers fast food breakfast & brunch mexican tacos
+31764;Meet Up Chinese Cuisine;nightlife asian fusion chinese szechuan karaoke
+31767;Harry's Plaza Cafe;american (traditional)
+31846;Ye Olde Butcher Shop;specialty food meat shops
+31880;Santa Barbara's Wood Fired Pizza;sandwiches italian pizza food delivery services
+32006;Cafe Shell;coffee & tea american (traditional) cafes
+32009;Corazon Cocina;breakfast & brunch seafood mexican latin american
+32152;Wingstop;chicken wings
+32160;Metropulos Fine Foods;sandwiches specialty food
+32178;La Rumba Bar and Grill;bars nightlife american (new) mexican karaoke dance clubs
+32182;Subway;fast food sandwiches breakfast & brunch
+32184;The Coffee Bean & Tea Leaf;coffee & tea
+32192;Subway;fast food sandwiches breakfast & brunch
+32219;Georgia's Smokehouse;food trucks caterers barbeque
+32230;Magic Pita Cafe;cafes mediterranean middle eastern
+32236;Santa Barbara Tamales To Go;mexican
+32260;California Crisp Cafe;sandwiches pizza
+32279;Crazy Jim's Tacos Y Ms;mexican tex-mex tacos
+32369;Santa Barbara Bay Cafe;seafood
+32427;Daniel's Bakery and Mexican Food;bakeries mexican
+32454;Pressed;ice cream & frozen yogurt specialty food convenience stores juice bars & smoothies vegan
+32483;El Taco Tequila Taqueria;mexican
+32499;Les Marchands Restaurant & Wine Shop;bars nightlife wine bars american (new) beer wine & spirits
+32537;Apero;burgers bars nightlife beer wine & spirits tapas bars belgian
+32581;Mayo's Carniceria & Tacos;mexican
+32589;Eat This Shoot That!;hotels & travel food tours wine tours
+32686;Mezza Thyme;bars nightlife mediterranean
+32802;Tyger Tyger;asian fusion
+32842;Soho Restaurant & Music Club;bars american (traditional) nightlife music venues
+32889;The Daily Grind Coffee & Tea Station;coffee & tea sandwiches breakfast & brunch juice bars & smoothies
+32967;Los Tarascos Bakery and Deli;bakeries
+33114;Three Pickles Subs and Sandwiches;sandwiches caterers
+33161;Max's Restaurant & Cucina;italian american (traditional) breakfast & brunch
+33165;East Beach Tacos;fast food bars nightlife korean american (new) mexican tacos
+33202;Palapa;mexican
+33257;Panaderia Veronica;bakeries mexican
+33258;Persona Pizzeria;fast food sandwiches italian pizza chicken wings salad gelato
+33270;Mac's Fish and Chip Shop;seafood fish & chips british
+33271;Belcampo Meat Co Restaurant;burgers breakfast & brunch specialty food american (new) meat shops
+33283;Panino;sandwiches breakfast & brunch salad soup
+33438;Fala Bar;sandwiches salad mediterranean vegan gluten-free falafel
+33614;Uptown Bar & Lounge;bars nightlife pizza american (new) sports bars lounges mexican beer wine & spirits karaoke tacos
+33643;Taqueria Santa Barbara;bars nightlife beer bar mexican beer wine & spirits tacos
+33665;Cafe Ana;coffee & tea bakeries bars nightlife breakfast & brunch cafes wine bars american (new) donuts
+33720;Fernando's Churros;food trucks breakfast & brunch desserts
+33816;Yen Ching Restaurant;chinese buffets
+33930;The New Black BBQ;barbeque street vendors
+34015;Marketplace Cafe;diners cafes american (new)
+34170;Chad's;american (traditional) diners breakfast & brunch salad
+34241;California Pasta;italian caterers american (new) food delivery services
+34558;Park Place Deli;coffee & tea salad
+34654;Crocodile Restaurant & Bar;italian bars nightlife breakfast & brunch pizza american (new) hotels & travel hotels
+34717;Chino's Rock & Tacos;mexican
+34739;All India Cafe;pakistani indian
+34750;Pierre Lafond Wine Bistro;bakeries italian bars nightlife wine bars american (new) local flavor
+34820;Spudnuts Donuts;donuts
+34885;Institution Ale Company;bars nightlife pizza breweries beer bar
+35074;Bristol Farms - Santa Barbara;specialty food beer wine & spirits
+35090;Lure Fish House;bars nightlife breakfast & brunch wine bars seafood cocktail bars american (new) beer wine & spirits
+35117;Brasserie Solera;brewpubs breweries comfort food
+35123;Chick-fil-A;fast food sandwiches chicken wings caterers chicken shop
+35192;Los Agaves;american (new) mexican
+35241;State Street Wine Bistro;american (new)
+35261;Presidio Market;beer wine & spirits
+35286;Alessia Patisserie & Cafe ;bakeries cafes patisserie/cake shop
+35328;The Brewhouse;burgers bars american (traditional) nightlife steakhouses seafood brewpubs breweries sports bars comfort food
+35359;Scarlett Begonia;bars american (traditional) nightlife breakfast & brunch cafes cocktail bars american (new) beer wine & spirits
+35365;Ahi Sushi;sushi bars japanese ramen
+35484;Hot Spots Espresso Company;coffee & tea
+35507;REBAR COFFEE + KTCHN;coffee & tea bakeries
+35602;Pascucci;italian gluten-free vegetarian gelato
+35635;Harbor Meat & Seafood;seafood specialty food seafood markets meat shops
+35701;Montecito Gourmet by Village Cheese & Wine;coffee & tea sandwiches bars nightlife wine bars specialty food wineries cheese shops
+35719;The Bourbon Room;burgers pizza american (new)
+35852;Habit Burger Grill;burgers
+35958;Panera Bread;bakeries sandwiches breakfast & brunch salad soup bagels
+36029;Breakwater Restaurant;american (traditional) breakfast & brunch seafood
+36143;Carl's Jr;burgers fast food
+36172;Arch Rock;bars nightlife steakhouses seafood cocktail bars local flavor fish & chips
+36253;State & Fig;breakfast & brunch cafes american (new) tapas/small plates
+36271;Alchemy Wellness Spa;cafes vegan vegetarian
+36544;Stonehouse Restaurant;steakhouses seafood american (new)
+36615;East;japanese thai
+36703;Blue Corn Tacos Catering;food trucks caterers mexican tacos
+37003;Blaze Pizza;fast food pizza salad
+37057;The Black Sheep;bars nightlife japanese asian fusion cocktail bars american (new) beer wine & spirits ramen
+37368;El Pollo Loco;fast food mexican
+37470;Dutch Garden Restaurant;bars nightlife german
+37621;Finch & Fork;bars american (traditional) nightlife breakfast & brunch american (new)
+37941;Dargan's Irish Pub & Restaurant;pubs bars nightlife gastropubs irish
+37943;El Rincon Bohemio;mexican
+37977;Book Ends Cafe;sandwiches cafes
+37988;New Si Chuan Garden;chinese szechuan
+38039;Oakberry Aa Bowls and Smoothies;coffee & tea cafes juice bars & smoothies acai bowls
+38106;Ultimate Bagels;breakfast & brunch bagels
+38227;TAP Thai Cuisine;asian fusion thai vegetarian noodles
+38281;Embermill;cajun/creole vegan caribbean gluten-free
+38358;Flavor of India;seafood salad vegan vegetarian pakistani indian halal buffets desserts
+38409;Modern Times Academy of Recreational Sciences;bars nightlife breakfast & brunch beer bar vegan
+38418;Montecito Coffee Shop;coffee & tea sandwiches breakfast & brunch
+38461;Paradise Store & Grill;american (traditional)
+38679;A Piece of Cake;bakeries desserts
+38740;Stella Mare's;american (traditional) american (new) french
+38818;Fresco Cafe;bakeries italian american (traditional) breakfast & brunch
+38830;Fat Burger Restaurants of;burgers
+38858;Le Bon Cafe;asian fusion american (new)
+38905;Nook;bars american (traditional) nightlife mexican vegan soul food wineries wine tasting room
+39022;Saigon Vietnamese Restaurant;bars nightlife vietnamese wine bars seafood vegetarian noodles
+39070;Himalayan Kitchen;indian himalayan/nepalese
+39084;Chads;american (new)
+39161;Blind Tiger;bars nightlife cocktail bars american (new)
+39197;Mony's Mexican Food;mexican
+39327;The Pan;tapas/small plates comfort food
+39410;Deano's Pizzarama;pizza
+39549;Treehouse Restaurant;american (traditional)
+39639;Backstage Dueling Piano Bar;bars nightlife cocktail bars american (new) beer wine & spirits piano bars
+39719;Taco Bell;fast food mexican tex-mex
+39770;Los Altos Restaurant;breakfast & brunch seafood mexican
+39798;Itsuki Restaurant;japanese
+39841;OPPIZ Bistro And Natural Pizza;italian pizza vegetarian
+39905;Cadiz Restaurant & Bar;italian bars nightlife seafood cocktail bars american (new) lounges mediterranean tapas/small plates spanish
+39940;Chubbies Hamburgers;burgers
+40056;El Zarape;mexican
+40082;805 Deli;sandwiches american (traditional) breakfast & brunch soup caterers
+40289;Ruth's Chris Steak House;steakhouses
+40342;The Palace Grill;seafood american (new) cajun/creole
+40575;Backyard Bowls;breakfast & brunch juice bars & smoothies
+40595;Lovejoy's Pickle Room;sandwiches bars nightlife cocktail bars salad chinese lounges
+40598;Alcazar Tapas Bar;tapas bars
+40680;XO Burger;burgers sandwiches american (traditional) pop-up restaurants
+40704;On The Alley;burgers sandwiches american (traditional) breakfast & brunch seafood
+40922;Little Alex's;mexican
+40938;American Ale;burgers bars nightlife beer bar
+40997;Lucca Truck;food trucks pizza caterers
+41036;Chilango's Mexican Restaurant;mexican
+41155;Montecito Cafe;italian seafood american (new)
+41163;La Paloma Cafe;bars nightlife breakfast & brunch cocktail bars mexican barbeque chicken shop desserts
+41197;Starbucks;coffee & tea
+41217;Reunion Kitchen + Drink;burgers salad american (new)
+41232;Big Joe's Tacos;food trucks caterers mexican street vendors
+41266;Rusty's Pizza Parlors;pizza
+41287;Pacific Crepes;bars nightlife wine bars french gluten-free creperies
+41381;Szechuan Restaurant;chinese szechuan
+41491;Shintori Sushi Factory;sushi bars japanese specialty food
+41509;Giovanni's Pizza;sandwiches italian pizza
+41593;Toma Restaurant & Bar;italian bars nightlife american (new) beer wine & spirits
+41693;Cafe del Sol;american (traditional) american (new) mexican
+41716;Barcliff & Bair;american (traditional)
+41827;Blenders In the Grass;juice bars & smoothies
+41835;Costa Terraza;tapas/small plates
+41914;SALTY at the Beach;bars nightlife american (new) gastropubs
+41915;The Drunken Crab;seafood specialty food cajun/creole
+42187;The French Table;gastropubs french
+42194;The Bistro;italian breakfast & brunch seafood american (new) french mediterranean buffets
+42210;Mar Monte Hotel - Hyatt;hotels & travel hotels
+42226;Sunny Asian Restaurant;korean asian fusion
+42235;Taste Wine Bar & Retail Shop;bars nightlife wine bars beer wine & spirits wineries
+42320;Arlington Tavern;nightlife american (new)
+42330;El Pastorcito;mexican
+42344;Edomasa;sushi bars japanese
+42464;Old Town Coffee Downtown;coffee & tea cafes
+42605;Your Place Thai Restaurant;thai
+42729;PokeCeviche;asian fusion seafood poke
+42775;Ridley-Tree House Restaurant;fast food
+42794;Bucatini;italian bars nightlife wine bars soup
+42823;The Natural Cafe;sandwiches tex-mex vegetarian
+43254;The Buzz Hive;bars nightlife seafood sports bars
+43291;De La Guerra Dining Commons;sandwiches cafes pizza american (new) mexican cafeteria
+43304;CHOMP on the Rocks;burgers american (traditional)
+43333;Pearl Social Santa Barbara;bars american (traditional) nightlife cocktail bars
+43584;The Shop Kitchen;coffee & tea breakfast & brunch american (new)
+43687;Mama's Bakery & Deli;bakeries
+43717;McDonald's;coffee & tea burgers fast food
+43758;Finney's Crafthouse;bars american (traditional) nightlife cocktail bars american (new) gastropubs
+43764;La Salsa Fresh Mexican Grill;fast food mexican tex-mex
+43929;The Pasta Shoppe, LLC;italian cafes specialty food pasta shops desserts
+44090;Maudet's;specialty food desserts creperies
+44161;SB Munchiez;burgers fast food sandwiches american (traditional) nightlife american (new) food delivery services
+44206;Si Senor Taco's;food trucks mexican beer wine & spirits
+44214;L's Kitchen;bakeries sandwiches breakfast & brunch salad
+44410;Anchor Woodfire Kitchen;italian american (new)
+44446;Daily Greenz;salad caterers food delivery services
+44482;Modern Times Kitchen;american (new) vegan
+44485;Presto Pasta;italian
+44490;The Habit;burgers
+44549;Piano Riviera Lounge;french mediterranean
+44620;Chuck's Waterfront Grill;steakhouses seafood
+44696;Aksum Restaurant;soul food comfort food ethiopian
+44697;Longboard's Grill;bars american (traditional) nightlife seafood
+44711;Tri Tip Company;bars american (traditional) nightlife barbeque
+44761;Bouchon;bars nightlife wine bars seafood american (new) mexican french
+44769;Matty's Hot Chicken;pop-up restaurants
+44892;La Cocina Mexican Restaurant;mexican
+45032;Crush Bar and Tap;bars nightlife wine bars beer bar cupcakes desserts tapas bars gay bars
+45033;The Waterline;american (traditional) beer wine & spirits wineries shopping centers wine tasting room
+45071;Killer Shrimp;nightlife steakhouses seafood american (new) music venues
+45128;Pueblo Pollo;fast food mexican new mexican cuisine
+45183;Courthouse Tavern;bars american (traditional) nightlife american (new)
+45199;Domino's Pizza;sandwiches pizza chicken wings
+45206;Le Cafe Stella;american (new) french
+45254;Rusty's Pizza Parlor;sandwiches italian pizza chicken wings salad
+45264;The Mex Authentic;bars nightlife specialty food mexican beer wine & spirits ethnic food local flavor
+45271;Casa Blanca Restaurant;seafood mexican
+45610;Our Daily Bread;bakeries breakfast & brunch gluten-free
+45621;Rudy's Restaurant No 1;breakfast & brunch mexican
+45701;La Arcada Bistro;coffee & tea bakeries american (traditional) breakfast & brunch gluten-free
+45872;The Blue Owl;sandwiches cafes asian fusion caterers american (new) thai desserts
+45947;Choi's Oriental Market;korean
+46007;Lilac Ptisserie;coffee & tea bakeries breakfast & brunch specialty food gluten-free desserts
+46049;Downtown Brewing Co;bars american (traditional) nightlife sports bars
+46072;Cafe Lido;italian cafes mediterranean
+46084;Wing's Restaurant;chinese
+46095;Empty Bowl Gourmet Noodle Bar;asian fusion chinese thai tapas/small plates comfort food noodles
+46133;Rancho San Marcos Golf Course;barbeque
+46180;Juice Ranch;juice bars & smoothies live/raw food vegan
+46237;Bougainvillea;italian pizza beer wine & spirits
+46324;Cafe Los Arcos;american (traditional)
+46350;Bettina;italian pizza
+46354;Your Choice;ice cream & frozen yogurt chicken wings thai desserts
+46491;Frankland's Crab;sandwiches bars nightlife seafood cocktail bars salad live/raw food desserts fish & chips
+46526;Denny's;coffee & tea american (traditional) diners breakfast & brunch
+46559;Saigon Vietnamese Restaurant;vietnamese vegetarian
+46846;Barb's Pies;pizza american (new)
+46925;Seagrass Restaurant;steakhouses seafood american (new) latin american
+46927;Sojourner Cafe;sandwiches cafes vegan vegetarian
+46944;Kahuna Grill;burgers
+47034;Galanga Thai Restaurant;soup thai noodles
+47180;Beachbreak Cafe;american (traditional) breakfast & brunch cafes
+47248;The Daily Grind;coffee & tea sandwiches breakfast & brunch juice bars & smoothies
+47308;Gandolfos New York Deli;sandwiches
+47311;China Palace;bars nightlife wine bars seafood chinese vegetarian dim sum
+47326;Julienne;seafood american (new) french
+47338;Tee-Off Restaurant and Lounge;bars nightlife steakhouses
+47455;LOKUM Turkish Delight & Baklava;coffee & tea bakeries desserts turkish
+47488;Zaytoon;bars nightlife mediterranean middle eastern lebanese
+47506;Matador Tapas Bar & Latin Steakhouse;latin american
+47553;Honor Market;coffee & tea cafes pizza beer wine & spirits
+47566;El Rincon Alteno;mexican
+47603;Rudy's Mexican Restaurant & Take Out;mexican
+47629;Burger Express;burgers mexican
+47724;Bree'osh;coffee & tea bakeries breakfast & brunch french
+47737;Lucky Penny;coffee & tea sandwiches italian bars nightlife breakfast & brunch wine bars pizza salad american (new) beer wine & spirits
+47749;Petit Valentien;french ethiopian
+47893;Woody's BBQ;barbeque
+47981;Rudy's;mexican
+48052;Starbucks;coffee & tea
+48078;Renaud's Patisserie & Bistro;bakeries sandwiches breakfast & brunch cafes french
+48104;I'a Fish Market and Cafe;american (traditional) seafood specialty food seafood markets poke
+48149;Fattes Pizza;pizza
+48284;Daves Dogs;hot dogs
+48324;Empress Palace;sushi bars chinese szechuan cantonese
+48327;Lao Ma Tou;bars nightlife chinese hot pot
+48465;Mi Fiesta Market Deli;convenience stores
+48494;Mosto;coffee & tea burgers italian bars nightlife cafes wine bars tapas/small plates spanish tapas bars
+48495;Ty Lounge;bars nightlife lounges tapas/small plates tapas bars
+48530;Square One;american (new)
+48638;JSB Cafe at Santa Barbara City College;american (traditional)
+48647;D'Angelo's Bakery;bakeries breakfast & brunch
+48878;Uncle Roccos Famous NY Pizza;fast food italian pizza
+49019;Garrett's Old Fashioned Restaurant;sandwiches american (traditional) breakfast & brunch
+49141;The Lark;bars nightlife cocktail bars american (new) desserts
+49195;Little Caesars Pizza;pizza
+49352;La Playa Azul Cafe;mexican
+49412;Blue Agave;american (new) mexican
+49592;Oku;bars nightlife sushi bars japanese asian fusion cocktail bars tapas/small plates
+49600;Green Table;coffee & tea bakeries cafes juice bars & smoothies vegan gluten-free acai bowls vegetarian
+49673;Wine Cask;bars nightlife cafes wine bars american (new)
+49715;Vegan GreenGO;mexican vegan vegetarian
+49736;Night Lizard Brewing Company;nightlife breweries mediterranean beer gardens
+49776;Ikes Love & Sandwiches;sandwiches vegan vegetarian
+49827;Sama Sama Kitchen;bars nightlife asian fusion cocktail bars tapas/small plates desserts tapas bars farmers market indonesian
+50017;Restaurant OPEN;burgers american (traditional) breakfast & brunch cafes seafood american (new) food delivery services
+50074;Left At Albuquerque;tex-mex
+50081;Arnoldi's Cafe;italian breakfast & brunch beer wine & spirits
+50292;El Torito;bars nightlife cocktail bars mexican
+50348;Los Agaves;mexican
+50358;The Garden;bars nightlife sports bars beer bar beer gardens trivia hosts
+50565;Nona's Italian Deli;sandwiches specialty food pasta shops
+50617;Joe's Cafe;sandwiches american (traditional) breakfast & brunch cafes steakhouses seafood
+50663;Los Gallos;mexican
+50709;California Wood-Fired Catering;food trucks pizza caterers
+50749;Crushcakes & Cafe;coffee & tea bakeries breakfast & brunch cafes desserts
+50802;The Melting Pot;fondue
+50873;Biergarten;nightlife hot dogs pizza beer gardens
+50882;Eller's Donut House;donuts
+50928;Jersey Mike's Subs;fast food sandwiches
+51091;Jill's Place;burgers sandwiches bars american (traditional) nightlife cafes steakhouses caterers american (new)
+51173;Montecito Village Grocery;bakeries specialty food beer wine & spirits
+51206;Union Ale;bars american (traditional) nightlife cocktail bars
+51246;Sal's Pizza;italian pizza chicken wings
+51293;Cody's Cafe;bars american (traditional) nightlife breakfast & brunch cafes wine bars
+51364;Yona Redz;mexican latin american tacos
+51378;Dave's Dogs Grill;hot dogs
+51384;Mollie's;italian pizza
+51401;Uncorked Wine Tasting and Kitchen;bars american (traditional) nightlife wine bars american (new) tapas/small plates wineries tapas bars wine tasting room
+51472;The Little Things Bakery;bakeries french cupcakes patisserie/cake shop
+51511;JJs Diner;diners breakfast & brunch
+51694;Kanaloa Seafood;breakfast & brunch seafood specialty food caterers seafood markets do-it-yourself food
+51702;China Pavilion;coffee & tea chinese desserts dim sum
+51810;Lettuce B. Frank;american (traditional)
+51834;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+51850;Rascal's Vegan Food;vegan
+51889;Hotdog Mini Mart;hot dogs beer wine & spirits
+51929;Patxi's Pizza;sandwiches italian pizza salad
+51961;Romanti-Ezer;mexican
+52053;Andersen's Danish Bakery & Restaurant;bakeries bars nightlife breakfast & brunch wine bars modern european scandinavian
+52157;Freeman's Flying Chicken;american (traditional) barbeque cuban
+52199;Corner Tap Room;bars american (traditional) nightlife cocktail bars american (new) gastropubs beer bar
+52234;TAP Thai Cuisine;thai
+52566;Muddy Waters Cafe;coffee & tea bars nightlife beer wine & spirits bagels jazz & blues music venues local flavor dive bars
+52605;Jitters Coffee;coffee & tea
+52769;KFC;fast food chicken wings chicken shop
+52797;Pizza by the Slice;pizza
+52986;Jack's Bistro and Famous Bagels;coffee & tea breakfast & brunch bagels
+53198;Moby Dick Restaurant;american (traditional) breakfast & brunch seafood
+53303;Olio Pizzeria;italian bars nightlife pizza
+53305;La Casa De Maria;hotels & travel
+53379;Restaurant Mimosa;american (new) french
+53416;Farmer Boy;breakfast & brunch american (new)
+53453;Broad Street Oyster Company;food trucks seafood caterers
+53574;Four Seasons Resort The Biltmore Santa Barbara;hotels & travel hotels resorts
+53738;Eller's Doughnut House & Bakery;thai donuts
+53890;Goat Tree;bakeries sandwiches american (traditional)
+53916;Viva Modern Mexican;bars nightlife breakfast & brunch seafood cocktail bars mexican tapas/small plates latin american peruvian
+53929;Boathouse at Hendry's Beach;breakfast & brunch seafood american (new) hawaiian
+54013;Tupelo Junction Cafe;american (traditional) breakfast & brunch american (new) southern
+54088;Yanni's Greek & American Deli;greek gas stations
+54095;South Coast Deli- Chapala;sandwiches breakfast & brunch
+54130;The Creekside Restaurant & Bar;burgers bars nightlife cocktail bars salad american (new) barbeque
+54161;The Daisy Restaurant;bars nightlife wine bars american (new) farmers market
+54233;Jade Restaurant;asian fusion
+54245;Sevilla;italian american (new) latin american tapas bars
+54315;Savoy Cafe & Deli;coffee & tea breakfast & brunch cafes beer wine & spirits gluten-free
+54598;Blackbird;bars nightlife breakfast & brunch seafood cocktail bars american (new) lounges mediterranean tapas/small plates
+54611;Hoffmann Brat Haus;burgers bars nightlife beer bar german belgian
+54659;Via Maestra 42;italian caterers
+54680;Shang Hai;chinese vegetarian
+54755;Cubaneo;sandwiches bars nightlife cuban
+54789;Finestra Cafe;coffee & tea
+54791;Hook And Press Donuts;coffee & tea bakeries breakfast & brunch donuts desserts
+54792;Miracle At The Funk Zone;bars nightlife cocktail bars local flavor pop-up restaurants
+54851;Lilsy Wood Fired Pizza;pizza
+54936;Kyoto;sushi bars japanese vegetarian
+55101;Blue Tavern;american (new) peruvian
+55324;Trattoria Mollie;italian bars nightlife wine bars desserts
+55330;Globe;pubs bars nightlife lounges tapas/small plates comfort food
+55354;Boondocks;burgers bars nightlife cocktail bars mexican dive bars
+55448;Rice Garden;fast food chinese caterers szechuan
+55461;Santa Barbara Harbor & Seafood Festival;seafood local flavor festivals
+55483;Santa Barbara Public Market;specialty food local flavor farmers market
+55530;Killer B's BBQ Bar and Grill;bars american (traditional) nightlife sports bars barbeque
+55754;Loquita;bars nightlife seafood cocktail bars spanish tapas bars modern european
+55758;Verde;american (traditional) american (new) mexican tapas/small plates tex-mex spanish
+55790;Mesa Verde;burgers salad juice bars & smoothies mediterranean live/raw food vegan vegetarian home services
+55809;Vices & Spices From Around the World;coffee & tea
+55956;Spiritland Bistro;asian fusion seafood american (new) french vegan gluten-free vegetarian
+56006;Back Door Deli;sandwiches breakfast & brunch
+56016;Yellow Belly;pubs bars american (traditional) nightlife breakfast & brunch pizza american (new) beer bar
+56082;Santa Barbara Wine Spa;pizza
+56159;Wabi Sabi;sushi bars
+56261;iGrill Korean BBQ;korean barbeque
+56504;Billies;bars nightlife diners local flavor
+56574;Panda Express;fast food chinese
+56583;Taco Bell;fast food breakfast & brunch mexican tex-mex tacos
+56601;Noemi Pizza Romana;pizza
+56609;Piano Gastrolounge;bars nightlife american (new) gastropubs lounges
+56670;Mesa Burger - Santa Barbara;burgers ice cream & frozen yogurt bars american (traditional) nightlife salad american (new) beer bar beer wine & spirits chicken shop
+56720;Convivo Restaurant and Bar;italian bars nightlife moroccan mediterranean
+56776;Ca'Dario Pizzeria Veloce;pizza
+56959;Pickles & Swiss;fast food sandwiches salad gluten-free
+57012;Buena Onda;caterers latin american empanadas argentine
+57042;The Honor Bar;sandwiches bars nightlife cocktail bars american (new)
+57067;Wingman Rodeo - Milpas Street;sandwiches nightlife chicken wings salad chicken shop vegetarian
+57175;Domino's Pizza;sandwiches pizza chicken wings
+57257;Goleta Coffee Co and Loca Vivant Kitchen;coffee & tea sandwiches breakfast & brunch bagels gluten-free
+57260;Lemon Tree Inn;italian nightlife hotels & travel hotels
+57311;Cesar's Place;mexican fish & chips
+57321;Sushi Bar 29;sushi bars japanese noodles
+57558;Oat Bakery;coffee & tea bakeries specialty food vegan gluten-free organic stores food delivery services farmers market
+57589;Woody's Roundup Bar & Grill;bars nightlife barbeque
+57607;Pizza Guru;pizza

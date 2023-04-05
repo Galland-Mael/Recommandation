@@ -63,6 +63,10 @@ def index(request):
     @param request: L'objet HttpRequest qui est envoyé par le client
     @return:
     """
+    if 'mailAdministrateur' in request.session:
+        return redirect('index_administrateur')
+    if 'mailRestaurateur' in request.session:
+        return redirect('index_restaurateur')
     list = ["bars", "american (traditional)", "pizza", "fast food", "breakfast & brunch", "american (new)", "burgers",
             "mexican", "italian", "coffee & tea"]
     if 'groupe' in request.session:
