@@ -609,12 +609,12 @@ def verificationEmail(mail):
                   "Code de vérification :\n"
                   + "         " + random
                   + "\n\nL'équipe EatAdvisor",
-                  "eat_advisor2@outlook.fr",
+                  "eat_advisor@outlook.fr",
                   [mail],
                   fail_silently=False)
         return random
     except:
-        return HttpResponse("le mail na pas pu etre envoyer")
+        return -1
 
 
 def logoutUser(request):
