@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-29 13:15+0000\n"
+"POT-Creation-Date: 2023-04-05 15:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,75 +17,419 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: appsae/settings.py:117
+
+#: appsae/settings.py:129
 msgid "French"
 msgstr "French"
 
-#: appsae/settings.py:118
+#: appsae/settings.py:130
 msgid "English"
 msgstr "English"
 
-#: appsae/settings.py:119
-msgid "Deutch"
-msgstr "German"
+#: appsae/templates/administrateur/form_refus.html:19
+#, fuzzy
+#| msgid "Mot de passe"
+msgid "Motif de refus"
+msgstr "Password"
 
-#: appsae/settings.py:120
-msgid "España"
-msgstr "Spain"
+#: appsae/templates/administrateur/form_refus.html:22
+msgid "Titre du refus :"
+msgstr "Title of refusal:"
 
-#: appsae/templates/avis/moreAvis.html:18
-#: appsae/templates/restaurants/vueRestaurant.html:20
-#: appsae/templates/restaurants/vueRestaurant.html:109
-#: appsae/templates/restaurants/vueRestaurant.html:169
-#: appsae/templates/restaurants/vueRestaurant.html:192
-msgid "Note"
-msgstr "Rate"
+#: appsae/templates/administrateur/form_refus.html:26
+#: appsae/templates/restaurateur/index.html:62
+msgid "Description :"
+msgstr "Description :"
+
+#: appsae/templates/administrateur/form_refus.html:31
+#, fuzzy
+#| msgid "Valider"
+msgid "Valider le refus"
+msgstr "Validate the refusal"
+
+#: appsae/templates/administrateur/index.html:16
+#, fuzzy
+#| msgid "liste des restaurants"
+msgid "Demandes d'inscription de restaurants:"
+msgstr "Restaurant listing requests:"
+
+#: appsae/templates/administrateur/validation.html:19
+msgid "Validation"
+msgstr "Validation"
+
+#: appsae/templates/administrateur/validation.html:22
+msgid "Restaurateur :"
+msgstr "Restaurateur :"
+
+#: appsae/templates/administrateur/validation.html:26
+#, fuzzy
+#| msgid "liste des restaurants"
+msgid "Nom du restaurant :"
+msgstr "Restaurant name:"
+
+#: appsae/templates/administrateur/validation.html:30
+#, fuzzy
+#| msgid "liste des restaurants"
+msgid "Adresse du restaurant :"
+msgstr "Restaurant address:"
+
+#: appsae/templates/administrateur/validation.html:35
+#, fuzzy
+#| msgid "Ville"
+msgid "Ville :"
+msgstr "City"
+
+#: appsae/templates/administrateur/validation.html:39
+msgid "Code Postal :"
+msgstr "Postal code :"
+
+#: appsae/templates/administrateur/validation.html:45
+msgid "Pays :"
+msgstr "Country :"
+
+#: appsae/templates/administrateur/validation.html:49
+#: appsae/templates/restaurateur/createResto.html:45
+msgid "Etat :"
+msgstr "State :"
+
+#: appsae/templates/administrateur/validation.html:55
+msgid "Longitude :"
+msgstr "Length :"
+
+#: appsae/templates/administrateur/validation.html:59
+msgid "Latitude :"
+msgstr "Latitude :"
+
+#: appsae/templates/administrateur/validation.html:65
+msgid "Refuser la demande "
+msgstr "Refuse the request"
+
+#: appsae/templates/administrateur/validation.html:68
+msgid "Valider la demande"
+msgstr "Validate the request"
+
+#: appsae/templates/avis/moreAvis.html:35
+#: appsae/templates/restaurants/searchRestau.html:55
+#, fuzzy
+#| msgid "liste des restaurants"
+msgid "Noter ce restaurant"
+msgstr "Rate this restaurant"
 
 #: appsae/templates/index/index.html:31
 msgid "Rechercher un restaurant"
 msgstr "Find a restaurant"
 
 #: appsae/templates/index/index.html:48
-msgid "Recommandation"
-msgstr "Recommendation"
+msgid "Notre sélection pour vous"
+msgstr "Our selection for you"
 
-#: appsae/templates/index/index.html:85
+#: appsae/templates/index/index.html:74
 msgid "Les meilleurs restaurants Italiens"
 msgstr "Best Italian restaurants"
 
-#: appsae/templates/index/index.html:116
-msgid "Les meilleurs restaurants"
-msgstr "Best restaurants"
+#: appsae/templates/index/index.html:93
+msgid "Vous avez apprécier lors de votre dernière visite"
+msgstr "You enjoyed during your last visit"
+
+#: appsae/templates/index/index.html:112
+msgid "Soyez le premier à noter ce restaurant"
+msgstr "Be the first to rate this restaurant"
+
+#: appsae/templates/index/index.html:130
+msgid "Les restaurants les plus appréciés"
+msgstr "The most popular restaurants"
+
+#: appsae/templates/index/restaurant_affichage.html:26
+#: appsae/templates/restaurants/searchRestaurants.html:30
+#: appsae/templates/user/groupRecommandations.html:71
+msgid "Pas de note"
+msgstr "No rating"
 
 #: appsae/templates/restaurants/searchRestau.html:16
 msgid "liste des restaurants"
-msgstr "list of restaurants"
+msgstr "restaurants list"
 
-#: appsae/templates/restaurants/vueRestaurant.html:28
-#: appsae/templates/restaurants/vueRestaurant.html:138
-#: appsae/templates/restaurants/vueRestaurant.html:150
+#: appsae/templates/restaurants/vueRestaurant.html:46
+#: appsae/templates/restaurants/vueRestaurant.html:173
 msgid "Commentaire"
 msgstr "Comment"
 
-#: appsae/templates/restaurants/vueRestaurant.html:102
-msgid "Modifier un avis"
+#: appsae/templates/restaurants/vueRestaurant.html:121
+#: appsae/templates/restaurants/vueRestaurant.html:129
+#, fuzzy
+#| msgid "Modifier un avis"
+msgid "Modifier votre avis"
 msgstr "Edit a review"
 
-#: appsae/templates/restaurants/vueRestaurant.html:104
-msgid "Ajouter un avis"
+#: appsae/templates/restaurants/vueRestaurant.html:123
+#, fuzzy
+#| msgid "Ajouter un avis"
+msgid "Ajouter votre avis"
 msgstr "Add review"
 
-#: appsae/templates/restaurants/vueRestaurant.html:141
-msgid "Modifier"
-msgstr "Edit"
+#: appsae/templates/restaurants/vueRestaurant.html:155
+#, fuzzy
+#| msgid "Commentaire"
+msgid "Commentaire (facultatif)"
+msgstr "Comment"
 
-#: appsae/templates/restaurants/vueRestaurant.html:143
+#: appsae/templates/restaurants/vueRestaurant.html:158
+#: appsae/templates/restaurateur/modifResto.html:25
+#: appsae/templates/restaurateur/modifResto.html:116
+#, fuzzy
+#| msgid "Enregistrement"
+msgid "Enregistrer"
+msgstr "Enregistrement"
+
+#: appsae/templates/restaurants/vueRestaurant.html:270
+#, fuzzy
+#| msgid "Voir plus"
+msgid "voir plus"
+msgstr "See more"
+
+#: appsae/templates/restaurateur/createResto.html:19
+#, fuzzy
+#| msgid "liste des restaurants"
+msgid "Inscrire votre restaurant"
+msgstr "Register your restaurant"
+
+#: appsae/templates/restaurateur/createResto.html:22
+#, fuzzy
+#| msgid "liste des restaurants"
+msgid "Nom du restaurant * :"
+msgstr "Restaurant name *:"
+
+#: appsae/templates/restaurateur/createResto.html:26
+#, fuzzy
+#| msgid "liste des restaurants"
+msgid "Adresse du restaurant * :"
+msgstr "Address of the restaurant *:"
+
+#: appsae/templates/restaurateur/createResto.html:31
+#, fuzzy
+#| msgid "Ville"
+msgid "Ville * :"
+msgstr "City * :"
+
+#: appsae/templates/restaurateur/createResto.html:35
+msgid "Code Postal * :"
+msgstr "Postal code * :"
+
+#: appsae/templates/restaurateur/createResto.html:41
+msgid "Pays * :"
+msgstr "Country * :"
+
+#: appsae/templates/restaurateur/createResto.html:51
+msgid "Longitude * :"
+msgstr "Length *:"
+
+#: appsae/templates/restaurateur/createResto.html:55
+msgid "Latitude * :"
+msgstr "Latitude*:"
+
+#: appsae/templates/restaurateur/createResto.html:63
+msgid "Image de couverture * :"
+msgstr "Cover image *:"
+
+#: appsae/templates/restaurateur/createResto.html:65
+#: appsae/templates/restaurateur/createResto.html:76
 msgid "Ajouter"
 msgstr "Add"
 
-#: appsae/templates/restaurants/vueRestaurant.html:212
-msgid "Voir plus"
-msgstr "See more"
+#: appsae/templates/restaurateur/createResto.html:72
+msgid "Autres images "
+msgstr "Other pictures"
+
+#: appsae/templates/restaurateur/createResto.html:84
+#, fuzzy
+#| msgid "liste des restaurants"
+msgid "Types de votre restaurant"
+msgstr "Types of your restaurant"
+
+#: appsae/templates/restaurateur/createResto.html:92
+msgid "Envoyer la demande"
+msgstr "Send request"
+
+#: appsae/templates/restaurateur/createResto.html:95
+msgid "Champs obligatoires"
+msgstr "Required fields"
+
+#: appsae/templates/restaurateur/createResto.html:96
+msgid "Ajouter au moins 4 photos de votre établissement"
+msgstr "Add at least 4 photos of your establishment"
+
+#: appsae/templates/restaurateur/createResto.html:97
+msgid "Sélectionnez minimum un type"
+msgstr "Select at least one type"
+
+#: appsae/templates/restaurateur/index.html:18
+msgid ""
+"Vous êtes un restaurateur et vous souhaitez que votre restaurant soit "
+"inscrit sur le site EatAdvisor"
+msgstr ""
+"You are a restaurateur and you want your restaurant to be"
+"registered on the EatAdvisor website"
+#: appsae/templates/restaurateur/index.html:22
+msgid ""
+"Il vous suffit de remplir le formulaire suivant, les informations sur votre "
+"restaurant seront vérifiées puis validées ou refusées."
+msgstr ""
+"You just need to fill in the following form, the information about your "
+"restaurant will be checked and then validated or refused."
+#: appsae/templates/restaurateur/index.html:25
+msgid ""
+" Si vos informations sont validées, votre restaurant sera ajouté sur "
+"EatAdvisor, vous pourrez ajouter des horaires, des images et des "
+"commentaires à la page contenant les informations de votre restaurant."
+msgstr ""
+"If your information is validated, your restaurant will be added to"
+"EatAdvisor, you will be able to add timetables, images and "
+"comments to the page containing your restaurant information."
+#: appsae/templates/restaurateur/index.html:28
+msgid "Sinon, vous pourrez refaire une demande au bout de 3 jours."
+msgstr "Otherwise, you can reapply after 3 days."
+
+#: appsae/templates/restaurateur/index.html:32
+#, fuzzy
+#| msgid "Rechercher un restaurant"
+msgid "Créer mon restaurant"
+msgstr "create your restaurant"
+
+#: appsae/templates/restaurateur/index.html:37
+msgid "Demande en cours de traitement"
+msgstr "Request being processed"
+
+#: appsae/templates/restaurateur/index.html:40
+msgid "Déposée le "
+msgstr "Filed on"
+
+#: appsae/templates/restaurateur/index.html:43
+msgid "Restaurant :"
+msgstr "Restaurant :"
+
+#: appsae/templates/restaurateur/index.html:47
+msgid "Adresse :"
+msgstr "Address :"
+
+#: appsae/templates/restaurateur/index.html:51
+msgid "Votre demande sera traitée dans les plus brefs délais"
+msgstr "Your request will be processed as soon as possible"
+
+#: appsae/templates/restaurateur/index.html:55
+msgid "Votre demande a été refusée"
+msgstr "Your request has been denied"
+
+#: appsae/templates/restaurateur/index.html:58
+msgid "Motif du refus :"
+msgstr "Reason for refusal:"
+
+#: appsae/templates/restaurateur/index.html:68
+#, fuzzy
+#| msgid "Modifier un avis"
+msgid "Modifier ma demande"
+msgstr "Edit my request"
+
+#: appsae/templates/restaurateur/index.html:72
+msgid "Vous pourrez modifier votre demande dans "
+msgstr "You can modify your request in "
+
+#: appsae/templates/restaurateur/index.html:72
+msgid "minutes "
+msgstr "minutes "
+
+#: appsae/templates/restaurateur/index.html:72
+msgid "secondes"
+msgstr "seconds"
+
+#: appsae/templates/restaurateur/login_restaurateur.html:18
+#: appsae/templates/source/header.html:34 appsae/templates/user/login.html:18
+#: appsae/templates/user/login.html:35
+msgid "Connexion"
+msgstr "Login"
+
+#: appsae/templates/restaurateur/login_restaurateur.html:21
+#: appsae/templates/restaurateur/register_restaurateur.html:21
+#: appsae/templates/user/login.html:21 appsae/templates/user/register.html:142
+msgid "Mail"
+msgstr "Email"
+
+#: appsae/templates/restaurateur/login_restaurateur.html:30
+#: appsae/templates/restaurateur/register_restaurateur.html:30
+#: appsae/templates/user/login.html:30 appsae/templates/user/register.html:149
+msgid "Mot de passe"
+msgstr "Password"
+
+#: appsae/templates/restaurateur/login_restaurateur.html:35
+#, fuzzy
+#| msgid "Connexion"
+msgid "connexion"
+msgstr "Login"
+
+#: appsae/templates/restaurateur/login_restaurateur.html:38
+#, fuzzy
+#| msgid "Je n'ai pas de compte"
+msgid "je n'ai pas de compte"
+msgstr "I do not have an account"
+
+#: appsae/templates/restaurateur/modifResto.html:20
+msgid "Téléphone"
+msgstr "Phone"
+
+#: appsae/templates/restaurateur/modifResto.html:31
+msgid "Avis"
+msgstr "Review"
+
+#: appsae/templates/restaurateur/modifResto.html:33
+msgid "Nombre d'avis"
+msgstr "Number of reviews"
+
+#: appsae/templates/restaurateur/modifResto.html:35
+msgid "Moyenne"
+msgstr "Average"
+
+#: appsae/templates/restaurateur/modifResto.html:47
+msgid "Derniers avis"
+msgstr "Latest Reviews"
+
+#: appsae/templates/restaurateur/modifResto.html:60
+msgid "Note"
+msgstr "Rate"
+
+#: appsae/templates/restaurateur/modifResto.html:76
+msgid "Horaires"
+msgstr "Schedule"
+
+#: appsae/templates/restaurateur/modifResto.html:124
+#, fuzzy
+#| msgid "Rechercher un utilisateur"
+msgid "vue utilisateur"
+msgstr "user view"
+
+#: appsae/templates/restaurateur/register_restaurateur.html:18
+#, fuzzy
+#| msgid "Rechercher un restaurant"
+msgid "Créer un compte restaurateur"
+msgstr "Create a restaurant account"
+
+#: appsae/templates/restaurateur/register_restaurateur.html:36
+#, fuzzy
+#| msgid "Comfirmation du mot de passe"
+msgid "Vérification mot de passe"
+msgstr "Password confirmation"
+
+#: appsae/templates/restaurateur/register_restaurateur.html:41
+#: appsae/templates/user/modifUser.html:72
+msgid "Valider"
+msgstr "Validate"
+
+#: appsae/templates/restaurateur/register_restaurateur.html:44
+#: appsae/templates/user/register.html:131
+msgid "Je possède déjà un compte"
+msgstr "I already have an account"
+
+#: appsae/templates/restaurateur/register_restaurateur.html:46
+msgid "Je ne suis pas un restaurateur"
+msgstr "I'm not a restaurant owner"
 
 #: appsae/templates/source/footer.html:4
 msgid "© 2022 Eat Advisor LLC Tous droits réservés."
@@ -99,22 +443,29 @@ msgstr "Contact us"
 msgid "Langues"
 msgstr "Languages"
 
-#: appsae/templates/source/header.html:11
+#: appsae/templates/source/header.html:17
 msgid "Groupe"
 msgstr "Group"
 
-#: appsae/templates/source/header.html:12
-msgid "Créer un groupe"
+#: appsae/templates/source/header.html:18
+#, fuzzy
+#| msgid "Créer un groupe"
+msgid "Créer un Groupe"
 msgstr "Create a group"
 
-#: appsae/templates/source/header.html:13
-msgid "Déconnexion"
+#: appsae/templates/source/header.html:19
+#: appsae/templates/source/header.html:27
+#: appsae/templates/source/header.html:32
+#, fuzzy
+#| msgid "Déconnexion"
+msgid "Deconnexion"
 msgstr "Logout"
 
-#: appsae/templates/source/header.html:18 appsae/templates/user/login.html:18
-#: appsae/templates/user/login.html:35
-msgid "Connexion"
-msgstr "Login"
+#: appsae/templates/source/header.html:25
+#, fuzzy
+#| msgid "Rechercher un restaurant"
+msgid "Mon restaurant"
+msgstr "Find a restaurant"
 
 #: appsae/templates/user/creationGroup.html:22
 msgid "Rechercher un utilisateur"
@@ -122,11 +473,11 @@ msgstr "Search a user"
 
 #: appsae/templates/user/creationGroup.html:51
 #: appsae/templates/user/nomGroup.html:38
-#: appsae/templates/user/pageVerifMail.html:32
-#: appsae/templates/user/register.html:127
-#: appsae/templates/user/register.html:160
-#: appsae/templates/user/register.html:176
-#: appsae/templates/user/register.html:186
+#: appsae/templates/user/pageVerifMail.html:31
+#: appsae/templates/user/register.html:128
+#: appsae/templates/user/register.html:165
+#: appsae/templates/user/register.html:181
+#: appsae/templates/user/register.html:192
 msgid "Suivant"
 msgstr "Next"
 
@@ -150,14 +501,6 @@ msgstr "Your recommendations"
 msgid "Voir les recommandations"
 msgstr "See recommendations"
 
-#: appsae/templates/user/login.html:21 appsae/templates/user/register.html:137
-msgid "Mail"
-msgstr "Email"
-
-#: appsae/templates/user/login.html:30 appsae/templates/user/register.html:144
-msgid "Mot de passe"
-msgstr "Password"
-
 #: appsae/templates/user/login.html:38
 msgid "Je n'ai pas de compte"
 msgstr "I do not have an account"
@@ -167,7 +510,7 @@ msgid "photo"
 msgstr "photo"
 
 #: appsae/templates/user/modifUser.html:37
-#: appsae/templates/user/register.html:91
+#: appsae/templates/user/register.html:92
 msgid "Prénom"
 msgstr "First name"
 
@@ -176,13 +519,9 @@ msgid "Nom"
 msgstr "Name"
 
 #: appsae/templates/user/modifUser.html:49
-#: appsae/templates/user/register.html:105
+#: appsae/templates/user/register.html:106
 msgid "Ville"
 msgstr "City"
-
-#: appsae/templates/user/modifUser.html:72
-msgid "Valider"
-msgstr "Validate"
 
 #: appsae/templates/user/nomGroup.html:19
 msgid "Nom du groupe"
@@ -192,86 +531,80 @@ msgstr "Name of the group"
 msgid "Veuillez entrer le code reçu par mail"
 msgstr "Please enter the code received by email"
 
-#: appsae/templates/user/pageVerifMail.html:31
-#: appsae/templates/user/register.html:158
-#: appsae/templates/user/register.html:175
-#: appsae/templates/user/register.html:184
-msgid "Précédent"
-msgstr "Previous"
-
-#: appsae/templates/user/register.html:26
+#: appsae/templates/user/register.html:27
 msgid "Enregistrement"
 msgstr "Enregistrement"
 
-#: appsae/templates/user/register.html:30
+#: appsae/templates/user/register.html:31
 msgid "Info"
 msgstr "Info"
 
-#: appsae/templates/user/register.html:44
+#: appsae/templates/user/register.html:45
 msgid "Perso"
 msgstr "Info"
 
-#: appsae/templates/user/register.html:57
-#: appsae/templates/user/register.html:165
+#: appsae/templates/user/register.html:58
+#: appsae/templates/user/register.html:170
 msgid "Date"
 msgstr "Date"
 
-#: appsae/templates/user/register.html:70
-#: appsae/templates/user/register.html:181
+#: appsae/templates/user/register.html:71
+#: appsae/templates/user/register.html:186
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#: appsae/templates/user/register.html:87
+#: appsae/templates/user/register.html:88
 msgid "Informations"
 msgstr "Informations"
 
-#: appsae/templates/user/register.html:94
-#: appsae/templates/user/register.html:101
-#: appsae/templates/user/register.html:140
+#: appsae/templates/user/register.html:95
+#: appsae/templates/user/register.html:102
+#: appsae/templates/user/register.html:145
 msgid "Ce champ ne peut être vide"
 msgstr "This field cannot be empty"
 
-#: appsae/templates/user/register.html:98
+#: appsae/templates/user/register.html:99
 msgid "Nom de famille"
 msgstr "Surname"
 
-#: appsae/templates/user/register.html:129
-msgid "Je possède déjà un compte"
-msgstr "I already have an account"
-
 #: appsae/templates/user/register.html:133
+msgid "Je suis un restaurateur"
+msgstr "I am a restaurant owner"
+
+#: appsae/templates/user/register.html:138
 msgid "Personnel"
 msgstr "Staff"
 
-#: appsae/templates/user/register.html:148
+#: appsae/templates/user/register.html:153
 msgid "Le mot de passe doit contenir entre 8 et 15 caractères"
 msgstr "The password must contain between 8 and 15 characters"
 
-#: appsae/templates/user/register.html:152
+#: appsae/templates/user/register.html:157
 msgid "Comfirmation du mot de passe"
 msgstr "Password confirmation"
 
-#: appsae/templates/user/register.html:155
+#: appsae/templates/user/register.html:160
 msgid "Veuillez entrer le même mot de passe"
 msgstr "Please enter the same password"
 
-#: appsae/templates/user/register.html:169
+#: appsae/templates/user/register.html:163
+#: appsae/templates/user/register.html:180
+#: appsae/templates/user/register.html:190
+msgid "Précédent"
+msgstr "Previous"
+
+#: appsae/templates/user/register.html:174
 msgid "Date de naissance"
 msgstr "Date of birth"
 
-#: appsae/templates/user/register.html:172
+#: appsae/templates/user/register.html:177
 msgid "Champ incorrect"
 msgstr "Invalid field"
 
-#: appsae/views.py:68
-msgid "Il y a déjà un compte associé à cette adresse mail"
-msgstr "There is already an account associated with this email address"
-
-#: appsae/views.py:92 appsae/views.py:569
+#: appsae/views.py:56
 msgid "Mot de passe ou mail incorrect"
 msgstr "Incorrect password or email"
 
-#: appsae/views.py:484
+#: appsae/views.py:442
 msgid "Les deux champs doivent être remplis."
 msgstr "Both fields must be completed."
-
