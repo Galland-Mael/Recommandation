@@ -29,7 +29,7 @@ RECAPTCHA_PRIVATE_KEY = '6LfCDW0kAAAAAOUZzei-U_vFLwx8kZSDsUjk9o9g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', '161.35.17.227']
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'appsae.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'bdBien5.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -144,9 +144,8 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static/"),
-)
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-mail.outlook.com'
