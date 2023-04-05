@@ -29,7 +29,7 @@ RECAPTCHA_PRIVATE_KEY = '6LfCDW0kAAAAAOUZzei-U_vFLwx8kZSDsUjk9o9g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.240.86', 'eatadvisor.fr', 'www.eatadvisor.fr']
+ALLOWED_HOSTS = ['*', '161.35.17.227', '127.0.0.1', '192.168.240.86', 'eatadvisor.fr', 'www.eatadvisor.fr', '161.35.17.227']
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
@@ -144,11 +144,11 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 STATIC_URL = '/static/'
-#STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, "static/"),
-#)
+STATICFILES_DIRS = (
+   os.path.join(BASE_DIR, "static/"),
+)
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+#STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
