@@ -92,6 +92,9 @@ footer{
 .flex-column{
     flex-direction: column;
 }
+footer{
+    height: 100px;
+}
 
 .justify-center{
     justify-content: center;
